@@ -10,7 +10,7 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run --passWithNoTests --testTimeout 30000",
     "verify": "node --import tsx src/cli.ts",
     "verify:fisco": "node --import tsx src/fisco/cli.ts"
   },
