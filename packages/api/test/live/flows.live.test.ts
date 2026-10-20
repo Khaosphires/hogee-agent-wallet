@@ -81,7 +81,7 @@ describe.skipIf(!LIVE)("flows 0–11 (live)", { timeout: LIVE_TIMEOUT_MS }, () =
     expect((await json(await w.founder.get(`/api/chat/${SESSION}`), z.array(ChatMessage))).length).toBeGreaterThanOrEqual(4);
   });
 
-  it("3: Rina signs the plan with her passkey; commitPlan releases stage 1", async () => {
+  it("3: Rina signs the plan with a passkey; commitPlan releases stage 1", async () => {
     await signPlan(w, auth, draftId);
     expect((await json(await w.founder.get("/api/plans/current"), PlanRecord)).status).toBe("COMMITTED");
     expect((await balances()).releasedMinor).toBe("400000");

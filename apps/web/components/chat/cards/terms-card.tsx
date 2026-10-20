@@ -32,7 +32,7 @@ const sameSplit = (a: readonly MilestoneInput[], b: readonly MilestoneInput[]): 
 /** The preset whose split the founder described, if any (then it is that preset, not a separate option). */
 const presetOf = (ms: readonly MilestoneInput[]): TermsPreset | null => PRESET_ORDER.find((p) => sameSplit(TERMS_PRESET_MILESTONES[p], ms)) ?? null;
 
-/** The split from her own words (or the button she pressed); nothing is guessed when she said none. */
+/** The split from the founder's own words (or the button they pressed); nothing is guessed when they said none. */
 function initialChoice(data: DataTerms): Choice | null {
   if (data.preset) return data.preset;
   if (data.source !== "founder_text" || !data.milestones) return null;
@@ -42,8 +42,8 @@ function initialChoice(data: DataTerms): Choice | null {
 const splitOf = (ms: readonly MilestoneInput[]): string => ms.map((m) => String(m.bps / 100)).join("/");
 
 /**
- * The deal form (VISION-DECISIONS §9; UX-PLAN D2, D26): the split she agreed (splits a limit rules out are greyed with
- * a grey reason), how many units and the total in BU, and the supplier's bank account she types in. "Save and sign"
+ * The deal form (VISION-DECISIONS §9; UX-PLAN D2, D26): the split the founder agreed (splits a limit rules out are greyed with
+ * a grey reason), how many units and the total in BU, and the supplier's bank account the founder types in. "Save and sign"
  * posts submitOrderTerms (the ONLY way an account reaches the server), and only after the server confirms the terms
  * does it tell the chat `terms_saved` and open the order's sign sheet (two server steps; a failed save opens nothing).
  */

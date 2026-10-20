@@ -16,7 +16,7 @@
  * autonomy (§15 E6), facility rows only:
  *   - agentTxs: mined payments the agent decided by itself (AGENT_PAYMENT_KINDS: SPEND, FUND_MILESTONE) plus mined
  *     agent-signed chain actions (Treasury.recordDenied denial anchors, Treasury.tighten). A founder-signed payment
- *     the relayer only carries (RELEASE_MILESTONE, OWNER_SPEND) is her signature in humanSigs, never also an AI
+ *     the relayer only carries (RELEASE_MILESTONE, OWNER_SPEND) is the founder's signature in humanSigs, never also an AI
  *     payment (W-4);
  *   - humanSigs: consumed founder signatures (signature_requests SUBMITTED) plus actions an officer approved and the
  *     lender key carries (open, fund, founder-key approval, loosen co-signature, stage release, veto), unless reverted;
@@ -38,7 +38,7 @@ const MINED_STATES = ["INCLUDED", "FINALIZED", "SETTLEMENT_REQUESTED", "SETTLED"
 /**
  * Payment kinds the agent decides by itself (W-4): its spends (pacing, invoices, API proposals, an escalation an officer
  * approved) and escrow funding. RELEASE_MILESTONE and OWNER_SPEND are founder-signed (the relayer key has no authority
- * of its own) and count once, as her signature; WITHDRAW_RESERVE carries no agent decision.
+ * of its own) and count once, as the founder's signature; WITHDRAW_RESERVE carries no agent decision.
  */
 export const AGENT_PAYMENT_KINDS = ["SPEND", "FUND_MILESTONE"] as const satisfies readonly PaymentKind[];
 /** Chain actions the agent key signs on its own (denial anchors). */

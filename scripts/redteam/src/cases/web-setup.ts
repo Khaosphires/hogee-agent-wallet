@@ -5,8 +5,8 @@
  *             needs card and an inline PlanApproval card for the compiled draft; Mei signs THAT refId and commitPlan
  *             is mined (sepolia-prep TODO S2)
  *   S1 (WEB)  the officer funds the plan total; one more minor unit reverts CapExceeded
- *   S3 (WEB)  the search: Mei types her identifiers first (T33 bait), then presses "find suppliers"; the recorded
- *             search becomes READY; she sees the candidates and picks the clean supplier; the enquiry is templated
+ *   S3 (WEB)  the search: Mei types personal identifiers first (T33 bait), then presses "find suppliers"; the recorded
+ *             search becomes READY; Mei sees the candidates and picks the clean supplier; the enquiry is templated
  *             (sepolia-prep TODO S3, first half; the terms half is in web-order.ts)
  */
 import { buildFund } from "@hogee/chain";
@@ -28,7 +28,7 @@ async function minedRow(ctx: Ctx, actionId: string, title: string, traceId?: str
   await ctx.tx({ title, expected: "success", ok: true, hash: a.txHash, ...(traceId ? { traceId } : {}) });
 }
 
-/** Words that must never appear in a templated enquiry: seller names, the founder, her identifiers, the budget. */
+/** Words that must never appear in a templated enquiry: seller names, the founder, their identifiers, the budget. */
 function enquiryLeaks(ctx: Ctx, subject: string, body: string): string[] {
   const w = web(ctx);
   const text = `${subject}\n${body}`.toLowerCase();
@@ -105,7 +105,7 @@ export const WEB_S3_SEARCH: CaseDef = {
   anvilOnly: WEB_ONLY,
   async run(ctx) {
     const w = ready(ctx);
-    // T33 bait: Mei types her identifiers before asking (the query must not carry them; T33 (WEB) checks it).
+    // T33 bait: Mei types personal identifiers before asking (the query must not carry them; T33 (WEB) checks it).
     await say(ctx, w.sessionId, `My NRIC is ${FOUNDER_CANARIES.nric} and my passport is ${FOUNDER_CANARIES.passport}. Please find me suppliers for the tumblers.`, [
       toolCall("chooseSkill", { skill: "find_suppliers", candidateRanks: null, cfoView: null }),
     ]);

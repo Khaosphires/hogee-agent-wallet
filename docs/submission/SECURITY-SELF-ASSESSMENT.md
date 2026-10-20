@@ -7,7 +7,7 @@
 | Team name | Team FEIN |
 | Competition track | International AI Track, Topic F (Agent Wallet: Autonomous On-chain Wallet) |
 | Submission date | 20 Oct 2026 |
-| Build assessed | `main` at `927851d` (20 Oct 2026): the chat-first product, the Sepolia deployments `final-1` and `final-2`, the FISCO BCOS mirror with its regulator, and the Sepolia timestamp of the mirror pack |
+| Build assessed | The code in this repository (public commit `9c61d0a`, 20 Oct 2026): the chat-first product, the deployments `final-1` and `final-2` on Ethereum Sepolia, a public test network, the FISCO BCOS mirror with its regulator, and the Sepolia timestamp of the mirror pack |
 | Related | [Technical document](TECH-DOC.md) · [Execution evidence](EXECUTION-EVIDENCE.md) · [FISCO mirror](../fisco/README.md) · [Sepolia timestamp](../fisco/ANCHOR.md) |
 
 **In one line:** the models only propose. Deterministic code checks every proposal against the plan the founder signed,
@@ -21,7 +21,7 @@ and the contracts refuse anything outside that plan, even when the founder signs
   plus 22 web-path cases (14 attacks, 8 journey steps) on Anvil only.
 - On a local FISCO BCOS chain, the same agent payment was stopped three independent ways: twice by a regulator at chain
   level (account freeze, method ban) and once by the loan officer's contract pause. An offline checker verifies the
-  recorded run (18 checks), and a public Sepolia transaction timestamps the pack.
+  recorded run (`make verify-fisco`, 18 checks), and a public Sepolia transaction timestamps the pack.
 - Offline checkers for every evidence bundle and pack, with tamper tests; Foundry fuzz and invariant tests; Slither and
   Aderyn on the contracts.
 
@@ -40,7 +40,7 @@ third-party chain software for the FISCO mirror.
 | Adversary | What they control | What they want | First control that stops them |
 |---|---|---|---|
 | A hostile web page, listing, email or document | Text the agent reads | Make the agent pay them, change a rule, or leak data | Untrusted text never reaches a payee, amount, rule or calldata; the Reader is quarantined; payments need a signed plan and a bound payee |
-| A fake supplier with a real company account | A listing and a bank account in their own name | Get bound as a payee and paid | The founder picks and signs; at most one automatic deposit within the per-payment cap; the balance needs the founder's evidence and signature |
+| A fake supplier with a real company account | A listing and a bank account in their own name | Get bound as a payee and paid | The founder picks and signs; at most one automatic deposit within the per-payment cap (checked off-chain by the terms rules; on-chain, the signed schedule); the balance needs the founder's evidence and signature |
 | The models themselves (wrong or manipulated output) | Router, Planner and Reader answers | Any money action | Model output is a skill name, ranks or schema-checked fields; deterministic rules decide; the contracts re-check |
 | A caller on the API host | HTTP requests to the localhost API | Act as the founder | Localhost bind, Host allow-list, same-origin POSTs; moving funds outside the plan still needs the founder's passkey (the founder persona is not authenticated: risk 13) |
 | A thief with the agent key | One session key | Spend outside the backend | On-chain caps, bound payees, escrow schedules; the reconciler pauses the treasury (T29) |
@@ -89,8 +89,9 @@ them.
 | CONTINGENCY | 1,500 BU | 375 BU | 750 BU | |
 | **Total** | **10,000 BU** (SGD 10,000) | | | Tax reserve 500 bps (5%) of each sale; facility floor 300 bps (a labelled demo value) |
 
-**What a web supplier can be paid without Mei.** At most one automatic milestone: the deposit on order, only if it fits
-the SUPPLIER per-payment cap (1,125 BU in `final-2`), at most half the order total, and the window cap still left. In
+**What a web supplier can be paid without Mei.** At most one automatic milestone, checked off-chain by the terms rules
+before Mei signs: the deposit on order, only if it fits the SUPPLIER per-payment cap (1,125 BU in `final-2`), at most
+half the order total, and the window cap still left. On-chain, `fundMilestone` checks the signed schedule. In
 the `final-2` run the quote was 2,500 BU, so the agent paid the 750 BU deposit on its own after cooling. It escrowed the
 1,750 BU balance right after cooling, and the balance was released only after the delivery check, with Mei's evidence
 and signature. An agent release of that balance reverts `MilestoneLocked`, and funding one more minor unit reverts
@@ -111,7 +112,7 @@ the countdown. The deploy scripts refuse less than 120 s on any chain but Anvil.
   the officer and the timelock, and `executeLoosen` re-checks the constitution at execution.
 - **Exceed its caps.** `spend` checks the line, the bound payee, cooling, the invoice, the per-payment cap and the rolling
   window on-chain. `fundMilestone` checks the signed schedule.
-- **Use the AI CFO to loosen.** The AI CFO's `cfo-guard` job may only lower a line's cap or raise the reserve
+- **Use the AI CFO to loosen.** The AI CFO is fixed code that calls no model. Its `cfo-guard` job may only lower a line's cap or raise the reserve
   (up to 1,000 bps). It lowers a line at most once per rolling window (at least a day), never below the highest of 1 BU,
   the pacing slot, the line's largest agent payment in 30 days, and half the committed cap. Each proposal is re-checked
   on the real on-chain context before the agent key signs it, and any read error sends nothing.
@@ -192,7 +193,9 @@ signs it with the lender key first.
   plan rules, rationale commitments and trace hash chains. `make verify-fisco` re-checks a mirror pack in 18 checks,
   including the regulator's ledger and powers and the Sepolia timestamp. Both run with no network. `make verify`'s
   online mode compares every receipt and block with a Sepolia node; `verify-fisco`'s online mode (`--anchor-rpc`)
-  confirms the Sepolia anchor, and the FISCO ledger itself is checked offline only.
+  confirms the Sepolia anchor, and the FISCO ledger itself is checked offline only. Public Sepolia nodes keep only recent
+  receipts, so the online check needs a node that serves older receipts; otherwise compare the anchor with Sepolia
+  Etherscan, which keeps every transaction.
 
 **Rollback and recovery**
 
@@ -220,16 +223,20 @@ signs it with the lender key first.
 ## 02 Security Tests
 
 The red-team runner sends each attack through the shipped API, worker and contracts. In place of the founder's device and
-the paid models it uses a software passkey and a scripted model. Where both layers apply, it records two: the agent or
-API refusal (a trace, plus a `recordDenied` transaction when anchored), and a forced on-chain send of the attacker's call,
-which reverts (mined and decoded).
+the paid models it uses a software passkey and a scripted model. Every attack in our suite is stopped; the contract has
+the last word. Where both layers apply (attacks the agent itself is asked to make, such as fake bank details or an
+overspend), it records two: the agent or API refusal (a trace, plus a `recordDenied` transaction when anchored), and a
+forced on-chain send of the attacker's call, which reverts (mined and decoded). Other attacks are refused on-chain, or by
+the API for the off-chain cases (for example T30, T31 and S2).
 
 - **Sepolia `final-1`** (run `rt-20261018t202130z-sepolia`, 18–19 Oct, code `ce880b2`): 45 pass, 0 fail, 2 not run
-  (T22 by design, Anvil only; T33 had no query path on that code), 139 rows, 77 Sepolia transactions. Bundle
-  `ev-0f8e91d9eb2b2027` verifies offline and online. [Execution evidence](EXECUTION-EVIDENCE.md) links the key
+  (T22 by design, Anvil only; T33 had no query path on that code), 139 rows (the run's raw rows mark the five not-run
+  variants as `fail` placeholders), 77 Sepolia transactions. Bundle `ev-0f8e91d9eb2b2027` verifies offline; it passed
+  online on 19 Oct 2026. [Execution evidence](EXECUTION-EVIDENCE.md) links the key
   transactions, and the bundle's `SUMMARY.md` lists all 77.
-- **Anvil, all worlds** (19 Oct, `2d55155`): 47 pass, 0 fail, 0 not run, 234 rows, four bundles verified.
-- The runner has not been re-run on `927851d`. Since `2d55155` the worker and API changed (the run-10 fixes to pause
+- **Anvil, all worlds** (19 Oct, `b0f4f7c`): 47 pass, 0 fail, 0 not run, 234 rows, four bundles verified (run record in
+  the team's notes; the Anvil bundles are not in the public repo).
+- The runner has not been re-run on the code in this repository. Since that run the worker and API changed (the run-10 fixes to pause
   handling and job locks, the FISCO evidence routes, chat quick replies); those changes have their own tests. The
   contracts have not changed.
 
@@ -319,7 +326,7 @@ stop during cooling, a deposit over the window, a live search API, and Sepolia (
   (PermissionDenied) came from the chain itself. F1, M1 and R17 carry byte-identical calldata. node4's copy of blocks
   0 to 39 equals node0's.
 - **`make verify-fisco PACK=evidence/fisco/fm-6abe83e663a2471b`** reports VERIFIED with all 18 checks, with or without a
-  local contracts build (we re-ran it on `927851d` on 20 Oct). The checker derives AccountFrozen and PermissionDenied
+  local contracts build (we re-ran it on the code in this repository on 20 Oct). The checker derives AccountFrozen and PermissionDenied
   offline from the signed calldata, the native receipts and the block order. The Proof page runs the checker in the
   browser and shows "17 of 17 checks passed in this browser" for this pack, with "Publicly timestamped" only when both
   the pack and its anchor pass.
@@ -332,11 +339,11 @@ stop during cooling, a deposit over the window, a live search API, and Sepolia (
   probe must fail, so none passes vacuously. `chain-check.sh --selftest` runs the same kind of probes against a real
   chain folder.
 - **Anchor script.** `anchor-sh.live.test.ts` drives the script against Anvil (chain id 11155111) with a throwaway
-  keystore: 8 passed.
+  keystore.
 
 ### Evidence integrity
 
-We re-ran the offline checker on `927851d` (20 Oct). Each of these reports VERIFIED:
+We re-ran the offline checker on the code in this repository (20 Oct). Each of these reports VERIFIED:
 
 | Bundle or pack | What it holds |
 |---|---|
@@ -367,12 +374,12 @@ plan-change instructions) are recorded as findings and were **not** tuned agains
 
 ### Other test layers
 
-| Layer | What it covers | Result on `927851d` |
+| Layer | What it covers | Result |
 |---|---|---|
-| Foundry unit, fuzz and invariant tests | One test per custom error and path; fuzzed `spend`, `commitPlan`, replans, escrow and the reserve skim; invariants on caps, the ledger identity, the reserve, escrow schedules, duplicate invoices, agent admin calls and the constitution | 553 passed |
-| Vitest, 15 packages | Including the policy mirror, the terms rules (property tests), the redactor, the sanctions keys, the URL allow-list, tenancy, signing, the offline checkers and their tamper tests | 5,517 passed in total (core 1,393; web 761; api 619; chain 367; checks 332; api-contract 302; worker 293; db 288; redteam 281; verify-evidence 265; agent 253; api-mock 233; privacy 98; dev-live 20; mcp 12) |
-| End-to-end (Playwright) | Smoke (two widths, after a reset, the sample business); Mei's whole journey | smoke 158 passed; journey 1 passed |
-| Live API and worker tests (Postgres + Anvil, one file at a time) | Tenancy, enrolment, signatures, writer bounds, export bounds, proposals, Stripe, replan, the journey contract | Last full run 19 Oct on `628454a`: 58 files, 471 passed, 0 failed. Not re-run in full on `927851d` |
+| Foundry unit, fuzz and invariant tests | One test per custom error and path; fuzzed `spend`, `commitPlan`, replans, escrow and the reserve skim; invariants on caps, the ledger identity, the reserve, escrow schedules, duplicate invoices, agent admin calls and the constitution | 553 passed (CI on `5aa3a73`; no contract file changed since) |
+| Vitest, 15 packages | Including the policy mirror, the terms rules (property tests), the redactor, the sanctions keys, the URL allow-list, tenancy, signing, the offline checkers and their tamper tests | 5,603 passed, 395 skipped (live suites), 4 todo, in CI on `9c61d0a` |
+| End-to-end (Playwright) | Smoke (two widths, after a reset, the sample business); Mei's whole journey | Passed in the team lead's local run (smoke and journey); not part of CI |
+| Live API and worker tests (Postgres + Anvil, one file at a time) | Tenancy, enrolment, signatures, writer bounds, export bounds, proposals, Stripe, replan, the journey contract | Last full run 19 Oct on `628454a`: 58 files, 471 passed, 0 failed. Not re-run in full since |
 | Static analysis | Slither 0.11.6 and Aderyn 0.6.8 on `contracts/src` | 140 results, 0 true positives ([report](../assurance/static-analysis-2026-10-18.md)). `contracts/src` is unchanged since that scan |
 | Require tables | Every check of every external contract function, in the order the code runs it | [`final-1`](../assurance/require-table-final1.md), [`loop-1`](../assurance/require-table-loop1.md) |
 | Wording lint | Banned terms in the app, the contracts, the submission docs and the data | 0 findings |
@@ -384,7 +391,7 @@ hunters, then an independent verifier per candidate, then a coverage critic. No 
 host cannot enforce the sandbox limits the method requires. So every check is source-only, no record can reach
 "confirmed", and surviving candidates are "leads" with no severity. No run claims full coverage. After each run, fix
 branches closed the leads, each fix with a regression test, and a separate re-check read the fixes (run 1's fixes were
-read by run 2). From run 6 on, the re-checks applied the `security-review`, `nodejs-keccak256` and `llm-trading-agent-security` skills.
+read by run 2). From run 6 on, the re-checks applied the `security-review` and `nodejs-keccak256` skills and an LLM agent-security skill.
 
 | Run | Date | Scope | Result | Fixes and re-check | Records |
 |---|---|---|---|---|---|
@@ -441,7 +448,7 @@ hashed plan data on the rule layer. [TBD: consent screen copy for production; no
 | Web page text | Quarantined Reader (model provider) | Untrusted; no tools; output limited to a strict schema. Live page text is not kept |
 | Payout account (web supplier) | Postgres; its hash on-chain | Entered only in the form; the chain sees only `payoutAccountHash` |
 | National ID numbers | Nowhere outside the client | Never sent to a model; forms are filled on the client from templates |
-| Plan lines, caps, payee ids | Sepolia (public) | Synthetic demo data only; production would use a permissioned chain |
+| Plan lines, caps, payee ids | Sepolia (public test network) | Synthetic demo data only; production would use a permissioned chain |
 | Sales | Sepolia | Hashed sale ids and bucketed amounts only |
 | Rationales | Postgres and the evidence bundle; hash on-chain | No personal data in rationales |
 | LLM call log, traces | Local Postgres | The call log stores prompt and response hashes, never text; chat history stores redacted text only |
@@ -507,9 +514,9 @@ Details: [FISCO mirror](../fisco/README.md), section "Safety model".
 |---|---|---|
 | Singapore PDPA 2012 | Consent, purpose limitation, protection, transfer limitation, breach notification | Redaction before cross-border model calls; no personal data in web queries; localhost storage; synthetic demo data. Breach notice: to the PDPC within 3 calendar days of assessing a breach notifiable (SG pack) |
 | Malaysia PDPA 2010 (Amendment 2024) | Data protection officer, breach notification, cross-border transfer rules | Same controls. Breach notice: 72 hours (MY pack) from the breach to the Commissioner, and the affected people within 7 days after that |
-| NFRA 金发〔2026〕8号 (十七, 二十二, 二十六) | Human oversight at key steps, emergency stop, manual takeover | The founder signs the plan, every supplier schedule and every balance release; the officer decides every exception; the founder, officer and agent can each pause; owner manual fallback. On the FISCO mirror, a regulator can also freeze the agent or ban one method at chain level |
-| NFRA 金发〔2026〕8号 (二十一, 二十五) | Logs kept; agent risks: leakage, memory contamination, privilege abuse, tool misuse | Hash-chained traces and on-chain events; taint labels; quarantined Reader; signed memory; role separation; the router returns only a skill name; circuit breaker |
-| MAS Guidelines on AI Risk Management | Oversight, testing and controls in proportion to risk | Deterministic policy engine and terms rules; red-team suite with WEB cases; journey evals with Wilson intervals. The router eval and the live Reader eval have not run (section 02) |
+| NFRA guidance on AI in banking and insurance (2026) | Human oversight at key steps, emergency stop, manual takeover | The founder signs the plan, every supplier schedule and every balance release; the officer decides every exception; the founder, officer and agent can each pause; owner manual fallback. On the FISCO mirror, a regulator can also freeze the agent or ban one method at chain level |
+| NFRA guidance on AI in banking and insurance (2026) | Logs kept; agent risks: leakage, memory contamination, privilege abuse, tool misuse | Hash-chained traces and on-chain events; taint labels; quarantined Reader; signed memory; role separation; the router returns only a skill name; circuit breaker |
+| MAS proposed Guidelines on AI Risk Management (consultation) | Oversight, testing and controls in proportion to risk | Deterministic policy engine and terms rules; red-team suite with WEB cases; journey evals with Wilson intervals. The router eval and the live Reader eval have not run (section 02) |
 
 Hogee aims to align with these rules; we claim no certification. The AI CFO's forecasts carry "Estimates from your own
 records. Not financial advice."
@@ -527,7 +534,7 @@ scheduled.
 
 | # | Risk | Impact | Mitigation now | Possible improvement (not scheduled) |
 |---|---|---|---|---|
-| 1 | **A fake listing that names the attacker's own company as seller passes the holder-name check** | An attacker who controls both the listing and a company account can be bound as a web supplier if the founder picks them and signs | Bounded: at most one automatic deposit within the per-payment cap (1,125 BU in Mei's `final-2` plan) and the shared window, only after cooling, during which the officer or founder can pause; the balance needs the delivery check, evidence and the founder's signature; the panel shows the whole account; sanctions screening | A name-matched registry lookup for web sellers; a smaller first-order cap for unverified suppliers |
+| 1 | **A fake listing that names the attacker's own company as seller passes the holder-name check** | An attacker who controls both the listing and a company account can be bound as a web supplier if the founder picks them and signs | Bounded: at most one automatic deposit within the per-payment cap (1,125 BU in Mei's `final-2` plan) and the shared window (checked off-chain by the terms rules; on-chain, the signed schedule bounds it), only after cooling, during which the officer or founder can pause; the balance needs the delivery check, evidence and the founder's signature; the panel shows the whole account; sanctions screening | A name-matched registry lookup for web sellers; a smaller first-order cap for unverified suppliers |
 | 2 | **Web injection rate not measured end to end** | The model-free layers exclude 40% (21.9–61.3%) of blind-written injected pages; the Reader model's share is unknown | Payment safety does not rest on this layer: web suppliers stay unverified, the account comes only from the form, typed text cannot pay, and every order needs a signature | Run `run-injection.ts --live-reader` with a model key; extend the detector from the recorded findings on a fresh held-out set |
 | 3 | **Router eval not run** | Unknown routing accuracy | The router returns only an enum; replies are templates; there is no payment skill; a wrong route can at worst show the wrong card | Run `run-skills.ts` once a key exists |
 | 4 | **No sanctions re-screen at payout** | A name listed between signing and the deposit would still be paid | Screened at confirm, prepare and finalize, minutes before binding; exact-match screening against a static local copy of the list (by design) | Re-screen in the worker before funding |
@@ -548,14 +555,14 @@ scheduled.
 | 14 | **Offline "VERIFIED" means internally consistent** | A bundle rewritten consistently, or built on other contracts, passes offline | The CLI prints the anchor; online mode re-fetches receipts and blocks; explorer links are pinned to `sepolia.etherscan.io` | Commit the deployment manifest with code hashes |
 | 15 | **Replay gaps in the offline checker** | Some totals in side events are not bound offline | Online mode and the worker's simulation of every call | Bind the remaining totals |
 | 16 | **Model budget and rate limits are per process** | A restart resets them | Defaults: 1,500 model calls a day; chat 10/20/30 and actions 30/60/120 a minute (session/client/server); 20 searches a day per facility (counted in the database) | Persist the budget |
-| 17 | **Export size and retention** | Past 50,000 rows per table the export refuses; after 10 newer bundles, retention can prune a submission bundle | Unused rows are windowed; the submitted bundles are copied out of the export folder and committed | Incremental export; a pin marker |
+| 17 | **Export size and retention** | Past 50,000 rows the export must keep in one table, it refuses; after 10 newer bundles, retention can prune a submission bundle | Unused rows are windowed; the submitted bundles are copied out of the export folder and committed | Incremental export; a pin marker |
 | 18 | **The signing panel hides payee-set changes in a replan** | A replan that drops a payee is signed without that row | Dropping a payee only tightens | Show per-line payee changes |
 | 19 | **The demo lender key is server-held** | Whoever holds the officer access code acts as the lender | Strength-checked code, constant-time compare, signed cookie of at most 8 h, lockout after 5 wrong codes in 15 minutes | The lender signs with their own passkey |
 | 20 | **Hot keys on the worker host; `final-1` and `final-2` share one key set** | A leaked agent key can spend within caps until the reconciler pauses (T29) | Low balances; keys scrubbed from the worker's environment after load; orphan detection and automatic pause | HSM or KMS custody; one key set per deployment |
 | 21 | **Public chain** | Plan structure, caps and payee ids are public on Sepolia | Synthetic data; hashed and bucketed sales; payout accounts as hashes | A permissioned chain; the FISCO mirror shows the same contracts running there |
 | 22 | **Country facts can be wrong or stale** | A wrong rate or fee changes the plan | Sourced facts with dates; packs stay `RESEARCHED` until a person signs off | Human verification per fact |
 | 23 | **Registry checks are format checks** | A copied company id passes the checksum | Listing-derived trust capped below tier 2 | A name-matched registry lookup |
-| 24 | **Gaps in test coverage** | WEB cases on Anvil only; T22, T15's 60-day expiry, T16's API-side expiry probe and the Singapore variants of T1 and T4 on Anvil only; no formal proof; the red team and the live suite not re-run on `927851d`; a known D-plug flake when a run starts in the last minutes before 00:00 UTC | Foundry fuzz and invariants; the WEB world uses the shipped path; the changes since the last red-team run have their own tests | Run the WEB world on a third deployment; Halmos for the escrow; re-run before any release |
+| 24 | **Gaps in test coverage** | WEB cases on Anvil only; T22, T15's 60-day expiry, T16's API-side expiry probe and the Singapore variants of T1 and T4 on Anvil only; no formal proof; the red team and the live suite not re-run on the code in this repository; a known D-plug flake when a run starts in the last minutes before 00:00 UTC | Foundry fuzz and invariants; the WEB world uses the shipped path; the changes since the last red-team run have their own tests | Run the WEB world on a third deployment; Halmos for the escrow; re-run before any release |
 | 25 | **Owner fallback cannot fund new milestones** | If the agent is dead, the founder can only release funded milestones | Manual `ownerSpend` for the other lines | An owner-side milestone funding call |
 | 26 | **Open LOW items from the run-8 keccak re-check** | Core `snippetHash` accepts an empty sentence; the supplier generator normalises some rare whitespace differently; mock fixtures carry placeholder hashes | No on-chain or payment path uses them | Align the generator with core; throw on empty input; rebuild the fixtures |
 
@@ -580,7 +587,8 @@ scheduled.
 - **No external or human security audit.** The 12 audits are AI-agent passes: quick, scoped, source-only. No run claims
   full coverage.
 - **No mainnet and no real money.** BU are an internal ledger unit. Payouts run on a mock rail; Xendit test mode was off
-  on `final-1`. In production a licensed partner bank would hold the funds.
+  on `final-1`. In production, a licensed partner bank holds the funds; that is not built today, and payouts in the
+  demo are simulated.
 - **No executed exploit validation and no formal verification** (no Halmos proof).
 - **No dependency vulnerability scan on record.** Installs use the frozen lockfile, and pnpm blocks every install script
   except esbuild's.
@@ -588,4 +596,4 @@ scheduled.
 - **No founder authentication, consent screen or retention policy** in the demo.
 - **No HSM or KMS custody** for the role keys.
 - **No hosted deployment and no test against one.** Everything runs on localhost, Sepolia and a local FISCO chain.
-- **No full re-run of the red team or the live suite on `927851d`** (section 02).
+- **No full re-run of the red team or the live suite on the code in this repository** (section 02).

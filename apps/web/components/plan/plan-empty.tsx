@@ -48,8 +48,8 @@ export function PlanEmpty() {
 }
 
 /**
- * The loan officer opened Mei's plan page: drafting and signing are hers alone (POST /api/plans/draft is founder-only),
- * so instead of the API's refusal the page says where the officer's view of her plan lives.
+ * The loan officer opened Mei's plan page: drafting and signing are Mei's alone (POST /api/plans/draft is founder-only),
+ * so instead of the API's refusal the page says where the officer's view of Mei's plan lives.
  */
 export function PlanForOfficer() {
   return (

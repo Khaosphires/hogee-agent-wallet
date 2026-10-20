@@ -1,7 +1,7 @@
 /**
  * VISION-DECISIONS §9 on the live API, Postgres, Anvil and the worker's jobs: a web supplier's terms (the ONLY way a
  * payout account arrives) → every TERMS_* refusal → the founder's SupplierApproval built from the immutable row →
- * bindPayee → cooling → the deposit the agent pays by itself → the balance that waits for her release with evidence.
+ * bindPayee → cooling → the deposit the agent pays by itself → the balance that waits for the founder's release with evidence.
  * The web search row is planted as v-search stores it (support/web-search.ts).
  */
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -391,7 +391,7 @@ describe.skipIf(!LIVE)("web supplier terms → SupplierApproval → escrow (live
     }
     const settled = (await json(await w.founder.get("/api/payments"), z.array(Payment))).filter((p) => p.payeeId === CORVANE.supplierId && p.state === "SETTLED");
     expect(settled.map((p) => `${p.kind}:${p.amountMinor}`).sort()).toEqual(["FUND_MILESTONE:75000", "RELEASE_MILESTONE:175000"]);
-    // W-4: her release is one signature by a person, never also an AI payment; AI payments moved only by the agent's own
+    // W-4: the founder's release is one signature by a person, never also an AI payment; AI payments moved only by the agent's own
     // payments mined meanwhile (an escrow funding still landing), not by the mined RELEASE_MILESTONE.
     const after = await autonomyNow();
     expect(after.stats.humanSigs - before.stats.humanSigs).toBe(1);

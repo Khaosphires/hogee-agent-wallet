@@ -49,7 +49,7 @@ export const SCENES: readonly Scene[] = [
     captions: [
       "Team FEIN presents Hogee, International AI Track, Topic F: Agent Wallet.",
       "Mei has a SGD 10,000 micro-loan to sell insulated tumblers on Shopee Singapore.",
-      "One AI chat runs her business. The agent wallet keeps the rules she signs.",
+      "One AI chat runs the business. The agent wallet keeps the rules Mei signs.",
     ],
   },
   {
@@ -57,10 +57,10 @@ export const SCENES: readonly Scene[] = [
     at: 18,
     source: "mock",
     captions: [
-      "First, Mei sets up her passkey with a one-time code from her loan officer.",
-      "She describes the business. The AI asks three questions, then drafts her plan.",
+      "First, Mei sets up a passkey with a one-time code from the loan officer.",
+      "Mei describes the business. The AI asks three questions, then drafts the plan.",
       "The plan: the total, a pocket for each kind of spending, the first things to do, and money kept for tax.",
-      "Mei signs it with her passkey. Her browser checks that she signs exactly what she sees, and the stamp lands.",
+      "Mei signs it with a passkey. The browser checks that Mei signs exactly what is on screen, and the stamp lands.",
     ],
   },
   {
@@ -70,23 +70,23 @@ export const SCENES: readonly Scene[] = [
     captions: [
       "Find suppliers: a web search on listing sites. Each page is read in quarantine, then checked and scored by code.",
       "Every web supplier stays marked unverified: nobody has checked who they are.",
-      "Pages with instructions aimed at the AI are hidden for her safety, and the card says why.",
+      "Pages that try to give the AI orders are screened out by gates, and the card says why.",
     ],
   },
   {
     id: "enquiry",
     at: 88,
     source: "mock",
-    captions: ["Mei picks two and copies the message Hogee wrote. Hogee never messages anyone: she contacts the suppliers herself."],
+    captions: ["Mei picks two and copies the message Hogee wrote. Hogee never messages anyone: Mei contacts the suppliers directly."],
   },
   {
     id: "terms",
     at: 103,
     source: "mock",
     captions: [
-      "She reports the deal in her own words: 30% deposit, 70% on delivery.",
-      "The deal form fills in from her words. The payout account goes into this form only, never into the chat.",
-      "Save and sign: the sheet says the supplier is unverified, and Mei signs the order with her passkey.",
+      "Mei reports the deal in plain words: 30% deposit, 70% on delivery.",
+      "The deal form fills in from those words. The payout account goes into this form only, never into the chat.",
+      "Save and sign: the sheet says the supplier is unverified, and Mei signs the order with a passkey.",
     ],
   },
   {
@@ -94,7 +94,7 @@ export const SCENES: readonly Scene[] = [
     at: 132,
     source: "mock",
     captions: [
-      `First a safety wait for the new supplier: 120 seconds on Sepolia, ${DEMO_COOLING_SECONDS} in this recording. Mei or her loan officer can pause all automatic payments.`,
+      `First a safety wait for the new supplier: 120 seconds on Sepolia, ${DEMO_COOLING_SECONDS} in this recording. Mei or the loan officer can pause all automatic payments.`,
       "Then the 750 BU deposit is paid automatically. The 1,750 BU balance waits for the goods and for Mei.",
     ],
   },
@@ -104,7 +104,7 @@ export const SCENES: readonly Scene[] = [
     source: "mock",
     captions: [
       "The goods arrive. Mei adds the delivery check: a photo of the goods and the delivery note, or an inspector's report.",
-      "Only then can she pay the 1,750 BU balance, with her passkey. Order complete.",
+      "Only then can Mei release the 1,750 BU balance, with a passkey. Order complete.",
     ],
   },
   {
@@ -123,9 +123,9 @@ export const SCENES: readonly Scene[] = [
     at: 213,
     source: "mock",
     captions: [
-      "How are we doing? Hogee answers from her own records: ready to spend, paid out, sales and money kept for tax.",
+      "How are we doing? Hogee answers from Mei's own records: ready to spend, paid out, sales and money kept for tax.",
       "A line is burning too fast, so Hogee's AI makes its limit stricter by itself, with a receipt. It can never loosen one.",
-      "The Wallet says its sales are a sample, and its last line says the figures are estimates from her own records, not financial advice.",
+      "The Wallet says its sales are a sample, and its last line says the figures are estimates from Mei's own records, not financial advice.",
     ],
   },
   {

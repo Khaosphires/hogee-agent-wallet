@@ -13,10 +13,10 @@ Track, Topic F (Agent Wallet).
 
 | At a glance | |
 |---|---|
-| **On a public chain** | Two deployments of the same contracts on Ethereum Sepolia. Mei's chat run: 11 transactions. The red-team run: 77 transactions, 45 cases pass, 0 fail, 2 not run (section 5 says why). |
+| **On a public test network** | Two deployments of the same contracts on Ethereum Sepolia, Ethereum's public test network. Mei's chat run: 11 transactions. The red-team run: 77 transactions, 45 cases pass, 0 fail, 2 not run (section 5 says why). |
 | **A regulator with chain-level powers** | A FISCO BCOS mirror with three independent stops on the same spend: two by the regulator at chain level (account freeze, method ban) and one by the loan officer in Hogee's contract (pause). The mirror pack carries a public Sepolia timestamp. |
 | **Proof you can re-run offline** | `make verify` re-checks a Sepolia evidence bundle and `make verify-fisco` runs 18 checks on the FISCO pack. Neither needs a network, a wallet or a key. |
-| **Tested** | 553 Foundry tests, 5,517 Vitest tests in 15 packages, 158 Playwright smoke tests and one full chat-journey test (commit `927851d`). |
+| **Tested** | 553 Foundry tests and 5,603 Vitest tests in 15 packages (CI on the code in this repository, 20 Oct 2026), plus Playwright smoke tests and one full chat-journey test. |
 
 ---
 
@@ -50,8 +50,8 @@ The demo follows Mei, a first-time founder in Singapore (a synthetic persona), w
 1. **Needs.** Mei answers two or three questions. The AI shows what the business needs (registrations, budget lines,
    suppliers to find, the tax reserve), each item with its source. Mei signs it as one on-chain plan with a passkey.
 2. **Suppliers.** Hogee searches listing sites and reads each page in quarantine. Code checks and scores the pages;
-   a page flagged for instructions aimed at the AI is excluded, and the card says why. A web supplier stays an
-   "Unverified web supplier".
+   pages that try to give the AI orders are screened out by gates, and the card says why. The payment path never
+   reads web text. A web supplier stays an "Unverified web supplier".
 3. **Terms.** Mei contacts the supplier directly; Hogee never messages anyone. Mei reports the deal ("went with #2, 30%
    deposit, 70% on delivery"), enters the payout account in a form, and signs the schedule.
 4. **The wallet pays.** After a cooling period, during which the loan officer can stop it, the agent pays the deposit by
@@ -64,7 +64,7 @@ pre-signed milestones and tighten. It cannot loosen a rule, sign as the founder 
 loosening needs the founder, the loan officer and a timelock.
 
 BU are an internal ledger unit: not transferable, not pegged, not redeemable. Payouts in the demo are simulated. In
-production a licensed partner bank holds the money and the chain is the rule and audit layer.
+production, a licensed partner bank holds the funds and the chain is the rule and audit layer.
 
 ### Quick look: mock mode, no keys, no chain
 
@@ -174,7 +174,7 @@ result URLs are never fetched. More detail: [Technical document](docs/submission
 | Web search | `TAVILY_API_KEY` (optional; without it the search serves a labelled recorded sample) |
 | Payout rail | `PAYOUT_RAIL` (`mock`, `xendit`), `XENDIT_SECRET_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (test mode only) |
 | App | `DATABASE_URL`, `MOCK_API`, `MOCK_SCENARIO`, `REPLAY`, `DEMO_MODE`, `DEMO_TIMELOCK_SECONDS`, `HOGEE_COUNTRY` (`SG`, `MY`), `PERSONA_COOKIE_SECRET`, `HOGEE_ALLOWED_HOSTS`, `OFFICER_TOKEN` (the officer access code) |
-| Checker (optional) | `HOGEE_VERIFY_RPC`, `HOGEE_ANCHOR_RPC`: a Sepolia RPC URL for the online comparison |
+| Checker (optional) | `HOGEE_VERIFY_RPC`, `HOGEE_ANCHOR_RPC`: a Sepolia RPC URL for the online comparison (it must serve older receipts; see section 5) |
 
 ## 4. Installation and execution
 
@@ -216,24 +216,28 @@ touches Sepolia. Ctrl-C stops everything.
 
 ## 5. Testing
 
-Results below are for commit `927851d` (`main`, 20 Oct 2026).
+Results below are for the code in this repository (20 Oct 2026). The Vitest count comes from CI on public commit
+`9c61d0a`, the Foundry count from CI on `5aa3a73` (no contract file changed since); CI does not run the Playwright
+suites.
 
 | Command | What it runs | Result |
 |---|---|---|
 | `pnpm typecheck` | `tsc --noEmit` in every package | clean |
-| `pnpm test` | Vitest tests in 15 packages | 5,517 passed, 0 failed |
+| `pnpm test` | Vitest tests in 15 packages | 5,603 passed, 0 failed (live tests skipped) |
 | `cd contracts && ~/.foundry/bin/forge test` | Foundry unit, fuzz and invariant tests | 553 passed |
 | `pnpm test:contract` | The mock API against the frozen route contract | 130 passed, 1 skipped |
 | `pnpm validate:data` | Country packs, fixtures and recorded search files against the schemas | 146 ok |
 | `pnpm gen:schemas:check` | Generated JSON Schemas are up to date | 31 up to date |
 | `node scripts/lint-wording/index.mjs` | Banned-wording check on the UI, contracts, data and submission docs | 0 findings |
-| `pnpm --filter @hogee/e2e e2e` | Playwright smoke at 1280×720 and 1920×1080, plus reset and Sample business runs | 158 passed, 4 skipped by design |
-| `pnpm --filter @hogee/e2e journey` | Mei's whole chat journey on the fresh mock, then the whole conversation again at 320, 768, 1280 and 1920 px | 1 passed |
+| `pnpm --filter @hogee/e2e e2e` | Playwright smoke at 1280×720 and 1920×1080, plus reset and Sample business runs | passed locally before the last UI-wording changes; not run in CI |
+| `pnpm --filter @hogee/e2e journey` | Mei's whole chat journey on the fresh mock, then the whole conversation again at 320, 768, 1280 and 1920 px | passed locally before the last UI-wording changes; not run in CI |
 
-`make test` runs Foundry, typecheck and Vitest in one go; `make help` lists every target. The e2e suites need Playwright's Chromium.
+`make test` runs Foundry, typecheck and Vitest in one go. `make help` also lists early placeholder targets
+(`deploy-local`, `deploy-sepolia`, `audit`, `eval`, `eval-replay`) that only print "not implemented yet" and exit;
+they are not used, and deploys follow the Sepolia runbook. The e2e suites need Playwright's Chromium.
 
 <details>
-<summary>Vitest tests per package</summary>
+<summary>Vitest tests per package (an earlier local run; it totals 5,517, and CI on this repository counts 5,603)</summary>
 
 | Package | Tests | Package | Tests |
 |---|---:|---|---:|
@@ -274,14 +278,16 @@ make verify-fisco PACK=evidence/fisco/fm-6abe83e663a2471b                       
 | Bundle | What it is | Contents |
 |---|---|---|
 | [`evidence/ev-74756ea61a72ae7c`](evidence/ev-74756ea61a72ae7c/SUMMARY.md) | Mei's chat run on Sepolia `final-2`, 19 Oct 2026, by hand in the web app with Mei's own passkey | 11 transactions, all successful; 3 passkey signatures |
-| [`ev-0f8e91d9eb2b2027`](evidence/rt-20261018t202130z-sepolia/export/main/ev-0f8e91d9eb2b2027/SUMMARY.md) | The red team on Sepolia `final-1`, 18 to 19 Oct 2026 | 77 transactions; 45 pass, 0 fail, 2 not run: T22 by design (it needs blocks at ±1 s, which 12 s Sepolia slots cannot give), and T33 because that run's code had no query path to attack (its real case is the WEB variant on Anvil) |
+| [`ev-0f8e91d9eb2b2027`](evidence/rt-20261018t202130z-sepolia/export/main/ev-0f8e91d9eb2b2027/SUMMARY.md) | The red team on Sepolia `final-1`, 18 to 19 Oct 2026. This is the re-export made after one fee-bumped `pause()` row was repaired from the chain; the run's first export, `ev-fdea4bd7118e7551`, is kept beside it and fails that one check | 77 transactions; 45 pass, 0 fail, 2 not run: T22 by design (it needs blocks at ±1 s, which 12 s Sepolia slots cannot give), and T33 because that run's code had no query path to attack (its real case is the WEB variant on Anvil) |
 | [`evidence/ev-cdc4cc7916471c1e`](evidence/ev-cdc4cc7916471c1e/SUMMARY.md) | Mei's run on a local Anvil chain, used by the offline replay demo | 24 receipts |
 | [`evidence/fisco/fm-6abe83e663a2471b`](docs/fisco/README.md) | The FISCO BCOS mirror of the `final-2` run, with the regulator | 60 files, 37 steps, 38 transactions |
 
 `VERIFIED` means a bundle is internally consistent: files, digests, signatures, commitments, calldata, events and plan
 rules agree. It does not prove that Sepolia holds those transactions. For that, compare the anchor `make verify`
 prints with Etherscan, or set `HOGEE_VERIFY_RPC=<your Sepolia RPC URL>` to compare every receipt and block with a
-node. What each check covers: [Execution evidence](docs/submission/EXECUTION-EVIDENCE.md).
+node. Public Sepolia nodes keep only recent receipts, so the online check needs a node that serves older receipts;
+otherwise compare the anchor with Sepolia Etherscan, which keeps every transaction. What each check covers:
+[Execution evidence](docs/submission/EXECUTION-EVIDENCE.md).
 
 ### Known limitations
 
@@ -311,8 +317,10 @@ node. What each check covers: [Execution evidence](docs/submission/EXECUTION-EVI
 ### Sepolia deployments
 
 Both use a 120 s payee cooling and a 120 s loosening timelock, labelled demo values; a production deploy would set 24 h.
-All five `final-2` contracts show "Source Code Verified" on Sepolia Etherscan (checked by the team lead on 20 Oct 2026). Deploy
-transactions: [Execution evidence](docs/submission/EXECUTION-EVIDENCE.md).
+On Sepolia Etherscan, all five `final-1` contracts show "Source Code Verified (Exact Match)", and `final-2` shows four
+exact matches and one similar match (PlanRegistry) (checked on 20 Oct 2026). The bundles' SUMMARY.md says "not
+verified" because they were exported before the sources were verified. Deploy transactions:
+[Execution evidence](docs/submission/EXECUTION-EVIDENCE.md).
 
 | Contract | `final-1`: red team | `final-2`: Mei's chat run |
 |---|---|---|

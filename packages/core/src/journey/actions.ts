@@ -159,7 +159,7 @@ function onSigned(action: ChatAction & { type: "signed" }, state: JourneyState, 
   }
   if (action.kind === "MilestoneRelease" && f.order?.orderId === action.refId) {
     // UX-PLAN D35: never "the balance waits" right after Mei signed to pay it. rcfix-journey A-6: "Signed" only once the
-    // server holds her release (the facts' releaseSigned), as PlanApproval and SupplierApproval check theirs.
+    // server holds the founder's release (the facts' releaseSigned), as PlanApproval and SupplierApproval check theirs.
     if (f.order.balancePaid === true) return reply([textPart(TEXT.orderComplete), ...stageCards(state, env)], `MilestoneRelease signed for ${action.refId} (balance paid)`);
     if (f.order.releaseSigned === true) return reply([textPart(TEXT.releaseSigned), ...stageCards(state, env)], `MilestoneRelease signed for ${action.refId} (balance saving)`);
     return reply(withState(TEXT.signatureNotSeen, state, env), `MilestoneRelease hint not reflected yet (${state.stage})`);

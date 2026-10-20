@@ -6,7 +6,7 @@
  * lines, caps, pacing, stages, reserve, expiries and supplier schedule. Only the ids, the currency, the country and the
  * payout rail (SG_PAYNOW in the API payee catalog) differ. Every id carries an `sg`/`mei` marker so nothing collides
  * with Rina's on the shared final-1 deployment, except the supplier: the demo supplier catalog is shared and stored per
- * facility, so Mei's supplier A is the catalog's "supplier-a". Her facility context and compile input are in
+ * facility, so Mei's supplier A is the catalog's "supplier-a". Mei's facility context and compile input are in
  * ./mei-context.ts.
  */
 import type { PlanIntent } from "../schemas/plan";
@@ -26,7 +26,7 @@ export const MEI_IDS = {
   deploymentId: "final-1" as DeploymentId,
   chainId: 11_155_111,
   // P1 (22:55): the demo supplier catalog (data/suppliers/demo) is shared by both founders and stored per facility, so
-  // Mei's supplier is the same catalog id as Rina's; her order id still carries the sg marker.
+  // Mei's supplier is the same catalog id as Rina's; Mei's order id still carries the sg marker.
   supplierAId: "supplier-a" as SupplierId,
   supplierAPayeeId: "supplier-a" as PayeeId,
   supplierAOrderId: "order-a-001" as OrderId, // the live API names orders per facility: order-<x>-NNN

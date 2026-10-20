@@ -2,7 +2,7 @@
 
 /**
  * The founder's side of the exception flow on the Wallet page (§4 step 10), in the ui grouped list (UX round 3, Steve
- * #2): requests waiting for her signature, each titled by its kind's template (never its stored title; waiting-model.ts),
+ * #2): requests waiting for the founder's signature, each titled by its kind's template (never its stored title; waiting-model.ts),
  * one per kind with the rest under "Earlier requests", each opening the sign dialog (the only way anything here
  * happens; one filled button, the others tinted). Then "Need a higher limit?" folded, which opens by itself for a link
  * that asks for it (`#change-requests`, `?raise=…`). Before a plan there are no limits to raise, so the fold waits
@@ -115,7 +115,7 @@ function openedToAsk(): boolean {
   return window.location.hash === "#change-requests" || new URLSearchParams(window.location.search).has("raise");
 }
 
-/** The requests waiting for the founder's own signature (open or officer-approved, with a signature she gives). */
+/** The requests waiting for the founder's own signature (open or officer-approved, with a signature they give). */
 export function useWaitingForSignature(): readonly Exception[] {
   const session = useSession();
   const exceptions = useExceptions();
@@ -125,7 +125,7 @@ export function useWaitingForSignature(): readonly Exception[] {
 }
 
 /**
- * Founder side of the exception flow (§4 step 10). Requests waiting for her signature show at once; asking for a
+ * Founder side of the exception flow (§4 step 10). Requests waiting for the founder's signature show at once; asking for a
  * higher limit is folded under "Need a higher limit?" (UX-PLAN D8), and opens by itself for a link that asks for it.
  */
 export function ChangeRequests({ canAsk = true }: { canAsk?: boolean }) {

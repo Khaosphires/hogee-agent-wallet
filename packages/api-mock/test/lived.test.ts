@@ -57,7 +57,7 @@ describe("the sample business (MOCK_SCENARIO=lived)", () => {
     const draft = st.loaded.scenario["plan-draft.json"];
     expect(st.plans).toHaveLength(1);
     expect(st.plans[0]).toMatchObject({ status: "COMMITTED" });
-    // Mei's real plan: the same lines, caps and stages as her draft.
+    // Mei's real plan: the same lines, caps and stages as Mei's draft.
     expect(st.plans[0]?.manifest).toEqual(draft.manifest);
     expect(st.balances).toMatchObject({ fundedMinor: "1000000", releasedMinor: draft.manifest.stages[0]?.releaseMinor, paused: false });
 
@@ -150,7 +150,7 @@ describe("the sample business (MOCK_SCENARIO=lived)", () => {
     await readyState(readEnv());
     const st = getState(readEnv());
     const { body: stats } = await h.call<{ agentTxs: number; humanSigs: number; autoPct: number; escalatedPct: number; startedAt: string; hours: number }>("/api/stats/autonomy");
-    // AI payments are the agent's own (SPEND, FUND_MILESTONE); Mei's MilestoneRelease is one of her signatures (W-4).
+    // AI payments are the agent's own (SPEND, FUND_MILESTONE); Mei's MilestoneRelease is one of Mei's signatures (W-4).
     const agentKinds: readonly string[] = ["SPEND", "FUND_MILESTONE"];
     expect(st.payments.some((sp) => sp.payment.kind === "RELEASE_MILESTONE" && sp.payment.decisionId !== null)).toBe(true);
     expect(stats.agentTxs).toBe(st.payments.filter((sp) => sp.payment.decisionId !== null && agentKinds.includes(sp.payment.kind)).length);

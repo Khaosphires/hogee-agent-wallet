@@ -1,11 +1,11 @@
 /**
  * Mei's receipts (UX-PLAN D8: "recent payments become Receipts", no "Escrow funding" row for Mei): one row per payment
- * that left her wallet or is leaving it, in plain words. Pure, so it is unit-tested without the API.
+ * that left the founder's wallet or is leaving it, in plain words. Pure, so it is unit-tested without the API.
  *
  *   - **Supplier payments** come from the order's escrow schedule (GET /api/escrow/:orderId, the same source as the
  *     order card): each released milestone is one receipt, "Deposit (payment 1 of 2)", paid automatically (an
- *     autoRelease milestone) or with her passkey (the balance). Its time and receipt link come from the matching
- *     payment row (FUND_MILESTONE for an automatic one, RELEASE_MILESTONE for one she signed), matched by amount. Money
+ *     autoRelease milestone) or with the founder's passkey (the balance). Its time and receipt link come from the matching
+ *     payment row (FUND_MILESTONE for an automatic one, RELEASE_MILESTONE for one the founder signed), matched by amount. Money
  *     moved into the held box for a later step is not a payment to anyone, so it gets no row.
  *   - **Pocket payments** (SPEND, OWNER_SPEND, WITHDRAW_RESERVE) come from GET /api/payments.
  *   - Refused, reverted, dropped or cancelled attempts moved no money: they stay in the activity record (Proof).

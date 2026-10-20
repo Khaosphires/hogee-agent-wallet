@@ -434,7 +434,7 @@ export function foundOf(q: QueryAnswer<unknown>): Found {
 /**
  * Whether the page has a plan to show (first-time-user review #5): the signed plan always shows; before anything is
  * signed, the draft shows only once the chat has drafted it (a plan card in this chat's thread), so Mei never meets a
- * finished plan before she has said what she sells. The live API answers a draft before the intake with 404, which is
+ * finished plan before the founder has said what they sell. The live API answers a draft before the intake with 404, which is
  * "none" too. A failed signature check (not a 404) never hides a plan: the page then shows it without a sign button.
  * Until both answers are in, nothing is shown (never a plan that then turns into the empty state).
  */

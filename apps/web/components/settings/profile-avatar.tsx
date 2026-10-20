@@ -23,7 +23,7 @@ export const AVATAR_COLOUR_NAME: Readonly<Record<AvatarColour, string>> = {
 };
 
 /**
- * The founder's initials on her colour. The letters are drawn by CSS (`content: attr(data-initials)`), so they never
+ * The founder's initials on their colour. The letters are drawn by CSS (`content: attr(data-initials)`), so they never
  * join a button's text or accessible name: the avatar is decoration, and the name sits next to it. `size` is the
  * diameter in px at the default text size.
  */

@@ -119,7 +119,7 @@ const iso = (unixSeconds: bigint): string => new Date(Number(unixSeconds) * 1000
 
 /**
  * The founder's release of the order's held milestone is recorded: a RELEASE_MILESTONE row (founder-payments' commit)
- * for the first milestone needing her release that is not released yet, unless it failed (routes/suppliers.ts's rule).
+ * for the first milestone needing the founder's release that is not released yet, unless it failed (routes/suppliers.ts's rule).
  */
 const RELEASE_SIGNED = `exists (
     select 1 from payments r where r.facility_id = o.facility_id and r.kind = 'RELEASE_MILESTONE' and r.order_id = o.order_id

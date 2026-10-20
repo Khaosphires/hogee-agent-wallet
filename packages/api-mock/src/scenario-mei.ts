@@ -1,8 +1,8 @@
 /**
  * Mei's scenario (SG, the main demo; SG-DECISIONS) for every file P3 has no fixtures/scenario-mei/<file> for: Rina's
- * loaded scenario (her fixtures, else the core examples) re-issued for Mei. Mei mirrors Rina's numbers exactly in
+ * loaded scenario (Rina's fixtures, else the core examples) re-issued for Mei. Mei mirrors Rina's numbers exactly in
  * minor units (core demo/mei.ts), so the status gallery, balances and schedules stay; what changes:
- *   - ids: each of Rina's ids (RINA_IDS, her session, `founder:rina`, ids like `draft-rina-mock`) becomes Mei's,
+ *   - ids: each of Rina's ids (RINA_IDS, Rina's session, `founder:rina`, ids like `draft-rina-mock`) becomes Mei's,
  *     in values, in free text and in map keys (the escrow order);
  *   - facility SGD; plan SG with Mei's rules (country-rules.ts: the compiler's texts, incl. the SFA step), intent
  *     sg_sole_prop; MYR supplier offers quoted in SGD; a DuitNow payout account becomes PayNow;

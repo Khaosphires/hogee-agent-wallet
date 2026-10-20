@@ -142,7 +142,7 @@ export async function planWebOrder(deps: ApiDeps, scope: Scope, termsId: string)
 /**
  * What the founder reads before signing a web order (built from the plan, never from listing text). The holder, the
  * whole account number and the bank are separate rows, and the account and milestone rows use core's exact form, so
- * the browser recomputes payoutAccountHash and scheduleHash from them before it lets her sign (run-9).
+ * the browser recomputes payoutAccountHash and scheduleHash from them before it lets the founder sign (run-9).
  */
 export function webOrderRows(o: WebOrderPlan): DisplayRow[] {
   const total = o.schedule.reduce((sum, x) => sum + x, 0n);

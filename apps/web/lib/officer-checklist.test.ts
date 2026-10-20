@@ -39,18 +39,18 @@ describe("officerChecklist: the fresh scenario, step by step", () => {
     expect(states({ seen: { codeExpiresAtMs: NOW - 1 } })).toEqual(["done", "yours", "later", "later"]);
   });
 
-  it("makes approving her passkey the one turn once it arrives", () => {
+  it("makes approving the founder's passkey the one turn once it arrives", () => {
     expect(states({ pendingKey: KEY })).toEqual(["done", "done", "yours", "later"]);
     expect(states({ pendingKey: KEY, plan: { status: "PENDING_SIGNATURE", totalMinor: "1000000" } })).toEqual(["done", "done", "yours", "waiting"]);
   });
 
-  it("waits for Mei to sign once her passkey is approved", () => {
+  it("waits for Mei to sign once Mei's passkey is approved", () => {
     const plan = { status: "PENDING_SIGNATURE", totalMinor: "1000000" } as const;
     expect(states({ seen: { approved: true }, plan })).toEqual(["done", "done", "done", "waiting"]);
     expect(states({ seen: { approved: true }, plan: null })).toEqual(["done", "done", "done", "later"]);
   });
 
-  it("says Saving while her signed plan is on its way, then makes adding money the officer's turn", () => {
+  it("says Saving while Mei's signed plan is on its way, then makes adding money the officer's turn", () => {
     const approved = { seen: { approved: true } };
     expect(states({ ...approved, plan: { status: "SUBMITTED", totalMinor: "1000000" } })[3]).toBe("saving");
     const steps = officerChecklist({ ...FRESH, ...approved, plan: { status: "COMMITTED", totalMinor: "1000000" } });

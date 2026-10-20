@@ -72,7 +72,7 @@ export type DataSearch = z.infer<typeof DataSearch>;
 export const DataCandidates = z.strictObject({ searchId: Id });
 export type DataCandidates = z.infer<typeof DataCandidates>;
 
-/** A templated enquiry the founder copies and sends herself (Hogee never sends it). */
+/** A templated enquiry the founder copies and sends on their own (Hogee never sends it). */
 export const DataEnquiry = z.strictObject({
   supplierIds: z.array(SupplierId).min(1).max(5),
   subject: z.string().min(1).max(150),

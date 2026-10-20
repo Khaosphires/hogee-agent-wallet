@@ -20,11 +20,11 @@ export function scheduleRowName(i: number, rows: readonly { readonly autoRelease
 /** Who pays a row, as its pill says it: the wallet by itself, or Mei. */
 export const payerText = (autoRelease: boolean): string => (autoRelease ? "Pays automatically" : "Waits for you");
 
-/** When a row is paid (A8.13; security meaning kept: the deposit only after the wait, the rest only with her check and signature). */
+/** When a row is paid (A8.13; security meaning kept: the deposit only after the wait, the rest only with the founder's check and signature). */
 export const conditionText = (autoRelease: boolean): string =>
   autoRelease ? "after the safety wait" : "after you upload a delivery check and sign";
 
-/** A row's state on the order card: paid automatically, paid with her passkey, or still waiting. */
+/** A row's state on the order card: paid automatically, paid with the founder's passkey, or still waiting. */
 export function rowStatusText(row: { readonly autoRelease: boolean; readonly released: boolean }): string {
   if (row.released) return row.autoRelease ? "Paid automatically" : "Paid with your passkey";
   return row.autoRelease ? "Not paid yet" : "Waiting for you";
@@ -163,11 +163,11 @@ export const SPLIT_PLAIN: { readonly [P in TermsPreset]: string } = {
  */
 export const HOLDER_HINT = "Type it in full, exactly as the supplier's bank details give it (for example, ending in “Co., Ltd.”).";
 
-/** "What you're saving" (A8.16, a security sentence: the deposit by itself after the wait, the rest only when she approves). */
+/** "What you're saving" (A8.16, a security sentence: the deposit by itself after the wait, the rest only when the founder approves). */
 export const confirmingText = (name: string, auto: string, held: string): string =>
   `Your wallet may pay ${name} ${auto} automatically after the safety wait, and ${held} only when you approve it. Nothing is paid until you sign.`;
 
-/** The grey reason under a split that can't be picked (never red: she didn't choose it). */
+/** The grey reason under a split that can't be picked (never red: the founder didn't choose it). */
 export const blockedSplitText = (split: string, reason: string): string => `${split} isn't possible: ${reason}`;
 
 /**

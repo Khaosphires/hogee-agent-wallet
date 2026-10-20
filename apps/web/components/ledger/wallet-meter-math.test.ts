@@ -4,7 +4,7 @@ import { walletSegments } from "./wallet-meter-math";
 
 describe("walletSegments", () => {
   it("gives each part its share of the limit, in percent of the track", () => {
-    // Mei's supplier line after the deposit: 1,200 paid, 2,800 waits for her release, of 5,000.
+    // Mei's supplier line after the deposit: 1,200 paid, 2,800 waits for Mei's release, of 5,000.
     const s = walletSegments({ limitMinor: "500000", paidMinor: "120000", agentMinor: "0", waitingMinor: "280000" });
     expect(s).toEqual({ paidPct: 24, agentPct: 0, waitingPct: 56, usedPct: 80, overMinor: "0" });
   });

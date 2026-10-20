@@ -231,7 +231,7 @@ function DropZone({ file, onFile, disabled }: { file: File | undefined; onFile: 
 /**
  * The payment that waits on the founder (the first one not released and not automatic): Goods arrived (a mark in
  * this browser, UI only) → upload the report (the API stores its check code on the milestone) → Pay the balance (the
- * MilestoneRelease sheet, her passkey). The pay button needs the check code; the Goods arrived mark never opens it.
+ * MilestoneRelease sheet, the founder's passkey). The pay button needs the check code; the Goods arrived mark never opens it.
  */
 function BalanceBlock({ orderId, state }: { orderId: string; state: BalanceState }) {
   const upload = useApiMutation("uploadInspection");

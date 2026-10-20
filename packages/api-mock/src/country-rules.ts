@@ -47,7 +47,7 @@ const SG_RULES: readonly PlanRule[] = [
   sg("marketplace.shopee.fees", "shopee fees: commission fee 14.17%, transaction fee 3.27%.", "/marketplaces/0/fees/0/rateBps"),
 ];
 
-/** Rina (sole_prop, drinkware from CN, Shopee MY), as she compiles against MY.json. */
+/** Rina (sole_prop, drinkware from CN, Shopee MY), compiled against MY.json. */
 const MY_RULES: readonly PlanRule[] = [
   my("registration.ssm_sole_prop.fee.6000", "Register: SSM business registration, government fee MYR 60.00; paid by the founder before funding.", "/registrations/0/cost"),
   ownRule("entity.sole_prop", "Business type: sole proprietorship.", "compiler:entity"),

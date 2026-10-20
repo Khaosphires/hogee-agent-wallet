@@ -59,7 +59,7 @@ function poisoned(m: PlanManifest): PlanManifest {
   return { ...m, reserveBps: 0, lines };
 }
 
-/** Mei signs the malicious manifest anyway (her backup owner EOA); the relayer's commitPlan is mined as a revert. */
+/** Mei signs the malicious manifest anyway (the backup owner EOA); the relayer's commitPlan is mined as a revert. */
 async function commitPoisoned(ctx: Ctx, bad: PlanManifest): Promise<void> {
   const s = ctx.s;
   const lines = manifestToLines(bad);

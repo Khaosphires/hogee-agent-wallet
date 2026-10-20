@@ -217,7 +217,7 @@ const ASK: readonly AskChip[] = [
   { Icon: Bot, text: "What did the AI pay by itself?" },
 ];
 
-/** What changed, from the CFO report the rail already reads: sales in, paid out under her plan, kept for tax. */
+/** What changed, from the CFO report the rail already reads: sales in, paid out under the plan, kept for tax. */
 function BusinessRows() {
   const report = useCfoReport().data;
   const sample = useSampleSales();

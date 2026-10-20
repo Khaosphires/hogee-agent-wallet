@@ -90,7 +90,7 @@ const AI_PAYMENT_KINDS: ReadonlySet<Payment["kind"]> = new Set(["SPEND", "FUND_M
 
 /**
  * The newest few things the officer should know about: the AI's own payments (mined, of a kind the AI decides, with an
- * agent decision; a founder-signed release or owner spend is her signature, listed as one), the founder's signatures
+ * agent decision; a founder-signed release or owner spend is the founder's signature, listed as one), the founder's signatures
  * and the officer's own actions. Titles are templates; amounts come from the payment record.
  */
 export function feedOf(input: { payments: readonly Payment[] | undefined; traces: readonly TraceLike[] | undefined; founder: string; limit?: number }): FeedItem[] {

@@ -5,12 +5,12 @@
  * latest sales, what Hogee's AI changed by itself), newest first, kinds mixed by time and runs of the same thing folded
  * ("Ads · 5 payments", "3 sales"). Each row: an icon tile, one line, how long ago and who acted, the amount (green and
  * "+" for money in). A failed bank transfer is a "Needs a look" row in the waiting tone. The latest few show; "Show all"
- * opens the rest. Under it, one line on what the AI did by itself: what it paid inside her rules, and that it changed no
+ * opens the rest. Under it, one line on what the AI did by itself: what it paid inside the founder's rules, and that it changed no
  * limit (first-timer #27). No request of its own: the receipts come from the same queries as Receipts
  * (use-receipts.ts), the sales and AI changes from the one CFO report.
  *
  * Colour jobs: green = money in, cobalt = the wallet or its AI acted alone, the seal (cinnabar) = Mei signed it, amber
- * = she should look.
+ * = the founder should look.
  */
 import { useState, useSyncExternalStore } from "react";
 import { Bot, CircleAlert, Clock, Landmark, ShieldCheck, ShoppingBag } from "lucide-react";

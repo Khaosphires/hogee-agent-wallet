@@ -10,8 +10,8 @@ import { ALREADY_ON_DEVICE, CODE_SHAPE_TEXT, RegistrationFailure, alreadyOnDevic
 import { PASSKEY_EVENT, passkeysSupported, registerFounderPasskey, storedCredentialId } from "@/lib/passkey";
 
 /**
- * Passkey set-up first (UX-PLAN D1): the founder creates her passkey at the welcome step, with the same one-time code
- * from her loan officer, the same expiry and the same officer registration as the sign sheet's enrolment (G5). It never
+ * Passkey set-up first (UX-PLAN D1): the founder creates a passkey at the welcome step, with the same one-time code
+ * from the loan officer, the same expiry and the same officer registration as the sign sheet's enrolment (G5). It never
  * blocks intake: "Later" hides it, and the sign sheet keeps enrolment as the fallback.
  */
 

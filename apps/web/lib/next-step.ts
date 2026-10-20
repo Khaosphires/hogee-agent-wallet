@@ -1,5 +1,5 @@
 /**
- * The Next step (UX-PLAN §3): the one thing Mei should do now, or who she is waiting for, from what the browser can
+ * The Next step (UX-PLAN §3): the one thing Mei should do now, or who Mei is waiting for, from what the browser can
  * read without any new API (the thread, the current plan, the balances, the latest search, the saved order and its
  * escrow, and three browser-only conveniences: a passkey on this device, "Later" on the passkey card, and "goods
  * arrived"). Pure, so every row of the plan's table is a unit test (next-step.test.ts).
@@ -34,7 +34,7 @@ export interface NextStep {
   readonly short: string;
   /** At most one button, only when the step is Mei's. */
   readonly action: NextStepAction | null;
-  /** Who we wait for when it isn't her turn. */
+  /** Who we wait for when it isn't Mei's turn. */
   readonly who: "officer" | "hogee" | null;
 }
 

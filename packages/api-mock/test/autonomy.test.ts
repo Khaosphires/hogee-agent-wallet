@@ -1,6 +1,6 @@
 /**
  * rcfix-autonomy (skills re-check W-4): the Wallet's "N AI payments" counts only the payments the agent decided by
- * itself (SPEND, FUND_MILESTONE). The founder's MilestoneRelease and OwnerSpend are her signatures (humanSigs) and never
+ * itself (SPEND, FUND_MILESTONE). The founder's MilestoneRelease and OwnerSpend are the founder's signatures (humanSigs) and never
  * also AI payments, both where the store counts its own records (autonomy.ts, the sample business) and in the other
  * scenarios' running counter (transitions.ts createScriptedPayment). Sepolia final-2 had 2 FUND_MILESTONE + 1
  * RELEASE_MILESTONE and read "3 AI payments" where the AI made 2.

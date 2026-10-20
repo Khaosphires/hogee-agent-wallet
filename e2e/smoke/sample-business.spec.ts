@@ -4,7 +4,7 @@
  * status gallery for the other smoke specs (playwright.config.ts), so the first test puts the store where a plain
  * `dev:mock` starts, then the switch in the quick settings turns it off (a fresh start) and on again. The switch is the
  * loan officer's only, as Reset the demo (run-10 v-5): Mei sees it locked, and the tests become the officer first
- * (signInAsOfficer: the access code never enters the browser), then Mei again (View as) to look at her chat. It rebuilds
+ * (signInAsOfficer: the access code never enters the browser), then Mei again (View as) to look at Mei's chat. It rebuilds
  * the shared mock store, so it runs in its own project after after-reset ("sample-business").
  */
 import { expect, test, type Page } from "@playwright/test";
@@ -46,7 +46,7 @@ test("the sample business, as dev:mock starts: Mei three weeks in on chat, Walle
   // The journey's Next step: the second order is paid its deposit and waits for the goods, then the delivery check.
   await expect(page.getByTestId("next-step-strip").first()).toHaveAttribute("data-step", "in-transit");
   await expect(page.getByTestId("goods-arrived").first()).toBeVisible();
-  // Mei sees the sample business is on, locked: only the loan officer switches it (the server says 403 to her too).
+  // Mei sees the sample business is on, locked: only the loan officer switches it (the server says 403 to Mei too).
   const { row, control } = await sampleSwitch(page);
   await expect(control).toHaveAttribute("aria-checked", "true");
   await expect(control).toBeDisabled();
@@ -81,7 +81,7 @@ test("the loan officer switches it off for a fresh start: Mei gets the first que
   expect((await page.request.get("/api/plans/current")).status()).toBe(404);
   await expect((await sampleSwitch(page)).control).toHaveAttribute("aria-checked", "false");
 
-  // Mei again (View as): her chat starts at the first question.
+  // Mei again (View as): Mei's chat starts at the first question.
   await switchPersona(page, "founder");
   await expect(page).toHaveURL(/\/chat$/);
   await expect(page.getByTestId("chat-opener")).toBeVisible();

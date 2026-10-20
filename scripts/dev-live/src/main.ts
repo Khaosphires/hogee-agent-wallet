@@ -10,7 +10,7 @@
  *   5. apps/web (next dev; with --prod next build, then next start) on localhost:<web-port> with MOCK_API=0, DEMO_MODE=1,
  *      CHAIN=local. next dev's page CSP allows 'unsafe-eval' (React dev tooling); --prod serves the production CSP
  *   6. the facility opened the way the live tests do it (officer persona → POST /api/facility/open → the worker relays)
- * --country SG runs Mei's facility (HOGEE_COUNTRY=SG, MEI_IDS, her PayNow payees, paid by the worker's MockRail as a
+ * --country SG runs Mei's facility (HOGEE_COUNTRY=SG, MEI_IDS, Mei's PayNow payees, paid by the worker's MockRail as a
  * simulated PayNow payout); MY runs Rina's. Without the flag it is the API's DEFAULT_COUNTRY (SG).
  * Every setting reaches a child through its env (built from scratch); no .env file is read or written. Next.js still
  * loads apps/web/.env* for variables its env leaves undefined, so the web child gets REPLAY, the model provider and its

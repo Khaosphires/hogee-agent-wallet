@@ -1,7 +1,7 @@
 /**
  * Mei's demo numbers (SG-DECISIONS "Mei's ids and caps"): Rina's minor units exactly, in SGD, with ids that never
  * collide with Rina's on the shared final-1 deployment (supplier A is the shared demo catalog's, stored per facility).
- * Her compile against a pack is in sg-compile.test.ts.
+ * Mei's compile against a pack is in sg-compile.test.ts.
  */
 import { describe, expect, it } from "vitest";
 import {

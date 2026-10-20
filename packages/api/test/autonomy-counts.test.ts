@@ -1,7 +1,7 @@
 /**
  * rcfix-autonomy (skills re-check W-4): "N AI payments" on the Wallet counts only the payments the agent decided by
- * itself. A founder-signed payment the relayer only carries (RELEASE_MILESTONE: her passkey MilestoneRelease;
- * OWNER_SPEND: her manual fallback) is a person's signature (humanSigs), never also an AI payment. On Sepolia final-2
+ * itself. A founder-signed payment the relayer only carries (RELEASE_MILESTONE: the founder's passkey MilestoneRelease;
+ * OWNER_SPEND: the founder's manual fallback) is a person's signature (humanSigs), never also an AI payment. On Sepolia final-2
  * (2 FUND_MILESTONE + 1 RELEASE_MILESTONE) the counter said 3 where the AI made 2. The SQL itself is exercised on
  * Postgres by test/live/web-terms.live.test.ts; here the rule and the query's bound kinds, with no database.
  */

@@ -5,7 +5,7 @@ import { founderPersonaOf, type FounderPersona } from "@/lib/persona";
 import { useProfile, type Profile, type ProfileCountry } from "@/lib/profile";
 
 export interface FounderProfile {
-  /** This deployment's demo founder (the profile is always hers, whoever is viewing). */
+  /** This deployment's demo founder (the profile is always the founder's, whoever is viewing). */
   readonly founder: FounderPersona | undefined;
   readonly profile: Profile;
   readonly country: ProfileCountry;

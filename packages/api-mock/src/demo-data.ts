@@ -6,7 +6,7 @@
  *   POST /api/demo/sample-business, body exactly { "on": boolean } → rebuilds the store as the sample business (on:
  *        MOCK_SCENARIO=lived) or a fresh start (off: fresh), discarding everything done since it was built.
  * Rules (fail closed): DEMO_MODE=1 or 404, as the contract's demo routes; REPLAY refuses (409: the offline demo plays its
- * recording) and so does any demo but Mei's (the sample business is hers); a body that is not exactly {on: boolean}, or
+ * recording) and so does any demo but Mei's (the sample business is Mei's); a body that is not exactly {on: boolean}, or
  * over 256 bytes, is 422 and changes nothing. The POST is the loan officer's only, as POST /api/demo/reset (G0-REVIEW
  * M14; run-10 v-5, P1's decision): it rebuilds the same shared store for every viewer, and without a valid officer
  * cookie every caller is the founder (http.ts personaOf), so "either persona" meant anyone who reaches the process.

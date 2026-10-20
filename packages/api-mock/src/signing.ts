@@ -316,7 +316,7 @@ function roleAddresses(st: MockState): string[] {
 
 type Verified = { readonly signer: SignedFounderSig } | { readonly problem: string };
 
-/** The founder's verified signer when the signature is hers over this request's digest, else why it is refused. */
+/** The founder's verified signer when the signature is the founder's over this request's digest, else why it is refused. */
 async function verifyFounderSignature(st: MockState, env: MockEnv, record: SignatureRequestRecord, body: SignatureSubmitBody): Promise<Verified> {
   if ("passkey" in body) {
     const { credentialId } = body.passkey;
@@ -393,8 +393,8 @@ const REBUILT_AT_SUBMIT: Partial<Record<SignatureKind, { readonly build: (st: Mo
 
 /**
  * A SupplierApproval or MilestoneRelease is applied only while re-planning it now gives every field the founder signed
- * (live finalize: CONFLICT otherwise), so a pocket reallocation between request and submit never funds a schedule she
- * did not sign, and a release pays exactly the milestone and check code she signed: a second tab's submit after the
+ * (live finalize: CONFLICT otherwise), so a pocket reallocation between request and submit never funds a schedule the
+ * founder did not sign, and a release pays exactly the milestone and check code they signed: a second tab's submit after the
  * first paid it, or evidence re-uploaded since the request, is refused (run-10 re-check W-2). A refusal of the rebuild
  * itself (nothing waits, CapExceeded, ...) is returned as is. Synchronous with the apply that follows, so both see the
  * same store.

@@ -1,7 +1,7 @@
 /**
  * The sample business's story (MOCK_SCENARIO=lived; docs/decisions/ux2-demo-data.md): Mei (SG) about three weeks into
  * selling insulated tumblers on Shopee, as data. Every date is relative to the UTC day the store is built (day 0;
- * day -24 is when she signed her plan), so the sample always looks three weeks old. build.ts plays it through the
+ * day -24 is when Mei signed the plan), so the sample always looks three weeks old. build.ts plays it through the
  * mock's own transitions in time order; nothing here is a balance, a cap or a total: those come out of the ledger.
  *
  * Amounts are budget units in minor units (SGD cents). An ads payment is always the plan's pacing slot; the other

@@ -8,14 +8,14 @@
 | Competition track | International AI Track, Topic F (Agent Wallet: Autonomous On-chain Wallet) |
 | Submission date | 20 Oct 2026 |
 | Project | Hogee ("Hogiak", 好額, Hokkien for "rich") |
-| Code described | `main` at commit `927851d` (20 Oct 2026) |
+| Code described | The code in this repository (public commit `9c61d0a`, 20 Oct 2026) |
 | Repository | [https://github.com/Khaosphires/hogee-agent-wallet](https://github.com/Khaosphires/hogee-agent-wallet) |
 
 Related documents: [Security self-assessment](SECURITY-SELF-ASSESSMENT.md) · [Execution evidence](EXECUTION-EVIDENCE.md) · [Sepolia runbook](SEPOLIA-RUNBOOK.md) · [FISCO BCOS mirror](../fisco/README.md) · [Sepolia timestamp of the FISCO pack](../fisco/ANCHOR.md) · [Repository README](../../README.md)
 
 **At a glance**
 
-Hogee is an agent wallet, run from one AI chat, that makes running a small business easier for first-time and experienced owners alike. The founder (the person running the business) signs the business plan once with a passkey; the plan becomes an on-chain policy, and the AI agent pays suppliers and running costs only inside it. A loan officer can stop every agent payment. On a FISCO BCOS mirror of the same contracts, a regulator can also stop the agent at the chain level.
+Hogee is an agent wallet, run from one AI chat, that makes running a small business easier for first-time and experienced owners alike. The founder (the person running the business) signs the business plan once with a passkey; the plan becomes an on-chain policy on Ethereum Sepolia, a public test network, and the AI agent pays suppliers and running costs only inside it. A loan officer can stop every agent payment. On a FISCO BCOS mirror of the same contracts, a regulator can also stop the agent at the chain level.
 
 | What you can check | Where it is | How to check it |
 |---|---|---|
@@ -55,18 +55,18 @@ Agent wallets can now pay on their own. In most of them a person writes the spen
 | Asset management | Budget pockets per plan line, staged release, an automatic tax-reserve skim on each sale, and an AI CFO that reports spending, sales, profit and forecasts and tightens caps on its own. |
 | Transaction execution | The agent pays bound payees within caps (ads, fees, logistics) and funds pre-signed supplier escrow milestones, including the deposit of a supplier found on the web. Each payment triggers a payout on a test or simulated rail. |
 | Risk control | An on-chain constitution, per-payment and 7-day caps, payee binding with cooling, timelocks, replay guards, a circuit breaker and pause. Off-chain: a quarantined Reader for web pages, and terms rules that bound what a web supplier can receive automatically. |
-| Real on-chain spending | Sepolia `final-2`: Mei's chat run, 11 transactions, all successful, including 2 payments the agent made by itself. Sepolia `final-1`: the red team, 77 transactions. Addresses and hashes: [Execution evidence](EXECUTION-EVIDENCE.md). |
+| Real on-chain spending | Agent spending on a public test network (Sepolia; amounts in BU, not money). `final-2`: Mei's chat run, 11 transactions, all successful, including 2 payments the agent made by itself. `final-1`: the red team, 77 transactions. Addresses and hashes: [Execution evidence](EXECUTION-EVIDENCE.md). |
 | Oversight beyond the app (extra) | The FISCO BCOS mirror runs the same contracts on a local permissioned chain, where a regulator stops the same agent payment in two chain-level ways before the officer's pause stops it a third time (§02). |
 
-**Units.** Hogee keeps an internal ledger in budget units (BU): 1 BU = 100 minor units of the loan currency. BU are not transferable, not pegged, not redeemable, and have no ERC-20 interface. In production a licensed partner bank holds the money, and the chain is the rule and audit layer.
+**Units.** Hogee keeps an internal ledger in budget units (BU): 1 BU = 100 minor units of the loan currency. BU are not transferable, not pegged, not redeemable, and have no ERC-20 interface. In production, a licensed partner bank holds the funds (not built today; payouts in the demo are simulated), and the chain is the rule and audit layer.
 
 ### Core value and innovation
 
 1. **One chat, one wallet.** The chat is home. Each step ends in a card: a needs checklist, a candidate list, a terms form, an order, a CFO view. Every money card ends in a passkey signature or a transaction link. Replies are fixed templates filled from typed data, so the model's own text never reaches the screen.
 2. **The plan compiles into one signed on-chain policy.** Deterministic code (`buildNeeds` and the plan compiler) builds the needs card and the budget from the country pack, with a source for each item. Mei signs the result once with a passkey as a `PlanApproval`, and the contracts enforce it.
-3. **Web suppliers without web trust.** Hogee searches listing sites through one fixed host (`api.tavily.com`) with a query built from the signed plan. A quarantined Reader with no tools reads each page; code checks and scores it. Pages that carry instructions aimed at the AI are excluded and counted on the card. A web supplier's payout account comes only from the founder's form, and the agent can pay it at most one deposit within the per-payment cap, after cooling.
+3. **Web suppliers without web trust.** Hogee searches listing sites through one fixed host (`api.tavily.com`) with a query built from the signed plan. A quarantined Reader with no tools reads each page; code checks and scores it. Pages that try to give the AI orders are screened out by gates and counted on the card; the payment path never reads web text. A web supplier's payout account comes only from the founder's form, and the agent can pay it at most one deposit within the per-payment cap, after cooling (checked off-chain by the terms rules; on-chain, the contracts check the signed schedule).
 4. **The founder's words become a bounded schedule.** "Went with #2, 30% deposit, 70% on delivery" pre-fills a terms card. Code (`termsToSchedule`) turns it into milestones under fixed rules and re-checks them against the current limits at every step. The founder signs the schedule as a `SupplierApproval`.
-5. **An AI CFO with bounded authority.** It reports from the chain and the founder's own records and says how it estimates. It acts only by tightening (a lower cap or a higher reserve), signed by the agent key, with a transaction. Moving budget or releasing stage 2 is only a request to the officer.
+5. **An AI CFO with bounded authority.** It is fixed code that calls no model. It reports from the chain and the founder's own records and says how it estimates. It acts only by tightening (a lower cap or a higher reserve), signed by the agent key, with a transaction. Moving budget or releasing stage 2 is only a request to the officer.
 6. **An on-chain constitution holds even when both the AI and the founder are fooled.** The contracts hold every plan to 14 invariants (the constitution). `PlanRegistry.commitPlan` reverts `PlanInvariantViolated(code)` on a breach even with a valid founder signature.
 7. **Passkey signing on-chain.** The founder signs EIP-712 digests with a passkey (Touch ID). The contracts verify the P-256 signature with OpenZeppelin `WebAuthn`, so the founder needs no crypto wallet.
 8. **A regulator with chain-level powers.** On the FISCO BCOS mirror, the regulator freezes the agent's account, then bans `Treasury.spend` for it, through FISCO BCOS's own governance. The same spend, byte for byte, is refused by the chain twice and then by Hogee's contract after the officer's pause: three independent stops (§02).
@@ -99,7 +99,7 @@ flowchart LR
   end
   WRK["apps/worker: the only signer"]
   DB[("PostgreSQL")]
-  subgraph Sepolia["Ethereum Sepolia (public)"]
+  subgraph Sepolia["Ethereum Sepolia (public test network)"]
     SC["PlanRegistry, Treasury, MilestoneEscrow, SalesOracle"]
     ANC["Anchor tx: timestamp of the FISCO pack"]
   end
@@ -173,7 +173,7 @@ flowchart LR
 | Sepolia `final-2` | Mei's chat run, by hand in the web app with Mei's own passkey. Deployed 19 Oct 2026, 04:44 UTC, block 11945887 | `packages/chain/deployments/sepolia-final-2.json` |
 | FISCO BCOS mirror | The same contracts and final-2's run, replayed with the regulator's stops | `evidence/fisco/fm-6abe83e663a2471b` |
 
-Both Sepolia deployments were checked after deploy with the read-only `VerifyFinal.s.sol`. On 20 Oct 2026 the team lead checked Sepolia Etherscan: all five `final-2` contracts (PlanRegistry, Treasury, TreasuryGovernance, MilestoneEscrow, SalesOracle) show "Source Code Verified". The bundles' SUMMARY "not verified" column is not an Etherscan reading: it shows only whether the deployment manifest names a `verifiedUrl`, and neither `sepolia-final-*.json` manifest does. They use the same contracts, 120 s payee cooling and a 120 s loosening timelock (labelled demo values, set at deploy; a production deploy would set 24 h). Each run keeps its own nonce counter in its own database. Addresses and the key transactions: [Execution evidence §02](EXECUTION-EVIDENCE.md#02-logs-or-transactions); each bundle's `SUMMARY.md` lists all.
+Both Sepolia deployments were checked after deploy with the read-only `VerifyFinal.s.sol`. On 20 Oct 2026 the team lead checked Sepolia Etherscan: all five `final-1` contracts show "Source Code Verified (Exact Match)"; the five `final-2` contracts (PlanRegistry, Treasury, TreasuryGovernance, MilestoneEscrow, SalesOracle) show four exact matches and one similar match (PlanRegistry). The bundles' SUMMARY "not verified" column is not an Etherscan reading: it shows only whether the deployment manifest names a `verifiedUrl`, and neither `sepolia-final-*.json` manifest does; the bundles were also exported before the sources were verified. They use the same contracts, 120 s payee cooling and a 120 s loosening timelock (labelled demo values, set at deploy; a production deploy would set 24 h). Each run keeps its own nonce counter in its own database. Addresses and the key transactions: [Execution evidence §02](EXECUTION-EVIDENCE.md#02-logs-or-transactions); each bundle's `SUMMARY.md` lists all.
 
 ### Models, tools, data sources and external services
 
@@ -186,7 +186,7 @@ Both Sepolia deployments were checked after deploy with the read-only `VerifyFin
 | Reader (quarantined) | `claude-haiku-5-5`, structured output | `deepseek-flash` or `qwen-plus` | `qwen3.5:4b` | No tools, closed JSON schema, zod-validated, repaired once, else denied. Reads web listings, invoices and documents |
 | Eval judge | A different family from the Planner (`deepseek-v4-pro` by default) | `qwen3-max` | `gemma4:e4b` | E2 only |
 
-Mei's Sepolia run used DeepSeek (`PLANNER_MODEL=deepseek-flash`); its bundle logs 8 model calls as hashes only. In privacy mode (`MODEL_PROVIDER=ollama`) a role may leave the machine only with an explicit `OLLAMA_ALLOW_CLOUD=1`. Every call goes through the redactor and a model budget (default 1,500 calls per 24 h), reserved before the call.
+Mei's Sepolia run used DeepSeek (`PLANNER_MODEL=deepseek-flash`) and the recorded supplier sample; its bundle logs 8 model calls, all Planner calls, as hashes only. In privacy mode (`MODEL_PROVIDER=ollama`) a role may leave the machine only with an explicit `OLLAMA_ALLOW_CLOUD=1`. Every call goes through the redactor and a model budget (default 1,500 calls per 24 h), reserved before the call.
 
 **The 8 chat skills:** `plan`, `find_suppliers`, `pick_suppliers`, `report_terms`, `cfo`, `status`, `help`, `out_of_scope`. There is no payment skill. Any request to pay, transfer, release, skip cooling or raise a cap is `out_of_scope`.
 
@@ -210,7 +210,7 @@ Every country-pack fact is a `Sourced` leaf: `{value, sourceUrl, retrievedAt, sn
 
 ### The FISCO BCOS mirror and its regulator
 
-**Why it exists.** Sepolia shows the agent wallet on a public chain, where the only stops are the ones Hogee's contracts define. FISCO BCOS is a permissioned chain with governance built in: a committee decides which accounts may send and which methods they may call. The mirror runs Hogee's unchanged contracts there and gives a regulator two stops of its own, so a judge can see the app's controls and a supervisor's controls refuse the same payment.
+**Why it exists.** Sepolia shows the agent wallet on a public test network, where the only stops are the ones Hogee's contracts define. FISCO BCOS is a permissioned chain with governance built in: a committee decides which accounts may send and which methods they may call. The mirror runs Hogee's unchanged contracts there and gives a regulator two stops of its own, so a judge can see the app's controls and a supervisor's controls refuse the same payment.
 
 **What it is.**
 
@@ -318,7 +318,7 @@ It runs again with the current limits at submit, prepare and finalize. In the pl
 
 **Terms hint** (`parseTermsHint`): reads percentages, "half", "in full", "the rest" and timing words ("deposit", "on delivery", "after inspection", "on shipment") in English, Singlish and some Malay; bare splits ("50/50", "30 40 30") follow the presets. A part with no timing returns the deposit question. It is a prefill only: the founder confirms in the form, and the schedule rules above decide.
 
-**Web candidates.** Each allow-listed page is excluded, and counted by reason, for: instructions aimed at the AI (`AI_INJECTION`), paying off the platform or to a personal account (`OFF_PLATFORM_DISCOUNT`), a Reader rejection, no grounded seller, no grounded price, a seller name that fails the wording check, an unknown currency, or a missing certificate for food-contact goods (`MISSING_CERT`, a hard gate for web listings). A price under 30% of the median of the priced listings gets a price flag. Freight is assumed at 13% of FOB (labelled in code; the pack has no freight figure). The rest go through the supplier scorer.
+**Web candidates.** Each allow-listed page is excluded, and counted by reason, for: instructions aimed at the AI that the detector flags (`AI_INJECTION`), paying off the platform or to a personal account (`OFF_PLATFORM_DISCOUNT`), a Reader rejection, no grounded seller, no grounded price, a seller name that fails the wording check, an unknown currency, or a missing certificate for food-contact goods (`MISSING_CERT`, a hard gate for web listings). A price under 30% of the median of the priced listings gets a price flag. Freight is assumed at 13% of FOB (labelled in code; the pack has no freight figure). The rest go through the supplier scorer.
 
 **Supplier scorer.** Hard gates exclude a supplier for: no escrow, personal payee account, missing certificate, an off-platform discount, imperative text aimed at AI, over MOQ or budget, or a sanctions hit. The rest get a weighted score (landed cost 25, quality evidence 20, trust and verification 20, lead time 10, compliance 10, terms 10, communication 5). We show "evidence coverage", never a probability.
 
@@ -343,7 +343,7 @@ It runs again with the current limits at submit, prepare and finalize. In the pl
 | Injected listings | 20 injected + 10 clean listings written blind, plus the recorded sample | Labels written blind | Share of injected pages excluded; clean pages kept | Model-free layers only: 8/20 = 40.0% (21.9–61.3%), a lower bound; 10/10 clean kept. With the Reader model: not run (no key) |
 | Router | 88 labelled messages, 10 of them attempts to pay or bypass the rules | Labels written blind | Skill accuracy; attempts routed to `out_of_scope` | Not run (needs a model key) |
 | Autonomy | Mei's chat run on Sepolia `final-2` | n/a | Agent payments per human signature; drift | The agent key signed 3 of the 11 transactions: 2 payments it decided by itself (the 750 BU deposit and the 1,750 BU balance escrow) and the pause Mei asked for. The app's counter, under the current rule (it read 3 at export, before the founder-signed release stopped counting as an agent payment): **2 agent payments for 6 human signatures** (Mei's 3 passkey signatures and 3 officer approvals); 2 decisions, both automatic; drift 0 |
-| Red team | T1–T33 + S1–S12 + 2 demos; 22 WEB cases on 19 ids | Pass criteria per case | Pass / fail / not run | Sepolia `final-1` (run `rt-20261018t202130z-sepolia`): 45 pass, 0 fail, 2 not run (T22 by design, Anvil only; T33 had no query path on the run's code), 77 transactions; its re-export `ev-0f8e91d9eb2b2027` verifies online (the run's own export `ev-fdea4bd7118e7551` fails one check and was repaired from the chain). Last full Anvil run (19 Oct, with the WEB cases): 47 pass, 0 fail, 0 not run, 234 rows, four bundles VERIFIED |
+| Red team | T1–T33 + S1–S12 + 2 demos; 22 WEB cases on 19 ids | Pass criteria per case | Pass / fail / not run | Sepolia `final-1` (run `rt-20261018t202130z-sepolia`): 45 pass, 0 fail, 2 not run (T22 by design, Anvil only; T33 had no query path on the run's code), 77 transactions; its re-export `ev-0f8e91d9eb2b2027` verifies offline and passed online on 19 Oct 2026 (the run's own export `ev-fdea4bd7118e7551` fails one check and was repaired from the chain). Last full Anvil run (19 Oct, with the WEB cases): 47 pass, 0 fail, 0 not run, 234 rows, four bundles VERIFIED (run record in the team's notes; the Anvil bundles are not in the public repo) |
 | Regulator stops (FISCO) | The 37-step replay | The catalogue's expected outcome per step | Refusals explained offline | 9 of 9 refusals refused and explained (7 by the contracts, 2 by the chain); every expected success mined; `make verify-fisco` 18 of 18 |
 
 We do not quote a web-injection exclusion rate: the model-free layers stop 40% of blind-written attacks, and the Reader model's share is not measured yet. Payment safety does not rest on that layer (§04).
@@ -371,7 +371,7 @@ We do not quote a web-injection exclusion rate: the model-free layers stop 40% o
 
 **Prompt injection.**
 - The router sees only redacted chat text and returns an enum; buttons skip the model. No text path reaches `submitOrderTerms`, a payment or a signature.
-- The Reader is quarantined: no tools, closed schema, and its output fills typed fields only. Pages that carry instructions aimed at the AI are excluded.
+- The Reader is quarantined: no tools, closed schema, and its output fills typed fields only. Pages that try to give the AI orders are screened out by gates; the payment path never reads web text.
 - Payees come from the registry or a founder-signed approval, never from text; plans cannot add payees (constitution code 9).
 - Even a fully compromised agent can lose at most what the caps allow. A signed malicious plan still fails the constitution (T21).
 
@@ -382,7 +382,7 @@ We do not quote a web-injection exclusion rate: the model-free layers stop 40% o
 - Fail closed: a provider error fails the search; there is no silent switch to recorded results. If sanctions screening cannot run, the whole search fails.
 - The payout account arrives only through `submitOrderTerms` (a form), never from chat, listing text or a model. The holder name needs a company designator and a distinctive word shared with the seller name the Reader grounded (`TERMS_HOLDER_MISMATCH`). Personal payees are refused (`TERMS_PAYEE_PERSONAL`).
 - Terms rows are written once. The SupplierApproval commit changes exactly one CONFIRMED row to USED under a per-facility lock, after re-running the schedule rules against the current pocket. The signing panel shows the holder, the bank and the whole account number.
-- What a web supplier can get without Mei: at most one automatic deposit, within the per-payment cap, after the cooling period. The balance needs Mei's release signature with evidence.
+- What a web supplier can get without Mei: at most one automatic deposit, within the per-payment cap, after the cooling period (checked off-chain by the terms rules before Mei signs; on-chain, the contracts check the signed schedule). The balance needs Mei's release signature with evidence.
 
 **Privilege escalation.**
 - On-chain roles are separate: the agent must differ from the owner, the lender, the oracle and the observer (constitution code 13). Without a valid founder or lender signature, the agent never succeeds at an admin, oracle or signed entry point (Foundry invariant 7).
@@ -441,12 +441,12 @@ make verify-fisco PACK=evidence/fisco/fm-6abe83e663a2471b                       
 
 | Command | What it recomputes | Exit |
 |---|---|---|
-| `make verify` | 16 checks: every file against `hashes.json` and its schema; signed transactions against their rows and receipts; plan hashes and the country pack; EIP-712 digests and the founder's passkey signatures; every event against the calldata that emitted it; a replay of the events against the plan rules; rationale commitments; trace hash chains; the hashed model-call log; the evidence rows; and `SUMMARY.md`, regenerated byte for byte | 0 verified, 1 a check failed, 2 nothing to verify or a bad argument |
+| `make verify` | 16 checks: every file against `hashes.json` and its schema; signed transactions against their rows and receipts; plan hashes and the country pack; EIP-712 digests and the founder's passkey signatures; every event against the calldata that emitted it; a replay of the events against the plan rules; rationale commitments; trace hash chains; the hashed model-call log; the evidence rows; and `SUMMARY.md`, regenerated byte for byte | The checker exits 0 (verified), 1 (a check failed) or 2 (nothing to verify or a bad argument); through `make`, any failure shows as exit code 2 |
 | `make verify-fisco` | 18 checks (§02), including a full `make verify` of the Sepolia bundle the pack mirrors | the same codes |
 
-All four commands report VERIFIED on `927851d` (re-run for this document). Without a local `contracts/out`, `make verify-fisco` uses the build artifacts stored in the pack and says so.
+All four commands report VERIFIED on the code in this repository (re-run on 20 Oct 2026). Without a local `contracts/out`, `make verify-fisco` uses the build artifacts stored in the pack and says so.
 
-**What VERIFIED means.** A bundle or pack is internally consistent: files, digests, signatures, commitments, calldata, events and plan rules agree. It does not by itself prove that a public chain holds those transactions. To tie a Sepolia bundle to the chain, compare the addresses and hashes it prints with Etherscan, or run `HOGEE_VERIFY_RPC=<Sepolia RPC URL> make verify BUNDLE=…`, which compares every receipt and block with a node. For the FISCO pack, the chain is local, so its block headers are taken as served; `HOGEE_ANCHOR_RPC=<Sepolia RPC URL> make verify-fisco PACK=…` confirms the timestamp transaction on Sepolia.
+**What VERIFIED means.** A bundle or pack is internally consistent: files, digests, signatures, commitments, calldata, events and plan rules agree. It does not by itself prove that a public chain holds those transactions. To tie a Sepolia bundle to the chain, compare the addresses and hashes it prints with Etherscan, or run `HOGEE_VERIFY_RPC=<Sepolia RPC URL> make verify BUNDLE=…`, which compares every receipt and block with a node. Public Sepolia nodes keep only recent receipts, so the online check needs a node that serves older receipts; otherwise compare the anchor with Sepolia Etherscan, which keeps every transaction. The red-team re-export passed online on 19 Oct 2026, and Mei's bundle on 20 Oct 2026. For the FISCO pack, the chain is local, so its block headers are taken as served; `HOGEE_ANCHOR_RPC=<Sepolia RPC URL> make verify-fisco PACK=…` confirms the timestamp transaction on Sepolia.
 
 **Where each piece of evidence lives.**
 
@@ -464,17 +464,17 @@ All four commands report VERIFIED on `927851d` (re-run for this document). Witho
 
 ### Test cases
 
-Counts are from the team lead's full run on `927851d` (20 Oct 2026); the tree is identical to the PR head it merged.
+Vitest and Foundry counts are from CI on the public repository (20 Oct 2026); the other rows are the team lead's runs.
 
 | Suite | Command | Result |
 |---|---|---|
 | Typecheck, all packages | `pnpm typecheck` | Clean |
-| Unit tests (Vitest), 15 packages | `pnpm -r test` | 5,517 passed, 481 skipped (the live Anvil and Postgres suites, not re-run on this commit), 4 todo. Passed per package: core 1,393, web 761, api 619, chain 367, checks 332, api-contract 302, worker 293, db 288, redteam 281, verify-evidence 265, agent 253, api-mock 233, privacy 98, dev-live 20, mcp 12 |
-| Foundry (unit, fuzz, invariant) | `cd contracts && forge test` | 553 passed |
-| End-to-end, Playwright (mock app) | `pnpm --filter @hogee/e2e e2e` (smoke at 1280×720 and 1920×1080, plus the after-reset and Sample business runs; run on a scratch Playwright config); `pnpm --filter @hogee/e2e journey` | 158 passed, 4 skipped by design; the full chat journey 1 passed |
+| Unit tests (Vitest), 15 packages | `pnpm -r test` | 5,603 passed, 395 skipped (the live Anvil and Postgres suites), 4 todo, in 15 workspaces (CI on `9c61d0a`) |
+| Foundry (unit, fuzz, invariant) | `cd contracts && forge test` | 553 passed (CI on `5aa3a73`; no contract file changed since) |
+| End-to-end, Playwright (mock app) | `pnpm --filter @hogee/e2e e2e` (smoke at 1280×720 and 1920×1080, plus the after-reset and Sample business runs; run on a scratch Playwright config); `pnpm --filter @hogee/e2e journey` | Passed in the team lead's local run (smoke and the full chat journey); not part of CI |
 | Evidence checkers | `make verify …`; `make verify-fisco …` | 3 bundles VERIFIED (16 of 16 each); FISCO pack VERIFIED (18 of 18) |
 | Red team on Sepolia | `pnpm --filter @hogee/redteam start -- --target sepolia --database-url <db>`, with the two Sepolia RPC URLs and the role keys in the environment ([runbook](SEPOLIA-RUNBOOK.md)) | 45 pass, 0 fail, 2 not run (T22 by design; T33 had no query path on that code); 77 transactions |
-| Red team on Anvil | `pnpm --filter @hogee/redteam start -- --rpc-url <anvil> --database-url <db>` | Last full run (19 Oct): 47 pass, 0 fail, 0 not run, 234 rows; four bundles VERIFIED |
+| Red team on Anvil | `pnpm --filter @hogee/redteam start -- --rpc-url <anvil> --database-url <db>` | Last full run (19 Oct): 47 pass, 0 fail, 0 not run, 234 rows; four bundles VERIFIED (run record in the team's notes; the Anvil bundles are not in the public repo) |
 | Journey evals | `evals/scripts/journey/run-*.ts` | See §03 |
 | Static analysis | Slither 0.11.6 + Aderyn 0.6.8 | 140 results triaged, 0 true positives ([static analysis](../assurance/static-analysis-2026-10-18.md)); the contracts have not changed since |
 | Security audits | Twelve scoped, source-only runs, each followed by fixes and a post-fix re-check. Reports for runs 3–12 are in `docs/security-audit-run-*`; runs 1–2 are summarised in [G0-DECISIONS](../G0-DECISIONS.md) §6–§7 | No confirmed finding in any run (the source-only method cannot confirm findings, so surviving candidates are leads); every lead was fixed and re-checked. The post-fix re-checks found one HIGH item each in runs 6 and 7 (fixed), and run 8's keccak re-check left 3 LOW items open; the [Security self-assessment](SECURITY-SELF-ASSESSMENT.md) lists every residual. Run-12 (the FISCO regulator, the anchor and the Proof page section): 4 leads and 1 coverage gap, all fixed; two re-checks found nothing critical, high or medium ([run-12 report](../security-audit-run-12/REPORT.md), [re-check](../security-audit-run-12/recheck-run12-fixes.md)) |

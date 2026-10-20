@@ -1,7 +1,7 @@
 /**
  * A founder-only replan through the API (red-team 1.15, T20 finding): v1 committed, supplier A bound since by a
  * signed SupplierApproval, then a day later Rina drafts the same intent again (chat → POST /api/plans/draft), signs
- * the PlanApproval with her passkey and the worker relays commitPlan: v2 is mined with no revert. The compiler keeps
+ * the PlanApproval with a passkey and the worker relays commitPlan: v2 is mined with no revert. The compiler keeps
  * the on-chain expiries, stage gate and caps, and lists supplier A on SUPPLIER because the chain counts its signed
  * binding (Treasury.isSignedPayee). A draft that asks for a longer horizon still fails REPLAN_LOOSENS only: it can't be
  * signed alone (409) and routeReplan turns it into EXTEND_EXPIRY requests. Only the model is scripted.

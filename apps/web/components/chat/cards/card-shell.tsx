@@ -11,7 +11,7 @@ type Icon = LucideIcon;
  * Every chat card's head (ux2: one anatomy for all cards): a coloured icon tile, the title, one short line, and at
  * most one pill or action on the right (under 440 px it drops under the title, so a phone keeps the title's width).
  * The tile's colour means something: the supplier pocket's own colour for supplier things, ink for Hogee's plan,
- * waiting for Mei's turn, seal once she signed, paid for money in or done.
+ * waiting for Mei's turn, seal once Mei signed, paid for money in or done.
  */
 export function CardHead({
   icon,

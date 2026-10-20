@@ -11,9 +11,9 @@ import { AVATAR_FILL, ProfileAvatar } from "./profile-avatar";
 import { ACTION_ROW } from "./settings-rows";
 import { useFounderProfile } from "./use-founder-profile";
 
-/** The banner: the avatar, the name, and who she is. It updates as the fields below are edited. */
+/** The banner: the avatar, the name, and who they are. It updates as the fields below are edited. */
 function ProfileBanner({ profile, country }: { profile: Profile; country: keyof typeof COUNTRY_NAME }) {
-  // A faint wash of her colour behind the banner, so the choice shows at once.
+  // A faint wash of their colour behind the banner, so the choice shows at once.
   const style = { "--avatar": AVATAR_FILL[profile.avatarColour] } as CSSProperties;
   return (
     <li

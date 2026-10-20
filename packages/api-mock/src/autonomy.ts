@@ -2,7 +2,7 @@
  * GET /api/stats/autonomy counted from the store's own records, the way the live API counts its rows (packages/api
  * services/dashboard.ts), so the numbers add up with the payments and the activity record:
  *   - agentTxs: mined payments the agent decided by itself (SPEND, FUND_MILESTONE; isAgentPayment). The founder's
- *     MilestoneRelease (RELEASE_MILESTONE) and OwnerSpend (OWNER_SPEND) count once, as her signature in humanSigs (W-4);
+ *     MilestoneRelease (RELEASE_MILESTONE) and OwnerSpend (OWNER_SPEND) count once, as the founder's signature in humanSigs (W-4);
  *   - humanSigs: signatures (founder or loan officer) plus the officer's own chain actions (fund, open, key approval);
  *   - autoPct / escalatedPct: per decision trace (events with a policy verdict), escalated if any verdict was
  *     NEEDS_FOUNDER / NEEDS_OFFICER, else auto if one was AUTO; shares of auto + escalated (DENY is neither), 0.1 %;

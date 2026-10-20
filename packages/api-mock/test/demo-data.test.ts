@@ -74,7 +74,7 @@ describe("the Sample business switch", () => {
       expect(res.status).toBe(403);
       expect(((await res.json()) as { error: { code: string } }).error.code).toBe("FORBIDDEN");
     }
-    // Mei is refused before her body is even read (as register(): the persona first).
+    // Mei is refused before the request body is even read (as register(): the persona first).
     expect((await flip({ on: "yes" }, "founder")).status).toBe(403);
     expect(getState(readEnv())).toBe(before);
     expect(await h.call("/api/plans/current")).toEqual(plan);

@@ -46,7 +46,7 @@ function planSummary(m: Message, currency: string | undefined): string[] {
   ];
 }
 
-/** What waits for Mei: her passkey, plus the delivery check when the order asks for one (inspectionRequired, signed). */
+/** What waits for Mei: Mei's passkey, plus the delivery check when the order asks for one (inspectionRequired, signed). */
 const heldCondition = (inspection: boolean): string => (inspection ? "your delivery check and your passkey" : "your passkey");
 
 /**

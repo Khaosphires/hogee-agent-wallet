@@ -128,7 +128,7 @@ describe("Singapore (Mei) is the default demo", () => {
     expect(JSON.stringify(paid)).not.toMatch(/Test-mode|Xendit/);
   });
 
-  it("names Mei on the passkey it asks her to create", async () => {
+  it("names Mei on the passkey it asks Mei to create", async () => {
     await call("/api/demo/reset", json({}), "officer");
     const { body: issued } = await call<{ code: string }>("/api/officer/founder-key/enrolment-code", json({}), "officer");
     const { body } = await call<{ user: { name: string; displayName: string } }>("/api/passkey/register/options", json({ enrolmentCode: issued.code }));

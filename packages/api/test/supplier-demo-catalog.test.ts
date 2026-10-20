@@ -163,7 +163,7 @@ describe("shortlist of the demo catalog (stubbed checks)", () => {
     expect(accepting.shortlist?.candidates[0]?.supplierId).toBe("supplier-g");
   });
 
-  it("Rina: the same catalog fits her MYR budget (RM 5,000 for 1,000 units)", async () => {
+  it("Rina: the same catalog fits Rina's MYR budget (RM 5,000 for 1,000 units)", async () => {
     const s = await rank(RINA_SPEC, "MYR");
     expect([...ids(s)].sort()).toEqual(["supplier-a", "supplier-b", "supplier-g", "supplier-h"]);
     for (const c of s.candidates) expect(BigInt(c.landedCost.totalMinor)).toBeLessThanOrEqual(BigInt(RINA_SPEC.budgetMinor));

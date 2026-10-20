@@ -2,7 +2,7 @@
 
 /**
  * Proof → Wallet details (UX-PLAN D8): the wallet exactly as the blockchain counts it, for the loan officer and
- * reviewers, moved off Mei's Money page so it never contradicts her four numbers. The treasury totals, the pockets
+ * reviewers, moved off Mei's Money page so it never contradicts Mei's four numbers. The treasury totals, the pockets
  * (raw: a supplier payment made from held money stays counted as held, not as spent), the AI's paying key, what the AI
  * did alone, and the reconciler's "records out of step" count. Read-only: no button here pays, stops or changes anything.
  * Mounted by the Proof page (ux-officer): `<WalletDetails />`, no props.

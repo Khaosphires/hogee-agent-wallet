@@ -126,7 +126,7 @@ function Steps({ c }: { c: OfficerChecklistState }) {
 
 /**
  * The loan officer's "Set up Mei" checklist (UX-PLAN D10; O1–O4, first-timer moment 15): open the loan, give the
- * founder a set-up code, approve her passkey, add money. While something is left, the four steps show in a grouped list
+ * founder a set-up code, approve the founder's passkey, add money. While something is left, the four steps show in a grouped list
  * (done = paid tile, your turn = the waiting tile and the one filled button, later in grey). Once nothing is left it
  * folds into one quiet row that opens to the same steps. Every action is the same API call as before, behind the
  * officer persona and the server's checks.

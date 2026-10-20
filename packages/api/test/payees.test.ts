@@ -14,7 +14,7 @@ import {
 const shape = (p: (typeof ALL_DEMO_PAYEES)[number]) => ({ source: p.source, lineKey: p.lineKey, channels: p.channels });
 
 describe("DEMO_PAYEES_BY_COUNTRY", () => {
-  it("gives Mei her five MEI_IDS payees, all on SG_PAYNOW, all labelled as test accounts", () => {
+  it("gives Mei the five MEI_IDS payees, all on SG_PAYNOW, all labelled as test accounts", () => {
     const sg = DEMO_PAYEES_BY_COUNTRY.SG;
     expect(sg.map((p) => p.payeeId)).toEqual([MEI_IDS.adsPayeeId, MEI_IDS.platformFeesPayeeId, MEI_IDS.logisticsPayeeId, MEI_IDS.taxPayeeId, MEI_IDS.packagingPayeeId]);
     for (const p of sg) {
@@ -72,7 +72,7 @@ describe("platformPayeeDeployArgs", () => {
     expect(hashes[7]).toBe(payoutHashOf(DEMO_PAYEES_BY_COUNTRY.SG[3] as (typeof ALL_DEMO_PAYEES)[number]));
   });
 
-  it("still takes an explicit list (Rina's alone gives her four)", () => {
+  it("still takes an explicit list (Rina's alone gives four)", () => {
     expect(platformPayeeDeployArgs(DEMO_PAYEES).ids).toBe("shopee-ads,shopee-fees,spx-logistics,lhdn-tax");
   });
 });

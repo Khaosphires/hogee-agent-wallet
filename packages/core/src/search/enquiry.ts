@@ -1,5 +1,5 @@
 /**
- * The templated enquiry the founder copies and sends herself (Hogee never sends it). Built from enums and the quantity
+ * The templated enquiry the founder copies and sends on their own (Hogee never sends it). Built from enums and the quantity
  * only: no listing text, no seller name, no budget, no founder details. It asks for the facts the terms step needs:
  * unit price at the quantity, MOQ, lead time, the product's test reports, milestone payments (a deposit, then the
  * balance after a delivery check) and payment to a company bank account. Every string passes the wording lint

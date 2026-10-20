@@ -185,7 +185,7 @@ export function ownRecord(local: Submitted | undefined, sealTx: string | null | 
   return local && pageOwnsSeal(local.txHash, sealTx) ? local : undefined;
 }
 
-/** Once this page's queued (live) signature confirms, keep its seal's tx so a reload still knows the seal is hers. */
+/** Once this page's queued (live) signature confirms, keep its seal's tx so a reload still knows the seal is the founder's. */
 function useKeepConfirmedTx(key: string, local: Submitted | undefined, progress: SignProgress): void {
   const tx = progress.state === "confirmed" && local && local.txHash === null ? progress.txHash : null;
   const at = local?.at;
@@ -341,7 +341,7 @@ export function SignPill({ kind, refId }: { readonly kind: SignatureKind; readon
   return <Pill tone="waiting">Waiting on you</Pill>;
 }
 
-/** The sign card's tile: waiting (amber) while it is Mei's turn, the seal once she signed (cinnabar means just that). */
+/** The sign card's tile: waiting (amber) while it is Mei's turn, the seal once Mei signed (cinnabar means just that). */
 const signTone = (state: SignState): Tone => (state === "confirmed" ? "seal" : state === "submitted" || state === "superseded" ? "grey" : "waiting");
 
 /** True for the one card waiting on the founder (DESIGN.md §2: only it is lifted). */

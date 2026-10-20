@@ -5,7 +5,7 @@ test("the canned planner conversation plays end to end", async ({ page }) => {
   const seen = watch(page);
   await page.goto("/chat");
   // The status gallery's plan is signed, so /chat opens on the welcome-back home (UX round 3), without the first-run
-  // starter chip: the founder's first message is typed, as she would.
+  // starter chip: the founder's first message is typed, as they would.
   await expect(page.getByTestId("chat-opener")).toHaveAttribute("data-home", "welcome-back");
   await page.getByLabel("Message to Hogee").fill("I want to sell custom insulated tumblers on Shopee Singapore, budget S$10,000");
   await page.getByRole("button", { name: "Send" }).click();

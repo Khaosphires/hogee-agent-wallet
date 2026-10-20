@@ -192,7 +192,7 @@ describe("GET /api/session on an SG server (SG-DECISIONS Q1)", () => {
     expect((await personaAt(sgApp(unset), f.cookie("officer"))).persona).toBe("founder:mei");
   });
 
-  it("never grants Mei on an MY server: her valid cookie reads as founder:rina", async () => {
+  it("never grants Mei on an MY server: Mei's valid cookie reads as founder:rina", async () => {
     const f = fakeDeps();
     const res = await appFor(f).request("/api/session", { headers: { cookie: signed(f, "founder:mei") } });
     expect(Session.parse(await res.json()).persona).toBe("founder:rina");

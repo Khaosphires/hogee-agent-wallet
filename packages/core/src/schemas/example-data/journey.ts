@@ -1,6 +1,6 @@
 /**
  * Chat-first examples (VISION-DECISIONS §3, §4), in Mei's numbers (SG, SGD minor units; core demo/mei.ts): a web search
- * for her tumblers, the terms she reports (30% deposit, 70% after the delivery check), the CFO report and the needs
+ * for the tumblers, the terms the founder reports (30% deposit, 70% after the delivery check), the CFO report and the needs
  * checklist. Same conventions as the other examples: fake hashes, example.invalid URLs, fictional sellers. The web
  * supplier id has the right format but is not derived from a real URL.
  */

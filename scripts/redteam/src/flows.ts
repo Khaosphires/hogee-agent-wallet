@@ -236,7 +236,7 @@ export async function founderSigns(s: Stack, h: Http, kind: string, refId: strin
   return { req, submit };
 }
 
-/** Step 3: Rina signs the plan with her passkey; the relayer submits commitPlan. */
+/** Step 3: Rina signs the plan with a passkey; the relayer submits commitPlan. */
 export async function signPlan(s: Stack, h: Http, draftId: string): Promise<{ requestId: string; actionId: string }> {
   const { req, submit } = await founderSigns(s, h, "PlanApproval", draftId);
   const action = expectOk<ChainAction>(submit, "submit PlanApproval");

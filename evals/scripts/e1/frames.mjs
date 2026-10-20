@@ -81,7 +81,7 @@ const LABEL = {
 export const gstOf = (C, subtotal) => Math.floor((subtotal * C.gstBps + 5000) / 10000);
 
 /**
- * An invoice from the line's bound payee. SG invoices carry 9% GST (Mei pays it; she is below the registration
+ * An invoice from the line's bound payee. SG invoices carry 9% GST (Mei pays it; Mei is below the registration
  * threshold), MY invoices none. `top`/`bottom` are extra lines; `totalLine: false` leaves the total out.
  */
 export function invoice({ C, lang, rng, line, subtotal, style = 'code', top = [], bottom = [], invNo, totalLine = true }) {

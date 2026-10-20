@@ -382,7 +382,7 @@ describe("mock journey: server facts behind the replies (fresh, SG)", () => {
     tick(6_000);
     await h.call(`/api/orders/terms/${termsId}`);
     expect(textOf(await hint())).toContain(TEXT.signatureNotSeen);
-    // The founder releases the shipment milestone (the delivery one still waits): her signed release is the fact.
+    // The founder releases the shipment milestone (the delivery one still waits): their signed release is the fact.
     const form = new FormData();
     form.append("file", new Blob([new TextEncoder().encode("shipment check: 1000 tumblers loaded")], { type: "application/pdf" }), "check.pdf");
     expect((await h.call(`/api/escrow/${orderId}/inspection`, { method: "POST", body: form })).status).toBe(200);

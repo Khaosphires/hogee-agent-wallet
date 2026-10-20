@@ -46,7 +46,7 @@ import { NextStepBar, useNextStep } from "./next-step";
 import { pressesOf } from "./recent";
 import { WalletRail, WalletStrip } from "./wallet-rail";
 
-// Each demo founder's suggested first message, in her own currency. e2e matches the shared prefix.
+// Each demo founder's suggested first message, in their own currency. e2e matches the shared prefix.
 const STARTER: Record<FounderPersona, string> = {
   "founder:mei": "I want to sell custom insulated tumblers on Shopee Singapore, budget S$10,000",
   "founder:rina": "I want to sell custom insulated tumblers on Shopee, Selangor, budget RM10,000",
@@ -99,7 +99,7 @@ function MovedLine({ view }: { view: Extract<PartView, { mode: "moved" }> }) {
 }
 
 /**
- * A button press, as what Mei did (UX-PLAN D4): a quiet past-tense chip on her side, never a bubble she didn't type.
+ * A button press, as what Mei did (UX-PLAN D4): a quiet past-tense chip on Mei's side, never a bubble Mei didn't type.
  * A signature carries the small chop (cinnabar means Mei signed); any other press a tick.
  */
 function ActionEvent({ id, text, signed, className }: { id: string; text: string; signed: boolean; className?: string }) {
@@ -140,11 +140,11 @@ function WritingDots() {
   );
 }
 
-/** Mei's typed words: a tinted bubble on her side (DESIGN.md §6, ux2), the tail corner toward her. */
+/** Mei's typed words: a tinted bubble on Mei's side (DESIGN.md §6, ux2), the tail corner toward Mei. */
 const BUBBLE =
   "max-w-[84%] rounded-[20px_20px_6px_20px] bg-[oklch(0.925_0.032_262)] px-4 py-2.5 text-chat whitespace-pre-wrap text-pretty text-ink shadow-[inset_0_0_0_0.5px_oklch(0.235_0.028_262/0.08)]";
 
-/** The gap above an item: tight inside one exchange (her turn, then Hogee's reply), wide between exchanges. */
+/** The gap above an item: tight inside one exchange (Mei's turn, then Hogee's reply), wide between exchanges. */
 type Side = "hogee" | "mei" | "time" | "intro";
 function gapAbove(prev: Side | null, next: Side): string {
   if (prev === null) return "";

@@ -1,6 +1,6 @@
 /**
  * The Singapore world (SG-DECISIONS: Singapore is the main demo country). Mei's facility on its own fresh final-1
- * deployment, set up through the same live routes as the MY world (the officer opens it and enrols her passkey, the
+ * deployment, set up through the same live routes as the MY world (the officer opens it and enrols the founder's passkey, the
  * scripted planner proposes MEI_PLAN_INTENT and code compiles it against the SG pack, Mei signs, the lender funds),
  * then the SG variants of two attacks. The rows are filed under T1 and T4 (EVIDENCE_TASK_IDS is frozen), so an SG
  * failure fails the task.

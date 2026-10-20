@@ -104,7 +104,7 @@ test("the four numbers: Ready to spend from the wallet, the rest from the report
   expect(await receipts.getByTestId("receipt-row").count()).toBeLessThanOrEqual(3);
   for (const text of await page.locator("[data-minor]").allTextContents()) expect(text).toMatch(/ BU/);
 
-  // Waiting for her signature: titled by the request's kind (a template), one per kind, one filled button.
+  // Waiting for the founder's signature: titled by the request's kind (a template), one per kind, one filled button.
   const waiting = page.locator("[data-testid^=founder-]");
   if ((await waiting.count()) > 0) {
     const exceptions = await getJson<{ exceptionId: string; title: string }[]>(page, "/api/exceptions");

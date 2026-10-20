@@ -1,5 +1,5 @@
 /**
- * Mei's facility context for the brain (compiler, constitution, policy) and her compile input, mirroring
+ * Mei's facility context for the brain (compiler, constitution, policy) and Mei's compile input, mirroring
  * ./rina-context.ts and core/test/fixtures/rina-compile.ts. Built from the numbers in ./mei.ts.
  *
  * There is no SG country pack in core: `meiCompileInput` takes one (data/country-packs/SG.json once it exists, or a

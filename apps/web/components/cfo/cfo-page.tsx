@@ -20,10 +20,10 @@
  *      that says the sales are a sample, D13), and the data label on the right.
  *   2. Overview: the dark wallet card (Ready to spend from the wallet itself, useReadyToSpend: the same number as the
  *      chat's wallet rail; what opens next from the plan; Paid out, Sales, Kept for tax from the report), the pockets,
- *      anything waiting for her signature, the notes.
+ *      anything waiting for the founder's signature, the notes.
  *   3. Activity: payments, sales and what Hogee's AI did by itself, newest first, repeats folded.
  *   4. Spending · Sales · Profit · Forecast · Tax money: one card each, on the same report fields and rules as before.
- *   5. Receipts, then anything waiting for her signature and "Need a higher limit?" (folded).
+ *   5. Receipts, then anything waiting for the founder's signature and "Need a higher limit?" (folded).
  *   6. The disclaimer, once, small, at the end.
  *
  * While a section loads it holds about its final height, so a jump into the page lands on the right section (first-timer
@@ -92,7 +92,7 @@ function HeadLine({ page, sales }: { page: boolean; sales: number }) {
   return <span data-testid="cfo-sample-note">{page ? SAMPLE_BUSINESS_LINE : SAMPLE_SENTENCE}</span>;
 }
 
-/** "2 requests wait for your signature": one row in the Overview that takes her to them (they live with Receipts). */
+/** "2 requests wait for your signature": one row in the Overview that takes the founder to them (they live with Receipts). */
 function WaitingRow() {
   const waiting = useWaitingForSignature();
   if (waiting.length === 0) return null;
@@ -155,7 +155,7 @@ export function CfoPage() {
 
       <PageSection id="wallet-overview" title="Overview" hideTitle>
         <div className="bento-grid">
-          {/* The card, anything waiting for her and the notes stack in one column at their own heights, so together
+          {/* The card, anything waiting for the founder and the notes stack in one column at their own heights, so together
               they match the pocket list beside them: no card stretched with an empty middle. */}
           <div className="flex flex-col content-start gap-5 bm-6 bl-5 bx-5">
             <WalletHero report={report} ready={ready} line={readyLine(plan, b, noPlan)} tagged={tagged} />

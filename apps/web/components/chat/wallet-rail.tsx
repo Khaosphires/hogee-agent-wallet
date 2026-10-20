@@ -242,7 +242,7 @@ function ReadyToSpend({ freeMinor, leftMinor, totalMinor, funded }: { freeMinor:
 /**
  * The inspector beside the thread (UX-PLAN D24, ux2, UX round 3): Ready to spend (the hero), the pockets read the
  * Wallet's way (PocketRow: what is left, of what total, the ring filling as money goes out), the last three things
- * that happened, what she signed (folded), Pause, and the BU note behind a press. The Next step is the bar's alone from
+ * that happened, what the founder signed (folded), Pause, and the BU note behind a press. The Next step is the bar's alone from
  * 1280 px; the phone's sheet (`inSheet`) carries it, since the sheet covers the thread. Before a plan, the three steps
  * that open the wallet. Live data only; Ready to spend is core walletFigures(balances).freeMinor, the same number the
  * Next step and the Wallet page show.
@@ -291,7 +291,7 @@ export function WalletPanel({
   }
 
   // From 1600 px (bento) the rail is two columns: the money (Ready to spend, the pockets) beside what happened (Recently,
-  // what she signed, Pause, the BU note). Below that, and in the phone's sheet, one column in the same order.
+  // what the founder signed, Pause, the BU note). Below that, and in the phone's sheet, one column in the same order.
   return (
     <div className="grid gap-5 min-[1600px]:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] min-[1600px]:items-start min-[1600px]:gap-5">
       <div className="grid min-w-0 content-start gap-5">

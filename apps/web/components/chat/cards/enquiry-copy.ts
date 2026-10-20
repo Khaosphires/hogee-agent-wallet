@@ -10,7 +10,7 @@ export const ENQUIRY_TEXT = {
 } as const;
 
 /**
- * The tip with her own pick (the place on the list, never a name): "For example: I went with #1, 30% deposit, 70% on
+ * The tip with the founder's own pick (the place on the list, never a name): "For example: I went with #1, 30% deposit, 70% on
  * delivery." With no known place, the tip names none.
  */
 export function enquiryTip(ranks: readonly (number | null)[]): string {

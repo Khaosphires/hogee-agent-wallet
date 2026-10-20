@@ -3,7 +3,7 @@
 /**
  * Receipts (UX-PLAN D8, Steve #22; UX round 3 on the ui grouped list): every payment from Mei's wallet as one row,
  * newest first, the latest three and then "Show all": its pocket's tile, "Deposit (payment 1 of 2) to Jinhua Pellora",
- * how it was paid (cobalt when the wallet paid by itself, the seal when she signed), the time and its public receipt, the
+ * how it was paid (cobalt when the wallet paid by itself, the seal when the founder signed), the time and its public receipt, the
  * amount and its state. A failed bank transfer is a "Needs a look" row in the waiting tone that says where the money is.
  * Money set aside for a later step, and refused attempts, get no row (lib/receipts.ts). The rows come from
  * use-receipts.ts (shared with Activity).
@@ -46,7 +46,7 @@ function receiptTile(r: Receipt) {
 /** A record dated ahead of this browser's clock (a clock out of step) shows no time rather than a future date. */
 const ahead = (iso: string): boolean => Date.parse(iso) > Date.now() + 60_000;
 
-/** The second line: who paid (the seal when she signed, cobalt when the wallet did), the time, the public receipt. */
+/** The second line: who paid (the seal when the founder signed, cobalt when the wallet did), the time, the public receipt. */
 function ReceiptLine({ r, currency }: { r: Receipt; currency: string | undefined }) {
   if (r.state === "failed") {
     const pocket = lineKeyOfLabel(r.title);

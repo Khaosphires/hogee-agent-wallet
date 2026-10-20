@@ -9,8 +9,8 @@ import type { CardProps } from "./types";
 
 /**
  * Next-step buttons (1–4, the server's preferred step first; DESIGN.md §7: all `rounded-full` 40 px secondary). Each sends its structured action (the label only shows in the
- * founder's bubble). Once a later message exists the buttons go quiet, and the one she pressed stays marked (visually
- * only: her own bubble already says it, and the accessible name stays the label). While the buttons are live, one that
+ * founder's bubble). Once a later message exists the buttons go quiet, and the one the founder pressed stays marked (visually
+ * only: their own bubble already says it, and the accessible name stays the label). While the buttons are live, one that
  * repeats the Next step bar's is left out: the bar already offers it (UX round 3 #4, each step said once).
  */
 export function NextCard({ data, answered, act }: CardProps<DataNext>) {

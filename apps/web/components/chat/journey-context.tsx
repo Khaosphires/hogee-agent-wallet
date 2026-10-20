@@ -5,7 +5,7 @@ import type { NextStepAction } from "@/lib/next-step";
 
 /**
  * What a card may know about the thread around it without new props (the CardProps contract is frozen):
- * which next-step buttons the founder pressed, which signatures she reported as sent, the one card waiting on her,
+ * which next-step buttons the founder pressed, which signatures the founder reported as sent, the one card waiting on them,
  * and, per assistant message, the plan drafts whose needs card already carries the "Approve and sign" button (so the
  * sign card doesn't repeat it).
  */

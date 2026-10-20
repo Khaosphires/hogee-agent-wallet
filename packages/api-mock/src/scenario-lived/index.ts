@@ -6,7 +6,7 @@
  *
  * Its chat: a session the store has not seen starts with a short history (store.ts seededChat): a welcome-back line
  * with the finished first order's card, then the second order's messages exactly as the journey sends them (the
- * founder's "Deal saved" press, the reply with the SupplierApproval card, her "Signed" press, the reply with the order
+ * founder's "Deal saved" press, the reply with the SupplierApproval card, the founder's "Signed" press, the reply with the order
  * card). From there typed text and presses run the journey (journey/index.ts), whose Next step is that order's
  * delivery check.
  */

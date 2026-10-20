@@ -7,7 +7,7 @@
  *
  * Residual (documented for the audit): a listing that names the attacker's own company as the seller passes this check
  * by construction. The account still arrives only through the founder's form, is screened for sanctions, is shown in
- * the SupplierApproval she signs, and cools before any payment.
+ * the SupplierApproval the founder signs, and cools before any payment.
  */
 
 const DESIGNATORS: ReadonlySet<string> = new Set([

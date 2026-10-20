@@ -145,7 +145,7 @@ export function ProfileTextRow({ field, label, icon, profile, country, onSaved, 
   );
 }
 
-/** The country: shown, never edited (it comes from this deployment's founder and her plan). */
+/** The country: shown, never edited (it comes from this deployment's founder and their plan). */
 export function ReadOnlyRow({ icon, label, value, note }: { icon: LucideIcon; label: string; value: string; note: string }) {
   return (
     <SettingRow icon={icon}>

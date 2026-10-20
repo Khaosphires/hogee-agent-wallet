@@ -127,7 +127,7 @@ describe("Deposit / Balance naming, 1-based (D18)", () => {
     expect(rowStatusText({ autoRelease: true, released: false })).toBe("Not paid yet");
   });
 
-  it("keeps the security meaning of each row: the deposit only after the wait, the balance only with her check and passkey", () => {
+  it("keeps the security meaning of each row: the deposit only after the wait, the balance only with the founder's check and passkey", () => {
     expect(conditionText(true)).toBe("after the safety wait");
     expect(conditionText(false)).toBe("after you upload a delivery check and sign");
     expect(confirmingText("X", "750 BU", "1,750 BU")).toBe("Your wallet may pay X 750 BU automatically after the safety wait, and 1,750 BU only when you approve it. Nothing is paid until you sign.");
@@ -173,7 +173,7 @@ describe("every string passes the wording lint", () => {
     for (const t of texts) expect(t.toLowerCase(), t).not.toMatch(/the agent|escrow|fingerprint|on-chain/);
   });
 
-  it("says Hogee never sends messages, and the tip uses her own pick", () => {
+  it("says Hogee never sends messages, and the tip uses the founder's own pick", () => {
     expect(ENQUIRY_TEXT.never).toBe("Hogee never sends messages for you.");
     expect(enquiryTip([3, 1])).toContain('"I went with #3, 30% deposit');
     expect(enquiryTip([])).not.toContain("#");

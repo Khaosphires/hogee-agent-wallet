@@ -287,8 +287,8 @@ export const invoices = pgTable(
 );
 
 /**
- * VISION-DECISIONS §6 (0004_chat_first): the supplier terms a founder confirmed over POST /api/orders/terms, before she
- * signs the SupplierApproval. `payout_account_ref` is the canonical JSON {channel: "MOCK_ONLY", accountNumber,
+ * VISION-DECISIONS §6 (0004_chat_first): the supplier terms a founder confirmed over POST /api/orders/terms, before they
+ * sign the SupplierApproval. `payout_account_ref` is the canonical JSON {channel: "MOCK_ONLY", accountNumber,
  * holderName} (the channel is fixed server-side, "simulated payout") and `payout_account_hash` its keccak256, which the
  * founder signs. Rows are immutable apart from the status move (CONFIRMED → SUPERSEDED, or CONFIRMED → USED together
  * with `order_id`); the service enforces that (drizzle-kit manages no triggers). One live row (CONFIRMED or USED) per

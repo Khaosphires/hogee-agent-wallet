@@ -42,7 +42,7 @@ describe("receiptsOf", () => {
     expect(r[0]?.txHash).toBe(deposit.txHash);
   });
 
-  it("after the balance is paid with her passkey: Balance first (newest), then Deposit", () => {
+  it("after the balance is paid with the founder's passkey: Balance first (newest), then Deposit", () => {
     const r = receiptsOf([release, heldBalance, deposit], [order([true, true])]);
     expect(r.map((x) => [x.title, x.count, x.how])).toEqual([
       ["Balance", "payment 2 of 2", "passkey"],

@@ -123,7 +123,7 @@ test("Mei's chat journey: needs, plan, web suppliers, enquiry, terms, order, CFO
     await expectPageHygiene(page, "/chat (needs)");
   });
 
-  await test.step("Mei signs the plan inline with her passkey [v-chat-ui SignHost, mock signing; G2 code]", async () => {
+  await test.step("Mei signs the plan inline with a passkey [v-chat-ui SignHost, mock signing; G2 code]", async () => {
     const needs = card(page, "needs");
     // The passkey made in the welcome card signs straight away (no "Create your passkey first").
     await signInDialog(page, needs.getByTestId("sign-open"));
@@ -132,7 +132,7 @@ test("Mei's chat journey: needs, plan, web suppliers, enquiry, terms, order, CFO
     expect(plan.status).toBe("COMMITTED");
     const planMessage = assistantMessages(page).filter({ has: page.getByTestId("card-needs") });
     await expect(planMessage.getByTestId("tx-hash").first()).toHaveAttribute("title", new RegExp(`^${plan.txHash}`));
-    // D4: her press shows as what she did, never as a bubble she didn't type.
+    // D4: the founder's press shows as what they did, never as a bubble they didn't type.
     await expect(page.getByTestId("action-event").filter({ hasText: "You signed your plan" })).toBeVisible();
     await expect(page.locator("[data-testid=chat-message][data-role=user]").filter({ hasText: /^Signed$/ })).toHaveCount(0);
     // Before the loan officer adds money: who we wait for.

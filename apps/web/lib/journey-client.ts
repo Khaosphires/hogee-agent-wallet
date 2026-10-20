@@ -57,7 +57,7 @@ export const newActionId = (): string => uuidv7();
 export { actionLabel };
 
 /**
- * The parts of the user message a button press appends: the label the founder pressed (shown in her bubble) and the
+ * The parts of the user message a button press appends: the label the founder pressed (shown in their bubble) and the
  * structured action. The action is checked against the schema first: a malformed one is never sent (fail closed).
  */
 export function actionMessageParts(action: ChatAction, label: string): JourneyMessage["parts"] {
@@ -140,7 +140,7 @@ export interface WaitingSign {
 
 /**
  * The one card that waits on the founder (DESIGN.md §2: only it is lifted, never two): the latest needs or sign card
- * whose signature she hasn't sent. A sign card for a draft whose needs card is in the same reply counts as that card.
+ * whose signature the founder hasn't sent. A sign card for a draft whose needs card is in the same reply counts as that card.
  */
 export function waitingSign(messages: readonly JourneyMessage[]): WaitingSign | null {
   const signed = signedKeys(messages);
@@ -234,7 +234,7 @@ export function threadFacts(messages: readonly JourneyMessage[]): ThreadFacts {
   };
 }
 
-// ---- the founder's presses, as events (UX-PLAN D4: never a bubble she didn't type) ---------------------------------
+// ---- the founder's presses, as events (UX-PLAN D4: never a bubble they didn't type) ---------------------------------
 const SIGNED_EVENT: Partial<Record<SignatureKind, string>> = {
   PlanApproval: "You signed your plan",
   SupplierApproval: "You signed the order",
@@ -250,7 +250,7 @@ const CFO_EVENT: Record<CfoView, string> = {
 };
 
 /**
- * The quiet past-tense line a pressed button leaves in the thread (UX-PLAN D4), or null when the press was not hers:
+ * The quiet past-tense line a pressed button leaves in the thread (UX-PLAN D4), or null when the press was not theirs:
  * the search card sends show_candidates by itself once the list is ready, so it leaves no line. The stored message
  * is unchanged (the server's history and single-use action ids rely on it); only how it shows changes.
  */
@@ -365,7 +365,7 @@ const PRODUCT: Record<PlanIntent["productCategory"], string> = {
 };
 const CHANNEL: Record<PlanIntent["sellChannel"], string> = { shopee: "Shopee", tiktok_shop: "TikTok Shop", lazada: "Lazada", own_site: "your own website" };
 
-/** "Singapore citizen · cups and bottles · Shopee · up to 10,000 BU": what Hogee understood, in her words, no codes. */
+/** "Singapore citizen · cups and bottles · Shopee · up to 10,000 BU": what Hogee understood, in the founder's words, no codes. */
 export function heardLine(intent: PlanIntent): string {
   const who = intent.residency === "citizen" ? `${COUNTRY[intent.countryCode]} citizen` : `${RESIDENCY[intent.residency]} in ${COUNTRY[intent.countryCode]}`;
   return [who, PRODUCT[intent.productCategory], CHANNEL[intent.sellChannel], `up to ${bu(intent.budgetCeilingMinor)}`].join(" · ");
@@ -489,7 +489,7 @@ export const isOwnSeal = (recordedTx: string | null | undefined, sealTx: string 
 
 /**
  * True when this page's own record (its submit's tx `recordTx`) is behind the seal `sealTx`. A live submit is queued
- * without a tx (null): then the seal its own confirmation read is hers (signProgress: the first new record after the
+ * without a tx (null): then the seal its own confirmation read is the founder's (signProgress: the first new record after the
  * dialog opened; the mock, where store builds reuse refIds, always answers with the tx).
  */
 export const pageOwnsSeal = (recordTx: string | null, sealTx: string | null | undefined): boolean => isOwnSeal(recordTx ?? sealTx, sealTx);

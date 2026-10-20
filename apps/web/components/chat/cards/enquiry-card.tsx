@@ -19,7 +19,7 @@ type ThreadWithSearch = JourneyThread & { readonly latestSearchId?: string | nul
 /**
  * The templated message (built from enums and the quantity only: no names, budget or founder details). Above it, who
  * it is for: each picked supplier's name, place on the list and web page, rendered here from the search's structured
- * data (never from a text part, G3). The founder copies it and sends it herself; Hogee never sends a message for her.
+ * data (never from a text part, G3). The founder copies it and sends it on their own; Hogee never sends a message for them.
  */
 export function EnquiryCard({ data }: CardProps<DataEnquiry>) {
   const thread = useJourneyThread() as ThreadWithSearch;

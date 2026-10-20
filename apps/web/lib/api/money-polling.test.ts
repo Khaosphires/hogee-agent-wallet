@@ -3,7 +3,7 @@
  * GET /api/balances and GET /api/stats/autonomy is a full chain snapshot on the server (no cache), so at 1.5 s a tab
  * sent 40 of each a minute, most of the public RPC's traffic. Now: balances every 5 s, autonomy every 15 s, neither
  * while the tab is hidden, and every query refetches at once after an action that changes money (sign, fund, release,
- * pause), so the founder never waits for a poll to see her own action.
+ * pause), so the founder never waits for a poll to see their own action.
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";

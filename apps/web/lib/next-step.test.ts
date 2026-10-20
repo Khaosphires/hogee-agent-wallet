@@ -31,7 +31,7 @@ const order = (o: Partial<NonNullable<NextStepInput["order"]>>): NextStepInput =
 });
 
 describe("nextStep: one row of UX-PLAN §3 each", () => {
-  it("INTAKE: the passkey first, unless one is on this device or she pressed Later", () => {
+  it("INTAKE: the passkey first, unless one is on this device or the founder pressed Later", () => {
     const s = nextStep(fresh);
     expect(s).toMatchObject({ key: "passkey", stage: "INTAKE", text: NEXT_STEP_TEXT.passkey, action: { kind: "focus-passkey", label: "Create passkey" }, who: null });
     expect(nextStep({ ...fresh, passkeyCardDismissed: true }).key).toBe("intake");

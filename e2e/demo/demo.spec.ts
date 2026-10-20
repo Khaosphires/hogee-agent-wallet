@@ -202,10 +202,10 @@ async function hookScene(run: MainRun, s: Scene): Promise<void> {
 async function needsScene(run: MainRun, s: Scene): Promise<void> {
   const { page, d, pause } = run;
   await d.say(s.captions[0] ?? "");
-  await typeEnrolmentCodeInCard(page, run.enrolmentCode, (target) => act(page, "Mei creates her passkey", target));
+  await typeEnrolmentCodeInCard(page, run.enrolmentCode, (target) => act(page, "Mei creates a passkey", target));
   await pause(5_500);
   await d.say(s.captions[1] ?? "");
-  await act(page, "Mei describes her business", page.getByRole("button", { name: /^I want to sell custom insulated tumblers/ }));
+  await act(page, "Mei describes the business", page.getByRole("button", { name: /^I want to sell custom insulated tumblers/ }));
   for (let i = 0; i < 3; i += 1) {
     const question = page.getByTestId("question").nth(i);
     await expect(question).toBeVisible();
@@ -271,7 +271,7 @@ async function enquiryScene(run: MainRun, s: Scene): Promise<void> {
   await act(page, "Copies the message", enquiry.getByTestId("copy-enquiry"));
 }
 
-/** The deal in her words, the deal form, then Save and sign: one press saves and opens the order's sign sheet. */
+/** The deal in Mei's words, the deal form, then Save and sign: one press saves and opens the order's sign sheet. */
 async function termsScene(run: MainRun, s: Scene): Promise<void> {
   const { page, d, pause } = run;
   const search = readySearch(run);
@@ -279,7 +279,7 @@ async function termsScene(run: MainRun, s: Scene): Promise<void> {
   await d.say(s.captions[0] ?? "");
   await say(page, `went with #${chosen.rank}, 30% deposit, 70% on delivery`, (target) => act(page, "Mei reports the deal", target));
   const form = card(page, "terms");
-  // Her words pre-select the 30/70 split.
+  // Mei's words pre-select the 30/70 split.
   await expect(form.getByRole("radio", { name: /^30\/70/, checked: true })).toBeVisible();
   await form.evaluate((el) => el.scrollIntoView({ block: "start" }));
   await pause(3_000);
@@ -320,7 +320,7 @@ async function payScene(run: MainRun, s: Scene): Promise<void> {
   await d.say(s.captions[1] ?? "");
 }
 
-/** Goods arrived → the delivery check (here a report file) → Pay the balance with her passkey → Order complete. */
+/** Goods arrived → the delivery check (here a report file) → Pay the balance with Mei's passkey → Order complete. */
 async function balanceScene(run: MainRun, s: Scene): Promise<void> {
   const { page, d, pause } = run;
   const order = card(page, "order");

@@ -178,7 +178,7 @@ export function founderSigned(st: MockState, exceptionId: string, timelockSecond
  * A FOUNDER_SIGNED loosening whose passkey no longer counts: the officer rejected it, or another key is now the
  * registered one (founderKeyFor). On-chain queueLoosen checks the founder's signature against the registered key and
  * would revert InvalidSignature, so the approval is refused. The stale signature is void: the request goes back to
- * OPEN, where the founder can sign it again with her key.
+ * OPEN, where the founder can sign it again with their key.
  * Only a passkey signer is re-checked. A wallet signer recovered to HOGEE_MOCK_OWNER_EOA when it signed. A
  * `seeded-fixture` row is the owner's status gallery (store.ts FounderSig): the officer approves it as any other
  * FOUNDER_SIGNED row, by design, since no request can create or edit a FOUNDER_SIGNED record.

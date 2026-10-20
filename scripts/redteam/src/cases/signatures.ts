@@ -238,7 +238,7 @@ export const DPOISON: CaseDef = {
       traceId: trace.traceId,
       artifacts: [ctx.artifact("malicious-manifest", { manifest: bad, report })],
     });
-    // Rina signs it anyway (her registered backup wallet: the same owner check as the passkey); the relayer submits.
+    // Rina signs it anyway (the registered backup wallet: the same owner check as the passkey); the relayer submits.
     const lines = manifestToLines(bad);
     const stages = manifestToStages(bad);
     const approval = {
