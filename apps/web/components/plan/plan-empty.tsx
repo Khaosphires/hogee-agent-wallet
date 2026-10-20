@@ -58,7 +58,7 @@ export function PlanForOfficer() {
         <IconTile icon={Landmark} tone="ink" size="lg" />
         <div className="grid min-w-0 gap-1">
           <p className="text-headline text-ink">This page is the founder&apos;s</p>
-          <p className="text-subhead text-pretty text-ink-2">She drafts and signs her plan here. Her signed plan, its releases and what waits on you are on your loan officer page.</p>
+          <p className="text-subhead text-pretty text-ink-2">The founder drafts and signs the plan here. The signed plan, its releases and what waits on you are on your loan officer page.</p>
         </div>
       </div>
       <Link href="/officer" className={cn(buttonVariants({ variant: "secondary" }), "w-fit")} data-testid="plan-officer-link">

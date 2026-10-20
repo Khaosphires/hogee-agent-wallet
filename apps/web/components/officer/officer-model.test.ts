@@ -78,7 +78,7 @@ describe("What happened", () => {
         pay("p4", { kind: "FUND_MILESTONE", lineKey: "SUPPLIER", updatedAt: "2026-10-17T10:00:00Z", amountMinor: "75000" }),
       ],
       traces: [
-        { traceId: "t1", seq: 0, actor: "founder", kind: "SIGNATURE", summary: "Sample history: Mei signed her plan (PlanApproval). Made up for the demo", ts: "2026-09-25T01:00:00Z" },
+        { traceId: "t1", seq: 0, actor: "founder", kind: "SIGNATURE", summary: "Sample history: Mei signed the plan (PlanApproval). Made up for the demo", ts: "2026-09-25T01:00:00Z" },
         { traceId: "t2", seq: 0, actor: "officer", kind: "TX", summary: "Loan officer funded the facility", ts: "2026-09-25T02:30:00Z" },
         { traceId: "t3", seq: 0, actor: "oracle", kind: "TX", summary: "Sale recorded by the oracle", ts: "2026-10-19T05:00:00Z" },
       ],
@@ -87,7 +87,7 @@ describe("What happened", () => {
       ["agent", "Ads paid by itself"],
       ["agent", "Supplier deposit paid by itself"],
       ["officer", "You added money"],
-      ["signed", "Mei signed her plan"],
+      ["signed", "Mei signed the plan"],
     ]);
     expect(feed[0]?.amountMinor).toBe("7500");
     expect(JSON.stringify(feed)).not.toMatch(/Sample history|Made up|PlanApproval/);

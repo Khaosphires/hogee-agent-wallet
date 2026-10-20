@@ -6,7 +6,7 @@
 |---|---|
 | Team name | Team FEIN |
 | Competition track | International AI Track, Topic F (Agent Wallet: Autonomous On-chain Wallet) |
-| Submission date | [TBD at submission] (deadline 20 Oct 2026, 23:59 UTC+8) |
+| Submission date | 20 Oct 2026 |
 | Build assessed | `main` at `927851d` (20 Oct 2026): the chat-first product, the Sepolia deployments `final-1` and `final-2`, the FISCO BCOS mirror with its regulator, and the Sepolia timestamp of the mirror pack |
 | Related | [Technical document](TECH-DOC.md) · [Execution evidence](EXECUTION-EVIDENCE.md) · [FISCO mirror](../fisco/README.md) · [Sepolia timestamp](../fisco/ANCHOR.md) |
 

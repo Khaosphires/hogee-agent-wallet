@@ -80,7 +80,7 @@ export function packStatus(result: CheckResult, pack: PackIdentity, recorded: st
  */
 const TASK_NAME: Readonly<Record<EvidenceTaskId, string>> = {
   S1: "The loan officer adds the money",
-  S2: "The founder signs her plan",
+  S2: "The founder signs the plan",
   S3: "The founder approves a supplier",
   S4: "The AI pays the supplier by itself, as signed",
   S5: "The AI pays the signed deposit",

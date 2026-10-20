@@ -58,7 +58,7 @@ const MINED: ReadonlySet<Payment["state"]> = new Set(["INCLUDED", "FINALIZED", "
 
 /** What the founder signed, from the typed-data name in the record's summary: a template, never the summary itself. */
 const SIGNED: readonly (readonly [RegExp, (founder: string) => string])[] = [
-  [/\bPlanApproval\b/, (f) => `${f} signed her plan`],
+  [/\bPlanApproval\b/, (f) => `${f} signed the plan`],
   [/\bSupplierApproval\b/, (f) => `${f} signed a supplier order`],
   [/\bMilestone\w*\b/, (f) => `${f} signed a balance payment`],
   [/\bLoosenRequest\b/, (f) => `${f} signed a request for you`],

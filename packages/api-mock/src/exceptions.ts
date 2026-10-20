@@ -189,7 +189,7 @@ function staleFounderSignature(st: MockState, se: ScriptedException): Failure | 
   const e = se.exception;
   se.exception = { ...e, status: "OPEN" };
   se.founderSig = undefined;
-  const summary = "Not approved: the founder signed with a passkey that is no longer her key (rejected or replaced); she must sign again";
+  const summary = "Not approved: the founder signed with a passkey that is no longer their key (rejected or replaced); they must sign again";
   appendTrace(st, { traceId: e.traceId, actor: "officer", kind: "EXCEPTION", summary, refs: { exceptionId: e.exceptionId } });
   return { code: "CONFLICT", message: summary, contractError: { name: "InvalidSignature" }, traceId: e.traceId };
 }

@@ -116,20 +116,20 @@ export function officerChecklist(input: ChecklistInput): readonly ChecklistStep[
   const code: ChecklistStep = approved
     ? { key: "code", n: 2, title: `Give ${founder} a set-up code`, state: "done", note: `${founder} used your code to create a passkey.` }
     : keyPending
-      ? { key: "code", n: 2, title: `Give ${founder} a set-up code`, state: "done", note: `${founder} used your code. Check her passkey next.` }
+      ? { key: "code", n: 2, title: `Give ${founder} a set-up code`, state: "done", note: `${founder} used your code. Check their passkey next.` }
       : !opened
         ? { key: "code", n: 2, title: `Give ${founder} a set-up code`, state: "later", note: "After you open the loan." }
         : codeOpen
-          ? { key: "code", n: 2, title: `Give ${founder} a set-up code`, state: "waiting", note: `${founder} types the code when she creates her passkey. It works for 15 minutes.` }
+          ? { key: "code", n: 2, title: `Give ${founder} a set-up code`, state: "waiting", note: `${founder} types the code when they create their passkey. It works for 15 minutes.` }
           : { key: "code", n: 2, title: `Give ${founder} a set-up code`, state: "yours", note: `Make a one-time code and give it to ${founder} yourself, in person or by phone.` };
 
   const passkeyTitle = `Approve ${founder}'s passkey`;
   const passkey: ChecklistStep = approved
-    ? { key: "passkey", n: 3, title: passkeyTitle, state: "done", note: `${founder}'s passkey is approved. She can sign now.` }
+    ? { key: "passkey", n: 3, title: passkeyTitle, state: "done", note: `${founder}'s passkey is approved. They can sign now.` }
     : keyPending
-      ? { key: "passkey", n: 3, title: passkeyTitle, state: "yours", note: `${founder}'s passkey is waiting for you. Check that its ID matches hers, then approve it.` }
+      ? { key: "passkey", n: 3, title: passkeyTitle, state: "yours", note: `${founder}'s passkey is waiting for you. Check that its ID matches theirs, then approve it.` }
       : codeOpen
-        ? { key: "passkey", n: 3, title: passkeyTitle, state: "waiting", note: `Waiting for ${founder} to create her passkey with your code.` }
+        ? { key: "passkey", n: 3, title: passkeyTitle, state: "waiting", note: `Waiting for ${founder} to create their passkey with your code.` }
         : { key: "passkey", n: 3, title: passkeyTitle, state: "later", note: `After ${founder} has a set-up code.` };
 
   // The Sample business: no key waiting, none approved, no code out: the passkey steps are skipped, said plainly.
@@ -151,9 +151,9 @@ function fundStep(input: ChecklistInput, funded: bigint): ChecklistStep {
       ? { ...base, state: "yours", note: `Added so far: ${formatBu(input.fundedMinor ?? "0")} of ${formatBu(plan.totalMinor)}. Add the rest.` }
       : { ...base, state: "yours", note: `${founder}'s plan is signed. Add the money, up to ${formatBu(plan.totalMinor)}.` };
   }
-  if (plan?.status === "SUBMITTED") return { ...base, state: "saving", note: `${founder} signed her plan. It's being saved.` };
-  if (plan?.status === "PENDING_SIGNATURE" || plan?.status === "REVERTED") return { ...base, state: "waiting", note: `${founder} signs her plan first. Then you add the money.` };
-  return { ...base, state: "later", note: `After ${founder} signs her plan.` };
+  if (plan?.status === "SUBMITTED") return { ...base, state: "saving", note: `${founder} signed the plan. It's being saved.` };
+  if (plan?.status === "PENDING_SIGNATURE" || plan?.status === "REVERTED") return { ...base, state: "waiting", note: `${founder} signs the plan first. Then you add the money.` };
+  return { ...base, state: "later", note: `After ${founder} signs the plan.` };
 }
 
 /** The one step that is the officer's to do now (the first "Your turn"), if any. */

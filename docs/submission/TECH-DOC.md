@@ -6,7 +6,7 @@
 |---|---|
 | Team name | Team FEIN |
 | Competition track | International AI Track, Topic F (Agent Wallet: Autonomous On-chain Wallet) |
-| Submission date | [TBD at submission] (deadline 20 Oct 2026, 23:59 UTC+8) |
+| Submission date | 20 Oct 2026 |
 | Project | Hogee ("Hogiak", 好額, Hokkien for "rich") |
 | Code described | `main` at commit `927851d` (20 Oct 2026) |
 | Repository | [https://github.com/Khaosphires/hogee-agent-wallet](https://github.com/Khaosphires/hogee-agent-wallet) |

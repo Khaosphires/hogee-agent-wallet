@@ -218,7 +218,7 @@ export async function playStory(st: MockState, env: MockEnv, builtAtMs: number):
     commit: (_s: Extract<StoryStep, { kind: "commit" }>, atMs) =>
       withClock(atMs, () => {
         const draft = draftOf(st);
-        applyPlanApproval(st, draft, sampleSignature(st, "PlanApproval", draft.draftId, atMs, "her plan"));
+        applyPlanApproval(st, draft, sampleSignature(st, "PlanApproval", draft.draftId, atMs, "the plan"));
         commitAtMs = atMs;
       }),
     fund: (s: Extract<StoryStep, { kind: "fund" }>, atMs) => withClock(atMs, () => void fundFacilityWith(st, s.amountMinor)),
@@ -235,7 +235,7 @@ export async function playStory(st: MockState, env: MockEnv, builtAtMs: number):
         withClock(signAt, () => {
           const se = st.exceptions.get(created.exceptionId);
           if (!se) throw new SampleRefused("adding the packaging printer", "the request is gone");
-          sampleSignature(st, "LoosenRequest", created.exceptionId, signAt, `the request to add her packaging printer`);
+          sampleSignature(st, "LoosenRequest", created.exceptionId, signAt, `the request to add a packaging printer`);
           se.exception = { ...se.exception, status: "FOUNDER_SIGNED" };
           se.founderSig = { kind: "seeded-fixture" };
         }),
@@ -286,7 +286,7 @@ export async function playStory(st: MockState, env: MockEnv, builtAtMs: number):
     const signAt = atMs + SIGN_AFTER_MIN * MINUTE_MS;
     timeline.at(signAt, () =>
       withClock(signAt, () => {
-        const txHash = sampleSignature(st, "SupplierApproval", terms.termsId, signAt, `the order with her ${s.ref} supplier`);
+        const txHash = sampleSignature(st, "SupplierApproval", terms.termsId, signAt, `the order with the ${s.ref} supplier`);
         applyWebApproval(st, terms.termsId, signAt, env.timelockSeconds, txHash);
         orders.set(s.ref, terms);
         latest = { termsId: terms.termsId, saved, signed: journeyAt(st, terms, searchId, signAt), savedAtMs: atMs, signedAtMs: signAt };

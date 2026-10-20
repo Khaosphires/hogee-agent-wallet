@@ -89,7 +89,7 @@ export function OfficerView() {
   const founderPersona = session.data ? founderPersonaOf(session.data) : undefined;
   const founder = founderPersona ? PERSONA_NAME[founderPersona] : "the founder";
   // One page-level label when the page is all sample (the Sample business); elsewhere per-figure tags (useSampleScope).
-  const line = scope.page ? `${founder}'s loan · Sample` : `Fund ${founder}'s loan, approve her passkey, and decide what her plan doesn't allow by itself.`;
+  const line = scope.page ? `${founder}'s loan · Sample` : `Fund ${founder}'s loan, approve their passkey, and decide what their plan doesn't allow by itself.`;
   return (
     <>
       <PageHead title="Loan officer" line={line} />
