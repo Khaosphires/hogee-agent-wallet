@@ -54,7 +54,7 @@ It carries the three entity types (`sg_sole_prop`, `sg_partnership`, `pte_ltd`),
 
 Absent on purpose, so the compiler fails closed on them:
 - `eInvoicing`: InvoiceNow follows GST registration, not turnover, and the schema refuses the section for SG.
-- The `IRAS_GST` registration: no IRAS page states its fee (the research marks it UNCERTAIN). A GST-registered plan fails closed on `registrations.IRAS_GST.cost`. Mei is below the threshold, so her plan does not need it.
+- The `IRAS_GST` registration: no IRAS page states its fee (the research marks it UNCERTAIN). A GST-registered plan fails closed on `registrations.IRAS_GST.cost`. Mei is below the threshold, so Mei's plan does not need it.
 - `productApprovals.other`: a catch-all, so `NONE` would fail open.
 - `imports.mfnDutyRateBps` for any category but drinkware: not researched per category.
 - Lazada and TikTok Shop fees: no official page was captured.

@@ -35,7 +35,7 @@ limit: every money change still needs the founder's passkey over rows the server
 - **W-2** (rcfix-mock): a mock MilestoneRelease submit is rebuilt and refused with CONFLICT when any signed field
   changed (a second tab, or evidence re-uploaded); nothing is traced or paid.
 - **W-3 = H-3** (rcfix-mock): each mock store build has a random nonce that salts its submit txs.
-- **W-4** (rcfix-autonomy, P1): founder-signed payments (RELEASE_MILESTONE, OWNER_SPEND) are her signature, never also
+- **W-4** (rcfix-autonomy, P1): founder-signed payments (RELEASE_MILESTONE, OWNER_SPEND) are the founder's signature, never also
   an AI payment, in the live and mock counters and the officer feed. The `final-2` figure in the submission docs is now
   2 agent transactions for 6 human signatures (the counter read 3 at export).
 - **W-5** (rcfix-seal): a tab whose mock store was rebuilt says "The demo data changed since you signed. Reload to see

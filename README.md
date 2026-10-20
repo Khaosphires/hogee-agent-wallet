@@ -1,7 +1,7 @@
 # Hogee
 
-**An agent wallet for a first-time founder. She signs her business plan once with a passkey; the plan becomes the
-on-chain policy her AI agent spends under.**
+**An agent wallet that makes running a small business easier, for first-time and experienced owners alike. The owner
+signs the business plan once with a passkey; the plan becomes the on-chain policy their AI agent spends under.**
 
 Hogee (short for *Hogiak*, 好額, Hokkien for "rich") is Team FEIN's entry in the 2026 FinTechathon, International AI
 Track, Topic F (Agent Wallet).
@@ -25,30 +25,37 @@ Track, Topic F (Agent Wallet).
 - **Track:** International AI Track, Topic F (Agent Wallet: Autonomous On-chain Wallet)
 - **Team name:** Team FEIN
 - **Project name:** Hogee
-- **One-line summary:** One AI chat runs a micro-business on a loan budget: the founder signs the plan on-chain, and an
-  agent wallet pays on its own, only inside the caps she signed.
+- **One-line summary:** One AI chat helps run a small business on a loan or grant budget: the owner signs the plan
+  on-chain, and an agent wallet pays on its own, only inside the caps they signed.
 
 ### The problem
 
-A first-time founder with a small loan has three problems. She does not know the local rules (registration, GST,
-import tax), so her budget can miss whole costs. She has to pay suppliers she has never met. And her lender cannot
-watch every payment. Agent wallets can now pay on their own, but in many of them the spending rules live in a prompt,
-where one injected message can change them.
+Running a small business on a loan or grant takes work beyond the product itself, whether it is the owner's first
+business or one they have run for years. The local rules (registration, GST, import tax) differ by country, so a
+budget can miss whole costs. Suppliers are often strangers, and paying one is a risk. And the lender cannot watch every
+payment. A first-time founder may not know the rules yet; an experienced owner knows them but has little time to check
+every payment and every supplier. Agent wallets can now pay on their own, but in many of them the spending rules live
+in a prompt, where one injected message can change them.
 
 ### What Hogee does
 
-Mei, a first-time founder in Singapore (a synthetic persona), has a SGD 10,000 micro-loan, held as **10,000 budget
-units (BU)**, to sell insulated tumblers on Shopee Singapore. She runs the business from one chat:
+Hogee lays out what the business needs and where each rule comes from, checks suppliers, makes the routine payments and
+reports on the money, while every payment stays inside rules the owner signed. A first-time founder learns what the
+business needs; an experienced owner hands over the routine work and keeps control of the rules. (In the app and the
+contracts, the person running the business is called the founder.)
 
-1. **Needs.** She answers two or three questions. The AI shows what the business needs (registrations, budget lines,
-   suppliers to find, the tax reserve), each item with its source. She signs it as one on-chain plan with her passkey.
+The demo follows Mei, a first-time founder in Singapore (a synthetic persona), with a SGD 10,000 micro-loan, held as
+**10,000 budget units (BU)**, to sell insulated tumblers on Shopee Singapore. Mei runs the business from one chat:
+
+1. **Needs.** Mei answers two or three questions. The AI shows what the business needs (registrations, budget lines,
+   suppliers to find, the tax reserve), each item with its source. Mei signs it as one on-chain plan with a passkey.
 2. **Suppliers.** Hogee searches listing sites and reads each page in quarantine. Code checks and scores the pages;
    a page flagged for instructions aimed at the AI is excluded, and the card says why. A web supplier stays an
    "Unverified web supplier".
-3. **Terms.** She contacts the supplier herself; Hogee never messages anyone. She reports the deal ("went with #2, 30%
+3. **Terms.** Mei contacts the supplier directly; Hogee never messages anyone. Mei reports the deal ("went with #2, 30%
    deposit, 70% on delivery"), enters the payout account in a form, and signs the schedule.
 4. **The wallet pays.** After a cooling period, during which the loan officer can stop it, the agent pays the deposit by
-   itself. The balance waits for her delivery check and her signature.
+   itself. The balance waits for Mei's delivery check and signature.
 5. **AI CFO.** "How are we doing?" shows spending, sales, the tax reserve, profit and a forecast. On a burn alert the
    agent tightens a cap by itself and shows the transaction.
 
@@ -266,7 +273,7 @@ make verify-fisco PACK=evidence/fisco/fm-6abe83e663a2471b                       
 
 | Bundle | What it is | Contents |
 |---|---|---|
-| [`evidence/ev-74756ea61a72ae7c`](evidence/ev-74756ea61a72ae7c/SUMMARY.md) | Mei's chat run on Sepolia `final-2`, 19 Oct 2026, by hand in the web app with her own passkey | 11 transactions, all successful; 3 passkey signatures |
+| [`evidence/ev-74756ea61a72ae7c`](evidence/ev-74756ea61a72ae7c/SUMMARY.md) | Mei's chat run on Sepolia `final-2`, 19 Oct 2026, by hand in the web app with Mei's own passkey | 11 transactions, all successful; 3 passkey signatures |
 | [`ev-0f8e91d9eb2b2027`](evidence/rt-20261018t202130z-sepolia/export/main/ev-0f8e91d9eb2b2027/SUMMARY.md) | The red team on Sepolia `final-1`, 18 to 19 Oct 2026 | 77 transactions; 45 pass, 0 fail, 2 not run: T22 by design (it needs blocks at ±1 s, which 12 s Sepolia slots cannot give), and T33 because that run's code had no query path to attack (its real case is the WEB variant on Anvil) |
 | [`evidence/ev-cdc4cc7916471c1e`](evidence/ev-cdc4cc7916471c1e/SUMMARY.md) | Mei's run on a local Anvil chain, used by the offline replay demo | 24 receipts |
 | [`evidence/fisco/fm-6abe83e663a2471b`](docs/fisco/README.md) | The FISCO BCOS mirror of the `final-2` run, with the regulator | 60 files, 37 steps, 38 transactions |

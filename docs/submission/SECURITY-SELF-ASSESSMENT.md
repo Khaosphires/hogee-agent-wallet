@@ -33,18 +33,18 @@ complete lists are in each audit run's re-check file.
 
 ## Threat model
 
-**What we protect:** the facility's budget on the treasury contract; the founder's authority (her passkey); the role
+**What we protect:** the facility's budget on the treasury contract; the founder's authority (their passkey); the role
 keys; personal data in the chat; the integrity of the evidence we hand to judges; and the team's own machine, which runs
 third-party chain software for the FISCO mirror.
 
 | Adversary | What they control | What they want | First control that stops them |
 |---|---|---|---|
 | A hostile web page, listing, email or document | Text the agent reads | Make the agent pay them, change a rule, or leak data | Untrusted text never reaches a payee, amount, rule or calldata; the Reader is quarantined; payments need a signed plan and a bound payee |
-| A fake supplier with a real company account | A listing and a bank account in their own name | Get bound as a payee and paid | The founder picks and signs; at most one automatic deposit within the per-payment cap; the balance needs her evidence and signature |
+| A fake supplier with a real company account | A listing and a bank account in their own name | Get bound as a payee and paid | The founder picks and signs; at most one automatic deposit within the per-payment cap; the balance needs the founder's evidence and signature |
 | The models themselves (wrong or manipulated output) | Router, Planner and Reader answers | Any money action | Model output is a skill name, ranks or schema-checked fields; deterministic rules decide; the contracts re-check |
 | A caller on the API host | HTTP requests to the localhost API | Act as the founder | Localhost bind, Host allow-list, same-origin POSTs; moving funds outside the plan still needs the founder's passkey (the founder persona is not authenticated: risk 13) |
 | A thief with the agent key | One session key | Spend outside the backend | On-chain caps, bound payees, escrow schedules; the reconciler pauses the treasury (T29) |
-| A founder tricked into signing a bad plan | Her own passkey | Sign away the safeguards | The on-chain constitution refuses the plan (`commitPlan` checks codes 1–10 and 12–14); loosening needs the officer too |
+| A founder tricked into signing a bad plan | Their own passkey | Sign away the safeguards | The on-chain constitution refuses the plan (`commitPlan` checks codes 1–10 and 12–14); loosening needs the officer too |
 | An evidence forger | A copy of a bundle or pack | Show judges a run that did not happen | Offline checkers recompute every hash, signature and replay rule; online mode and Etherscan confirm chain truth |
 | Third-party chain software (the FISCO binary) | Code running on the team's Mac | Reach the network, read keys or files | Digest pins, macOS sandbox profiles, loopback only, keys on file descriptor 3 |
 | The public RPC node | Answers to the anchor script | Make the one Sepolia anchor cost more than agreed | The script sets nonce, gas and fees itself and refuses anything above fixed caps |
@@ -61,7 +61,7 @@ and the production partner bank, which does not exist in the demo.
 
 | Role | Holder | Can | Cannot |
 |---|---|---|---|
-| **Founder** (`OWNER`) | Mei's passkey (Touch ID, P-256, user verification required); a wallet key as backup owner | Sign the plan and tighten-only replans; sign each `SupplierApproval` (including a web supplier's terms) and each escrow balance release with evidence; sign her half of every loosening; pause; spend manually through `ownerSpend` | Loosen anything alone; add a payee through a plan; pay the escrow-only supplier line directly |
+| **Founder** (`OWNER`) | Mei's passkey (Touch ID, P-256, user verification required); a wallet key as backup owner | Sign the plan and tighten-only replans; sign each `SupplierApproval` (including a web supplier's terms) and each escrow balance release with evidence; sign their half of every loosening; pause; spend manually through `ownerSpend` | Loosen anything alone; add a payee through a plan; pay the escrow-only supplier line directly |
 | **Loan officer** (`LENDER`) | Demo: a server-held key labelled "demo", reached only through the officer persona | Open and fund the facility (capped at the plan total); register the founder's approved key; co-sign every loosening; release a stage when its target is met; decide exceptions; pause | Sign as the founder; replace the founder's key once set (`FounderKeyAlreadySet`); be the owner or the oracle |
 | **Agent** (`AGENT`) | A session key named in the signed `PlanApproval`, with an expiry of at most 90 days; revocable | `spend` to bound payees within caps; `fundMilestone` exactly as signed (a web order's one deposit releases on its own); tighten-only calls (lower caps, raise the reserve, revoke itself, pause); `recordDenied` | Sign for any founder- or officer-signed entry point; bind a payee; release an escrow balance; spend the reserve; record a sale |
 | **Chat router** (a model call) | The Planner model, behind the redactor and the model budget | Return one of 8 skill names, candidate ranks and a CFO view | Start a search, write terms, move money, sign, or put its own text on screen |
@@ -105,8 +105,8 @@ the countdown. The deploy scripts refuse less than 120 s on any chain but Anvil.
 
 **What the AI agent cannot do.**
 
-- **Sign as the owner.** The founder's key is a passkey on her device. The contracts check her P-256 signature on every
-  founder struct, and a signature by the agent or lender in her place reverts `NotOwner`.
+- **Sign as the owner.** The founder's key is a passkey on their device. The contracts check their P-256 signature on every
+  founder struct, and a signature by the agent or lender in their place reverts `NotOwner`.
 - **Loosen.** The agent's `tighten` refuses a cap raise or a lower reserve (`NotOwner`). Every loosening needs the founder,
   the officer and the timelock, and `executeLoosen` re-checks the constitution at execution.
 - **Exceed its caps.** `spend` checks the line, the bound payee, cooling, the invoice, the per-payment cap and the rolling
@@ -197,7 +197,7 @@ signs it with the lender key first.
 **Rollback and recovery**
 
 - **Pause** is tighten-only, so it needs no co-signature, including during a web supplier's cooling. On-chain the agent,
-  the lender key or the founder's backup wallet can send it (her passkey cannot send transactions); in the app, the
+  the lender key or the founder's backup wallet can send it (the passkey cannot send transactions); in the app, the
   founder's or the officer's pause is signed with the lender key first. A line pause and revoking the agent are
   tighten-only stops too. Pausing an unpaused treasury cancels every queued loosening. Unpausing is a loosening
   (founder + officer + timelock).
@@ -212,7 +212,7 @@ signs it with the lender key first.
 - **Failed payouts** return the amount to the source pocket.
 - **Corrections.** A new terms report for the same supplier supersedes the old row before signing. After binding, a
   re-bind restarts cooling, so there is one order per web supplier.
-- **Manual fallback.** The founder's `ownerSpend` works while the agent is paused or revoked. Limit: she can release
+- **Manual fallback.** The founder's `ownerSpend` works while the agent is paused or revoked. Limit: the founder can release
   milestones already funded, but cannot fund new ones.
 
 ---
@@ -429,7 +429,7 @@ lists the main residuals we accepted; each re-check file has the complete list.
 ### Consent
 
 The demo has no real users. In production, the founder would consent at onboarding to three things: the cross-border
-model call (after redaction), the web search on her behalf (with no personal data in the query), and the publication of
+model call (after redaction), the web search on their behalf (with no personal data in the query), and the publication of
 hashed plan data on the rule layer. [TBD: consent screen copy for production; not built in the demo.]
 
 ### Minimisation
@@ -544,7 +544,7 @@ scheduled.
 
 | # | Risk | Impact | Mitigation now | Possible improvement (not scheduled) |
 |---|---|---|---|---|
-| 13 | **The founder persona is not authenticated (demo design)** | A caller on the same host can act as the founder in the API: evict open signature requests, create shortlists or terms rows (bounded), plant inspection evidence. Moving funds outside the plan still needs her passkey | Localhost bind, Host allow-list, same-origin POSTs; every founder writer is bounded | A signed founder session on every founder route |
+| 13 | **The founder persona is not authenticated (demo design)** | A caller on the same host can act as the founder in the API: evict open signature requests, create shortlists or terms rows (bounded), plant inspection evidence. Moving funds outside the plan still needs the founder's passkey | Localhost bind, Host allow-list, same-origin POSTs; every founder writer is bounded | A signed founder session on every founder route |
 | 14 | **Offline "VERIFIED" means internally consistent** | A bundle rewritten consistently, or built on other contracts, passes offline | The CLI prints the anchor; online mode re-fetches receipts and blocks; explorer links are pinned to `sepolia.etherscan.io` | Commit the deployment manifest with code hashes |
 | 15 | **Replay gaps in the offline checker** | Some totals in side events are not bound offline | Online mode and the worker's simulation of every call | Bind the remaining totals |
 | 16 | **Model budget and rate limits are per process** | A restart resets them | Defaults: 1,500 model calls a day; chat 10/20/30 and actions 30/60/120 a minute (session/client/server); 20 searches a day per facility (counted in the database) | Persist the budget |

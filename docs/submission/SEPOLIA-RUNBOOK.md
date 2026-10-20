@@ -34,7 +34,7 @@ How to put Hogee on Sepolia and collect the evidence, in order. Every command si
 | Deployer keystore password | You | forge asks for it (hidden) during each deploy |
 | Founder passkey (Touch ID) | You, as Mei | in the browser: passkey registration and every inline signature |
 | Officer access code | You, as the officer | the persona switch in the web app; it is your `OFFICER_TOKEN` (open `hogee/.env` yourself; never paste it in a chat) |
-| Mei's one-time enrolment code | You, as the officer, then as Mei | the officer console creates it; Mei types it when she registers her passkey |
+| Mei's one-time enrolment code | You, as the officer, then as Mei | the officer console creates it; Mei types it when registering a passkey |
 
 **How the commands read `hogee/.env`.** Node's `--env-file` loads it into the process without printing it. A value set on the command line wins over the file. Run these commands yourself in the Terminal panel; an assistant must not open `.env`.
 
@@ -271,7 +271,7 @@ Do the steps in this order: funding is capped at the committed plan total, so th
 | # | Who | What to do | Needs | On-chain (task) |
 |---|---|---|---|---|
 | 1 | Officer | Switch to the officer persona. Open the facility: cap 10,000 BU, reserve floor 300 bps. Create Mei's one-time enrolment code. | officer access code | `openFacility` (S2) |
-| 2 | Mei | Register her passkey with the enrolment code. | enrolment code, Touch ID | none |
+| 2 | Mei | Register a passkey with the enrolment code. | enrolment code, Touch ID | none |
 | 3 | Officer | Approve Mei's pending key. | officer access code | `registerFounderKey` (S2) |
 | 4 | Mei | In the chat, answer 2–3 questions. Read the needs card. Sign the plan inline. | Touch ID | `commitPlan` (S2) |
 | 5 | Officer | Fund 10,000 BU. | officer access code | `fund` (S1) |

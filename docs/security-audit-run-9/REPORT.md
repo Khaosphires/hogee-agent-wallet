@@ -44,7 +44,7 @@ None.
 | Fingerprint | Why rejected | Hardening |
 |---|---|---|
 | `checks:sanctions:designator-synonyms-not-folded` | The gap is real (`sanctions.ts:62-80`), but screening is exact-match by design: a self-named seller can already dodge with any small change. The range only added hits, and payouts are simulated. | Fold the designator set that `terms-names.ts:13-19` accepts into one canonical token, on both list and query side. |
-| `api-mock/supplier-order.ts:supplierOrderFor:existing-order-rank-one-fallback` | Only the founder, with her own passkey over a panel naming that supplier, can do it; no UI path emits it. | Refuse `order-w…` ids; drop the `?? rankOne` fallback. |
+| `api-mock/supplier-order.ts:supplierOrderFor:existing-order-rank-one-fallback` | Only the founder, with their own passkey over a panel naming that supplier, can do it; no UI path emits it. | Refuse `order-w…` ids; drop the `?? rankOne` fallback. |
 | `api-mock/features/orders.ts:mockLimits:fresh-no-pocket-ignores-paid-milestones` | The window claim is refuted. The rest is the founder's own simulated budget; live and the contract enforce the cap. | Track paid milestones, or create pockets in `freshState`. |
 | `api-mock/country.ts:baseDraftIdOf:preview-of-preview-signable` | Same lines, caps, payees and totals as the base draft; needs the founder's passkey; mock only. | Record preview provenance. |
 
