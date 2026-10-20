@@ -1,0 +1,51 @@
+{
+  "supplierId": "s13-e",
+  "displayName": "Granitegate Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330723GBXTMBLK0W"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-13/s13-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-13/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "430",
+      "sourceUrl": "https://example.invalid/e3/set-13/s13-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x04f120727515d688a7c3ea6b588f116fd3b87286505bd5141583fcb596116211",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 10,
+    "freightPerUnit": "50",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-156134-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.95,
+    "yearsOnPlatform": 10
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7448824378",
+    "holderName": "Granitegate Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

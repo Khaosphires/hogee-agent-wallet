@@ -1,0 +1,282 @@
+[
+  {
+    "status": "available",
+    "rationaleHash": "0x06aed3b4651b731069e1217805e4375ca2bb4fda59cd281139cf58d4baca2ac3",
+    "decisionId": "01a150f7-a649-7a9e-9c5d-b815a25c1dc7",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0xa9fdded055be46d3b4c7b70e5a2bf81fef5a29e7ee39aca71ce695b45e94a67c",
+      "proposal": {
+        "lineKey": "LOGISTICS",
+        "payeeId": "spx-logistics",
+        "invoiceId": "inv-rt-t14-legit-3-mvecppp2",
+        "amountMinor": "6000"
+      },
+      "decisionId": "01a150f7-a649-7a9e-9c5d-b815a25c1dc7",
+      "reasonCode": "DuplicateIntent",
+      "invoiceHash": "0x29645451e0087499a5d7c8d2706f9d5753f3e8df977a45a5c5b7fa663873d41c",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x0e50b4757f902583d4f7193b6e7024a76bb16d68664b451b7711716e8bc5914b",
+    "decisionId": "01a15176-a208-7f65-b419-c07faec98c14",
+    "rationale": {
+      "idx": 2,
+      "kind": "FOUNDER_MILESTONE_RELEASE",
+      "orderId": "order-a-001",
+      "decisionId": "01a15176-a208-7f65-b419-c07faec98c14",
+      "amountMinor": "280000",
+      "evidenceHash": "0xe42634739612a40a8a97826875cf41af9752822338e5c2b1e8fb082f6c597ea9",
+      "signatureRequestId": "sig-01a15176-9449-75ef-891f-5958711066c0"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x1a702c8ac5c76487fa4a52dfa5ff7ac0c412908146f14d730ddd0ddd061dbb9b",
+    "decisionId": "01a150f6-b484-7025-9f25-8d946734dab9",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0x721cdbfc1723af48b18a216584449e0cc4206d6916add10b60db1b0b4378030e",
+      "proposal": {
+        "lineKey": "PLATFORM_FEES",
+        "payeeId": "shopee-fees",
+        "invoiceId": "inv-rt-t4-2-mvecowen",
+        "amountMinor": "20000"
+      },
+      "decisionId": "01a150f6-b484-7025-9f25-8d946734dab9",
+      "reasonCode": "CapExceeded",
+      "invoiceHash": "0xae0afdcd9c5beb59212e69af98e7fecb78fd49b970817a62ab5372a77ca2b1b8",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x3803cd42c7a0801d47fbf04f8c4cbad393c26eebb6bab1e4a69ddffd460ead04",
+    "decisionId": "01a15176-265c-79e3-9b65-8f32030740b0",
+    "rationale": {
+      "idx": 2,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-a-001",
+      "payeeId": "supplier-a",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "280000",
+      "autoRelease": false,
+      "planVersion": 2,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "280000"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x431a7611664f6b8887d6538dca906eb22783dfbe944fc11882731b9c635980f9",
+    "decisionId": "01a150f7-48fc-75e8-876d-bd57197c2190",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "AUTO",
+      "intentId": "0xa9fdded055be46d3b4c7b70e5a2bf81fef5a29e7ee39aca71ce695b45e94a67c",
+      "proposal": {
+        "lineKey": "LOGISTICS",
+        "payeeId": "spx-logistics",
+        "invoiceId": "inv-rt-t14-legit-3-mvecppp2",
+        "amountMinor": "6000"
+      },
+      "decisionId": "01a150f7-48fc-75e8-876d-bd57197c2190",
+      "reasonCode": "WITHIN_PLAN",
+      "invoiceHash": "0x29645451e0087499a5d7c8d2706f9d5753f3e8df977a45a5c5b7fa663873d41c",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x5d9e4889f642cbcd6c59c945c227a6865c7e12534354aea0704ac140e2066128",
+    "decisionId": "01a15105-877d-7faa-b8d4-11526592ffdf",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0x6b75743a7d08ac2627f01a0d6ea0c36eb14d6c7a441cdc0eb2b3ba3454cc1214",
+      "proposal": {
+        "lineKey": "CONTINGENCY",
+        "payeeId": "spx-logistics",
+        "invoiceId": "inv-rt-t26-2-6-mved9q09",
+        "amountMinor": "1000"
+      },
+      "decisionId": "01a15105-877d-7faa-b8d4-11526592ffdf",
+      "reasonCode": "PayeeNotBound",
+      "invoiceHash": "0x6d2283ea1d45d1bbc0b34c0d70107fc629d95cf8aaccc4dfd1781bf9328630d0",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x6ed453151a43233f13d09fcbf6dff088f29f23f3be7e445a90c317f144a3bb0b",
+    "decisionId": "01a150f6-1894-7dd3-85fb-e81e27834d6a",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0x87a623d9af41cbb1e95873c251b2ed824d71a81c8292d3c99709eb30084c609f",
+      "proposal": {
+        "lineKey": "LOGISTICS",
+        "payeeId": "lhdn-tax",
+        "invoiceId": "inv-rt-t1-1-mveco1ga",
+        "amountMinor": "5000"
+      },
+      "decisionId": "01a150f6-1894-7dd3-85fb-e81e27834d6a",
+      "reasonCode": "PayeeNotBound",
+      "invoiceHash": "0x7f13be8608b159183bcb1b862cbc51c18b7ebbaad1734ad12ea6d99852ffdf06",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x8b2ba52d0e93f59940fadd5289470b7b4861458ed9a3af6a15236ab455253f21",
+    "decisionId": "01a15103-fbb9-7828-ada7-9c3a556d54d4",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0xd14ab3476e51c87add276946f3dacdd06362c44b985e4502ee52fbf16ab7e6e8",
+      "proposal": {
+        "lineKey": "CONTINGENCY",
+        "payeeId": "spx-logistics",
+        "invoiceId": "inv-rt-t26-0-4-mved7jth",
+        "amountMinor": "1000"
+      },
+      "decisionId": "01a15103-fbb9-7828-ada7-9c3a556d54d4",
+      "reasonCode": "PayeeNotBound",
+      "invoiceHash": "0x2fc3925a53214c415449ff8df1b5a1ef786185bf712ae939986abba6ecd6b820",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x8e2b4d4383f2224bd5e55c0f02759b950e18e0313db87411d4a625aa45b6d41d",
+    "decisionId": "01a150b2-5f4d-75b0-91eb-f55c20b801d1",
+    "rationale": {
+      "kind": "PACING_SLOT",
+      "lineKey": "ADS",
+      "payeeId": "shopee-ads",
+      "verdict": "AUTO",
+      "chainDay": 20744,
+      "pacingSlot": 1,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "7500",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x8e7498f40363bda66a67bfe64013b31d8244c6237c64bf657f352d35b9ce154e",
+    "decisionId": "01a15108-6aa3-7894-ad19-01d8811ced7e",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "AUTO",
+      "intentId": "0x871d5a0a1f4e97ba051e991cf331913e39caadf71d3b61de13237f61f34968ef",
+      "proposal": {
+        "lineKey": "PLATFORM_FEES",
+        "payeeId": "shopee-fees",
+        "invoiceId": "inv-rt-plug-54-mveddrxe",
+        "amountMinor": "5000"
+      },
+      "decisionId": "01a15108-6aa3-7894-ad19-01d8811ced7e",
+      "reasonCode": "WITHIN_PLAN",
+      "invoiceHash": "0x353f766d8217d94c00f2c7adbc3836cea276de0b2d550eba36e155ae0fd5fca8",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x95671df95b845338210638c3a2469979e442a1cadd9010c36b766f1503e46545",
+    "decisionId": "01a150b2-1345-7281-b8d4-555bea03a6e2",
+    "rationale": {
+      "idx": 0,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-a-001",
+      "payeeId": "supplier-a",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "30000",
+      "autoRelease": true,
+      "planVersion": 1,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "30000"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x95e495b1d928378a2fa2faabd814e5e2b5bfc28b34664dbcdf1c473ecc1e3b46",
+    "decisionId": "01a15176-67d7-7664-9f75-347b33e2405b",
+    "rationale": {
+      "kind": "PACING_SLOT",
+      "lineKey": "ADS",
+      "payeeId": "shopee-ads",
+      "verdict": "AUTO",
+      "chainDay": 20745,
+      "pacingSlot": 2,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "7500",
+      "planVersion": 2
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0xc338da6a163aa7faa5ae29f00d82b85f667b373506fcc1621dcfd130e2e37d23",
+    "decisionId": "01a15104-9050-7bbd-8f4c-a385d3d99341",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0xc3b37fee9f5a80fa58d3b207de5099082abc6889d4902446f098c4fc46ab3694",
+      "proposal": {
+        "lineKey": "CONTINGENCY",
+        "payeeId": "spx-logistics",
+        "invoiceId": "inv-rt-t26-1-5-mved8cy5",
+        "amountMinor": "1000"
+      },
+      "decisionId": "01a15104-9050-7bbd-8f4c-a385d3d99341",
+      "reasonCode": "PayeeNotBound",
+      "invoiceHash": "0x5079c21f1ce50d600f9fc7ff1321843ead6ff8f7da4c24f5b7061a0c2194ed74",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0xd2bbb034481f492decfd192d8d60e64ee2ad0fa51162ac13ddd22224b2ad10bf",
+    "decisionId": "01a150b2-1786-7b80-a84e-d7a74c0f66b2",
+    "rationale": {
+      "idx": 1,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-a-001",
+      "payeeId": "supplier-a",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "120000",
+      "autoRelease": true,
+      "planVersion": 1,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "120000"
+    },
+    "salt": null
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s01-d",
+  "displayName": "Lumenwave Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91441900NQ05WYJ48N"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-01/s01-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-01/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "880",
+      "sourceUrl": "https://example.invalid/e3/set-01/s01-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x5db863d99ebb642ed5114e4f9f4a53ce35c893ac488e29c9df790238e9c5cea6",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 32,
+    "freightPerUnit": "40",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-261723-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.3,
+    "responseRate": 0.76,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7660598138",
+    "holderName": "Lumenwave Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

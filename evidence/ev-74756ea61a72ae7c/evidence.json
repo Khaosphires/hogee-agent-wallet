@@ -1,0 +1,85 @@
+[
+  {
+    "taskId": "S2",
+    "title": "Founder signs the plan; the relayer submits commitPlan",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x797b49a182d1acb728dcc071850c0050767bbba2c55c49da7b511891a999b245",
+    "chainId": 11155111,
+    "deploymentId": "final-2",
+    "block": 11945984,
+    "contract": "PlanRegistry",
+    "function": "commitPlan",
+    "decodedEvent": "PayeeBound, PayeeBound, PayeeBound, PlanCommitted",
+    "explorerUrl": "https://sepolia.etherscan.io/tx/0x797b49a182d1acb728dcc071850c0050767bbba2c55c49da7b511891a999b245",
+    "artifacts": [
+      "receipts/0x797b49a182d1acb728dcc071850c0050767bbba2c55c49da7b511891a999b245.json",
+      "plans.json",
+      "signatures.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S1",
+    "title": "Lender funds the facility (capped at the plan total)",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0xe0590ad09c6dcd96a93e4f6ab48ce21a3c23bcb01553ae51a3440ac494ea530c",
+    "chainId": 11155111,
+    "deploymentId": "final-2",
+    "block": 11945997,
+    "contract": "Treasury",
+    "function": "fund",
+    "decodedEvent": "Funded",
+    "explorerUrl": "https://sepolia.etherscan.io/tx/0xe0590ad09c6dcd96a93e4f6ab48ce21a3c23bcb01553ae51a3440ac494ea530c",
+    "artifacts": [
+      "receipts/0xe0590ad09c6dcd96a93e4f6ab48ce21a3c23bcb01553ae51a3440ac494ea530c.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S3",
+    "title": "Founder approves the supplier; bindPayee starts its cooling",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x97b5c75de22ac02230b8b6823741aa6ee651073cabed4ba194ca047a706b233c",
+    "chainId": 11155111,
+    "deploymentId": "final-2",
+    "block": 11946010,
+    "contract": "Treasury",
+    "function": "bindPayee",
+    "decodedEvent": "PayeeBound",
+    "explorerUrl": "https://sepolia.etherscan.io/tx/0x97b5c75de22ac02230b8b6823741aa6ee651073cabed4ba194ca047a706b233c",
+    "artifacts": [
+      "receipts/0x97b5c75de22ac02230b8b6823741aa6ee651073cabed4ba194ca047a706b233c.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S4",
+    "title": "Agent pays the web supplier's deposit by itself, exactly as pre-signed (payout references the tx)",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x5712892441da31eea153b3d15c3a6022d09d9e5e3b1d5c3848eb0b715b025e17",
+    "chainId": 11155111,
+    "deploymentId": "final-2",
+    "block": 11946028,
+    "contract": "MilestoneEscrow",
+    "function": "fundMilestone",
+    "decodedEvent": "MilestoneFunded, MilestoneReleased",
+    "decisionId": "01a15293-39cb-7780-8bb7-7bfb9f1754fb",
+    "traceId": "trace:fund:order-wavk4gkewt3zc-001:0",
+    "payoutId": "mock-699b9a0c657fac1829bc62fc",
+    "explorerUrl": "https://sepolia.etherscan.io/tx/0x5712892441da31eea153b3d15c3a6022d09d9e5e3b1d5c3848eb0b715b025e17",
+    "artifacts": [
+      "receipts/0x5712892441da31eea153b3d15c3a6022d09d9e5e3b1d5c3848eb0b715b025e17.json",
+      "payments.json",
+      "rationales.json",
+      "traces.json"
+    ]
+  }
+]

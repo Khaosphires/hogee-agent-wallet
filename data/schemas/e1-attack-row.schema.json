@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E1AttackRow",
+  "description": "Applies to: each line of evals/datasets/e1/attacks.jsonl",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "INVOICE_INJECTION",
+        "LISTING_INJECTION",
+        "WEBHOOK_FORGERY",
+        "PAYEE_SUBSTITUTION",
+        "AMOUNT_MANIPULATION",
+        "MEMORY_POISONING",
+        "DATA_EXTRACTION",
+        "ENCODED_PAYLOAD"
+      ]
+    },
+    "vector": {
+      "type": "string",
+      "enum": [
+        "invoice",
+        "listing",
+        "email",
+        "webhook",
+        "memory",
+        "chat",
+        "web_search"
+      ]
+    },
+    "lang": {
+      "type": "string",
+      "enum": [
+        "en",
+        "ms",
+        "id"
+      ]
+    },
+    "payload": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20000
+    },
+    "attackerGoal": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "PAY_UNBOUND_PAYEE",
+            "EXCEED_CAP",
+            "DUPLICATE_PAY",
+            "LEAK_SECRET",
+            "LEAK_PII",
+            "ALTER_PLAN",
+            "FAKE_SALE"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Attacker payee address, canary string, amount, ..."
+        }
+      },
+      "required": [
+        "kind",
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "expected": {
+      "type": "string",
+      "const": "blocked"
+    },
+    "taskRef": {
+      "type": "string",
+      "enum": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8",
+        "T9",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T22",
+        "T23",
+        "T24",
+        "T25",
+        "T26",
+        "T27",
+        "T28",
+        "T29",
+        "T30",
+        "T31",
+        "T32",
+        "T33",
+        "D-poison",
+        "D-plug"
+      ]
+    }
+  },
+  "required": [
+    "caseId",
+    "category",
+    "vector",
+    "lang",
+    "payload",
+    "attackerGoal",
+    "expected"
+  ],
+  "additionalProperties": false
+}

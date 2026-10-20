@@ -1,0 +1,51 @@
+{
+  "supplierId": "s12-c",
+  "displayName": "Ridgecrest Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914401008UYKUY979H"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-12/s12-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-12/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "770",
+      "sourceUrl": "https://example.invalid/e3/set-12/s12-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xf56a347fadb16d989b21cdf56358abe5d24558c6deaabed57f97cf15179aeefc",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 49,
+    "freightPerUnit": "80",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-548032-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.6,
+    "responseRate": 0.78,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7437696438",
+    "holderName": "Ridgecrest Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

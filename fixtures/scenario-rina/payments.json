@@ -1,0 +1,311 @@
+[
+  {
+    "paymentId": "payment-ads-proposed",
+    "kind": "SPEND",
+    "intentId": "0x3849b196b001ad325ddefcf20003975512b0210211eec0d157a9990709d32f5a",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0x1a2bc575938cb53a82654c137f2160f47c40df0008356df08d0982b6d4e8f650",
+    "planVersion": 1,
+    "state": "PROPOSED",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7344-8424-d235cd3bc74f",
+    "rationaleHash": "0x98a953d83ff799e8d164207502939e6dc54776fa0ce45410f7e7fdc44f48435c",
+    "traceId": "trace-PROPOSED",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-policy_denied",
+    "kind": "SPEND",
+    "intentId": "0x1dbf71f7c35e5349dd6edda96eee08c65905f9fadac6c586428fb342da27ae3f",
+    "lineKey": "PACKAGING",
+    "payeeId": "printer-kl",
+    "amountMinor": "40000",
+    "invoiceHash": "0xc5bfb4fd50367f14de5f67eed63689f8d201440880567b155f33846bcdf6ad9b",
+    "planVersion": 1,
+    "state": "POLICY_DENIED",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7b2d-834e-e125b726df3e",
+    "rationaleHash": "0x85834f5819708c5a67950a5750e7d718fdb0f5063d434cad4018c12e9291a500",
+    "traceId": "trace-POLICY_DENIED",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-policy_ok",
+    "kind": "SPEND",
+    "intentId": "0xbe8123854e93e314a13f4f35001da065fd1c67d74cdfa274171c9558bd03ede1",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0x4e52837d769d50223b1883eb2ab7905e1ed19f1fa7d60c4f47063de88aebeaf7",
+    "planVersion": 1,
+    "state": "POLICY_OK",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7e9f-85ea-ba259b57347f",
+    "rationaleHash": "0x3011e3c53424186f6efd213cae03dd5cf3c1a19e786a1616f75178dc4f60239c",
+    "traceId": "trace-POLICY_OK",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-signed",
+    "kind": "SPEND",
+    "intentId": "0x93ff6c8ec6cf0e52d90a29ee65caaeaf0a3c2092526f322e8fca602ad1d80771",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0x59217bd8fc5ec874f12bd99749baf3df987758c4edf281d13a29ece90668258c",
+    "planVersion": 1,
+    "state": "SIGNED",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-758b-8a7f-2dda20eeba14",
+    "rationaleHash": "0x1e139c48988ade5b2e38750aab7fa4d6954078f1d764d1c2467517321e5fa81e",
+    "traceId": "trace-SIGNED",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-broadcast",
+    "kind": "SPEND",
+    "intentId": "0x23d14e8b2198f43ba944e29b303300dc7c3760d6616e183729cc1e797e4aa0c4",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0xfd8c5e5a3490063e974a759270bb23301d44cb1f1cb8b232b9a75de04c169956",
+    "planVersion": 1,
+    "state": "BROADCAST",
+    "txHash": "0x743baa7b8fecf09074846bac3f0f0d76d9699df700acb8addfc56850f9a66b74",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7b6f-8516-9f42aac008c0",
+    "rationaleHash": "0xc2c837c9d507549298764c759f65c833af0a870a24b23f6d39274508c572c474",
+    "traceId": "trace-BROADCAST",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-included",
+    "kind": "SPEND",
+    "intentId": "0x3a03406bcb74c43121496d47eda43abd5496205b76123fe4aa00352ebc33e1ab",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0xc37bc1907bcebc553930408781c153fa32f9a4aab45c40e015bb9aed45051a91",
+    "planVersion": 1,
+    "state": "INCLUDED",
+    "txHash": "0x4f7184d26de9a0b44cfe311a83bda7c98a8bf2cc2070bcaf09800c14bde24d50",
+    "block": 1005,
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7e9e-830a-8ff1680e9924",
+    "rationaleHash": "0xb17c2fbd8ba71e97f59593217080a1a79cb56e742c03655cb76058dd4017a6ec",
+    "traceId": "trace-INCLUDED",
+    "updatedAt": "2026-10-16T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-finalized",
+    "kind": "SPEND",
+    "intentId": "0x29b3640f3b550d431c231b33d926f0c4831dd7e15125351e8d9a59e30af3a779",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0x8e3b1d3db5143c524f03460f9a1e3586b23550b819070881864b1784c8aaf2f5",
+    "planVersion": 1,
+    "state": "FINALIZED",
+    "txHash": "0x206a91023d5d426a4c6e01683388edc8bcaf33fa2cdb869ad6e3c72e6f25859b",
+    "block": 1006,
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7398-8e03-b5b2d85ab292",
+    "rationaleHash": "0xaea5d050826fc32e6134f1b2b0477ce986977e3d939a1cd6282864be651e5db0",
+    "traceId": "trace-FINALIZED",
+    "updatedAt": "2026-10-17T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-settlement_requested",
+    "kind": "SPEND",
+    "intentId": "0xafdb52afd4cdaada9f68b0b797e285e54186cc55a9a18adee993a4526df2ef5a",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0x23af22af67b36fa807aaf700bcdc354d833b0393d647a901b535cda79e222e98",
+    "planVersion": 1,
+    "state": "SETTLEMENT_REQUESTED",
+    "txHash": "0x18bf3b021c2c8367ed0c37e5b07050ce2a145cbb22969d7d1de8fbed7054213e",
+    "block": 1007,
+    "payout": {
+      "attempt": 1,
+      "status": "REQUESTED",
+      "payoutId": "mock-payout-SETTLEMENT_REQUESTED"
+    },
+    "decisionId": "01a14202-2800-76df-825d-c97d4f161e3b",
+    "rationaleHash": "0x3e5e649dec985e13fdcaa3e863cb3aa28e06cf940550e8a735552ec997863d9e",
+    "traceId": "trace-SETTLEMENT_REQUESTED",
+    "updatedAt": "2026-10-18T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-settled",
+    "kind": "SPEND",
+    "intentId": "0xabff6607335805f5d7e5f2eac01dcdd95ddcd7d0d9b02d9ec43dd3a2f3de0d93",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0xa21940afe3ea7862813261befcd57cd2520624c1e4b8cf7291dcd5e00f8d2bd6",
+    "planVersion": 1,
+    "state": "SETTLED",
+    "txHash": "0x025d0e2f1a3993dfa695a4adc96a9f68a7a7029c8ce347629dbc609eadcefa17",
+    "block": 1008,
+    "payout": {
+      "attempt": 1,
+      "status": "SUCCEEDED",
+      "payoutId": "mock-payout-SETTLED"
+    },
+    "decisionId": "01a14202-2800-7a35-865c-1a3a8a39892d",
+    "rationaleHash": "0xd5967243b0b62b3e85d4e103929d30c17864dc21f7f2bfa0bbd92933930c6993",
+    "traceId": "trace-SETTLED",
+    "updatedAt": "2026-10-19T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-settlement_failed",
+    "kind": "SPEND",
+    "intentId": "0xe5d222cdc3004e67ef99f283f3359e6b7a3c803d4a90ed53d7de96cb8cc3c80a",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0x7ac78dbadf94132f1e0f9a12d69530bc44bde64553cb510bb113a78055d25a14",
+    "planVersion": 1,
+    "state": "SETTLEMENT_FAILED",
+    "txHash": "0x4a41cbf93a5510157bad208a286cb0550c21c3df57c0078554967e88e2e255d5",
+    "block": 1009,
+    "payout": {
+      "attempt": 1,
+      "status": "FAILED",
+      "payoutId": "mock-payout-SETTLEMENT_FAILED",
+      "failureCode": "MOCK_TEMPORARY_TRANSFER_ERROR"
+    },
+    "decisionId": "01a14202-2800-74d4-8222-b906f325dd1d",
+    "rationaleHash": "0xf88ced3b93ee7d9a596bb49dce21db1c7964c9729e549fa1653c60611e9241d5",
+    "traceId": "trace-SETTLEMENT_FAILED",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-reverted",
+    "kind": "SPEND",
+    "intentId": "0xb68d20f7debfbc7c505548cb028c57810c0bc854a470aa2508a4178722e62d9e",
+    "lineKey": "PACKAGING",
+    "payeeId": "printer-kl",
+    "amountMinor": "40000",
+    "invoiceHash": "0xafd35b3931b9e4a56c5bf244926f7cb875491ad9ca2141c15c709aefd7612fdf",
+    "planVersion": 1,
+    "state": "REVERTED",
+    "txHash": "0xe249952f86ac92cd2b969b47697051c6585d785a7a63260e59ac03eb6bcb59f2",
+    "block": 1010,
+    "revertReason": "CapExceeded",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7af7-88a1-c28fcb6b0cc8",
+    "rationaleHash": "0xfe6bfe26abcacd270a3a95a640bc03f448807b877ba6baa0b02f0d3a91710a05",
+    "traceId": "trace-REVERTED",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-dropped",
+    "kind": "SPEND",
+    "intentId": "0x0fe6d7e6e8668f530683ebce0447d8b1935db23ae5088e582827dbe347334a6f",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0x78a2cb75a1849c14ca2dbbc126901df830df541b92908e6cb2acd6fa4bd5007c",
+    "planVersion": 1,
+    "state": "DROPPED",
+    "txHash": "0x4a9ca051129f9ee1b372c0f4abfc42506c081d121df1addbb664120033eddd20",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7af7-8d9f-bb766371f00e",
+    "rationaleHash": "0x10054f6487031762540bba1bab5f5157b704903879fcd0179fe129ce80f86b42",
+    "traceId": "trace-DROPPED",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-ads-cancelled",
+    "kind": "SPEND",
+    "intentId": "0x6806fe5e9a64fcbaacb3ffd31b815c03bd7c01abb5c8fce105669365b19768c9",
+    "lineKey": "ADS",
+    "payeeId": "shopee-ads",
+    "amountMinor": "7500",
+    "invoiceHash": "0xc5d36ef2563168876fa2a5d18dd71c56e56c230279d48f767ecddca5114fd8e8",
+    "planVersion": 1,
+    "state": "CANCELLED",
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-773e-882c-bde2e036a2c5",
+    "rationaleHash": "0xb5841f07995447116e99b892fcf0d9d8515eeedd859352835249dc2fdea97f93",
+    "traceId": "trace-CANCELLED",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-sample",
+    "kind": "RELEASE_MILESTONE",
+    "intentId": "0xbd49505366b2ada7af95c792dd7bd49a4768b30e789179afae0415b011f2faf5",
+    "lineKey": "SUPPLIER",
+    "payeeId": "supplier-a",
+    "amountMinor": "30000",
+    "invoiceHash": "0x37edb9124317c78e1ba63f900c1ddac7b53be9fb789b0ff275b69cc555e765a7",
+    "planVersion": 1,
+    "state": "SETTLED",
+    "txHash": "0xb82e41237a02285559a3cdc1c904715110fc0afe5aaa43c83af99279988abc65",
+    "block": 980,
+    "payout": {
+      "attempt": 1,
+      "status": "SUCCEEDED",
+      "payoutId": "mock-payout-sample"
+    },
+    "decisionId": "01a14202-2800-7680-850c-4149cf83db55",
+    "rationaleHash": "0xc50b18b4d8e6c7854ea73c3f4eecd4d7e8cbbe49b01cbb02b59af1a46a484a03",
+    "traceId": "trace-payment-sample",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  },
+  {
+    "paymentId": "payment-deposit",
+    "kind": "FUND_MILESTONE",
+    "intentId": "0xd75517df506de3528e856ba56a5e5a159004c98e8a186a3d36ec35d7c98fea8e",
+    "lineKey": "SUPPLIER",
+    "payeeId": "supplier-a",
+    "amountMinor": "120000",
+    "invoiceHash": "0x8f098c2889b0ed23bdeed3e9ac055110a5c0ef901ddc87c43d2fcf7150859114",
+    "planVersion": 1,
+    "state": "FINALIZED",
+    "txHash": "0xfcb95e26eee9ee817f39f4f92a94b00ff245cb39f5dae1de7e84d45a25c5f2a0",
+    "block": 981,
+    "payout": {
+      "attempt": 0,
+      "status": "NONE"
+    },
+    "decisionId": "01a14202-2800-7c41-82f9-5b6b409789c4",
+    "rationaleHash": "0x61fefe74e03218b080324d971227e84dced95cfb8e34ea159f4bd84f7a6c9e6e",
+    "traceId": "trace-payment-deposit",
+    "updatedAt": "2026-10-20T12:00:00Z"
+  }
+]

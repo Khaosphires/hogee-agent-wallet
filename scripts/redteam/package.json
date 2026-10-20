@@ -1,0 +1,41 @@
+{
+  "name": "@hogee/redteam",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Task 1.15 (gate G6): red-team T1-T33, the 12 scripted tasks and the 2 demos on final-1, writing evidence/<run-id>/ (P1).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "node --import tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:live": "vitest run test/suite.live.test.ts",
+    "fisco:replay": "node --import tsx src/fisco/cli.ts",
+    "fisco:anchor": "node --import tsx src/fisco/anchor.ts",
+    "fisco:sepolia-code": "node --import tsx src/fisco/sepolia-code.ts"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@hogee/agent": "workspace:*",
+    "@hogee/api": "workspace:*",
+    "@hogee/api-contract": "workspace:*",
+    "@hogee/chain": "workspace:*",
+    "@hogee/core": "workspace:*",
+    "@hogee/db": "workspace:*",
+    "@hogee/worker": "workspace:*",
+    "ai": "7.0.140",
+    "drizzle-orm": "0.45.4",
+    "hono": "4.13.13",
+    "pg": "8.23.1",
+    "tsx": "4.23.15",
+    "viem": "2.57.6",
+    "zod": "4.6.7"
+  }
+}

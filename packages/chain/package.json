@@ -1,0 +1,32 @@
+{
+  "name": "@hogee/chain",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "viem clients, generated ABIs, deployments/*.json, tx builder, nonce allocator, passkey + EIP-712 (P1).",
+  "exports": {
+    ".": "./src/index.ts",
+    "./passkey": "./src/passkey/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:live": "vitest run test/live",
+    "abi:generate": "export PATH=\"$HOME/.foundry/bin:$PATH\" && forge build --root ../../contracts && wagmi generate",
+    "abi:check": "pnpm run abi:generate && git diff --exit-code -- src/generated.ts"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@wagmi/cli": "2.10.0",
+    "esbuild": "0.28.2",
+    "fast-check": "4.10.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@hogee/core": "workspace:*",
+    "@hogee/db": "workspace:*",
+    "drizzle-orm": "0.45.4",
+    "viem": "2.57.6"
+  }
+}

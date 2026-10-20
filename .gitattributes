@@ -1,0 +1,2 @@
+# LF everywhere so generated files (data/schemas/*) compare equal on Windows checkouts.
+* text=auto eol=lf

@@ -1,0 +1,32 @@
+{
+  "sourceType": "mock",
+  "warning": "MOCK UI SAMPLE ONLY: no real transactions, valid signatures, verified rules or measured test results.",
+  "commitmentVerified": false,
+  "description": "Salted display preimages only. Copied rationaleHash values are Rina placeholders, not commitments to these preimages.",
+  "entries": [
+    {
+      "taskId": "S5",
+      "decisionId": "01a14202-2800-7c41-82f9-5b6b409789c4",
+      "rationaleHash": "0x61fefe74e03218b080324d971227e84dced95cfb8e34ea159f4bd84f7a6c9e6e",
+      "salt": "0x6e1f162e10cd63b62418738d34e71dafdd5571d85922c14e399f47f9eadfbfed",
+      "rationale": {
+        "lineKey": "SUPPLIER",
+        "amountMinor": "120000",
+        "payeeId": "supplier-a",
+        "reason": "Deposit matches the mock signed milestone schedule."
+      }
+    },
+    {
+      "taskId": "T4",
+      "decisionId": "01a14202-2800-7af7-88a1-c28fcb6b0cc8",
+      "rationaleHash": "0xfe6bfe26abcacd270a3a95a640bc03f448807b877ba6baa0b02f0d3a91710a05",
+      "salt": "0x907a7f7a1185dc60f2606287677a45f4f690b211b206f74454026cea801da96a",
+      "rationale": {
+        "lineKey": "PACKAGING",
+        "amountMinor": "40000",
+        "payeeId": "printer-kl",
+        "reason": "40000 exceeds the 37500 per-payment packaging cap; forced send reverts."
+      }
+    }
+  ]
+}

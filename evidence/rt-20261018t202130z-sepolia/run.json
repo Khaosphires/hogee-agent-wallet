@@ -1,0 +1,52 @@
+{
+  "runId": "rt-20261018t202130z-sepolia",
+  "target": "sepolia",
+  "gitCommit": "ce880b2b9982dd98e445ba6b991d0e065d4bb393",
+  "worlds": {
+    "main": {
+      "deployment": {
+        "chainId": 11155111,
+        "deploymentId": "final-1",
+        "chainTag": "sepolia",
+        "contracts": {
+          "PlanRegistry": {
+            "address": "0xf33306d0F610a2B1F72c91D175Ed5d3BfA91710a"
+          },
+          "Treasury": {
+            "address": "0x8cEF590Ec00D02A33e8AC0FF56E67f20C53C6b22"
+          },
+          "MilestoneEscrow": {
+            "address": "0xa1D1b9BeFAfF3217c08a0fE0C24b014513B176a7"
+          },
+          "SalesOracle": {
+            "address": "0x9eE722e2905aB76EaD5B10fB50B2778cc7dc152f"
+          }
+        },
+        "blockNumber": 11943074,
+        "deployedAt": "2026-10-18T19:14:12Z"
+      },
+      "facilityId": "fac-rina",
+      "signers": {
+        "agent": "0x6fA9497BE1B6C38653Ba261e00c7C0DD7e24E96a",
+        "oracle": "0x0223FA4Dc06be4c39bf7a3DF47Bd7c020F06Ed4B",
+        "lender": "0x2D0c3e04F88Aeaf427108c9A5672b6Cc3a4da497",
+        "relayer": "0x8177ED31e6C83740A09145EC5E2848257CF94dD0"
+      }
+    }
+  },
+  "exports": [
+    {
+      "world": "main",
+      "facilityId": "fac-rina",
+      "runId": "ev-fdea4bd7118e7551",
+      "path": "export/main/ev-fdea4bd7118e7551",
+      "status": "not_verified",
+      "reason": "make verify BUNDLE=export/main/ev-fdea4bd7118e7551 lists the failing checks"
+    }
+  ],
+  "toolVersions": {
+    "forge": "forge Version: 1.8.5",
+    "node": "v24.14.1"
+  },
+  "rows": 139
+}

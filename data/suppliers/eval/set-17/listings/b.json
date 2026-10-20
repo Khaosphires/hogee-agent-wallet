@@ -1,0 +1,51 @@
+{
+  "supplierId": "s17-b",
+  "displayName": "Fernpoint Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200YP482B3DX7"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-17/s17-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-17/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "760",
+      "sourceUrl": "https://example.invalid/e3/set-17/s17-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x2edffd377156f6533e7199a15fd163da7726d1beed4135d033ff74db6233b146",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 47,
+    "freightPerUnit": "100",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-792895-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.81,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7802754254",
+    "holderName": "Fernpoint Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

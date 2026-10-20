@@ -1,0 +1,6 @@
+{
+  "taskId": "T15",
+  "title": "Expired/revoked agent key (AgentExpired variant)",
+  "reason": "the AgentExpired variant needs a 60-day clock jump (Anvil only); the revoked-key variant ran in the main world",
+  "target": "sepolia"
+}

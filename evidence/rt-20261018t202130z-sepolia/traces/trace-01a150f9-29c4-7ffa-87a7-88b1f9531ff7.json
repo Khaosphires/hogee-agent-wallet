@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150f9-29c4-7ffa-87a7-88b1f9531ff7",
+    "seq": 0,
+    "ts": "2026-10-18T21:44:28.869Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T8 (Spend from the tax reserve): refused by policy, ReserveLocked; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "ReserveLocked",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x1fa2e50ca877f8427724d87c6dea19fda6f6263502ee84cf98916258a733e758"
+  }
+]

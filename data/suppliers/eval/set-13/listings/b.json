@@ -1,0 +1,57 @@
+{
+  "supplierId": "s13-b",
+  "displayName": "Sableline Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914452009ATK9G2W0M"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-13/s13-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-13/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "560",
+      "sourceUrl": "https://example.invalid/e3/set-13/s13-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x99a2a85b48a71fb806101f8c9604a1a9a47f0ff6b1edca60bf67a77eccf6a083",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 18,
+    "freightPerUnit": "110",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-060594-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-998032-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.3,
+    "responseRate": 0.92,
+    "yearsOnPlatform": 1
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7716895666",
+    "holderName": "Sableline Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

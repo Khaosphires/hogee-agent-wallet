@@ -1,0 +1,250 @@
+[
+  {
+    "llmCallId": "ad50efc3-b381-47b9-beed-0d8d4208ee70",
+    "traceId": "trace-01a15287-0642-738f-86a9-33ed86a0bfb6",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0x9f18c3eec8c84aadab5c5517aac80a5144c0a23ed72dab26da085ae87c642c21",
+    "responseHash": "0x16a7875b43bf1caf1f005433f14162bcced20a3ed75c4b5305a2b506c08f2fe8",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1821,
+    "tokens": {
+      "input": 1646,
+      "output": 282
+    },
+    "createdAt": "2026-10-19T04:59:05.146Z"
+  },
+  {
+    "llmCallId": "f8df95bd-794b-4d1d-996a-ed09ebc78060",
+    "traceId": "trace-01a15287-2011-7c7f-a3a5-996224c41ac3",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0x04d09b07da073143cc35ae45c705e8b34c76f1599e5181c14feb20f0c37cbe61",
+    "responseHash": "0xff0680f6199137e166c7b7c4f66b2b88acbda31292a1c848d529c1ba4f26bac8",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1507,
+    "tokens": {
+      "input": 1743,
+      "output": 299
+    },
+    "createdAt": "2026-10-19T04:59:11.461Z"
+  },
+  {
+    "llmCallId": "f9e84ba9-cbf4-40f3-a344-b5b528981604",
+    "traceId": "trace-01a15287-477a-7ea3-86b5-1f3ac75aa47a",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0xb2cf974dd1aca156a692ac8b15b335fab3ad292e0f3601ca37195e681f10083a",
+    "responseHash": "0xe903ef424679e882f51f70bfd455dc9f0b7ebb724e8d2c718b59a536fb507184",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1142,
+    "tokens": {
+      "input": 1825,
+      "output": 166
+    },
+    "createdAt": "2026-10-19T04:59:21.152Z"
+  },
+  {
+    "llmCallId": "296c1881-0398-4c66-a07f-27f5268cea01",
+    "traceId": "trace-01a15287-5fef-7220-b6b0-ee478e22d407",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0x1c8617c21e7f4f6b12968fbc86bb2761697ba4649dc3f883cb09514e02a48a9e",
+    "responseHash": "0xbeda1f201d378a0f1a360c1bb92b9fbfbc5636893c02ea3726532400513f0b35",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1194,
+    "tokens": {
+      "input": 1907,
+      "output": 142
+    },
+    "createdAt": "2026-10-19T04:59:27.460Z"
+  },
+  {
+    "llmCallId": "411bb299-ac64-43c0-b647-7164a4b5b8c0",
+    "traceId": "trace-01a15287-7c49-73ef-8743-badefc78a0cd",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0x00cb3e7aa3c81f18594a245fc9dbcbaa7eefd6401d94e64748fe2bc133bf8f99",
+    "responseHash": "0xcf547a15da3892d9e5ad1f3a5626ec8160adf53eecf434a8f2a7f58eddfe1033",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1830,
+    "tokens": {
+      "input": 1978,
+      "output": 277
+    },
+    "createdAt": "2026-10-19T04:59:35.356Z"
+  },
+  {
+    "llmCallId": "16290549-b8e7-4eb2-a685-522e13e791a6",
+    "traceId": "trace-01a15287-9eca-752e-924c-e873eca89f67",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0xd31e0422d5d5e3e632e67baf420c8c87a2e044ee886fd582664fc046200221f1",
+    "responseHash": "0x072d2ee9280aa867078281a719afac42fa1bc2cf541a686233e7a6b677c44b98",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1764,
+    "tokens": {
+      "input": 2042,
+      "output": 239
+    },
+    "createdAt": "2026-10-19T04:59:44.347Z"
+  },
+  {
+    "llmCallId": "5c043303-3203-4416-80aa-da6d40764f28",
+    "traceId": "trace-01a15287-9eca-752e-924c-e873eca89f67",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0xe7fe948428b564a8d56f734238069f1dd414cd86c8515bb47d6401dda4739f47",
+    "responseHash": "0x18c84415abe6dd843ededf25e378a890fe28777aa250f1d51b8d1c1dc6df3908",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 3142,
+    "tokens": {
+      "input": 2482,
+      "output": 716
+    },
+    "createdAt": "2026-10-19T04:59:47.494Z"
+  },
+  {
+    "llmCallId": "7a8c92ae-c8cd-466a-b8cd-f4959e9f3b13",
+    "traceId": "trace-01a15287-9eca-752e-924c-e873eca89f67",
+    "role": "planner",
+    "provider": "deepseek",
+    "modelId": "deepseek-flash",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096
+    },
+    "promptHash": "0x593c15f498f81590955b49ff71aa12a1b9896ca3bcfeabc762b830d80077395b",
+    "responseHash": "0x68023b910f2912705f5eb90371ed7eff9f8859ffe5720c6988d01f4284cde6a2",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1783,
+    "tokens": {
+      "input": 3666,
+      "output": 502
+    },
+    "createdAt": "2026-10-19T04:59:49.284Z"
+  }
+]

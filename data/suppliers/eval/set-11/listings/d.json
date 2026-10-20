@@ -1,0 +1,51 @@
+{
+  "supplierId": "s11-d",
+  "displayName": "Fernbay Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445200C7U7LYH260"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-11/s11-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-11/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "570",
+      "sourceUrl": "https://example.invalid/e3/set-11/s11-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xef4b0cd2c4223a588d7f732a57b7b1226350742ec31444bf6f7acec4d382d9b4",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 50,
+    "freightPerUnit": "40",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-699422-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.81,
+    "yearsOnPlatform": 15
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7596353178",
+    "holderName": "Fernbay Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150f9-68f4-77b4-ad06-5f29b1da3a7d",
+    "seq": 0,
+    "ts": "2026-10-18T21:44:45.046Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T18 (Fund the balance milestone with 280,001 (signed schedule 280,000)): worker context, refused by policy DENY AmountExceedsSchedule; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "AmountExceedsSchedule",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x3592f5d63a79ac407162a04c29eb916653ce3f0de0ff668668fa664150cb87b5"
+  }
+]

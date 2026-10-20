@@ -1,0 +1,37 @@
+{
+  "name": "hogee",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.11.2",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "prepare": "git config core.hooksPath .githooks || true",
+    "dev": "pnpm --filter @hogee/web dev",
+    "dev:live": "pnpm --filter @hogee/dev-live start",
+    "build": "pnpm -r --if-present build",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test",
+    "smoke:models": "node scripts/smoke-models.ts",
+    "validate:data": "pnpm --filter @hogee/core validate:data",
+    "test:contract": "pnpm --filter @hogee/api-contract test:contract",
+    "gen:schemas": "pnpm --filter @hogee/core gen:schemas",
+    "abi:generate": "pnpm --filter @hogee/chain abi:generate",
+    "abi:check": "pnpm --filter @hogee/chain abi:check",
+    "contracts:storage-layout": "export PATH=\"$HOME/.foundry/bin:$PATH\" && node scripts/check-storage-layout.ts",
+    "gen:schemas:check": "pnpm --filter @hogee/core gen:schemas:check"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "4.0.79",
+    "@ai-sdk/openai-compatible": "3.0.68",
+    "ai": "7.0.140",
+    "zod": "4.6.7"
+  }
+}

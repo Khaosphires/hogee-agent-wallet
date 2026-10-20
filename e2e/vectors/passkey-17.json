@@ -1,0 +1,11 @@
+{
+  "digest": "0x37f4d674e7d14ae1096145ca20a0a847f5be35fdf00f48d09f4ad49e0d6486ad",
+  "qx": "0x21a77fa8d3cd2d7b6922326821c696b485c14ee646e3a517b28021b10baf2331",
+  "qy": "0xe0e9fb57306638270c650bc181d85f74db996b8c6b863e69f51a0b93c0f44d54",
+  "r": "0xd61a8bc37ce1966550e017e08096d9e75d5a9e09484552678d7bbe1be61ac230",
+  "s": "0x470209efb59d93bec172104f81c1de149ad0beef1070726fdeb3b2651bb01487",
+  "challengeIndex": 23,
+  "typeIndex": 1,
+  "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000012",
+  "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"N_TWdOfRSuEJYUXKIKCoR_W-Nf3wD0jQn0rUng1khq0\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+}

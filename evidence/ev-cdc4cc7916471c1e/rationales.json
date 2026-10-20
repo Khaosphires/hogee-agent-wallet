@@ -1,0 +1,145 @@
+[
+  {
+    "status": "available",
+    "rationaleHash": "0x2c08ac623a65c8497e1cf7d6c54fe6aa1e469c416fdcde112f638b02793841f7",
+    "decisionId": "01a14faf-cbd1-7730-948c-4e0959c08f7c",
+    "rationale": {
+      "idx": 2,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-a-001",
+      "payeeId": "supplier-a",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "90300",
+      "autoRelease": false,
+      "planVersion": 1,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "90300"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x565a8efa86b1115454838e94c8869eef90435e9762b80eb948d28e097659bb37",
+    "decisionId": "01a14faf-cd52-76b7-a0cc-95ed26ecc746",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0xc6c8d98622a928290b9eed37fd2e75856af0e6b3d1d4c6815845d990cdee1445",
+      "proposal": {
+        "lineKey": "PLATFORM_FEES",
+        "payeeId": "shopee-sg-fees",
+        "invoiceId": "inv-rt-t4-sg-2-mvdzxqvg",
+        "amountMinor": "20000"
+      },
+      "decisionId": "01a14faf-cd52-76b7-a0cc-95ed26ecc746",
+      "reasonCode": "CapExceeded",
+      "invoiceHash": "0xe58058359151f7c3bcd4076c17d852af9e2b95cc2615ff8672772f2f1f281255",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x671843b5fd24eedfcd942e0d3150df62546e116b77ebd0a2dee0933fe87af3e8",
+    "decisionId": "01a14faf-ccea-7a5e-8d6b-3c7257e922f4",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "DENY",
+      "intentId": "0x6628cdab6b4ea0c857e1422a5de13de7c691098657d032656253e9214c240f02",
+      "proposal": {
+        "lineKey": "LOGISTICS",
+        "payeeId": "iras-tax",
+        "invoiceId": "inv-rt-t1-sg-1-mvdzxqsk",
+        "amountMinor": "5000"
+      },
+      "decisionId": "01a14faf-ccea-7a5e-8d6b-3c7257e922f4",
+      "reasonCode": "PayeeNotBound",
+      "invoiceHash": "0x67a854157b26186b247f1f6f2971516bce03609c3f9ce63a8bbbd03f0c48da99",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x68cfcf175afba8d3acdaebfb5bfe0a8f33b39a91c3db9938b9c9d41aee8c82ac",
+    "decisionId": "01a14faf-cbe3-7d71-945c-a29cef75dedd",
+    "rationale": {
+      "kind": "PACING_SLOT",
+      "lineKey": "ADS",
+      "payeeId": "shopee-sg-ads",
+      "verdict": "AUTO",
+      "chainDay": 20744,
+      "pacingSlot": 1,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "7500",
+      "planVersion": 1
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0x7101f365f6ddc3a5fa0ec115518a59a1838e1b6a02535f29f97172eb76837deb",
+    "decisionId": "01a14faf-cbcb-7ad9-9d1f-62262396b19e",
+    "rationale": {
+      "idx": 1,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-a-001",
+      "payeeId": "supplier-a",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "38700",
+      "autoRelease": true,
+      "planVersion": 1,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "38700"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0xc562c0c370cad60a948018588ad4cd540e56daf528e45071afc551278dc56764",
+    "decisionId": "01a14faf-cbc2-7005-9c61-9fba49c74845",
+    "rationale": {
+      "idx": 0,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-a-001",
+      "payeeId": "supplier-a",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "9600",
+      "autoRelease": true,
+      "planVersion": 1,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "9600"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0xd172f8dda6d928225eb42ea02693ac3bd1b96ea26796797667132c478f7cd803",
+    "decisionId": "01a14faf-ce5b-7cef-8ad1-f612fb9eba46",
+    "rationale": {
+      "kind": "SPEND_PROPOSAL",
+      "verdict": "AUTO",
+      "intentId": "0xe495a037b8bba150ead5fbcf4659a2cb9b3638b038c7a1a45d3af86187a5f67e",
+      "proposal": {
+        "lineKey": "PLATFORM_FEES",
+        "payeeId": "shopee-sg-fees",
+        "invoiceId": "inv-rt-plug-3-mvdzxr2r",
+        "amountMinor": "5000"
+      },
+      "decisionId": "01a14faf-ce5b-7cef-8ad1-f612fb9eba46",
+      "reasonCode": "WITHIN_PLAN",
+      "invoiceHash": "0x5fd0facc3313d7a8451bd2814a781d60c123db7d372e77fed02ea251f382abed",
+      "planVersion": 1
+    },
+    "salt": null
+  }
+]

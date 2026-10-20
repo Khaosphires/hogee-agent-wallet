@@ -1,0 +1,192 @@
+[
+  {
+    "exceptionId": "exception-open",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "OPEN",
+    "timelock": null,
+    "txs": {},
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-OPEN"
+  },
+  {
+    "exceptionId": "exception-founder_signed",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "FOUNDER_SIGNED",
+    "timelock": null,
+    "txs": {},
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-FOUNDER_SIGNED"
+  },
+  {
+    "exceptionId": "exception-approved",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "APPROVED",
+    "timelock": null,
+    "txs": {},
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-APPROVED"
+  },
+  {
+    "exceptionId": "exception-queued",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "QUEUED",
+    "timelock": {
+      "queuedAt": "1792497540",
+      "executableAt": "1792497660"
+    },
+    "txs": {
+      "queue": "0xe4436c970299e6f4112cea7238364bfc71eecd2f9e280ec3288e6bb3344f2107"
+    },
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-QUEUED"
+  },
+  {
+    "exceptionId": "exception-executable",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "EXECUTABLE",
+    "timelock": {
+      "queuedAt": "1792497300",
+      "executableAt": "1792497420"
+    },
+    "txs": {
+      "queue": "0x214e9471d3c9e8ce70b88e551a3bc8eeb3d6a0f583b77a5c7c9917f16b9098e3"
+    },
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-EXECUTABLE"
+  },
+  {
+    "exceptionId": "exception-executed",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "EXECUTED",
+    "timelock": {
+      "queuedAt": "1792497300",
+      "executableAt": "1792497420"
+    },
+    "txs": {
+      "queue": "0x171021f0d3fea1a57c825377532f5a42c7ee79752eb7cbcc2fc25d0fde4bde42",
+      "execute": "0x720a1178c5ca253def5db21166ca9dcf1c7f08f04a7ff5a48ccc166b9185c086"
+    },
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-EXECUTED"
+  },
+  {
+    "exceptionId": "exception-denied",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "DENIED",
+    "timelock": null,
+    "txs": {},
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-DENIED"
+  },
+  {
+    "exceptionId": "exception-cancelled",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "CANCELLED",
+    "timelock": {
+      "queuedAt": "1792497300",
+      "executableAt": "1792497420"
+    },
+    "txs": {
+      "queue": "0x74df610d7467613ea1de3d249b3fed3c74af43ab5b9f7186ce8ba7c5e95d0024"
+    },
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-CANCELLED"
+  },
+  {
+    "exceptionId": "exception-expired",
+    "kind": "UNPAUSE",
+    "title": "Turn automatic payments back on",
+    "payload": {},
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": true
+    },
+    "status": "EXPIRED",
+    "timelock": {
+      "queuedAt": "1792497300",
+      "executableAt": "1792497420"
+    },
+    "txs": {
+      "queue": "0xc26691b675f0f3d356c1c7a4291345e99b98ee5e72325b14b4ce059c90b9c095"
+    },
+    "blastRadiusMinor": "400000",
+    "traceId": "trace-exception-EXPIRED"
+  },
+  {
+    "exceptionId": "exception-balance",
+    "kind": "RELEASE_ESCROW_BALANCE",
+    "title": "Pay the balance to Brightwave Drinkware Co., Ltd.",
+    "payload": {
+      "orderId": "order-a-001",
+      "idx": 2,
+      "evidenceHash": "0xe4b71b2cc4208790e989724df35ad941dfa5a79051f6464074ad71f423b8d05d"
+    },
+    "requestedBy": "founder",
+    "requires": {
+      "founder": true,
+      "lender": false
+    },
+    "status": "OPEN",
+    "timelock": null,
+    "txs": {},
+    "blastRadiusMinor": "280000",
+    "traceId": "trace-exception-balance"
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "supplierId": "s11-a",
+  "displayName": "Umberpoint Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-11/s11-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-11/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "790",
+      "sourceUrl": "https://example.invalid/e3/set-11/s11-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xb3fd0ba7f5782698fc3d31174f77e46e92066244949bdfb79a36aec362d3c5c0",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 40,
+    "freightPerUnit": "60",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-029263-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-444000-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.4,
+    "responseRate": 0.73,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7064437451",
+    "holderName": "Umberpoint Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

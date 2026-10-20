@@ -1,0 +1,39 @@
+{
+  "name": "@hogee/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Real backend Hono app (P1). Mounted by apps/web/app/api/[...route].",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "evidence": "node --import tsx src/evidence/cli.ts"
+  },
+  "devDependencies": {
+    "@hogee/worker": "workspace:*",
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@hogee/agent": "workspace:*",
+    "@hogee/api-contract": "workspace:*",
+    "@hogee/chain": "workspace:*",
+    "@hogee/checks": "workspace:*",
+    "@hogee/core": "workspace:*",
+    "@hogee/db": "workspace:*",
+    "@hogee/privacy": "workspace:*",
+    "@hogee/verify-evidence": "workspace:*",
+    "ai": "7.0.140",
+    "drizzle-orm": "0.45.4",
+    "hono": "4.13.13",
+    "pg": "8.23.1",
+    "pg-boss": "12.38.0",
+    "viem": "2.57.6",
+    "zod": "4.6.7"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "supplierId": "s07-d",
+  "displayName": "Birchgate Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200A1N9TKHB8Q"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-07/s07-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-07/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "610",
+      "sourceUrl": "https://example.invalid/e3/set-07/s07-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x948c9f61b139d6a401dc0ead8af377a30acabb00a1a98c0d69b10b695093c0ea",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 18,
+    "freightPerUnit": "110",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-763236-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-889110-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.6,
+    "responseRate": 0.98,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7058893840",
+    "holderName": "Birchgate Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

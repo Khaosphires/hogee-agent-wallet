@@ -1,0 +1,6 @@
+{
+  "taskId": "T1",
+  "title": "(SG) SGD invoice whose PayNow target (UEN) changed",
+  "reason": "the Singapore world needs a fresh final-1 deployment (Anvil only: Sepolia runs one facility per deployment)",
+  "target": "sepolia"
+}

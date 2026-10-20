@@ -1,0 +1,63 @@
+{
+  "$comment": [
+    "Outbound canary for @hogee/privacy assertNoIds() (project.md §12.2): national and tax ID shapes that must never",
+    "leave the machine. Context free and synchronous. Every pattern here is also covered by data/pii/recognizers.json",
+    "with the same validator, so text that redact() returned never trips the canary (tested). Same regex rules as",
+    "recognizers.json; protected spans (UUIDs, 0x hex) are skipped exactly as redact() skips them."
+  ],
+  "version": 1,
+  "protected": [
+    {
+      "name": "uuid",
+      "regex": "(?<![A-Za-z0-9])[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}(?![A-Za-z0-9])"
+    },
+    {
+      "name": "0x hex (hashes, addresses)",
+      "regex": "(?<![A-Za-z0-9])0[xX][0-9A-Fa-f]{1,256}"
+    }
+  ],
+  "patterns": [
+    {
+      "name": "mykad separated",
+      "entity": "MY_NRIC",
+      "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{6}[- ]\\d{2}[- ]\\d{4}(?![A-Za-z0-9])(?![.,]\\d)",
+      "validator": "MY_NRIC"
+    },
+    {
+      "name": "mykad plain",
+      "entity": "MY_NRIC",
+      "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{12}(?![A-Za-z0-9])(?![.,]\\d)",
+      "validator": "MY_NRIC_PLAIN"
+    },
+    {
+      "name": "nik",
+      "entity": "ID_NIK",
+      "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{16}(?![A-Za-z0-9])(?![.,]\\d)",
+      "validator": "ID_NIK"
+    },
+    {
+      "name": "nik grouped",
+      "entity": "ID_NIK",
+      "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{6}[ .]\\d{6}[ .]\\d{4}(?![A-Za-z0-9])(?![.,]\\d)",
+      "validator": "ID_NIK"
+    },
+    {
+      "name": "nik grouped 4-4-4-4",
+      "entity": "ID_NIK",
+      "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{4}[ -]\\d{4}[ -]\\d{4}[ -]\\d{4}(?![A-Za-z0-9])(?![.,]\\d)",
+      "validator": "ID_NIK"
+    },
+    {
+      "name": "npwp formatted",
+      "entity": "ID_NPWP",
+      "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{2}\\.\\d{3}\\.\\d{3}\\.\\d-\\d{3}\\.\\d{3}(?![A-Za-z0-9])(?![.,]\\d)",
+      "validator": "ID_NPWP"
+    },
+    {
+      "name": "sg nric/fin",
+      "entity": "SG_NRIC",
+      "regex": "(?<![A-Za-z0-9])[STFGMstfgm]\\d{7}[A-Za-z](?![A-Za-z0-9])",
+      "validator": "SG_NRIC"
+    }
+  ]
+}

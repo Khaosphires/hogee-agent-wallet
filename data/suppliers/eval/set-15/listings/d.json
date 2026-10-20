@@ -1,0 +1,51 @@
+{
+  "supplierId": "s15-d",
+  "displayName": "Ivorypeak Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "9135020086NG9DLEXW"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-15/s15-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-15/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "620",
+      "sourceUrl": "https://example.invalid/e3/set-15/s15-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xff6f6ff17bc2e670856fa2455893f3e7880e29b9f037a9b7b90e414076b512c8",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 24,
+    "freightPerUnit": "70",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-851523-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.4,
+    "responseRate": 0.79,
+    "yearsOnPlatform": 8
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7401880743",
+    "holderName": "Ivorypeak Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

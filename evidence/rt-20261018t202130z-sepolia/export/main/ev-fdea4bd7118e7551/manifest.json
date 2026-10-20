@@ -1,0 +1,32 @@
+{
+  "runId": "ev-fdea4bd7118e7551",
+  "gitCommit": "ce880b2b9982dd98e445ba6b991d0e065d4bb393",
+  "deployments": {
+    "final-1": {
+      "chainId": 11155111,
+      "contracts": {
+        "PlanRegistry": {
+          "address": "0xf33306d0f610a2b1f72c91d175ed5d3bfa91710a",
+          "verifiedUrl": "https://sepolia.etherscan.io/address/0xf33306d0f610a2b1f72c91d175ed5d3bfa91710a#code"
+        },
+        "Treasury": {
+          "address": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+          "verifiedUrl": "https://sepolia.etherscan.io/address/0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22#code"
+        },
+        "MilestoneEscrow": {
+          "address": "0xa1d1b9befaff3217c08a0fe0c24b014513b176a7",
+          "verifiedUrl": "https://sepolia.etherscan.io/address/0xa1d1b9befaff3217c08a0fe0c24b014513b176a7#code"
+        },
+        "SalesOracle": {
+          "address": "0x9ee722e2905ab76ead5b10fb50b2778cc7dc152f",
+          "verifiedUrl": "https://sepolia.etherscan.io/address/0x9ee722e2905ab76ead5b10fb50b2778cc7dc152f#code"
+        }
+      }
+    }
+  },
+  "toolVersions": {
+    "exporter": "hogee-evidence-export/1",
+    "bundleFormat": "hogee.evidence/1",
+    "node": "v24.14.1"
+  }
+}

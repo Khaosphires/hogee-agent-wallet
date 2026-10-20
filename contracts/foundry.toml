@@ -1,0 +1,37 @@
+# project.md §6.1 / D15: solc pinned >= 0.8.24, evm_version "cancun", OpenZeppelin pinned >= 5.5.
+# Dependencies are restored with `forge soldeer install` (no git submodules).
+[profile.default]
+src = "src"
+test = "test"
+script = "script"
+out = "out"
+libs = ["dependencies"]
+solc_version = "0.8.37"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+remappings = [
+  "@openzeppelin/contracts/=dependencies/@openzeppelin-contracts-5.7.0/",
+  "forge-std/=dependencies/forge-std-1.17.0/src/",
+]
+# test/PasskeyVectors.t.sol reads P2's browser vectors (task 1.9, G3) where P2 commits them, e2e/vectors (G2: no copy
+# under contracts/ any more). Read-only, that folder only.
+fs_permissions = [{ access = "read", path = "../e2e/vectors" }]
+
+[profile.default.fuzz]
+runs = 256
+
+[profile.ci.fuzz]
+runs = 1000
+
+# Toolchain canary only: OZ uses mcopy, so this profile is EXPECTED to fail to compile.
+[profile.paris]
+evm_version = "paris"
+
+[dependencies]
+"@openzeppelin-contracts" = "5.7.0"
+forge-std = "1.17.0"
+
+[soldeer]
+remappings_generate = false
+remappings_regenerate = false

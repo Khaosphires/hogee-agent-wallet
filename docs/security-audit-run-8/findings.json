@@ -1,0 +1,652 @@
+[
+  {
+    "verdict": "rejected",
+    "fingerprint": "api-mock:exceptions:officerApprove:founder-signed-without-recorded-signer",
+    "title": "Mock officer approval queues the seeded FOUNDER_SIGNED status-gallery unpause with no in-process founder signature",
+    "description": "In the mock (MOCK_API=1), POST /api/exceptions/:id/approve with a verified officer cookie runs officerApprove. The recorded-signer re-check (staleFounderSignature) only fires when founderCredentialId is set. The owner-authored fixture record exception-founder_signed (UNPAUSE, payload {}, status FOUNDER_SIGNED) is seeded with only { exception } and no credential, and remapIds keeps its id in the default SG demo. So the officer's approval queues it (queuedByMock=true). After the 120 s demo timelock plus the executor delay, the next request's advance() executes it and sets the simulated balances.paused=false. The live API refuses the same transition without a parked founder-signed Treasury.queueLoosen action. The source trace is accurate, but the effect gives no principal anything it lacks. The only actor is the officer, which needs a cookie whose MAC is bound to OFFICER_TOKEN. The record's founder half is owner fixture data, not caller input. The effect is one boolean on the in-process simulated ledger, with no key, worker, chain or rail involved. Any caller can undo it at once, because pause and veto have no persona gate. With DEMO_MODE=1, the officer can already restore paused=false with no timelock through POST /api/demo/reset.",
+    "claimed_root_cause": "exceptions.ts staleFounderSignature takes `founderCredentialId === undefined` to mean a wallet signature with nothing to re-check. A seeded FOUNDER_SIGNED fixture record also has no credential, and the mock never verified a signature for it. officerApprove then queues any FOUNDER_SIGNED timelock kind.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api-mock/src/handlers-ops.ts",
+        "line": 74,
+        "scope": "opsHandlers.approveException",
+        "description": "POST /api/exceptions/exception-founder_signed/approve. The officer branch (lines 77-78) is taken only when personaOf (http.ts:53-58) verifies an officer cookie whose MAC is bound to OFFICER_TOKEN. Anonymous or founder callers get the founder branch (SIGNATURE_REQUIRED)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api-mock/src/exceptions.ts",
+        "line": 165,
+        "scope": "staleFounderSignature",
+        "description": "Returns undefined because the seeded record has no founderCredentialId (store.ts:164 seeds { exception } only). The recorded-signer re-check is skipped."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api-mock/src/exceptions.ts",
+        "line": 187,
+        "scope": "officerApprove",
+        "description": "UNPAUSE is a timelock kind and the status is FOUNDER_SIGNED, so queueLoosen runs. It sets QUEUED, the timelock and queuedByMock=true (line 119)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api-mock/src/http.ts",
+        "line": 116,
+        "scope": "register -> advance(st)",
+        "description": "Every request runs advance(st) before its handler, which drives advanceExceptions."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api-mock/src/transitions.ts",
+        "line": 212,
+        "scope": "advanceExceptions",
+        "description": "A queuedByMock record becomes EXECUTABLE at executableAt (line 192), then EXECUTED after EXECUTOR_DELAY_MS, and applyExceptionEffects runs (line 213). Only WITHDRAW_RESERVE is re-checked (line 195)."
+      },
+      {
+        "kind": "sink",
+        "file": "packages/api-mock/src/effects.ts",
+        "line": 28,
+        "scope": "applyExceptionEffects UNPAUSE",
+        "description": "The payload has no lineKey, so the in-process simulated st.balances.paused is set to false. Its only consumers are mock spend checks and the demo autonomy loop (spend-policy.ts:22, transitions.ts:244)."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "fixtures/scenario-rina/exceptions.json",
+        "line": 28,
+        "description": "The owner-authored status-gallery record exception-founder_signed (from line 19): UNPAUSE, payload {}, requires founder+lender, status FOUNDER_SIGNED."
+      },
+      {
+        "file": "packages/api-mock/src/scenario-mei.ts",
+        "line": 185,
+        "description": "The SG (default) demo loads Rina's exceptions through remapIds. The id has no 'rina' token, so the record exists in both countries."
+      },
+      {
+        "file": "packages/api-mock/src/store.ts",
+        "line": 164,
+        "description": "Seeded exceptions are stored as { exception } only, so founderCredentialId is undefined, the value documented at line 64 for a wallet signature."
+      },
+      {
+        "file": "packages/api-mock/src/signing.ts",
+        "line": 327,
+        "description": "In-process, FOUNDER_SIGNED is reached only after signatureProblem verifies a passkey or ECDSA signature (lines 283-296). Seeded records bypass this by design."
+      },
+      {
+        "file": "packages/api/src/routes/exceptions.ts",
+        "line": 85,
+        "description": "Live refuses an officer approval of a FOUNDER_SIGNED loosening with CONFLICT ('The founder's signed request is missing') when no Treasury.queueLoosen action is parked (lookup at line 84). This is a mock/live parity difference only."
+      },
+      {
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 255,
+        "description": "pause (and vetoException, line 245) declares no personas. Any caller, including the accepted anonymous founder, can veto the queued unpause, or re-pause at once. A mock pause cancels QUEUED/EXECUTABLE records (handlers-ops.ts:131-132)."
+      },
+      {
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 328,
+        "description": "demoReset is officer-only and demoOnly. Under DEMO_MODE=1 it rebuilds the state from the fixtures, whose balances.paused is false (fixtures/scenario-rina/balances.json:86). The officer can already end a pause instantly, with no timelock."
+      },
+      {
+        "file": "packages/api-mock/src/exceptions.ts",
+        "line": 150,
+        "description": "The reverse case is built the same way. A founder signature on the seeded APPROVED unpause (exception-approved) queues it against a fixture-asserted officer approval. Gallery records are half-completed 2-of-2 states that can be acted on in both directions."
+      },
+      {
+        "file": "packages/api-mock/README.md",
+        "line": 52,
+        "description": "'Seeded fixture records never move' sits in the scripted-transitions bullet (lines 49-52) and refers to the lazy timers. Explicit approve, deny and sign actions do move seeded records. Lines 63-66 scope the recorded-signer re-check to a passkey that was rejected or replaced, which a seeded record never had."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 196,
+        "description": "On-chain, a founder-signed UNPAUSE that is co-signed during a pause is the designed way to end it. Only the absence of a real founder signature on the fixture differs from the chain."
+      },
+      {
+        "file": "apps/web/lib/exception-copy.ts",
+        "line": 40,
+        "description": "The officer console groups FOUNDER_SIGNED under 'needs-decision', so the seeded record is shown to the officer as awaiting an approve or deny decision."
+      }
+    ],
+    "reason": "No meaningful impact. The source trace is accurate, but it crosses no trust boundary that a lower-trust principal can reach. (1) Only a verified officer cookie, bound to OFFICER_TOKEN, takes the officer branch. Anonymous and founder callers cannot approve. (2) The founder half of the 2-of-2 is an owner-authored status-gallery fixture, not attacker-controlled data. The officer cannot create, edit or choose the payload of a FOUNDER_SIGNED record. The same gallery lets the founder complete the seeded APPROVED record against a fixture-asserted officer approval, so the fixtures are deliberately half-signed. (3) The effect is one boolean on the in-process mock ledger. It touches no key, worker, chain, payout rail or real funds, and no data is disclosed. (4) It is weaker than what the officer already holds and is reversible by anyone. It waits a 120 s timelock in which any caller may veto, and any caller's pause cancels it while queued or ends it after execution. With DEMO_MODE=1, the officer-only demoReset restores paused=false instantly anyway. (5) The new re-check works as documented (README 63-66): it voids passkey signatures whose key was rejected or replaced. README:52 concerns lazy timers, not actions. What remains is a low-value mock/live parity gap. A tidy-up, recording the signer kind on FOUNDER_SIGNED and refusing officer approval of a seeded record with no recorded signer, is optional hardening, not a security finding."
+  },
+  {
+    "verdict": "rejected",
+    "fingerprint": "packages/api/src/services/shortlist.ts:candidateOf:sanctions-screens-displayName-not-payout-holder",
+    "title": "Sanctions gate screens the supplier's display name but not the payout account holder the escrow pays",
+    "description": "candidateOf screens only Supplier.displayName against the UN SC list. Supplier.xenditTest.holderName is part of the payoutAccountHash preimage and is shown and signed in SupplierApproval, and it is never screened. The candidate claims that a supplier record with a clean display name and a UN-listed holder name passes the SANCTIONS hard gate, so the founder could approve escrow payouts to a listed beneficiary. The code does behave this way. But no principal below the repo author or operator can set holderName, and every catalog payout account is MOCK_ONLY, which the worker always pays on MockRail. No trust boundary is crossed and nothing is paid.",
+    "claimed_root_cause": "candidateOf (packages/api/src/services/shortlist.ts:42) passes only s.displayName to screenSanctions, so the beneficiary identity that SupplierApproval binds (holderName in payoutAccountPreimage) has no screening control.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 199,
+        "scope": "supplierRoutes.shortlistSuppliers",
+        "description": "Founder-persona shortlist start. The caller supplies only a ShortlistSpec; supplier records come from the server's file catalog"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 42,
+        "scope": "candidateOf",
+        "description": "screenSanctions(s.displayName) only; xenditTest.holderName is not screened"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/core/src/scorer/criteria.ts",
+        "line": 116,
+        "scope": "evaluateGates",
+        "description": "SANCTIONS: !c.sanctionsHit, so the gate passes on the display-name result alone"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/core/src/scorer/shortlist.ts",
+        "line": 141,
+        "scope": "toRanked",
+        "description": "payoutAccountHash(sup.xenditTest) binds the unscreened holderName into the ranked candidate"
+      },
+      {
+        "kind": "sink",
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 80,
+        "scope": "planOrder",
+        "description": "The account, including holderName, is built from the stored record, shown to the founder (line 125) and its hash signed as the escrow payout destination (fieldsOf, line 104)"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/core/src/schemas/supplier.ts",
+        "line": 71,
+        "description": "xenditTest {channel, accountNumber, holderName} is a separate supplier-record field from displayName"
+      },
+      {
+        "file": "packages/core/src/schemas/supplier.ts",
+        "line": 80,
+        "description": "payoutAccountPreimage includes holderName, so the beneficiary is part of what the founder signs"
+      },
+      {
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 42,
+        "description": "Only displayName reaches screenSanctions (the trace is real)"
+      },
+      {
+        "file": "packages/core/src/schemas/supplier.ts",
+        "line": 201,
+        "description": "ShortlistSpec is the caller's only input to the shortlist: {productCategory, buyFrom, quantity, budgetMinor}. It has no supplier-record or payee field, so the entrypoint's principal cannot choose holderName"
+      },
+      {
+        "file": "packages/api/src/runtime/catalog.ts",
+        "line": 58,
+        "description": "Supplier records are loaded only from data/suppliers/demo/*.json under the operator-configured data directory and validated with the frozen Supplier schema; computeShortlist (shortlist.ts:151) takes its suppliers only from this catalog"
+      },
+      {
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 73,
+        "description": "storeSuppliers, called only with those catalog fixtures, is the only writer of suppliers.record_json in API or worker source (outside tests). No route, agent tool or upload writes a supplier record or its xenditTest, so planOrder reads holderName that only the repo or operator wrote"
+      },
+      {
+        "file": "data/suppliers/demo/F.json",
+        "line": 48,
+        "description": "The sanctions test row's holderName is a placeholder. All nine demo supplier records (A-I) use payout channel MOCK_ONLY with a 'DO NOT PAY' holder"
+      },
+      {
+        "file": "apps/worker/src/rail/channels.ts",
+        "line": 45,
+        "description": "MOCK_ONLY is always paid on MockRail, and the router (route.ts:60-65) refuses unknown channels. No catalog supplier payout can reach Xendit or move real funds"
+      },
+      {
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 125,
+        "description": "The 'Pays out to' row shows holderName to the founder before signing, so the beneficiary is not hidden from the signer"
+      }
+    ],
+    "reason": "Source refutes the attack: no lower-trust principal reaches the claimed sink. The only entrypoint's caller (the founder persona) supplies a ShortlistSpec of category, origin, quantity and budget. Every Supplier record, including xenditTest.holderName, is loaded only from repo files in data/suppliers/demo (runtime/catalog.ts:58) and stored only by storeSuppliers (shortlist.ts:73). No API route, agent tool or upload writes supplier records. Planting a UN-listed holderName therefore needs the same repo or operator control that could equally edit displayName, the sanctions list or the gate itself, so no trust boundary is crossed. The hunter's second blocker asks whether a supplier-written source exists, and source answers it: none exists. The first blocker (no execution) is not decisive, because the gap is plain in source and the real question is reachability, which source settles. Impact is also nil in this system: every catalog payout account uses channel MOCK_ONLY, which the worker always pays on MockRail (channels.ts:45). SG payouts are simulated by accepted design, and the founder sees the holder name on the approval card (supplier-approval.ts:125). The remaining point is a hardening note for any future live supplier ingestion: screen every name the payment binds (displayName and xenditTest.holderName) and fail the SANCTIONS gate on any hit. It is not a vulnerability at commit 503cc08. All trace and evidence line numbers were checked against source and are accurate."
+  },
+  {
+    "verdict": "rejected",
+    "fingerprint": "packages/api/src/services/shortlist.ts:candidateOf:server-country-pack-vs-facility-currency-unchecked",
+    "title": "Shortlist prices with the server country's pack against the facility row's currency without the compile path's country cross-check",
+    "description": "Source confirms the gap. startShortlist reads the facility through requireFacility, which does no country check. candidateOf takes the country pack from deps.config.countryCode (HOGEE_COUNTRY) and converts into facility.currency. Nothing compares the two, unlike compileEnv's requireServerCountry (SG-DESIGN fail-open 3). If the facility row was opened under one country and the server later runs under the other, the READY shortlist's landed cost uses the other country's duty route and import-tax rate. Examples: an SG server over an MYR facility prices CN goods as SG MFN 0% plus 9% GST instead of MY Form E plus 10% sales tax. An MY server over an SGD facility prices CN goods through Form E, including a category the SG pack would fail closed. The domestic EXEMPT route also follows the server pack's country. SupplierApproval.planOrder later derives the founder-signed milestone schedule and quoteHash from that landed cost. Reaching the state takes an operator change, not a caller: openFacility writes the facility currency and founder country from the server country. The default tenant ids also follow HOGEE_COUNTRY. So the mismatch needs a database row opened under one country, HOGEE_FACILITY_ID pinned to that tenant, and HOGEE_COUNTRY changed or left to the new SG default afterwards. Passkey signing also needs HOGEE_FOUNDER_ID pinned to that tenant's founder. The supported tooling (dev-live, red-team) sets country and tenant together. The effect is a mispriced amount that the founder is shown and signs. It stays inside the founder's own escrow-only SUPPLIER pocket. The payout destination binding and the on-chain policy are unchanged.",
+    "claimed_root_cause": "requireServerCountry (packages/api/src/services/compile.ts:111-118) runs only inside compileEnv. The shortlist build (packages/api/src/routes/suppliers.ts:54,62; packages/api/src/services/shortlist.ts:30-41) combines deps.config.countryCode's pack with facility.currency and never compares them.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 199,
+        "scope": "supplierRoutes.shortlistSuppliers",
+        "description": "Shortlist route handler: the founder persona (anonymous by demo design) passes req.body.spec to startShortlist"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 54,
+        "scope": "startShortlist",
+        "description": "requireFacility returns the facility row with no server-country or currency check"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 62,
+        "scope": "startShortlist",
+        "description": "computeShortlist is called with facility.currency"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 152,
+        "scope": "computeShortlist",
+        "description": "rankFixtures receives the facility currency for every fixture matching spec.buyFrom"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 30,
+        "scope": "candidateOf",
+        "description": "The pack is chosen by deps.config.countryCode (the server's HOGEE_COUNTRY)"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 31,
+        "scope": "candidateOf",
+        "description": "The FX quote is offer currency into the facility row's currency"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 33,
+        "scope": "candidateOf",
+        "description": "landedCostFromPack applies the server pack's duty route and import-tax rate to amounts in the facility currency"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 70,
+        "scope": "startShortlist",
+        "description": "The shortlist with these landed costs is stored as READY for the facility"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 64,
+        "scope": "planOrder",
+        "description": "SupplierApproval reads the newest READY shortlist and the chosen candidate"
+      },
+      {
+        "kind": "sink",
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 75,
+        "scope": "planOrder",
+        "description": "The founder-signed milestone schedule comes from candidate.landedCost.totalMinor; quoteHash (line 96) also commits to that landedCost"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api/src/services/compile.ts",
+        "line": 116,
+        "description": "Baseline control: the compile path refuses (409) when the server country or currency differs from the founder country or facility currency. The shortlist path has no equivalent"
+      },
+      {
+        "file": "packages/api/src/services/compile.ts",
+        "line": 125,
+        "description": "compileEnv runs the cross-check. In the mismatched state every compile or replan returns 409, so the misconfiguration is visible to the operator"
+      },
+      {
+        "file": "packages/api/src/services/facility.ts",
+        "line": 42,
+        "description": "requireFacility, used by the shortlist, checks only that the facility row exists"
+      },
+      {
+        "file": "packages/api/src/routes/facility.ts",
+        "line": 73,
+        "description": "openFacility takes the currency, founder country and payees from the server country (countrySet, lines 32-35) and writes them at lines 80-88. A row and a server disagree only if the env changes after the row exists"
+      },
+      {
+        "file": "packages/api/src/runtime/env.ts",
+        "line": 29,
+        "description": "DEFAULT_COUNTRY is now SG"
+      },
+      {
+        "file": "packages/api/src/runtime/env.ts",
+        "line": 189,
+        "description": "HOGEE_FACILITY_ID overrides the tenant; unset, the tenant follows the country (DEFAULT_TENANT, lines 35-39 and 174), so the SG default alone moves to Mei's facility, not Rina's"
+      },
+      {
+        "file": "packages/api/src/routes/signatures.ts",
+        "line": 232,
+        "description": "Passkey signing reads the scope's founder row, so a signed SupplierApproval in the mismatched state also needs HOGEE_FOUNDER_ID pinned to the other country's founder (or the ECDSA wallet path)"
+      },
+      {
+        "file": "scripts/dev-live/src/config.ts",
+        "line": 150,
+        "description": "Supported local tooling sets HOGEE_COUNTRY, HOGEE_FACILITY_ID and HOGEE_FOUNDER_ID together"
+      },
+      {
+        "file": "scripts/redteam/src/run.ts",
+        "line": 149,
+        "description": "The red-team runner passes each world's country explicitly together with its tenant"
+      },
+      {
+        "file": "packages/api/src/services/policy-context.ts",
+        "line": 209,
+        "description": "planOrder needs a committed plan, which compileEnv only produces while the server country matches the facility"
+      },
+      {
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 43,
+        "description": "The goods value is min(landed cost, 80% of the SUPPLIER allocation), so a mispriced landed cost cannot raise the schedule above the founder's pocket share"
+      },
+      {
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 78,
+        "description": "The schedule must fit the free SUPPLIER pocket, or planOrder refuses"
+      },
+      {
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 82,
+        "description": "The payout destination binding (payoutAccountHash re-derived from the stored record) does not depend on the price"
+      },
+      {
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 127,
+        "description": "The founder is shown each milestone amount before signing; finalize (line 140) re-plans and requires an exact match with the signed fields"
+      },
+      {
+        "file": "packages/core/src/landed-cost/index.ts",
+        "line": 127,
+        "description": "The EXEMPT (domestic) route is decided against the pack's countryCode, so under a mismatch the domestic or import route also follows the server pack"
+      },
+      {
+        "file": "data/country-packs/SG.json",
+        "line": 192,
+        "description": "SG import tax (GST) is 900 bps; ftaCertificates is empty at line 243; per-category MFN rates are at line 244"
+      },
+      {
+        "file": "data/country-packs/MY.json",
+        "line": 86,
+        "description": "MY import (sales) tax is 1000 bps; the CN Form E certificate is at line 141"
+      },
+      {
+        "file": "docs/decisions/w2-api-b.md",
+        "line": 20,
+        "description": "The team records that the shortlist mixes the server pack with the facility currency, calls it the same root as fail-open 3, and leaves it unchanged"
+      }
+    ],
+    "reason": "The trace is real, but it does not lead to a meaningful security impact. (1) No caller can create the precondition. openFacility writes the facility currency and founder country from the server country, and the default tenant ids follow HOGEE_COUNTRY. A mismatch therefore needs the operator to pin HOGEE_FACILITY_ID, and HOGEE_FOUNDER_ID for passkey signing, to a tenant opened under the other country, and then change or un-set HOGEE_COUNTRY. The supported dev-live and red-team tooling always set country and tenant together, and every compile or replan in that state already returns 409. (2) The result is bounded and stays with the same principal. The mispriced landed cost reaches only the founder's own SupplierApproval. Its goods value is capped at 80% of the SUPPLIER allocation and must fit the free escrow-only pocket. The founder is shown each milestone amount, and finalize requires the signed fields to match a fresh re-plan exactly. The payout destination stays bound to the stored supplier record. The on-chain policy, lender controls and rail checks are untouched. No unauthorized action, disclosure, cross-principal effect or real-funds movement results. Under the project's own calibration, operator configuration matters only with a concrete effect on real keys, real funds or a shared deployment, and none of these applies. What remains is a correctness and hardening gap that the team has already logged (docs/decisions/w2-api-b.md:20-23). Recommended hardening, not a finding: call the compile path's requireServerCountry (or a pack.countryCode/currencyFor(...) === facility.currency guard) from startShortlist and planOrder, and update supplier-demo-catalog.test.ts, which prices SGD against the MY test pack on purpose."
+  },
+  {
+    "verdict": "rejected",
+    "fingerprint": "packages/checks/src/sanctions.ts:nameTokens:no-confusable-or-invisible-letter-fold",
+    "title": "Sanctions screening misses UN-listed names written with Unicode look-alike or invisible filler letters",
+    "description": "screenSanctions normalises with NFKD, mark stripping, a nine-letter fold and removal of format characters, then looks up two exact keys. It has no confusables skeleton and does not strip default-ignorable letters, so a display name that spells a listed entity with a Cyrillic or Greek look-alike (e.g. U+041E in CORPORATION) or a Hangul filler (U+3164/U+FFA0 NFKD to U+1160, category Lo) yields different keys and hit:false. The normaliser gap is real in source. It is rejected as a vulnerability: no lower-trust party writes Supplier.displayName in any source-visible path, and the screen is exact-match by documented design. Under that design, any visible variation of a listed name, such as an extra word, an abbreviation or a typo, already returns hit:false. Look-alike or filler letters therefore give a name-controlling party nothing it does not already have.",
+    "claimed_root_cause": "nameTokens (packages/checks/src/sanctions.ts:23-27) applies no Latin look-alike mapping, and DROPPED (line 20) removes only \\p{Cf} and a few apostrophe/transliteration marks, not default-ignorable letters such as the Hangul fillers. Those code points stay inside a \\p{L} token, so the exact w:/c: key lookup (lines 33-37, 148-151) misses.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 199,
+        "scope": "supplierRoutes.shortlistSuppliers",
+        "description": "POST shortlist (anonymous/founder persona) calls startShortlist with req.body.spec only; the caller supplies no supplier record or name"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 151,
+        "scope": "computeShortlist",
+        "description": "Candidates are forSpec(await deps.catalog.suppliers(), spec): the server's own supplier catalog, filtered by buyFrom country"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/runtime/catalog.ts",
+        "line": 58,
+        "scope": "fileCatalog.loadSuppliers",
+        "description": "Supplier records come only from <dataDir>/suppliers/demo (dataDir = HOGEE_DATA_DIR or the repo data/). The sanctions list itself lives under the same operator-controlled data root, so no lower-trust writer of displayName exists in source"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 42,
+        "scope": "candidateOf",
+        "description": "Only s.displayName is screened"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/runtime/ports.ts",
+        "line": 40,
+        "scope": "liveChecks.screenSanctions",
+        "description": "Calls @hogee/checks screenSanctions and keeps only .hit"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/checks/src/sanctions.ts",
+        "line": 24,
+        "scope": "nameTokens",
+        "description": "NFKD, mark strip and toLowerCase only: Cyrillic/Greek look-alikes and Hangul fillers (NFKD to U+1160, Lo) survive unchanged"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/checks/src/sanctions.ts",
+        "line": 26,
+        "scope": "nameTokens",
+        "description": "DROPPED removes \\p{Cf} and apostrophe-like marks only; the split on [^\\p{L}\\p{N}]+ keeps a look-alike or filler letter inside its token"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/checks/src/sanctions.ts",
+        "line": 148,
+        "scope": "screenSanctions",
+        "description": "Exact lookup of the w: (sorted tokens) and c: (joined tokens) keys; any token difference returns hit:false (lines 148-152)"
+      },
+      {
+        "kind": "sink",
+        "file": "packages/core/src/scorer/criteria.ts",
+        "line": 116,
+        "scope": "evaluateGates",
+        "description": "SANCTIONS gate passes on !sanctionsHit; buildShortlist (scorer/shortlist.ts:177) then ranks the supplier"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/checks/src/sanctions.ts",
+        "line": 20,
+        "description": "DROPPED covers apostrophes, U+02B9-U+02BF, primes, \\p{Cf} and tatweel only; no default-ignorable letters"
+      },
+      {
+        "file": "packages/checks/src/sanctions.ts",
+        "line": 18,
+        "description": "FOLD maps only nine Latin specials; no Cyrillic or Greek look-alike map"
+      },
+      {
+        "file": "packages/checks/src/sanctions.ts",
+        "line": 4,
+        "description": "Module contract: \"exact matching on normalised names, not fuzzy matching\" (case, diacritics, punctuation and word order only)"
+      },
+      {
+        "file": "docs/decisions/checks.md",
+        "line": 13,
+        "description": "Documented design: exact match, not fuzzy; \"A listed name inside a longer supplier name does not match\". Any extra word, abbreviation or typo already evades, so look-alikes add no capability"
+      },
+      {
+        "file": "packages/api/src/runtime/files.ts",
+        "line": 91,
+        "description": "loadSupplierDir parses supplier JSON files contained under the data root; this, and the eval-set loader that reuses it (eval-data.ts:78), are the only writers of Supplier.displayName"
+      },
+      {
+        "file": "packages/checks/src/sanctions.ts",
+        "line": 101,
+        "description": "The sanctions list is read from HOGEE_DATA_DIR/sanctions/un_sc.csv, the same root that holds the supplier catalog, so the name writer and the list writer share one trust level"
+      },
+      {
+        "file": "packages/core/src/schemas/enums.ts",
+        "line": 9,
+        "description": "SOURCE_TYPES includes \"live\", but no API, worker or mock code ingests supplier records from an outside source"
+      },
+      {
+        "file": "packages/core/src/taint/imperative.ts",
+        "line": 47,
+        "description": "Sibling normaliser strips \\p{Default_Ignorable_Code_Point} (including the Hangul fillers); sanctions.ts does not reuse it"
+      },
+      {
+        "file": "packages/core/src/taint/imperative.ts",
+        "line": 156,
+        "description": "Sibling LATIN_LOOKALIKE confusables table (audit run-3); sanctions.ts does not reuse it"
+      },
+      {
+        "file": "data/sanctions/un_sc.csv",
+        "line": 294,
+        "description": "Listed entity KOREA MINING DEVELOPMENT TRADING CORPORATION (KPe.001)"
+      },
+      {
+        "file": "data/suppliers/demo/F.json",
+        "line": 4,
+        "description": "Demo SANCTIONS gate fixture uses the exact listed name; unaffected by the gap"
+      }
+    ],
+    "reason": "Every file:line in the trace checks out against 503cc08 (suppliers.ts:199, shortlist.ts:42/151, ports.ts:40, sanctions.ts:18/20/24/26/148, criteria.ts:116, scorer/shortlist.ts:177). The normaliser gap is real, and it is deterministic from Unicode properties: U+041E stays U+043E; U+3164 and U+FFA0 NFKD to U+1160 (Lo), which is neither \\p{M} nor \\p{Cf}. Hunter blocker 1, that the miss cannot be executed, can therefore be answered from source and does not decide anything. The candidate is still not a vulnerability, for two reasons. (1) No lower-trust input reaches the screened value. The only HTTP entrypoint passes a spec, and displayName comes only from supplier JSON files under the operator's data root (catalog.ts:58, files.ts:91, eval-data.ts:78). That root also holds the sanctions list (sanctions.ts:101), so the party who could plant a look-alike name could equally edit or omit the list or the fixture. No trust boundary is crossed, and blocker 2 asks about a hypothetical ingestion flow that has no code in the target. (2) Even if a supplier did control displayName, there is no meaningful incremental impact. The screen is exact-match by documented design (sanctions.ts:4, docs/decisions/checks.md:13): a listed name with any added word ('... CORPORATION LTD'), an abbreviation ('... CORP') or a single typo already returns hit:false. Look-alike or filler letters give an evader nothing beyond that accepted limitation. Visually reproducing the exact listed name is not an evader's goal, and it would only help a human reviewer notice. The coverage unit's 'Unicode look-alikes' invariant is not a security property the documented exact-match design can deliver. Optional hardening, not a finding: on both the index and query sides, fold LATIN_LOOKALIKE and strip \\p{Default_Ignorable_Code_Point} (fillers first), reusing packages/core/src/taint/imperative.ts. A real ingestion path for supplier-written names would need fuzzy or alias-aware screening, not only confusable folding."
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "packages/privacy/src/detect.ts:candidatesOf:negative-context-veto-on-every-pattern",
+    "title": "A money word up to 12 characters before a phone or card number vetoes every pattern of its recognizer, including the +65/+60 and 01X patterns, so some phone and card numbers reach chat_messages and the model provider unredacted",
+    "description": "POST /api/chat runs as the founder persona, which is anonymous by design. The message (ChatBody, at most 4000 characters) goes through @hogee/privacy redact() via redactOrFail. The result becomes the last planner user turn, and after the turn it is stored in chat_messages as the user turn. The guard runs the same redact() on every user text part of each planner prompt, then runs assertNoIds over the serialised prompt. Three recognizers carry one hogee_negative_context word list at recognizer level: SgPhoneRecognizer, MyPhoneRecognizer and CreditCardRecognizer (also IdPhoneRecognizer and MyBankAccountRecognizer). The list includes budget, fee, total, cap, price, rm, sgd, s$ and $. config.ts compiles it into one regex per recognizer. detect.ts candidatesOf applies it inside the per-pattern loop, so it covers patterns that need no context and cannot be amounts: '+65 9999 9999', '+60 ...' and the MY '01X' mobile pattern, as well as the grouped card patterns. A match is dropped when any whole veto word lies anywhere in the 12 characters before it, but the file's $comment says only 'a word just before the match' should veto. No other recognizer catches the dropped number. The canary is by design limited to MY_NRIC, ID_NIK, ID_NPWP and SG_NRIC, so the call is not blocked. Hand evaluation of the bundled regexes and Ranges.within (no code run) gives these inputs back unchanged from redact(), with assertNoIds not throwing: 'Budget S$8k, HP +6591234567'; 'Fee $5, HP +65 9123 4567'; 'Budget: +65 9123 4567'; 'Bajet RM 10k, tel 012-345 6789'; 'Bajet RM 10k, tel +60 12-345 6789'; 'Fee $5, card 4111 1111 1111 1111'. The NIK 4-4-4-4 pattern does not catch the card because validIdProvince rejects 41. The bank-account patterns share the same veto and need context. The number is then stored, sent to the configured provider (up to 6 planner steps per turn) and re-sent with the history on every later turn. Correction to the hunter: two of its payloads do not leak by source. 'Budget S$8k, HP +65 9123 4567' and 'My budget, tel +65 9123 4567' give '... +65 <SG_PHONE>'. The context-required bare 8-digit SG pattern starts 4 characters later, so its own 12-character veto window misses the money word, and 'HP'/'tel' supplies its context. So a space-separated +65 number with a phone word nearby leaks in full only when the veto word is within about 8 characters before '+65'. Without a phone word, or written without a space ('+6591234567', where the bare pattern cannot start), the 12-character veto alone suppresses it. MY 01X and +60 numbers and grouped card numbers have no such fallback. Effect: a privacy control on the in-scope founder-text-to-model-provider boundary fails open for ordinary budget chat. The founder's (or a third party's) phone or card number is disclosed to the third-party model provider and persisted in chat history, contrary to the redact-before-store/send design. No attacker gains authority. Smallest fix: make the veto per pattern. Add a hogee_negative_context flag or list on the pattern, off for the +65/0065/(65), +60 and 01X patterns. Veto only when the word is directly before the match (only spaces, or a glued currency symbol, between them), as the $comment states.",
+    "claimed_root_cause": "packages/privacy/src/detect.ts candidatesOf (lines 105-114): for every pattern p of a recognizer, if r.negative is set, a match is skipped when neg.within(start - negativeBefore, start) finds any whole veto word inside the 12 characters before it (negative_before: 12, data/pii/recognizers.json:16). packages/privacy/src/config.ts:143 compiles hogee_negative_context once per recognizer, and the pattern schema (config.ts:36-42) has no per-pattern negative flag. data/pii/recognizers.json puts the money-word list (budget, fee, total, s$, $, rm, ...) on SgPhoneRecognizer (311), MyPhoneRecognizer (385) and CreditCardRecognizer (168). So the veto also suppresses the context-free +65/+60/01X phone patterns and the grouped card patterns, beyond the 'word just before the match' the $comment (recognizers.json:7) specifies. Nothing downstream catches the miss, because data/pii/canary-patterns.json covers only national and tax IDs.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/routes/chat.ts",
+        "line": 194,
+        "scope": "chatRoutes().chat",
+        "description": "POST /api/chat handler, founder persona (anonymous by design), body ChatBody {sessionId, message <= 4000 chars} (packages/api-contract/src/schemas.ts:77). After the rate limiter and budget.assertOpen it calls chat() with req.body.message unchanged (line 201)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/chat.ts",
+        "line": 145,
+        "scope": "chat()",
+        "description": "The message is passed to redactOrFail. This is the only transformation before it is used as a planner turn and stored."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/chat.ts",
+        "line": 59,
+        "scope": "redactOrFail()",
+        "description": "Calls deps.agent.redactor.redact. packages/api/src/runtime/deps.ts:35 sets the redactor to privacyRedactor = { redact } from @hogee/privacy (packages/agent/src/guard/redaction.ts:27)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/privacy/src/index.ts",
+        "line": 48,
+        "scope": "redact()",
+        "description": "Runs detect(text, loadRecognizers()) and replaces only the returned spans with <TYPE>. Any number without a span is returned verbatim."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/privacy/src/config.ts",
+        "line": 143,
+        "scope": "compileRecognizers()",
+        "description": "negative = wordRegex(r.hogee_negative_context) is built once per recognizer. Patterns carry no negative flag, so the list applies to every pattern of the recognizer."
+      },
+      {
+        "kind": "propagation",
+        "file": "data/pii/recognizers.json",
+        "line": 311,
+        "scope": "SgPhoneRecognizer.hogee_negative_context",
+        "description": "Recognizer-level money-word list: 's$' line 315, '$' line 320, 'budget' line 325, plus fee, total, cap, price and others. The context-free '+65 9999 9999' pattern (regex line 274, score 0.85) shares it. MyPhoneRecognizer (list line 385, 'rm' 386, 'budget' 399; '+60' pattern line 343, '01X' pattern line 348) and CreditCardRecognizer (list line 168, '$' 177, 'fee' 186; grouped patterns lines 143 and 148) do the same."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/privacy/src/detect.ts",
+        "line": 113,
+        "scope": "candidatesOf()",
+        "description": "Inside the per-pattern loop (line 105), a veto word wholly inside [start-12, start) skips the match (continue) before the context and score are applied. Example: in 'Fee $5, card 4111 1111 1111 1111', '$' at [4,5) lies inside [1,13), so the card match is dropped. No other recognizer emits a span for these numbers."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/chat.ts",
+        "line": 151,
+        "scope": "chat() turns",
+        "description": "The redactor output (number intact) becomes the last user PlannerTurn. Earlier stored turns are loaded from chat_messages at line 146 and re-sent."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/chat.ts",
+        "line": 159,
+        "scope": "chat() inTx",
+        "description": "[second path] After the planner returns, the same unredacted text is stored in chat_messages as the user turn. It is re-sent on every later turn of the session and returned by GET /api/chat/:sessionId (line 184)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/agent/src/guard/guarded-model.ts",
+        "line": 254,
+        "scope": "guardModel transformParams",
+        "description": "redactPrompt re-runs the same privacyRedactor on each user text part (packages/agent/src/guard/redaction.ts:188) and misses the number again for the same reason."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/agent/src/guard/guarded-model.ts",
+        "line": 256,
+        "scope": "guardModel transformParams",
+        "description": "outboundGuard (assertNoIds by default, packages/agent/src/agent.ts:29) scans the serialised prompt. data/pii/canary-patterns.json:19-61 holds only MY_NRIC, ID_NIK, ID_NPWP and SG_NRIC patterns, so a phone or card number does not throw and the call proceeds."
+      },
+      {
+        "kind": "sink",
+        "file": "packages/agent/src/planner/planner.ts",
+        "line": 202,
+        "scope": "runPlannerTurn generateText",
+        "description": "The prompt that still contains the phone or card number is sent to the configured model provider. The budgeted model sits inside the guard, and the call stops at PLANNER_MAX_STEPS = 6 (planner.ts:48), each step re-sending the prompt."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "data/pii/recognizers.json",
+        "line": 7,
+        "description": "The $comment defines hogee_negative_context as 'a word just before the match vetoes it', but context_window.negative_before is 12 (line 16), and detect.ts vetoes on any whole veto word anywhere in that window."
+      },
+      {
+        "file": "packages/privacy/src/detect.ts",
+        "line": 111,
+        "description": "'if (r.negative)' sits inside 'for (const p of r.patterns)' (line 105), so the veto applies to context-free country-code patterns as well as to the context-required bare patterns it was written for."
+      },
+      {
+        "file": "packages/privacy/src/config.ts",
+        "line": 121,
+        "description": "wordRegex: a letter-ending veto word must be a whole word ('RM 10k' vetoes, 'RM10k' does not). Symbol-ending words ('$', 's$') match whenever not preceded by a letter or digit, so a '$5' up to 12 characters earlier vetoes."
+      },
+      {
+        "file": "data/pii/recognizers.json",
+        "line": 279,
+        "description": "The bare SG pattern is context-required, and its lookbehind excludes a preceding digit, '+' or '-'. It cannot start inside '+6591234567', so that form has no fallback. For '+65 9123 4567' it starts 4 characters after '+65', so its own veto window is shifted. That is why 'Budget S$8k, HP +65 9123 4567' and 'My budget, tel +65 9123 4567' are still redacted to '... +65 <SG_PHONE>' (correcting the hunter's payloads), while 'Fee $5, HP +65 9123 4567' and 'Budget: +65 9123 4567' are not."
+      },
+      {
+        "file": "data/pii/recognizers.json",
+        "line": 348,
+        "description": "The MY '01X-XXX XXXX' mobile regex (score 0.6, no context required) shares MyPhoneRecognizer's list ('rm' line 386). The landline pattern (line 353) needs 0[3-9], and the bank-account patterns (lines 200, 206) are context-required and carry the same veto. So nothing re-catches '012-345 6789' after 'RM 10k, tel '."
+      },
+      {
+        "file": "packages/privacy/src/validators.ts",
+        "line": 50,
+        "description": "validIdProvince rejects 41-49, so the NIK 4-4-4-4 pattern (recognizers.json:77; canary-patterns.json:47) never matches a Visa-style '4xxx xxxx xxxx xxxx'. A vetoed card is therefore neither redacted nor caught by the canary."
+      },
+      {
+        "file": "data/pii/canary-patterns.json",
+        "line": 3,
+        "description": "By design the canary checks only national and tax ID shapes. The last entity is SG_NRIC (line 58), and there is no phone, card or bank pattern, so a redaction miss for those entities is never blocked outbound."
+      },
+      {
+        "file": "packages/privacy/test/entities.test.ts",
+        "line": 131,
+        "description": "The veto tests ('card total $4111111111111111', 'visa S$4111111111111111', 'call me, budget 91234567') cover only glued or adjacent amount-shaped numbers and the bare SG pattern. No test puts a veto word within 12 characters of a +65/+60/01X number or a grouped card. The +65 test at line 127 uses a non-veto word ('Buddy')."
+      },
+      {
+        "file": "packages/agent/src/planner/planner.ts",
+        "line": 150,
+        "description": "The last user turn's text is sent as its own text part next to the context block, so the provider receives exactly the redactor's output for the founder's message."
+      }
+    ],
+    "blockers": [
+      "The run-8 execution policy forbids running target code (macOS cannot enforce the required sandbox limits, and the promotion allowlist is empty). So the actual redact() output, the assertNoIds result and the prompt the guarded model emits for the listed payloads cannot be observed. The expected outputs are hand-derived from the bundled regexes, wordRegex and Ranges.within, and confirming them needs a sandboxed run of @hogee/privacy and the guard."
+    ],
+    "validation_plan": {
+      "local": "In an OS-enforced sandbox (no network, empty env, read-only target, scratch-only writes, low CPU, memory and time limits), import { redact, assertNoIds } from @hogee/privacy and run each input once. Expect redact(x).text === x, report.count === 0 and assertNoIds(x) not throwing for: 'Budget S$8k, HP +6591234567'; 'Fee $5, HP +65 9123 4567'; 'Budget: +65 9123 4567'; 'Bajet RM 10k, tel 012-345 6789'; 'Bajet RM 10k, tel +60 12-345 6789'; 'Fee $5, card 4111 1111 1111 1111'. Controls: 'HP +6591234567' -> 'HP <SG_PHONE>'; 'tel 012-345 6789' -> 'tel <MY_PHONE>'; 'card 4111 1111 1111 1111' -> 'card <CREDIT_CARD>'. The hunter's payloads should give 'Budget S$8k, HP +65 <SG_PHONE>' and 'My budget, tel +65 <SG_PHONE>' (not leaks), and 'call me, budget 91234567' stays unchanged (existing test). Then, as in packages/agent/test/guard.test.ts, build guardModel(mockHandle('planner', mockModel([textResult('ok')])), { redactor: privacyRedactor, outboundGuard: privacyOutboundGuard, sink: new CapturingSink(), context: { facilityId: 'f', traceId: null } }) and call generateText with prompt 'Fee $5, card 4111 1111 1111 1111' and maxRetries 0. Confirm that JSON.stringify(model.doGenerateCalls[0].prompt) contains '4111 1111 1111 1111' and that sink.records[0].redactionReport.count === 0. Confirmed if every leak input comes back unchanged while its control is redacted.",
+      "deployment": "Not needed to decide (the behaviour is fixed by the bundled data/pii/recognizers.json and detect.ts). Optional owner-observed check, only on a non-shared local stack the owner runs with a capturing mock model provider: send one POST /api/chat with a fresh UUIDv7 sessionId and message 'Fee $5, card 4111 1111 1111 1111'. Read that session's user row in chat_messages (expected text unchanged) and the request body the mock provider captured (expected to contain the card number)."
+    }
+  }
+]

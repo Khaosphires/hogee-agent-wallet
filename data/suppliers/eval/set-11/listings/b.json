@@ -1,0 +1,57 @@
+{
+  "supplierId": "s11-b",
+  "displayName": "Willowpoint Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913301007XA7H7PC59"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-11/s11-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-11/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "760",
+      "sourceUrl": "https://example.invalid/e3/set-11/s11-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xd03b1f86c79a645d84fe43b208996624020e9e87519eb27054c833c28aff215f",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 21,
+    "freightPerUnit": "90",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-745375-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-842654-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.9,
+    "responseRate": 0.96,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7379056133",
+    "holderName": "Willowpoint Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

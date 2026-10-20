@@ -1,0 +1,51 @@
+{
+  "supplierId": "s12-e",
+  "displayName": "Amberline Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913301003J4T4WTJ48"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-12/s12-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-12/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "470",
+      "sourceUrl": "https://example.invalid/e3/set-12/s12-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xb27fe459887cf4b8942b5ca92b6eda1805dbb1228cf3a422669f38f985ab7169",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 36,
+    "freightPerUnit": "60",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-683402-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.9,
+    "responseRate": 0.85,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7736376513",
+    "holderName": "Amberline Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

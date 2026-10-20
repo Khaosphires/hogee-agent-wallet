@@ -1,0 +1,57 @@
+{
+  "supplierId": "s11-e",
+  "displayName": "Quartzstone Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91350200NXRFRE348J"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-11/s11-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-11/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "730",
+      "sourceUrl": "https://example.invalid/e3/set-11/s11-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x26d405c9d84424e8b03a5b0e51615fc6ace159726851c500fa7268dc0a6b89f8",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 29,
+    "freightPerUnit": "80",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-323803-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-569437-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.73,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7142580607",
+    "holderName": "Quartzstone Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

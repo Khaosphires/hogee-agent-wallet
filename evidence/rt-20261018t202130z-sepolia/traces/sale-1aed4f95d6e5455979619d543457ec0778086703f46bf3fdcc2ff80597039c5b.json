@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "sale-1aed4f95d6e5455979619d543457ec0778086703f46bf3fdcc2ff80597039c5b",
+    "seq": 0,
+    "ts": "2026-10-18T21:54:18.889Z",
+    "actor": "oracle",
+    "kind": "TX",
+    "summary": "Verified Stripe test sale of 250000 minor MYR (bucketed); queued for SalesOracle.recordSale, signed by the oracle key in the worker",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x822c9e6cc2f3ddf430463ef0f2e83a956ca50603b2474805f7b2cb9fd50b7f92"
+  }
+]

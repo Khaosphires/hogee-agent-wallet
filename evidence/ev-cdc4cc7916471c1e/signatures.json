@@ -1,0 +1,212 @@
+[
+  {
+    "requestId": "sig-01a14faf-c92e-7882-aed8-81fb62ea8d96",
+    "kind": "PlanApproval",
+    "refId": "draft-01a14faf-c8d7-7e46-9cc5-2998aa4aec60",
+    "method": "passkey",
+    "typedData": {
+      "domain": {
+        "name": "Hogee",
+        "version": "1",
+        "verifyingContract": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+        "salt": "0xa6a607dc05f6fe221528f386f2e27bda8dcb4c34f1678102cdcc33d9583da6c5"
+      },
+      "types": {
+        "PlanApproval": [
+          {
+            "name": "planId",
+            "type": "bytes32"
+          },
+          {
+            "name": "version",
+            "type": "uint32"
+          },
+          {
+            "name": "prevPlanHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "planHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "countryPackHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "linesHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "stagesHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "totalMinor",
+            "type": "uint128"
+          },
+          {
+            "name": "reserveBps",
+            "type": "uint16"
+          },
+          {
+            "name": "agent",
+            "type": "address"
+          },
+          {
+            "name": "agentExpiry",
+            "type": "uint64"
+          },
+          {
+            "name": "deploymentId",
+            "type": "bytes32"
+          },
+          {
+            "name": "nonce",
+            "type": "uint256"
+          },
+          {
+            "name": "expiry",
+            "type": "uint64"
+          }
+        ]
+      },
+      "primaryType": "PlanApproval",
+      "message": {
+        "agent": "0x55b06f35a213ab03fdfc1558fb62e8cc1321a0eb",
+        "nonce": "94257100818130323117505297885411675164132059217131407947959119698991493009970",
+        "expiry": "1792339182",
+        "planId": "0x178eb1b7e706ccb436250aa3c502a7b456069cd90bd83680790c74281f6f49ab",
+        "version": "1",
+        "planHash": "0x371b6c500235bc9933eef3fe41b178a30e70ea367174644e58b1ff63d0a6d853",
+        "linesHash": "0x3072ddd78e6f36397a8dbe3878e3240be4c6daa4f6453e8406fde958553c9847",
+        "reserveBps": "500",
+        "stagesHash": "0x6cda39498e97995c55993677d32a7d9a180329fd7e41ca7af9d538f71f272838",
+        "totalMinor": "1000000",
+        "agentExpiry": "1797522282",
+        "deploymentId": "0x66696e616c2d6d65696534626138630000000000000000000000000000000000",
+        "prevPlanHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "countryPackHash": "0x750264d394599cede9eaefc4cadd25d87151b843fa1a42809872fe5ef6dbcf78"
+      }
+    },
+    "digest": "0x9623b5acee55a101a55018be05b1fb226534479e780ab196ffe41f7dbf68944e",
+    "status": "SUBMITTED",
+    "submission": {
+      "passkey": {
+        "credentialId": "UuXgx_VlUB5cLrZIXYzjlA",
+        "r": "0x37580a189b40c267bb33faee3cc36040649ac036f24408d4182ad6329c9b8bd0",
+        "s": "0x310bec4d7213abecb63b88ed48beff8f91ae0419c22122334e8f0379214c8491",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000002",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"liO1rO5VoQGlUBi-BbH7ImU0R554CrGW_-Qffb9olE4\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "chainActionId": "act-01a14faf-c937-744d-960c-57cbeff4be0f"
+  },
+  {
+    "requestId": "sig-01a14faf-cb6c-785d-958e-fd3be8506da8",
+    "kind": "SupplierApproval",
+    "refId": "order-a-001",
+    "method": "passkey",
+    "typedData": {
+      "domain": {
+        "name": "Hogee",
+        "version": "1",
+        "verifyingContract": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+        "salt": "0xa6a607dc05f6fe221528f386f2e27bda8dcb4c34f1678102cdcc33d9583da6c5"
+      },
+      "types": {
+        "SupplierApproval": [
+          {
+            "name": "orderId",
+            "type": "bytes32"
+          },
+          {
+            "name": "supplierId",
+            "type": "bytes32"
+          },
+          {
+            "name": "payee",
+            "type": "bytes32"
+          },
+          {
+            "name": "payoutAccountHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "lineId",
+            "type": "bytes32"
+          },
+          {
+            "name": "scheduleHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "totalMinor",
+            "type": "uint128"
+          },
+          {
+            "name": "quoteHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "shortlistHash",
+            "type": "bytes32"
+          },
+          {
+            "name": "chosenIndex",
+            "type": "uint8"
+          },
+          {
+            "name": "inspectionRequired",
+            "type": "bool"
+          },
+          {
+            "name": "deploymentId",
+            "type": "bytes32"
+          },
+          {
+            "name": "nonce",
+            "type": "uint256"
+          },
+          {
+            "name": "expiry",
+            "type": "uint64"
+          }
+        ]
+      },
+      "primaryType": "SupplierApproval",
+      "message": {
+        "nonce": "52314835949958065819740586718155982695541321758764808630369110145922428917711",
+        "payee": "0x737570706c6965722d6100000000000000000000000000000000000000000000",
+        "expiry": "1792339182",
+        "lineId": "0x535550504c494552000000000000000000000000000000000000000000000000",
+        "orderId": "0x6f726465722d612d303031000000000000000000000000000000000000000000",
+        "quoteHash": "0xda92585ead1e0ff5b1f41542b0fcc663fad331938f8d71e8231cb5e1809aa2b0",
+        "supplierId": "0x737570706c6965722d6100000000000000000000000000000000000000000000",
+        "totalMinor": "138600",
+        "chosenIndex": "0",
+        "deploymentId": "0x66696e616c2d6d65696534626138630000000000000000000000000000000000",
+        "scheduleHash": "0xab93b7b7d7d5697a0fdc4347c178c43028228e4106f93438ec5ef1460f2cca10",
+        "shortlistHash": "0xb85e03e22332ddcb4b86b318c4f58b1384332c6da582e2f0b6a3dadff6b32c0a",
+        "payoutAccountHash": "0xebb2fcdf61d2e11c6ce832c76f1f8bac4ae08b1c37c06e1075ecaf6c8b8e09be",
+        "inspectionRequired": true
+      }
+    },
+    "digest": "0xf8897fffce26a17a5abeff7f5c15f63ce45a583817f4fdda21ab5e10ab498df3",
+    "status": "SUBMITTED",
+    "submission": {
+      "passkey": {
+        "credentialId": "UuXgx_VlUB5cLrZIXYzjlA",
+        "r": "0xb725feee8bcc0caaf083260b9025437cb70ef4d1ce63aa20c5c9ead3de8a8691",
+        "s": "0x5e7f4fd1803e6fdee1a0216fe770740279b6ce198e52c7e4e6a1b7d74d170b3c",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000003",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"-Il__84moXpavv9_XBX2PORaWDgX9P3aIateEKtJjfM\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "chainActionId": "act-01a14faf-cb79-748a-8083-5e56df5d5e24"
+  }
+]

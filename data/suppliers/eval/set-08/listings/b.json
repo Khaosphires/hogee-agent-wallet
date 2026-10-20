@@ -1,0 +1,51 @@
+{
+  "supplierId": "s08-b",
+  "displayName": "Harborpoint Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "9133020084FNTN5B4K"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-08/s08-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-08/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "670",
+      "sourceUrl": "https://example.invalid/e3/set-08/s08-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x8aca650c06f0c284c4566ae4e420d9f27d4140c607261860068ef60ce203bc9c",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 29,
+    "freightPerUnit": "40",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Supertest Lab Online (no public register)",
+      "ref": "2675-9122",
+      "tier": "tier3"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.88,
+    "yearsOnPlatform": 1
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7401741922",
+    "holderName": "Harborpoint Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

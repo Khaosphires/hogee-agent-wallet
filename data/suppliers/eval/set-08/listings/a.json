@@ -1,0 +1,55 @@
+{
+  "supplierId": "s08-a",
+  "displayName": "Valestone Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-08/s08-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-08/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "490",
+      "sourceUrl": "https://example.invalid/e3/set-08/s08-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x61ef61e5c547244b7d55ca7058c5ffda782d01b041d5d2bc5a9bd540069415ab",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 14,
+    "freightPerUnit": "80",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "GB-629632-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-272930-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.3,
+    "responseRate": 0.79,
+    "yearsOnPlatform": 10
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7345579759",
+    "holderName": "Valestone Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

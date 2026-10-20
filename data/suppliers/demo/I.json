@@ -1,0 +1,145 @@
+{
+  "supplier": {
+    "supplierId": "supplier-i",
+    "displayName": "Inkpress Packaging and Printing Co., Ltd. (demo)",
+    "country": "CN",
+    "ids": {
+      "uscc": "91440300K5HW5R6G4C"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-i",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/i.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "610",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-i#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0xf4bab0dd8623fbdaf4f924f589b593364810ba933758ee97a06193e15b7819c9",
+        "evidence": "tier2",
+        "sourceType": "mock"
+      },
+      "moq": 500,
+      "leadTimeDays": 15,
+      "freightPerUnit": "70",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "ISO 9001 quality management",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-I-ISO9001-2026",
+        "tier": "tier2"
+      },
+      {
+        "type": "FSC chain of custody (paper packaging)",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-I-FSC-2026",
+        "tier": "tier2"
+      }
+    ],
+    "metrics": {
+      "rating": 4.7,
+      "responseRate": 0.96,
+      "yearsOnPlatform": 7
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8268773729",
+      "holderName": "Inkpress Packaging and Printing Co., Ltd. (demo) - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-i-price",
+      "supplierId": "supplier-i",
+      "criterion": "landed_cost",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-i#price",
+      "snippetHash": "0xf4bab0dd8623fbdaf4f924f589b593364810ba933758ee97a06193e15b7819c9",
+      "value": "Price: CNY 6.10 per piece FOB Shenzhen.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-i-lead-time",
+      "supplierId": "supplier-i",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-i#lead",
+      "snippetHash": "0x7432953d2bcc80cc4ab818cad86b15809539ba1e27d311c7ba602de03726bb93",
+      "value": "Lead time: 15 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-i-terms",
+      "supplierId": "supplier-i",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-i#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-i-response-rate",
+      "supplierId": "supplier-i",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-i#response-rate",
+      "snippetHash": "0xc7e091c7d31feca2850ccdcff0edc0cfb04886c892b8dd023789c7af253ad740",
+      "value": "Platform response rate (demo metric): 96%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-i-cert-1-quality",
+      "supplierId": "supplier-i",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-i#cert-1",
+      "snippetHash": "0xf0090bcdaf470b1bd51a17680d2a22dadf39536b6a76a659bf35e6109c2fd6ba",
+      "value": "ISO 9001 quality management: ref DEMO-I-ISO9001-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-i-cert-2-compliance",
+      "supplierId": "supplier-i",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-i#cert-2",
+      "snippetHash": "0xd17bd5a3077f83d0ae1713818f9000c1db9871974f4cc0badca7a457c5f2ed71",
+      "value": "FSC chain of custody (paper packaging): ref DEMO-I-FSC-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

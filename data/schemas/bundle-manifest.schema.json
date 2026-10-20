@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BundleManifest",
+  "description": "Applies to: evidence/<run-id>/manifest.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "runId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "gitCommit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$"
+    },
+    "deployments": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+        "description": "Deployment id, e.g. loop-1, final-1"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "EVM chain id (11155111 Sepolia, 31337 Anvil)"
+          },
+          "contracts": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9]{0,63}$"
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{40}$",
+                  "description": "EVM address, 0x + 40 lowercase hex"
+                },
+                "verifiedUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                }
+              },
+              "required": [
+                "address",
+                "verifiedUrl"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "chainId",
+          "contracts"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "toolVersions": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+      }
+    }
+  },
+  "required": [
+    "runId",
+    "gitCommit",
+    "deployments",
+    "toolVersions"
+  ],
+  "additionalProperties": false
+}

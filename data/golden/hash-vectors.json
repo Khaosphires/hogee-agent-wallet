@@ -1,0 +1,203 @@
+[
+  {
+    "name": "key-ordering",
+    "input": {
+      "b": 2,
+      "a": 1
+    },
+    "jcs": "{\"a\":1,\"b\":2}",
+    "keccak256": "0xb8ffb64722137f4b100665a52e3c943f8066e8ab8ba3b427e6f4b404defd82b0"
+  },
+  {
+    "name": "key-ordering-same-object",
+    "input": {
+      "a": 1,
+      "b": 2
+    },
+    "jcs": "{\"a\":1,\"b\":2}",
+    "keccak256": "0xb8ffb64722137f4b100665a52e3c943f8066e8ab8ba3b427e6f4b404defd82b0"
+  },
+  {
+    "name": "nested-key-ordering",
+    "input": {
+      "z": {
+        "b": 2,
+        "a": 1
+      },
+      "a": [
+        {
+          "y": 2,
+          "x": 1
+        }
+      ]
+    },
+    "jcs": "{\"a\":[{\"x\":1,\"y\":2}],\"z\":{\"a\":1,\"b\":2}}",
+    "keccak256": "0xd9bade8893b94cdc1421fc2c9f98746e85ce6ff2367204b5e172273f67b1db62"
+  },
+  {
+    "name": "utf16-key-ordering",
+    "input": {
+      "": "private-use",
+      "😀": "emoji",
+      "a": "ascii",
+      "é": "accent"
+    },
+    "jcs": "{\"a\":\"ascii\",\"é\":\"accent\",\"😀\":\"emoji\",\"\":\"private-use\"}",
+    "keccak256": "0x0f42152b9b492d3cbc1c27eb11f552ef4ec058f4ce31720d291b91ed09ea9f9e"
+  },
+  {
+    "name": "unicode-values",
+    "input": {
+      "name": "Rina",
+      "text": "你好 — café",
+      "emoji": "😀🧾"
+    },
+    "jcs": "{\"emoji\":\"😀🧾\",\"name\":\"Rina\",\"text\":\"你好 — café\"}",
+    "keccak256": "0xb47b89c46d0c531b1fd6e5e30fd26003e0f9d5607c4d5cec384ed53dade2881a"
+  },
+  {
+    "name": "unicode-no-normalization",
+    "input": {
+      "composed": "é",
+      "decomposed": "é"
+    },
+    "jcs": "{\"composed\":\"é\",\"decomposed\":\"é\"}",
+    "keccak256": "0x01ec7399ad27389514e4ad098697a89ca0088e40d02169b23a72fc3f78884382"
+  },
+  {
+    "name": "escaped-controls",
+    "input": {
+      "text": "\"\\\b\f\n\r\t\u0000\u001f/"
+    },
+    "jcs": "{\"text\":\"\\\"\\\\\\b\\f\\n\\r\\t\\u0000\\u001f/\"}",
+    "keccak256": "0x2a92d5df25aa32e8c0edc3a09663e527a142da8bb0f41266d377b67bb19e2496"
+  },
+  {
+    "name": "empty-object",
+    "input": {},
+    "jcs": "{}",
+    "keccak256": "0xb48d38f93eaa084033fc5970bf96e559c33c4cdc07d889ab00b4d63f9590739d"
+  },
+  {
+    "name": "empty-array",
+    "input": [],
+    "jcs": "[]",
+    "keccak256": "0x518674ab2b227e5f11e9084f615d57663cde47bce1ba168b4c19c7ee22a73d70"
+  },
+  {
+    "name": "empty-string",
+    "input": "",
+    "jcs": "\"\"",
+    "keccak256": "0x2392a80f8a87b8cfde0aa5c84e199f163aae4c2a4c512d37598362ace687ad0c"
+  },
+  {
+    "name": "booleans-null",
+    "input": {
+      "true": true,
+      "false": false,
+      "null": null
+    },
+    "jcs": "{\"false\":false,\"null\":null,\"true\":true}",
+    "keccak256": "0x08e2aa5a7171aab62ae3de6ff59f201e392f8d6c4ba835eb1f792d5826869887"
+  },
+  {
+    "name": "top-level-null",
+    "input": null,
+    "jcs": "null",
+    "keccak256": "0xefbde2c3aee204a69b7696d4b10ff31137fe78e3946306284f806e2dfc68b805"
+  },
+  {
+    "name": "top-level-true",
+    "input": true,
+    "jcs": "true",
+    "keccak256": "0x6273151f959616268004b58dbb21e5c851b7b8d04498b4aabee12291d22fc034"
+  },
+  {
+    "name": "top-level-false",
+    "input": false,
+    "jcs": "false",
+    "keccak256": "0xba9154e0baa69c78e0ca563b867df81bae9d177c4ea1452c35c84386a70f0f7a"
+  },
+  {
+    "name": "safe-integer-boundaries",
+    "input": [
+      -9007199254740991,
+      -1,
+      0,
+      1,
+      9007199254740991
+    ],
+    "jcs": "[-9007199254740991,-1,0,1,9007199254740991]",
+    "keccak256": "0x78b84345a2321b65a716d8d396e615b788d13d067f3db238151b76d9274d2f49"
+  },
+  {
+    "name": "binary64-two-to-53",
+    "input": 9007199254740992.0,
+    "jcs": "9007199254740992",
+    "keccak256": "0xb470a808b7c59e9b91d91f727bea29ae3fba7150340cf19ee258dd5d262722be"
+  },
+  {
+    "name": "minor-string",
+    "input": {
+      "amountMinor": "1000000"
+    },
+    "jcs": "{\"amountMinor\":\"1000000\"}",
+    "keccak256": "0x69e399f10688dffe3cc3b660d8150943b24a51ea716490448107f39d34694d33"
+  },
+  {
+    "name": "large-minor-string",
+    "input": {
+      "amountMinor": "9007199254740993"
+    },
+    "jcs": "{\"amountMinor\":\"9007199254740993\"}",
+    "keccak256": "0x63c6d5e686895d78f4a00350e1ace571fdee30611dbdf59c7064c8267022b6b5"
+  },
+  {
+    "name": "string-versus-number",
+    "input": [
+      "100",
+      100
+    ],
+    "jcs": "[\"100\",100]",
+    "keccak256": "0x7e90166c3411685f2bfe9b4783d948d8c59bc8663c05436b872e61f40748d99f"
+  },
+  {
+    "name": "negative-zero",
+    "input": -0.0,
+    "jcs": "0",
+    "keccak256": "0x044852b2a670ade5407e78fb2863c51de9fcb96542a07186fe3aeda6bb8a116d"
+  },
+  {
+    "name": "positive-zero",
+    "input": 0,
+    "jcs": "0",
+    "keccak256": "0x044852b2a670ade5407e78fb2863c51de9fcb96542a07186fe3aeda6bb8a116d"
+  },
+  {
+    "name": "number-formatting",
+    "input": [
+      1.0,
+      1e-07,
+      1e-06,
+      1e+20,
+      1e+21,
+      333333333.3333333
+    ],
+    "jcs": "[1,1e-7,0.000001,100000000000000000000,1e+21,333333333.3333333]",
+    "keccak256": "0xf376bb325e19ec3e92d368ecc91e36ddef10f57be8f3b93112630fccf78b5241"
+  },
+  {
+    "name": "array-order-preserved",
+    "input": [
+      3,
+      1,
+      2,
+      {
+        "b": 2,
+        "a": 1
+      }
+    ],
+    "jcs": "[3,1,2,{\"a\":1,\"b\":2}]",
+    "keccak256": "0xa9aacc6d25b0a3e1db4adeaf0c8b2e12d8be9cc231f8ef26798248f7680dd6d7"
+  }
+]

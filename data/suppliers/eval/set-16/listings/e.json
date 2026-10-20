@@ -1,0 +1,51 @@
+{
+  "supplierId": "s16-e",
+  "displayName": "Sablegate Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200FBXTWU4T53"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-16/s16-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-16/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "720",
+      "sourceUrl": "https://example.invalid/e3/set-16/s16-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xdecef350f2d24a7459f5877ab4c275f6cf8465c50c6f854f40312da6830454f4",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 38,
+    "freightPerUnit": "40",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Supertest Lab Online (no public register)",
+      "ref": "7092-9345",
+      "tier": "tier3"
+    }
+  ],
+  "metrics": {
+    "rating": 5,
+    "responseRate": 0.83,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7186704588",
+    "holderName": "Sablegate Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

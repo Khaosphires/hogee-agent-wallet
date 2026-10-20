@@ -1,0 +1,6 @@
+{
+  "taskId": "T4",
+  "title": "(SG) Ad spend over cap (SGD)",
+  "reason": "the Singapore world needs a fresh final-1 deployment (Anvil only: Sepolia runs one facility per deployment)",
+  "target": "sepolia"
+}

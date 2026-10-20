@@ -1,0 +1,51 @@
+{
+  "supplierId": "s10-a",
+  "displayName": "Ridgestone Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200GM08TPG29C"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-10/s10-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-10/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "650",
+      "sourceUrl": "https://example.invalid/e3/set-10/s10-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xab1a23cac01036fa781a70e07328ad1bde12b21c4b631a28dfcb82b40317df7e",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 18,
+    "freightPerUnit": "110",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-751212-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.3,
+    "responseRate": 0.8,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7249026214",
+    "holderName": "Ridgestone Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

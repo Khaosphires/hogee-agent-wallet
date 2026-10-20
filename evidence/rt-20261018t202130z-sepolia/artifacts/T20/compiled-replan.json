@@ -1,0 +1,685 @@
+{
+  "draftId": "draft-01a15174-092f-7983-9f4e-9c9ef909c5b9",
+  "intent": {
+    "intentVersion": 1,
+    "countryCode": "MY",
+    "residency": "citizen",
+    "entityType": "sole_prop",
+    "productCategory": "drinkware_food_contact",
+    "sellChannel": "shopee",
+    "buyFrom": "CN",
+    "budgetCeilingMinor": "1000000",
+    "horizonDays": 60,
+    "lineEmphasis": {
+      "SUPPLIER": "high",
+      "ADS": "med",
+      "CONTINGENCY": "low"
+    },
+    "adsPacing": "standard",
+    "answeredSlots": [
+      "residency",
+      "productCategory",
+      "budgetCeilingMinor",
+      "buyFrom"
+    ],
+    "assumptions": [
+      {
+        "slot": "entityType",
+        "text": "Assumed: Sole proprietorship"
+      }
+    ]
+  },
+  "manifest": {
+    "schemaVersion": "2.0.0",
+    "planId": "0x2249fe8e97eff0610d03f3f6f048369b9af96e4ac494b3ec69a9990f0213b91d",
+    "version": 2,
+    "prevPlanHash": "0x6bbd06e4f0aac24f612a24a6da33fe4df3ba1baf0d7bb346561faaec91c7c958",
+    "facilityId": "fac-rina",
+    "countryCode": "MY",
+    "countryPackVersion": "test-2026.10.16",
+    "countryPackHash": "0x51bc3e4ea41491536cc21413cb07c8aaff25ab21c782bec4b09c721829a18f98",
+    "displayCurrency": "MYR",
+    "totalMinor": "1000000",
+    "reserveBps": 500,
+    "agent": {
+      "address": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+      "expiresAt": "1797538956"
+    },
+    "stages": [
+      {
+        "stageId": "stage-1",
+        "releaseMinor": "400000",
+        "gate": null
+      },
+      {
+        "stageId": "stage-2",
+        "releaseMinor": "600000",
+        "gate": {
+          "metric": "salesMinor",
+          "target": "200000",
+          "deadline": "1794946956"
+        }
+      }
+    ],
+    "lines": [
+      {
+        "lineKey": "SUPPLIER",
+        "lineId": "0x535550504c494552000000000000000000000000000000000000000000000000",
+        "purpose": "Goods from the chosen supplier (escrow milestones only)",
+        "amountMinor": "500000",
+        "perTxCapMinor": "125000",
+        "windowCapMinor": "250000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "supplier-a"
+        ],
+        "escrowOnly": true
+      },
+      {
+        "lineKey": "PACKAGING",
+        "lineId": "0x5041434b4147494e470000000000000000000000000000000000000000000000",
+        "purpose": "Custom printed packaging",
+        "amountMinor": "150000",
+        "perTxCapMinor": "37500",
+        "windowCapMinor": "75000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [],
+        "escrowOnly": false
+      },
+      {
+        "lineKey": "LOGISTICS",
+        "lineId": "0x4c4f474953544943530000000000000000000000000000000000000000000000",
+        "purpose": "Inbound freight and last-mile delivery",
+        "amountMinor": "80000",
+        "perTxCapMinor": "20000",
+        "windowCapMinor": "40000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "spx-logistics"
+        ],
+        "escrowOnly": false
+      },
+      {
+        "lineKey": "ADS",
+        "lineId": "0x4144530000000000000000000000000000000000000000000000000000000000",
+        "purpose": "Marketplace ads, paced daily",
+        "amountMinor": "120000",
+        "perTxCapMinor": "30000",
+        "windowCapMinor": "60000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "shopee-ads"
+        ],
+        "escrowOnly": false,
+        "pacing": {
+          "period": "day",
+          "amountMinor": "7500"
+        }
+      },
+      {
+        "lineKey": "PLATFORM_FEES",
+        "lineId": "0x504c4154464f524d5f4645455300000000000000000000000000000000000000",
+        "purpose": "Marketplace platform and transaction fees",
+        "amountMinor": "50000",
+        "perTxCapMinor": "12500",
+        "windowCapMinor": "25000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "shopee-fees"
+        ],
+        "escrowOnly": false
+      },
+      {
+        "lineKey": "CONTINGENCY",
+        "lineId": "0x434f4e54494e47454e4359000000000000000000000000000000000000000000",
+        "purpose": "Unplanned costs (owner-approved payees only)",
+        "amountMinor": "100000",
+        "perTxCapMinor": "25000",
+        "windowCapMinor": "50000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [],
+        "escrowOnly": false
+      }
+    ],
+    "rules": [
+      {
+        "ruleId": "entity.sole_prop",
+        "text": "Business type: sole proprietorship.",
+        "sourceRef": "/entities/0/eligibility",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/ssm/sole-elig",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xcd32acfacd32acfacd32acfacd32acfacd32acfacd32acfacd32acfacd32acfa",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "registration.ssm_sole_prop.fee.6000",
+        "text": "Register: SSM business registration, government fee MYR 60.00; paid by the founder before funding.",
+        "sourceRef": "/registrations/0/cost",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/reg/ssm-sole-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x95a2621595a2621595a2621595a2621595a2621595a2621595a2621595a26215",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "registration.lhdn_tin.fee.0",
+        "text": "Register: LHDN tax identification number, government fee MYR 0.00; paid by the founder before funding.",
+        "sourceRef": "/registrations/2/cost",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/reg/tin-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x7ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b017",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "indirect-tax.not-registered",
+        "text": "No SST registration at launch: a reseller below MYR 500,000.00 turnover.",
+        "sourceRef": "/indirectTax/registrationThreshold",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/sst/threshold",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x1bafda071bafda071bafda071bafda071bafda071bafda071bafda071bafda07",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "einvoicing.not-required",
+        "text": "E-invoicing not required below MYR 3,000,000.00 turnover.",
+        "sourceRef": "/eInvoicing/threshold",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/einvoicing",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75e",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "duty.form_e",
+        "text": "Import from CN under Form E (ACFTA): duty 0.00%.",
+        "sourceRef": "/imports/ftaCertificates/0/dutyRateBps",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/imports/form-e-rate",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xcd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "import-tax.rate",
+        "text": "Import sales tax 10.00% on CIF + duty.",
+        "sourceRef": "/indirectTax/rate",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/sst/rate",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x53cc58a653cc58a653cc58a653cc58a653cc58a653cc58a653cc58a653cc58a6",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "approval.none",
+        "text": "No product approval needed for drinkware_food_contact.",
+        "sourceRef": "/productApprovals/drinkware_food_contact/agency",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/appr/drink",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x71e7a79171e7a79171e7a79171e7a79171e7a79171e7a79171e7a79171e7a791",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "reserve.policy",
+        "text": "Sales reserve 5.00% of each sale (tax set-aside policy 5.00%; pack floor 3.00%; facility floor 3.00%).",
+        "sourceRef": "/reserveFloorBps",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/reserve-floor",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "marketplace.shopee.fees",
+        "text": "shopee fees: platform support fee 5.00%, transaction fee 2.10%.",
+        "sourceRef": "/marketplaces/0/fees/0/rateBps",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/shopee/support",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x906debad906debad906debad906debad906debad906debad906debad906debad",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "ads.pacing",
+        "text": "Ads paced at 75 BU/day: 8 daily slots fit the 600 BU cap of each 7-day window, one slot spare for timing.",
+        "sourceRef": "compiler:ads-pacing"
+      },
+      {
+        "ruleId": "stage.gate",
+        "text": "Stage 1 releases 4,000 BU at signing; stage 2 (6,000 BU) needs sales of 2,000 BU by 2026-11-17 and the loan officer's signature.",
+        "sourceRef": "compiler:stage-gate"
+      },
+      {
+        "ruleId": "constitution.caps",
+        "text": "Every line: at most 25% per payment and 50% per 7-day window.",
+        "sourceRef": "constitution:PER_TX_CAP_OVER_25PCT"
+      },
+      {
+        "ruleId": "constitution.supplier-escrow",
+        "text": "The supplier is paid only through escrow milestones; the balance needs your signature and inspection evidence.",
+        "sourceRef": "constitution:SUPPLIER_LINE_NOT_ESCROW"
+      },
+      {
+        "ruleId": "constitution.stage1",
+        "text": "At most 40% of the budget is released before the stage gate.",
+        "sourceRef": "constitution:STAGE1_OVER_40PCT"
+      },
+      {
+        "ruleId": "constitution.payees",
+        "text": "The plan adds no payees: only registered platform accounts and suppliers you approve can be paid.",
+        "sourceRef": "constitution:PLAN_ADDS_PAYEE"
+      },
+      {
+        "ruleId": "replan.current-state",
+        "text": "Replan of version 1: pocket amounts, caps, pacing, expiries, the stage gate, the reserve and the payees stay as they are on-chain unless this intent changes them; a change that loosens them needs the loan officer's co-signature.",
+        "sourceRef": "compiler:replan"
+      }
+    ],
+    "aigc": {
+      "model": "anthropic:claude-sonnet-5-5",
+      "promptHash": "0x8b3cc77d613f92fbf38a0764084af395d10a9dfb954fa61e3ec0a8636700746e"
+    },
+    "compilerVersion": "1.0.0"
+  },
+  "baseline": {
+    "schemaVersion": "2.0.0",
+    "planId": "0x2249fe8e97eff0610d03f3f6f048369b9af96e4ac494b3ec69a9990f0213b91d",
+    "version": 2,
+    "prevPlanHash": "0x6bbd06e4f0aac24f612a24a6da33fe4df3ba1baf0d7bb346561faaec91c7c958",
+    "facilityId": "fac-rina",
+    "countryCode": "MY",
+    "countryPackVersion": "test-2026.10.16",
+    "countryPackHash": "0x51bc3e4ea41491536cc21413cb07c8aaff25ab21c782bec4b09c721829a18f98",
+    "displayCurrency": "MYR",
+    "totalMinor": "1000000",
+    "reserveBps": 500,
+    "agent": {
+      "address": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+      "expiresAt": "1797538956"
+    },
+    "stages": [
+      {
+        "stageId": "stage-1",
+        "releaseMinor": "400000",
+        "gate": null
+      },
+      {
+        "stageId": "stage-2",
+        "releaseMinor": "600000",
+        "gate": {
+          "metric": "salesMinor",
+          "target": "200000",
+          "deadline": "1794946956"
+        }
+      }
+    ],
+    "lines": [
+      {
+        "lineKey": "SUPPLIER",
+        "lineId": "0x535550504c494552000000000000000000000000000000000000000000000000",
+        "purpose": "Goods from the chosen supplier (escrow milestones only)",
+        "amountMinor": "450000",
+        "perTxCapMinor": "112500",
+        "windowCapMinor": "225000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "supplier-a"
+        ],
+        "escrowOnly": true
+      },
+      {
+        "lineKey": "PACKAGING",
+        "lineId": "0x5041434b4147494e470000000000000000000000000000000000000000000000",
+        "purpose": "Custom printed packaging",
+        "amountMinor": "150000",
+        "perTxCapMinor": "37500",
+        "windowCapMinor": "75000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [],
+        "escrowOnly": false
+      },
+      {
+        "lineKey": "LOGISTICS",
+        "lineId": "0x4c4f474953544943530000000000000000000000000000000000000000000000",
+        "purpose": "Inbound freight and last-mile delivery",
+        "amountMinor": "80000",
+        "perTxCapMinor": "20000",
+        "windowCapMinor": "40000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "spx-logistics"
+        ],
+        "escrowOnly": false
+      },
+      {
+        "lineKey": "ADS",
+        "lineId": "0x4144530000000000000000000000000000000000000000000000000000000000",
+        "purpose": "Marketplace ads, paced daily",
+        "amountMinor": "120000",
+        "perTxCapMinor": "30000",
+        "windowCapMinor": "60000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "shopee-ads"
+        ],
+        "escrowOnly": false,
+        "pacing": {
+          "period": "day",
+          "amountMinor": "7500"
+        }
+      },
+      {
+        "lineKey": "PLATFORM_FEES",
+        "lineId": "0x504c4154464f524d5f4645455300000000000000000000000000000000000000",
+        "purpose": "Marketplace platform and transaction fees",
+        "amountMinor": "50000",
+        "perTxCapMinor": "12500",
+        "windowCapMinor": "25000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [
+          "shopee-fees"
+        ],
+        "escrowOnly": false
+      },
+      {
+        "lineKey": "CONTINGENCY",
+        "lineId": "0x434f4e54494e47454e4359000000000000000000000000000000000000000000",
+        "purpose": "Unplanned costs (owner-approved payees only)",
+        "amountMinor": "150000",
+        "perTxCapMinor": "37500",
+        "windowCapMinor": "75000",
+        "windowSeconds": "604800",
+        "validUntil": "1797538956",
+        "payeeIds": [],
+        "escrowOnly": false
+      }
+    ],
+    "rules": [
+      {
+        "ruleId": "entity.sole_prop",
+        "text": "Business type: sole proprietorship.",
+        "sourceRef": "/entities/0/eligibility",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/ssm/sole-elig",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xcd32acfacd32acfacd32acfacd32acfacd32acfacd32acfacd32acfacd32acfa",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "registration.ssm_sole_prop.fee.6000",
+        "text": "Register: SSM business registration, government fee MYR 60.00; paid by the founder before funding.",
+        "sourceRef": "/registrations/0/cost",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/reg/ssm-sole-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x95a2621595a2621595a2621595a2621595a2621595a2621595a2621595a26215",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "registration.lhdn_tin.fee.0",
+        "text": "Register: LHDN tax identification number, government fee MYR 0.00; paid by the founder before funding.",
+        "sourceRef": "/registrations/2/cost",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/reg/tin-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x7ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b017",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "indirect-tax.not-registered",
+        "text": "No SST registration at launch: a reseller below MYR 500,000.00 turnover.",
+        "sourceRef": "/indirectTax/registrationThreshold",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/sst/threshold",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x1bafda071bafda071bafda071bafda071bafda071bafda071bafda071bafda07",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "einvoicing.not-required",
+        "text": "E-invoicing not required below MYR 3,000,000.00 turnover.",
+        "sourceRef": "/eInvoicing/threshold",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/einvoicing",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75e",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "duty.form_e",
+        "text": "Import from CN under Form E (ACFTA): duty 0.00%.",
+        "sourceRef": "/imports/ftaCertificates/0/dutyRateBps",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/imports/form-e-rate",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xcd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "import-tax.rate",
+        "text": "Import sales tax 10.00% on CIF + duty.",
+        "sourceRef": "/indirectTax/rate",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/sst/rate",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x53cc58a653cc58a653cc58a653cc58a653cc58a653cc58a653cc58a653cc58a6",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "approval.none",
+        "text": "No product approval needed for drinkware_food_contact.",
+        "sourceRef": "/productApprovals/drinkware_food_contact/agency",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/appr/drink",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x71e7a79171e7a79171e7a79171e7a79171e7a79171e7a79171e7a79171e7a791",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "reserve.policy",
+        "text": "Sales reserve 5.00% of each sale (tax set-aside policy 5.00%; pack floor 3.00%; facility floor 3.00%).",
+        "sourceRef": "/reserveFloorBps",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/reserve-floor",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "marketplace.shopee.fees",
+        "text": "shopee fees: platform support fee 5.00%, transaction fee 2.10%.",
+        "sourceRef": "/marketplaces/0/fees/0/rateBps",
+        "source": {
+          "sourceUrl": "https://example.invalid/my/shopee/support",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x906debad906debad906debad906debad906debad906debad906debad906debad",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "ruleId": "ads.pacing",
+        "text": "Ads paced at 75 BU/day: 8 daily slots fit the 600 BU cap of each 7-day window, one slot spare for timing.",
+        "sourceRef": "compiler:ads-pacing"
+      },
+      {
+        "ruleId": "stage.gate",
+        "text": "Stage 1 releases 4,000 BU at signing; stage 2 (6,000 BU) needs sales of 2,000 BU by 2026-11-17 and the loan officer's signature.",
+        "sourceRef": "compiler:stage-gate"
+      },
+      {
+        "ruleId": "constitution.caps",
+        "text": "Every line: at most 25% per payment and 50% per 7-day window.",
+        "sourceRef": "constitution:PER_TX_CAP_OVER_25PCT"
+      },
+      {
+        "ruleId": "constitution.supplier-escrow",
+        "text": "The supplier is paid only through escrow milestones; the balance needs your signature and inspection evidence.",
+        "sourceRef": "constitution:SUPPLIER_LINE_NOT_ESCROW"
+      },
+      {
+        "ruleId": "constitution.stage1",
+        "text": "At most 40% of the budget is released before the stage gate.",
+        "sourceRef": "constitution:STAGE1_OVER_40PCT"
+      },
+      {
+        "ruleId": "constitution.payees",
+        "text": "The plan adds no payees: only registered platform accounts and suppliers you approve can be paid.",
+        "sourceRef": "constitution:PLAN_ADDS_PAYEE"
+      },
+      {
+        "ruleId": "replan.current-state",
+        "text": "Replan of version 1: pocket amounts, caps, pacing, expiries, the stage gate, the reserve and the payees stay as they are on-chain unless this intent changes them; a change that loosens them needs the loan officer's co-signature.",
+        "sourceRef": "compiler:replan"
+      }
+    ],
+    "aigc": {
+      "model": "none:rules-baseline",
+      "promptHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "compilerVersion": "1.0.0"
+  },
+  "diff": [
+    {
+      "path": "/lines/0/amountMinor",
+      "baseline": "450000",
+      "proposed": "500000"
+    },
+    {
+      "path": "/lines/0/perTxCapMinor",
+      "baseline": "112500",
+      "proposed": "125000"
+    },
+    {
+      "path": "/lines/0/windowCapMinor",
+      "baseline": "225000",
+      "proposed": "250000"
+    },
+    {
+      "path": "/lines/5/amountMinor",
+      "baseline": "150000",
+      "proposed": "100000"
+    },
+    {
+      "path": "/lines/5/perTxCapMinor",
+      "baseline": "37500",
+      "proposed": "25000"
+    },
+    {
+      "path": "/lines/5/windowCapMinor",
+      "baseline": "75000",
+      "proposed": "50000"
+    }
+  ],
+  "blastRadiusMinor": "400000",
+  "constitutionReport": [
+    {
+      "code": "LINES_EXCEED_FACILITY_CAP",
+      "ok": true
+    },
+    {
+      "code": "AGENT_EXPIRY_TOO_LATE",
+      "ok": true
+    },
+    {
+      "code": "AGENT_EXPIRY_TOO_EARLY",
+      "ok": true
+    },
+    {
+      "code": "PER_TX_CAP_OVER_25PCT",
+      "ok": true
+    },
+    {
+      "code": "WINDOW_CAP_OVER_50PCT",
+      "ok": true
+    },
+    {
+      "code": "LINE_VALIDITY_TOO_LONG",
+      "ok": true
+    },
+    {
+      "code": "RESERVE_BELOW_FLOOR",
+      "ok": true
+    },
+    {
+      "code": "STAGE1_OVER_40PCT",
+      "ok": true
+    },
+    {
+      "code": "PLAN_ADDS_PAYEE",
+      "ok": true
+    },
+    {
+      "code": "SUPPLIER_LINE_NOT_ESCROW",
+      "ok": true
+    },
+    {
+      "code": "PAYEE_CAP_OVER_SCHEDULE",
+      "ok": true
+    },
+    {
+      "code": "TOTALS_MISMATCH",
+      "ok": true
+    },
+    {
+      "code": "MALFORMED_PLAN",
+      "ok": true
+    },
+    {
+      "code": "REPLAN_LOOSENS",
+      "ok": true
+    }
+  ]
+}

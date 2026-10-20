@@ -1,0 +1,46 @@
+; build.sb: macOS sandbox profile for build_chain.sh (scripts/fisco/chain-up.sh runs it from D/build as
+; `sandbox-exec -D CHAIN_DIR=<D> -D BIN=<D>/bin/fisco-bcos -D OPENSSL_CELLAR=/opt/homebrew/Cellar/openssl@3
+; -f build.sb /bin/bash <D>/tools/build_chain.sh ... -o <D>/nodes -e <BIN>`).
+; Tested by P1 on 20 Oct 2026 with these rules, including the run-12 Mach-service and process-info denies (fresh
+; chain-up and chain-check --selftest on chain4: the build ran normally; trustd, other-process and hard-link probes denied).
+; No network at all: the script's two download paths (tassl, get_account.sh) are also replaced by local stubs, so
+; they never try. It may run /bin, /usr/bin and Homebrew OpenSSL 3 only. In the chain dir
+; it may write only D/build (its working folder: public.pem, accounts*), D/nodes (the -o output), D/home (HOME, the
+; two stubs) and D/tmp (TMPDIR), and read D/tools (the copied script) and the binary it copies into the output.
+; Outside D it writes only the one file build_chain.sh hard-codes (/tmp/secp256k1.param).
+; Never widen the network rule.
+(version 1)
+(deny default)
+(import "bsd.sb")
+(deny network*)
+; Mach services that system.sb lets every process look up and that act or fetch for their caller outside this sandbox,
+; denied as in node.sb (keep the two lists equal; test/profiles.sh checks): trustd (certificate checks may fetch CRLs,
+; OCSP answers and missing CA certificates from the network), analyticsd, nsurlsessiond (background URL downloads)
+; and unmanaged XPC activities. After the import: in SBPL the last matching rule wins.
+(deny mach-lookup (global-name "com.apple.trustd" "com.apple.trustd.agent" "com.apple.analyticsd"
+  "com.apple.analyticsd.messagetracer" "com.apple.nsurlsessiond" "com.apple.xpc.activity.unmanaged"))
+; ...and every XPC service: system.sb allows looking up any of them for a (version 1) profile, and an XPC service runs
+; in its own process, outside this sandbox. Neither build_chain.sh nor the tools it runs needs one.
+(deny mach-lookup (xpc-service-name-prefix ""))
+(define chain (param "CHAIN_DIR"))
+(define bin (param "BIN"))
+(define ossl (param "OPENSSL_CELLAR"))
+(define (in-chain sub) (subpath (string-append chain sub)))
+(allow process-fork)
+(allow process-exec file-read* file-map-executable (subpath "/bin") (subpath "/usr/bin") (subpath ossl) (subpath "/opt/homebrew/opt/openssl@3"))
+(allow file-read* (subpath "/opt/homebrew/etc/openssl@3"))
+(allow file-read* (in-chain "/tools") (literal bin))
+(allow file-read* file-write* (in-chain "/build") (in-chain "/nodes") (in-chain "/home") (in-chain "/tmp")
+  (literal "/private/tmp/secp256k1.param"))
+(allow file-read* file-write-data file-ioctl (literal "/dev/null"))
+(allow file-read* (literal "/dev/urandom") (literal "/dev/random"))
+(allow signal (target same-sandbox))
+(allow sysctl-read)
+; ...except other processes' arguments, environment and details (same uid), as in node.sb: kern.procargs,
+; kern.procargs2 and the kern.proc.* table. After the allows: in SBPL the last matching rule wins.
+(deny sysctl-read (sysctl-name "kern.proc") (sysctl-name-prefix "kern.procargs") (sysctl-name-prefix "kern.proc."))
+; The sysctl names above do not catch those reads asked for by number, as ps asks (kern.procargs2.<pid>,
+; kern.proc.pid.<pid>): on macOS 27 the kernel checks them as process-info-pidinfo (fix12-chain's probe, 20 Oct). So
+; no process-info operation on any process but itself (as in node.sb).
+(deny process-info*)
+(allow process-info* (target self))

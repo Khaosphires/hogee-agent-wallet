@@ -1,0 +1,38 @@
+[
+  {
+    "trace_id": "sig-01a15101-7e84-76f3-8850-a6bec03b7c48",
+    "seq": 0,
+    "ts": "2026-10-18T21:53:34.857Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Signature requested: LoosenRequest for exc-01a15101-7429-7f4e-a9b8-d3a703878e20 (eip712)",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xa60d664e907ac71d0e2bc87b9527e49bfc8fef943c038c45ef1d46202dd8bff7"
+  },
+  {
+    "trace_id": "sig-01a15101-7e84-76f3-8850-a6bec03b7c48",
+    "seq": 1,
+    "ts": "2026-10-18T21:53:35.232Z",
+    "actor": "founder",
+    "kind": "ALERT",
+    "summary": "Refused a signature for LoosenRequest: not signed by the registered wallet",
+    "policy_verdict": null,
+    "reason_code": "INVALID_SIGNATURE",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0xa60d664e907ac71d0e2bc87b9527e49bfc8fef943c038c45ef1d46202dd8bff7",
+    "hash": "0xbcfcb396dbd54dcf4666d3e109c301a22320226a759301255d24b4b6ad6a5811"
+  }
+]

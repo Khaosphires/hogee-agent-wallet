@@ -1,0 +1,51 @@
+{
+  "supplierId": "s17-e",
+  "displayName": "Opalfield Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91320500ADFC85XC4H"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-17/s17-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-17/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "820",
+      "sourceUrl": "https://example.invalid/e3/set-17/s17-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x4cbbee47ca46523056ed34caf03504aeb1bc44529bcc57b36e555459f1b9621e",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 26,
+    "freightPerUnit": "70",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-033611-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.6,
+    "responseRate": 0.88,
+    "yearsOnPlatform": 4
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7112850875",
+    "holderName": "Opalfield Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "supplierId": "s03-d",
+  "displayName": "Lumenwave Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91350200RHABD21K3M"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-03/s03-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-03/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "860",
+      "sourceUrl": "https://example.invalid/e3/set-03/s03-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x99baa7e2ce7debcff196eb57038b8b82ceab118ecd13fc4ab0422b2ad5f8fee7",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 47,
+    "freightPerUnit": "70",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": false,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-750570-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-568904-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.71,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7724525172",
+    "holderName": "Lumenwave Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

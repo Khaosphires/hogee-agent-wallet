@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E2PromptRow",
+  "description": "Applies to: each line of evals/datasets/e2/prompts.jsonl",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "promptId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "country": {
+      "type": "string",
+      "enum": [
+        "MY",
+        "ID",
+        "SG"
+      ]
+    },
+    "lang": {
+      "type": "string",
+      "enum": [
+        "en",
+        "ms",
+        "id"
+      ]
+    },
+    "vague": {
+      "type": "boolean"
+    },
+    "hiddenSlot": {
+      "type": "string",
+      "enum": [
+        "countryCode",
+        "residency",
+        "entityType",
+        "productCategory",
+        "sellChannel",
+        "buyFrom",
+        "budgetCeilingMinor",
+        "horizonDays",
+        "adsPacing"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    }
+  },
+  "required": [
+    "promptId",
+    "country",
+    "lang",
+    "vague",
+    "text"
+  ],
+  "additionalProperties": false
+}

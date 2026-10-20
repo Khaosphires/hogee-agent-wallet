@@ -1,0 +1,51 @@
+{
+  "supplierId": "s07-e",
+  "displayName": "Amberstone Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330100CUE20B2K0K"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-07/s07-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-07/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "530",
+      "sourceUrl": "https://example.invalid/e3/set-07/s07-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x596ea9f8995fc65c7c06f73b9951c1018422b52f807b9c212848c95bba1b4e1d",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 43,
+    "freightPerUnit": "80",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-413918-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.73,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7463185932",
+    "holderName": "Amberstone Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

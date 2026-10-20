@@ -1,0 +1,57 @@
+{
+  "supplierId": "s14-a",
+  "displayName": "Maplepeak Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200W3G5YC4E69"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-14/s14-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-14/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "490",
+      "sourceUrl": "https://example.invalid/e3/set-14/s14-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xa8da135bf808b86ff602804d011beb09ed99662919aca5bbe077ee1cb50c0c5b",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 2000,
+    "leadTimeDays": 34,
+    "freightPerUnit": "40",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-844330-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-981853-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.6,
+    "responseRate": 0.96,
+    "yearsOnPlatform": 10
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7394898879",
+    "holderName": "Maplepeak Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

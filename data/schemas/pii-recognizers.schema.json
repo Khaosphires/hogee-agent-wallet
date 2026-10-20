@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PiiRecognizersFile",
+  "description": "Applies to: data/pii/recognizers.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "$comment": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "context_window": {
+      "type": "object",
+      "properties": {
+        "before": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "after": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "negative_before": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "boost": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "before",
+        "after",
+        "negative_before",
+        "boost"
+      ],
+      "additionalProperties": false
+    },
+    "protected": {
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "regex": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "name",
+          "regex"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "recognizers": {
+      "minItems": 1,
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "supported_language": {
+            "type": "string",
+            "const": "en"
+          },
+          "supported_entity": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{1,63}$"
+          },
+          "patterns": {
+            "minItems": 1,
+            "maxItems": 8,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "regex": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                "score": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "hogee_context_required": {
+                  "type": "boolean"
+                },
+                "hogee_validator": {
+                  "type": "string",
+                  "enum": [
+                    "MY_NRIC",
+                    "MY_NRIC_PLAIN",
+                    "ID_NIK",
+                    "ID_NPWP",
+                    "SG_NRIC",
+                    "CREDIT_CARD",
+                    "MY_BANK_ACCOUNT",
+                    "ID_MOBILE",
+                    "EMAIL"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "regex",
+                "score"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "context": {
+            "maxItems": 48,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          },
+          "hogee_validator": {
+            "type": "string",
+            "enum": [
+              "MY_NRIC",
+              "MY_NRIC_PLAIN",
+              "ID_NIK",
+              "ID_NPWP",
+              "SG_NRIC",
+              "CREDIT_CARD",
+              "MY_BANK_ACCOUNT",
+              "ID_MOBILE",
+              "EMAIL"
+            ]
+          },
+          "hogee_negative_context": {
+            "maxItems": 48,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          },
+          "hogee_context_window": {
+            "type": "object",
+            "properties": {
+              "before": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 256
+              },
+              "after": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 256
+              },
+              "same_line": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "before",
+              "after",
+              "same_line"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "supported_language",
+          "supported_entity",
+          "patterns",
+          "context"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "version",
+    "context_window",
+    "protected",
+    "recognizers"
+  ],
+  "additionalProperties": false
+}

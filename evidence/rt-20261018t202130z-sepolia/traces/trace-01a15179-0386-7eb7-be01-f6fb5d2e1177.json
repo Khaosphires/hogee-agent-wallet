@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15179-0386-7eb7-be01-f6fb5d2e1177",
+    "seq": 0,
+    "ts": "2026-10-19T00:04:07.687Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T15 (A spend by the revoked agent): refused by policy DENY NotAgent; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "NotAgent",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x88fdbca9ab81cee38593cbed5fbd066db6f57550de239e08e48125cdd25cdc03"
+  }
+]

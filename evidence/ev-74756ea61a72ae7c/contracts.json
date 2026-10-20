@@ -1,0 +1,33 @@
+{
+  "format": "hogee.evidence/1",
+  "runId": "ev-74756ea61a72ae7c",
+  "facilityId": "fac-mei",
+  "exportedAt": "2026-10-19T07:08:32.806Z",
+  "deploymentId": "final-2",
+  "chainId": 11155111,
+  "chainTag": "sepolia",
+  "explorer": "https://sepolia.etherscan.io",
+  "contracts": {
+    "PlanRegistry": {
+      "address": "0x07289c8852f9780f5b5b7010be7fb68fce159450",
+      "verifiedUrl": "https://sepolia.etherscan.io/address/0x07289c8852f9780f5b5b7010be7fb68fce159450#code",
+      "verified": false
+    },
+    "Treasury": {
+      "address": "0xe08872f9496d21053b52b1127ac30e87300564fa",
+      "verifiedUrl": "https://sepolia.etherscan.io/address/0xe08872f9496d21053b52b1127ac30e87300564fa#code",
+      "verified": false
+    },
+    "MilestoneEscrow": {
+      "address": "0xa5222ebe0be5ce769491f2f3396d14244d5d5761",
+      "verifiedUrl": "https://sepolia.etherscan.io/address/0xa5222ebe0be5ce769491f2f3396d14244d5d5761#code",
+      "verified": false
+    },
+    "SalesOracle": {
+      "address": "0x49fcfc043244a861da24dc16d19d3065732278e2",
+      "verifiedUrl": "https://sepolia.etherscan.io/address/0x49fcfc043244a861da24dc16d19d3065732278e2#code",
+      "verified": false
+    }
+  },
+  "excludedEvalTraces": 0
+}

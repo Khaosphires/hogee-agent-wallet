@@ -1,0 +1,173 @@
+{
+  "supplier": {
+    "supplierId": "supplier-a",
+    "displayName": "Brightwave Drinkware Co., Ltd. (demo)",
+    "country": "CN",
+    "ids": {
+      "uscc": "9133078487TFDHB75K"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-a",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/a.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "560",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0x9ad02fd1a08df2fc8b4be57d5eb24eaa17737a451f6bbe6ed37ea22cc5364a87",
+        "evidence": "tier2",
+        "sourceType": "mock"
+      },
+      "moq": 500,
+      "leadTimeDays": 18,
+      "freightPerUnit": "60",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "LFGB food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-A-LFGB-2026",
+        "tier": "tier2"
+      },
+      {
+        "type": "FDA 21 CFR food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-A-FDA-2026",
+        "tier": "tier2"
+      }
+    ],
+    "metrics": {
+      "rating": 4.8,
+      "responseRate": 0.97,
+      "yearsOnPlatform": 9
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8098963134",
+      "holderName": "Brightwave Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-a-price",
+      "supplierId": "supplier-a",
+      "criterion": "landed_cost",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#price",
+      "snippetHash": "0x9ad02fd1a08df2fc8b4be57d5eb24eaa17737a451f6bbe6ed37ea22cc5364a87",
+      "value": "Price: CNY 5.60 per piece FOB Ningbo.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-a-lead-time",
+      "supplierId": "supplier-a",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#lead",
+      "snippetHash": "0xd6c078bd7be3f56de6e690d2d05d6db9bd61d79d9ba1f97f3c6f514782bb84b1",
+      "value": "Lead time: 18 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-a-terms",
+      "supplierId": "supplier-a",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-a-response-rate",
+      "supplierId": "supplier-a",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#response-rate",
+      "snippetHash": "0xa48d16cb8f24e63733d5bbe9f803c6e48555468f8966e96c26617002197f9138",
+      "value": "Platform response rate (demo metric): 97%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-a-cert-1-quality",
+      "supplierId": "supplier-a",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#cert-1",
+      "snippetHash": "0x0f90bafe4a5fec49ab6671a4701d89b0223755a6cfac57d106ac17d0a88f1bb5",
+      "value": "LFGB food contact test report: ref DEMO-A-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-a-cert-1-compliance",
+      "supplierId": "supplier-a",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#cert-1",
+      "snippetHash": "0x0f90bafe4a5fec49ab6671a4701d89b0223755a6cfac57d106ac17d0a88f1bb5",
+      "value": "LFGB food contact test report: ref DEMO-A-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-a-cert-2-quality",
+      "supplierId": "supplier-a",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#cert-2",
+      "snippetHash": "0x1df3d1b4e3fdac2507a7b3c24faac2160dc73ad32ed41a9483fcd1f15ff81906",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-A-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-a-cert-2-compliance",
+      "supplierId": "supplier-a",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-a#cert-2",
+      "snippetHash": "0x1df3d1b4e3fdac2507a7b3c24faac2160dc73ad32ed41a9483fcd1f15ff81906",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-A-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

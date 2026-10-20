@@ -1,0 +1,44 @@
+{
+  "supplierId": "s02-c",
+  "displayName": "Lumenstone Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91440100KLC6C49DX3"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-02/s02-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-02/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "770",
+      "sourceUrl": "https://example.invalid/e3/set-02/s02-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xd938c90ff3487ed61ea166579ebdefbd204252dc26079fd0fad197ad057ad53f",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 44,
+    "freightPerUnit": "60",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.97,
+    "yearsOnPlatform": 14
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7795469129",
+    "holderName": "Lumenstone Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

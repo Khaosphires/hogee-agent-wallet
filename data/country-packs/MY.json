@@ -1,0 +1,208 @@
+{
+  "countryCode": "MY",
+  "version": "2026-10-18-researched.2",
+  "tier": "RESEARCHED",
+  "currency": "MYR",
+  "reserveFloorBps": {
+    "value": 300,
+    "sourceUrl": "https://github.com/Khaosphires/hogee/blob/a8221a40bd833a25251324442087cee523104663/project.md?plain=1#L1340",
+    "retrievedAt": "2026-10-18T14:18:52Z",
+    "snippetHash": "0x0ab4f5cb255cca0bd64ebfbf87e4f7928832bdcd62ed16cb7df37e31aa4b832f",
+    "evidence": "tier3",
+    "sourceType": "mock"
+  },
+  "registrations": [
+    {
+      "code": "SSM_SOLE_PROP",
+      "entityTypes": [
+        "sole_prop",
+        "partnership"
+      ],
+      "requirement": {
+        "value": "Register the business within 30 days of commencement.",
+        "sourceUrl": "https://www.ssm.com.my/Documents/guidelines_for_registration_of_new_business_05062018_0.pdf",
+        "retrievedAt": "2026-10-18T14:16:20Z",
+        "snippetHash": "0xa0cfcf206281e3d6b865f1d72b471da32e3467e642728f257f79354ea45d05b5",
+        "evidence": "tier2",
+        "sourceType": "live"
+      },
+      "cost": {
+        "value": "6000",
+        "sourceUrl": "https://www.ssm.com.my/Pages/Services/Registration-of-Business-(ROB)/table-of-fees/Table-of-Fees.aspx",
+        "retrievedAt": "2026-10-18T13:59:23Z",
+        "snippetHash": "0x98e48979cfb57a14a3f85f917dbf31a07665f0b6fefb881ecde55bc0a80fde6f",
+        "evidence": "tier2",
+        "sourceType": "live"
+      }
+    },
+    {
+      "code": "SSM_SDN_BHD",
+      "entityTypes": [
+        "sdn_bhd"
+      ],
+      "requirement": {
+        "value": "Incorporate through SSM's company registration portal; reserving the company name first costs a separate RM50.",
+        "sourceUrl": "https://www.ssm.com.my/Pages/Legal_Framework/GUIDELINES/Guidelines-For-Incorporation-of-A-Local-Company.pdf",
+        "retrievedAt": "2026-10-18T13:59:40Z",
+        "snippetHash": "0x4dbe6becee66f63515008e11e11ed8ccd01440c627c5103b4b0c79bf150b3078",
+        "evidence": "tier2",
+        "sourceType": "live"
+      },
+      "cost": {
+        "value": "101000",
+        "sourceUrl": "https://www.ssm.com.my/Pages/Legal_Framework/GUIDELINES/Guidelines-For-Incorporation-of-A-Local-Company.pdf",
+        "retrievedAt": "2026-10-18T13:59:40Z",
+        "snippetHash": "0x57044cd063d066d1583cade8189102b1c21f7e9bb0e40d65f9518861e945b7ef",
+        "evidence": "tier2",
+        "sourceType": "live"
+      }
+    },
+    {
+      "code": "LHDN_TIN",
+      "entityTypes": [
+        "sole_prop",
+        "partnership"
+      ],
+      "requirement": {
+        "value": "TIN registration is automatic for citizens and permanent residents aged 18 and above, using National Registration Department data.",
+        "sourceUrl": "https://www.hasil.gov.my/en/individu/pendaftaran/",
+        "retrievedAt": "2026-10-18T14:00:51Z",
+        "snippetHash": "0xcd780d15f34031602f8d6e3ac7e175aa3e3b1581d804826cb549aa08ff136cd2",
+        "evidence": "tier1",
+        "sourceType": "live"
+      },
+      "cost": {
+        "value": "0",
+        "sourceUrl": "https://www.hasil.gov.my/en/individu/pendaftaran/",
+        "retrievedAt": "2026-10-18T14:00:51Z",
+        "snippetHash": "0xcd780d15f34031602f8d6e3ac7e175aa3e3b1581d804826cb549aa08ff136cd2",
+        "evidence": "tier1",
+        "sourceType": "live"
+      }
+    }
+  ],
+  "indirectTax": {
+    "rate": {
+      "value": 1000,
+      "sourceUrl": "https://mysst.customs.gov.my/wp-content/uploads/2025/07/1-PUA-170_2025.pdf",
+      "retrievedAt": "2026-10-18T14:04:08Z",
+      "snippetHash": "0xeb95ab7efeed9eb3a9ea8e5b42663eac02a8851a3f8e43f403a661c3442ee942",
+      "evidence": "tier1",
+      "sourceType": "live"
+    },
+    "registrationThreshold": {
+      "value": "50000000",
+      "sourceUrl": "https://mysst.customs.gov.my/faq-sales-tax/",
+      "retrievedAt": "2026-10-18T14:02:16Z",
+      "snippetHash": "0x1435a51f63f0ae42f2b92418f0ec08bab2dfa3e5bb6f26bcdf0176746ba8efe7",
+      "evidence": "tier1",
+      "sourceType": "live"
+    }
+  },
+  "eInvoicing": {
+    "threshold": {
+      "value": "300000000",
+      "sourceUrl": "https://www.hasil.gov.my/en/e-invois/pelaksanaan-e-invois-di-malaysia/garis-masa-pelaksanaan-e-invois/",
+      "retrievedAt": "2026-10-18T14:16:21Z",
+      "snippetHash": "0xce4828906033caa95d59d5bac790c5010d7af6e8ec4929728ec6699dd97688b1",
+      "evidence": "tier1",
+      "sourceType": "live"
+    }
+  },
+  "imports": {
+    "taxBase": {
+      "value": "CIF",
+      "sourceUrl": "https://mysst.customs.gov.my/wp-content/uploads/2025/03/Sales-Tax-Act-2018.pdf",
+      "retrievedAt": "2026-10-18T14:14:34Z",
+      "snippetHash": "0x5c265c12ec6f5995abd8ab9ef6c163ac841493c0874ee4c68e2bd6f44f756a8d",
+      "evidence": "tier1",
+      "sourceType": "live"
+    },
+    "dutySources": [
+      {
+        "value": "Customs Duties Order 2025 [P.U. (A) 384/2025], First Schedule column (5): full import duty rates (MFN route).",
+        "sourceUrl": "https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/3300431/PUA%2015%20(2026).pdf",
+        "retrievedAt": "2026-10-18T14:14:06Z",
+        "snippetHash": "0x638b7cdb17c21ff8e266447e0db1e06b457fe107c0badd15b67dcf11f809e2f5",
+        "evidence": "tier1",
+        "sourceType": "live"
+      },
+      {
+        "value": "Customs Duties (Goods under the Framework Agreement on Comprehensive Economic Co-Operation between ASEAN and China) Order 2024 [P.U. (A) 454/2024], Second Schedule column (5), as amended by P.U. (A) 15/2026.",
+        "sourceUrl": "https://www.customs.gov.my/images/06-prosedur/perintah-kastam/perjanjian/PUA454_2024.pdf",
+        "retrievedAt": "2026-10-18T14:12:58Z",
+        "snippetHash": "0xbfa9cec17016ebf44aa99cc48aeabe8a2bedf056fd60ff8d9078d94d977bee42",
+        "evidence": "tier1",
+        "sourceType": "live"
+      }
+    ],
+    "ftaCertificates": [
+      {
+        "route": "FORM_E",
+        "partnerCountry": "CN",
+        "name": {
+          "value": "Form E (ACFTA)",
+          "sourceUrl": "https://fta.miti.gov.my/index.php/pages/view/asean-china",
+          "retrievedAt": "2026-10-18T14:05:27Z",
+          "snippetHash": "0xe034de917bfea10d595aeadf22e01adf8cfd5237f44e8d5dd76c734f151fae3c",
+          "evidence": "tier1",
+          "sourceType": "live"
+        },
+        "dutyRateBps": {
+          "value": 0,
+          "sourceUrl": "https://www.customs.gov.my/images/06-prosedur/perintah-kastam/perjanjian/PUA454_2024.pdf",
+          "retrievedAt": "2026-10-18T14:12:58Z",
+          "snippetHash": "0x0a529752dd463989de16c9e3746f194ca9973a9ebb839177d936aa9e61f49ea6",
+          "evidence": "tier1",
+          "sourceType": "live"
+        }
+      }
+    ]
+  },
+  "productApprovals": {
+    "drinkware_food_contact": {
+      "agency": {
+        "value": "NONE",
+        "sourceUrl": "https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Regulation+1985+Updated+August+2026+PU+A+48-2026_1.pdf",
+        "retrievedAt": "2026-10-18T14:08:39Z",
+        "snippetHash": "0x6b50e90f026b0a56b92686e139c110fe29622b6c1847eb6916460dffc73899b2",
+        "evidence": "tier1",
+        "sourceType": "live"
+      },
+      "cost": {
+        "value": "0",
+        "sourceUrl": "https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Regulation+1985+Updated+August+2026+PU+A+48-2026_1.pdf",
+        "retrievedAt": "2026-10-18T14:08:39Z",
+        "snippetHash": "0x6b50e90f026b0a56b92686e139c110fe29622b6c1847eb6916460dffc73899b2",
+        "evidence": "tier1",
+        "sourceType": "live"
+      },
+      "time": {
+        "value": 0,
+        "sourceUrl": "https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Regulation+1985+Updated+August+2026+PU+A+48-2026_1.pdf",
+        "retrievedAt": "2026-10-18T14:08:39Z",
+        "snippetHash": "0x6b50e90f026b0a56b92686e139c110fe29622b6c1847eb6916460dffc73899b2",
+        "evidence": "tier1",
+        "sourceType": "live"
+      }
+    }
+  },
+  "dataProtection": {
+    "summary": {
+      "value": "After a notifiable personal data breach, tell affected data subjects without unnecessary delay and no later than 7 days after notifying the Personal Data Protection Commissioner.",
+      "sourceUrl": "https://www.pdp.gov.my/ppdpv1/wp-content/uploads/2025/08/GP_DBN_ENG.pdf",
+      "retrievedAt": "2026-10-18T14:04:01Z",
+      "snippetHash": "0x397daa866caa6bddd35a1f8274700010d4ae08fe4a68556711fdc9363d443c39",
+      "evidence": "tier1",
+      "sourceType": "live"
+    },
+    "breachNotificationHours": {
+      "value": 72,
+      "sourceUrl": "https://www.pdp.gov.my/ppdpv1/wp-content/uploads/2025/08/GP_DBN_ENG.pdf",
+      "retrievedAt": "2026-10-18T14:04:01Z",
+      "snippetHash": "0x603295029395a99506d5bbb475eea4bc95805d0578ebe1a55db5efd3784920da",
+      "evidence": "tier1",
+      "sourceType": "live"
+    }
+  }
+}

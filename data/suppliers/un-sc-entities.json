@@ -1,0 +1,39 @@
+{
+  "source": "https://scsanctions.un.org/resources/xml/en/consolidated.xml",
+  "dateGenerated": "2026-10-17T23:00:01.054Z",
+  "retrievedAt": "2026-10-18T14:01:01Z",
+  "sha256": "baf03595ff252d54ed078a7a873b96b07228ccc49119b107b91626c30f9def13",
+  "entityRowsInFile": 274,
+  "selection": "ENTITY rows with UN_LIST_TYPE DPRK whose FIRST_NAME ends with TRADING CORPORATION, ordered by REFERENCE_NUMBER; first 4",
+  "use": "Sanctions-screening TEST rows only: each name below is copied verbatim from the list so the screening check has a real name to match. Every other field of a supplier record that carries one of these names is fictional demo data; it is not an offer from, or a statement about, the listed entity.",
+  "entities": [
+    {
+      "referenceNumber": "KPe.001",
+      "dataId": "690735",
+      "name": "KOREA MINING DEVELOPMENT TRADING CORPORATION",
+      "listedOn": "2009-04-24",
+      "unListType": "DPRK"
+    },
+    {
+      "referenceNumber": "KPe.004",
+      "dataId": "690753",
+      "name": "NAMCHONGANG TRADING CORPORATION",
+      "listedOn": "2009-07-16",
+      "unListType": "DPRK"
+    },
+    {
+      "referenceNumber": "KPe.006",
+      "dataId": "690756",
+      "name": "KOREA HYOKSIN TRADING CORPORATION",
+      "listedOn": "2009-07-16",
+      "unListType": "DPRK"
+    },
+    {
+      "referenceNumber": "KPe.008",
+      "dataId": "690759",
+      "name": "KOREAN TANGUN TRADING CORPORATION",
+      "listedOn": "2009-07-16",
+      "unListType": "DPRK"
+    }
+  ]
+}

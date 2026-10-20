@@ -1,0 +1,107 @@
+{
+  "label": "recorded sample",
+  "kind": "listing",
+  "docId": "supplier-wivdba4c743g3",
+  "fields": {
+    "sellerName": {
+      "value": "Ningbo Ashmere Housewares Co., Ltd.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wivdba4c743g3"
+    },
+    "productTitle": {
+      "value": "20 oz vacuum insulated stainless steel tumbler with handle and straw lid",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wivdba4c743g3"
+    },
+    "unitPrice": {
+      "value": {
+        "amountMinor": "260",
+        "currency": "USD",
+        "unit": "USD",
+        "sourceUrl": "https://www.globalsources.com/Insulated-tumbler/vacuum-stainless-steel-tumbler-1213486570p.htm",
+        "snippetHash": "0xd0f4ceb93339271d6017668e933c0938c5608134217e03e4f30d622f25941043",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wivdba4c743g3"
+    },
+    "moq": {
+      "value": {
+        "value": "300",
+        "unit": "pieces",
+        "sourceUrl": "https://www.globalsources.com/Insulated-tumbler/vacuum-stainless-steel-tumbler-1213486570p.htm",
+        "snippetHash": "0x1429714e17dd8d00de1b80a81a31baf6b4e11fea1c84750898d9ffb84962cae7",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wivdba4c743g3"
+    },
+    "leadTimeDays": {
+      "value": {
+        "value": "20",
+        "unit": "days",
+        "sourceUrl": "https://www.globalsources.com/Insulated-tumbler/vacuum-stainless-steel-tumbler-1213486570p.htm",
+        "snippetHash": "0xdf7a359d909a505d9bbb04bb527f8d869244a88b7f19cbc7741abe20b3f8c3c6",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wivdba4c743g3"
+    },
+    "certificates": {
+      "value": [
+        "LFGB food contact test report"
+      ],
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wivdba4c743g3"
+    },
+    "claimsEscrow": {
+      "value": null,
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wivdba4c743g3"
+    }
+  },
+  "flags": [],
+  "redFlags": [],
+  "supplierGates": [],
+  "dropped": [],
+  "repaired": false,
+  "llmCallIds": [],
+  "extracted": {
+    "unitPrice": {
+      "value": "260",
+      "unit": "USD",
+      "snippetHash": "0xd0f4ceb93339271d6017668e933c0938c5608134217e03e4f30d622f25941043"
+    },
+    "moq": {
+      "value": "300",
+      "unit": "pieces",
+      "snippetHash": "0x1429714e17dd8d00de1b80a81a31baf6b4e11fea1c84750898d9ffb84962cae7"
+    },
+    "leadTimeDays": {
+      "value": "20",
+      "unit": "days",
+      "snippetHash": "0xdf7a359d909a505d9bbb04bb527f8d869244a88b7f19cbc7741abe20b3f8c3c6"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s09-c",
+  "displayName": "Valewave Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91440300H7YP7WC813"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-09/s09-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-09/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "630",
+      "sourceUrl": "https://example.invalid/e3/set-09/s09-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xc03f2a6cdc0cbf1bdf9114204f53b6525340219ce59e7a5a6aeeacd62de4a734",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 45,
+    "freightPerUnit": "40",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-846341-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.74,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7945746352",
+    "holderName": "Valewave Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

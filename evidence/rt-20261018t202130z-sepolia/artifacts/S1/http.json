@@ -1,0 +1,33 @@
+[
+  {
+    "label": "fund",
+    "method": "POST",
+    "path": "/api/facility/fund",
+    "body": {
+      "amountMinor": "1000000"
+    },
+    "status": 200,
+    "response": {
+      "actionId": "act-01a150ae-ec10-791e-b5a1-b73a712ee6bd",
+      "state": "PENDING"
+    }
+  },
+  {
+    "label": "fund above the plan total",
+    "method": "POST",
+    "path": "/api/facility/fund",
+    "body": {
+      "amountMinor": "1"
+    },
+    "status": 409,
+    "response": {
+      "error": {
+        "code": "CapExceeded",
+        "message": "Funding refused: capped at 1000000 minor (the facility cap and the plan total); 1000000 is funded",
+        "contractError": {
+          "name": "CapExceeded"
+        }
+      }
+    }
+  }
+]

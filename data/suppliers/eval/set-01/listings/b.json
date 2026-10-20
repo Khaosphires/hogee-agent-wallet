@@ -1,0 +1,51 @@
+{
+  "supplierId": "s01-b",
+  "displayName": "Granitebrook Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200K5NT9Y3Y1D"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-01/s01-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-01/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "550",
+      "sourceUrl": "https://example.invalid/e3/set-01/s01-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x03a08cf8684a560510a8208c0b60abf5e0004070a0ea24ffd728b3cf2b0c6841",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 46,
+    "freightPerUnit": "90",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-301975-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.77,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7687398920",
+    "holderName": "Granitebrook Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s07-c",
+  "displayName": "Granitegate Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330723AHUEC6Q508"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-07/s07-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-07/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "570",
+      "sourceUrl": "https://example.invalid/e3/set-07/s07-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x9775c7fb35bc1d19fb86e5d4ed4a20ca312b197ac9662f10587f7b9805c6038f",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 29,
+    "freightPerUnit": "50",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-902552-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.99,
+    "yearsOnPlatform": 10
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7867225933",
+    "holderName": "Granitegate Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

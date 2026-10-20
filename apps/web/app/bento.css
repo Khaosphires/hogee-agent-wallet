@@ -1,0 +1,161 @@
+/*
+ * Bento (lay-bento prototype, 19 Oct): pages fill the width beside the side nav as a 12-column grid of cards of
+ * different sizes. The page root is the `bento` container, so the tiers follow the content width, not the window:
+ *   one column under 56rem · `bm-*` from 56rem (a 1280 window: about 2 across) · `bl-*` from 68rem (1440: about 3)
+ *   · `bx-*` from 92rem (1920: about 4).
+ * A cell spans the whole row until a tier gives it a span. `bento-cell` makes a section fill its row: its heading stays
+ * its size and its first block takes the rest, so the cards in a row end on one line.
+ */
+@layer components {
+  .bento {
+    container: bento / inline-size;
+  }
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  @media (min-width: 1600px) {
+    .bento-grid {
+      gap: 1.5rem;
+    }
+  }
+  .bento-grid > * {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  @container bento (min-width: 56rem) {
+    .bento-grid > .bm-1 { grid-column: span 1 / span 1; }
+    .bento-grid > .bm-2 { grid-column: span 2 / span 2; }
+    .bento-grid > .bm-3 { grid-column: span 3 / span 3; }
+    .bento-grid > .bm-4 { grid-column: span 4 / span 4; }
+    .bento-grid > .bm-5 { grid-column: span 5 / span 5; }
+    .bento-grid > .bm-6 { grid-column: span 6 / span 6; }
+    .bento-grid > .bm-7 { grid-column: span 7 / span 7; }
+    .bento-grid > .bm-8 { grid-column: span 8 / span 8; }
+    .bento-grid > .bm-9 { grid-column: span 9 / span 9; }
+    .bento-grid > .bm-10 { grid-column: span 10 / span 10; }
+    .bento-grid > .bm-11 { grid-column: span 11 / span 11; }
+    .bento-grid > .bm-12 { grid-column: span 12 / span 12; }
+  }
+  @container bento (min-width: 68rem) {
+    .bento-grid > .bl-1 { grid-column: span 1 / span 1; }
+    .bento-grid > .bl-2 { grid-column: span 2 / span 2; }
+    .bento-grid > .bl-3 { grid-column: span 3 / span 3; }
+    .bento-grid > .bl-4 { grid-column: span 4 / span 4; }
+    .bento-grid > .bl-5 { grid-column: span 5 / span 5; }
+    .bento-grid > .bl-6 { grid-column: span 6 / span 6; }
+    .bento-grid > .bl-7 { grid-column: span 7 / span 7; }
+    .bento-grid > .bl-8 { grid-column: span 8 / span 8; }
+    .bento-grid > .bl-9 { grid-column: span 9 / span 9; }
+    .bento-grid > .bl-10 { grid-column: span 10 / span 10; }
+    .bento-grid > .bl-11 { grid-column: span 11 / span 11; }
+    .bento-grid > .bl-12 { grid-column: span 12 / span 12; }
+  }
+  @container bento (min-width: 92rem) {
+    .bento-grid > .bx-1 { grid-column: span 1 / span 1; }
+    .bento-grid > .bx-2 { grid-column: span 2 / span 2; }
+    .bento-grid > .bx-3 { grid-column: span 3 / span 3; }
+    .bento-grid > .bx-4 { grid-column: span 4 / span 4; }
+    .bento-grid > .bx-5 { grid-column: span 5 / span 5; }
+    .bento-grid > .bx-6 { grid-column: span 6 / span 6; }
+    .bento-grid > .bx-7 { grid-column: span 7 / span 7; }
+    .bento-grid > .bx-8 { grid-column: span 8 / span 8; }
+    .bento-grid > .bx-9 { grid-column: span 9 / span 9; }
+    .bento-grid > .bx-10 { grid-column: span 10 / span 10; }
+    .bento-grid > .bx-11 { grid-column: span 11 / span 11; }
+    .bento-grid > .bx-12 { grid-column: span 12 / span 12; }
+  }
+}
+
+/* The overrides below sit outside the layers on purpose: they must beat a component's own utilities (its `grid`,
+   `content-start`, `truncate`) inside a bento cell, and only there. */
+.bento-cell {
+  grid-template-rows: auto 1fr;
+  grid-auto-rows: auto;
+  align-content: stretch;
+}
+.bento-cell > :nth-child(2) {
+  min-height: 0;
+}
+
+/* Wallet: later cards may fill a hole an earlier, wider card left in the row above (the grid reads in rows). */
+.bento-dense {
+  grid-auto-flow: row dense;
+}
+
+/* A list section (Activity): the list grows to the row's height and its "Show all" stays under it. */
+.bento-list > :nth-child(2) {
+  display: flex;
+  flex-direction: column;
+}
+.bento-list > :nth-child(2) > ul {
+  flex: 1 1 auto;
+}
+
+/* "What Hogee noticed" beside the pockets: each note is a tile that shares the column's height, its title wrapping
+   (one line was a truncated half-sentence at this width). The detail still opens behind a press. */
+.bento-notes > div {
+  grid-template-rows: auto 1fr;
+}
+.bento-notes ul {
+  display: grid;
+  grid-auto-rows: 1fr;
+}
+.bento-notes ul > li > details,
+.bento-notes ul > li > details > summary {
+  height: 100%;
+}
+.bento-notes ul > li > details[open] > summary {
+  height: auto;
+}
+.bento-notes summary > span:nth-child(2) {
+  white-space: normal;
+  text-wrap: pretty;
+}
+@container bento (min-width: 68rem) {
+  .bento-notes summary {
+    flex-wrap: wrap;
+    align-content: center;
+    row-gap: 0.75rem;
+    padding-block: 1.125rem;
+  }
+  .bento-notes summary > span:nth-child(2) {
+    flex-basis: 100%;
+    order: 3;
+    font-size: 1.0625rem;
+    line-height: 1.375rem;
+    letter-spacing: -0.012em;
+  }
+  .bento-notes summary > svg {
+    margin-left: auto;
+  }
+}
+
+/* Settings: the groups flow into balanced columns, so no column ends far below the others. */
+.bento-columns {
+  column-gap: 1.5rem;
+}
+.bento-columns > * {
+  break-inside: avoid;
+  margin-bottom: 2rem;
+}
+@container bento (min-width: 56rem) {
+  .bento-columns {
+    columns: 2;
+  }
+}
+@container bento (min-width: 68rem) {
+  .bento-columns {
+    columns: 3;
+  }
+}
+
+/* Plan at 1920: the six pockets in one row. */
+@container bento (min-width: 92rem) {
+  .bento-six {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}

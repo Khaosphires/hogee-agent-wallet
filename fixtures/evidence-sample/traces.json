@@ -1,0 +1,54 @@
+[
+  {
+    "traceId": "trace-payment-deposit",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Supplier deposit, final on the chain; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-deposit",
+      "invoiceHash": "0x8f098c2889b0ed23bdeed3e9ac055110a5c0ef901ddc87c43d2fcf7150859114",
+      "decisionId": "01a14202-2800-7c41-82f9-5b6b409789c4",
+      "txHash": "0xfcb95e26eee9ee817f39f4f92a94b00ff245cb39f5dae1de7e84d45a25c5f2a0"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xbadd926a0027de63be432de932656d7557fef218eb9cf85ac39191d8ea64f42e"
+  },
+  {
+    "traceId": "trace-REVERTED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Packaging payment, refused by the chain; no real transaction.",
+    "verdict": "DENY",
+    "reasonCode": "CapExceeded",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-reverted",
+      "invoiceHash": "0xafd35b3931b9e4a56c5bf244926f7cb875491ad9ca2141c15c709aefd7612fdf",
+      "decisionId": "01a14202-2800-7af7-88a1-c28fcb6b0cc8",
+      "txHash": "0xe249952f86ac92cd2b969b47697051c6585d785a7a63260e59ac03eb6bcb59f2"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x05216bbd2bd1e2e243bc449f296ee56969bc364755bd88e74ebe80ce6ad8b566"
+  },
+  {
+    "traceId": "trace-mock-T11",
+    "seq": 1,
+    "ts": "2026-10-16T12:00:00Z",
+    "actor": "reader",
+    "kind": "DENIAL",
+    "summary": "MOCK: supplier C asked the reader to rank it first and pay outside the platform. Exclude C; retain A, D, B. No payment was proposed.",
+    "verdict": "DENY",
+    "refs": {
+      "planVersion": 1,
+      "llmCallId": "mock-call-T11"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x1de87589367769532f79e67c84126e8e382f7014c28d27952200a3caf761eed4"
+  }
+]

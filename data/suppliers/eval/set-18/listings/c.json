@@ -1,0 +1,51 @@
+{
+  "supplierId": "s18-c",
+  "displayName": "Cedarpoint Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330784AY5T976A04"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-18/s18-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-18/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "580",
+      "sourceUrl": "https://example.invalid/e3/set-18/s18-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x3354d78f4d2ac8f7bfe6c62ac96b4d67361cbf6162f3afbc4259104d8f6785ad",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 25,
+    "freightPerUnit": "80",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "personal"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-725145-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.8,
+    "responseRate": 0.75,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7321249563",
+    "holderName": "Personal account of a sales manager (fictional) - DO NOT PAY"
+  }
+}

@@ -1,0 +1,387 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./shell.css";
+@import "./bento.css";
+
+/*
+ * "Ledger and Seal" (apps/web/DESIGN.md). Ink on cool paper, light only, Geist Sans + Geist Mono.
+ * Cinnabar (--seal) means one thing: Mei signed. Cobalt (--agent) means the wallet acted alone.
+ * Status colours are signals with an icon or dot plus a word; chart colours never colour pills.
+ * The §1 block is pasted as specified; additions below it are marked "added".
+ * ux2-design (DESIGN.md §12): the visible half of the apple-design pass. A grouped grey canvas under solid white
+ * surfaces, an Apple type scale, layered contact + ambient shadows, a non-uniform radius scale, tinted fills and
+ * hairline separators. Marked "ux2".
+ */
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-background: var(--canvas); --color-foreground: var(--ink);
+  --color-card: var(--surface); --color-card-foreground: var(--ink);
+  --color-popover: var(--raised); --color-popover-foreground: var(--ink);
+  --color-primary: var(--ink); --color-primary-foreground: var(--ink-on);
+  --color-secondary: var(--sunk); --color-secondary-foreground: var(--ink);
+  --color-muted: var(--sunk); --color-muted-foreground: var(--ink-3);
+  --color-accent: var(--sunk); --color-accent-foreground: var(--ink);
+  --color-destructive: var(--blocked);
+  --color-border: var(--line); --color-input: var(--line-control); --color-ring: var(--ink);
+  /* Legacy names kept so pages not yet restyled still compile: safe = waiting, finalized = paid. */
+  --color-safe: var(--waiting-wash); --color-safe-foreground: var(--waiting);
+  --color-finalized: var(--paid-wash); --color-finalized-foreground: var(--paid);
+  --color-canvas: var(--canvas); --color-surface: var(--surface); --color-raised: var(--raised);
+  --color-sunk: var(--sunk); --color-sunk-2: var(--sunk-2);
+  --color-ink: var(--ink); --color-ink-2: var(--ink-2); --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4); --color-ink-on: var(--ink-on);
+  --color-line: var(--line); --color-line-2: var(--line-2); --color-line-control: var(--line-control);
+  --color-primary-hover: var(--primary-hover);
+  --color-paid: var(--paid); --color-paid-wash: var(--paid-wash);
+  --color-waiting: var(--waiting); --color-waiting-wash: var(--waiting-wash); --color-waiting-dot: var(--waiting-dot);
+  --color-blocked: var(--blocked); --color-blocked-wash: var(--blocked-wash);
+  --color-agent: var(--agent); --color-agent-wash: var(--agent-wash);
+  --color-seal: var(--seal); --color-seal-ink: var(--seal-ink); --color-seal-wash: var(--seal-wash);
+  --color-chart-1: var(--chart-1); --color-chart-2: var(--chart-2); --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4); --color-chart-5: var(--chart-5); --color-chart-neutral: var(--chart-neutral);
+  /* ux2: fills (ink at low alpha, so they read the same on white and on the grey canvas), the hairline separator,
+     and tints: each colour at 13 % for icon tiles, tinted buttons and tinted rows. */
+  --color-fill: var(--fill); --color-fill-strong: var(--fill-strong); --color-separator: var(--separator);
+  --color-tint-ink: var(--tint-ink); --color-tint-1: var(--tint-1); --color-tint-2: var(--tint-2); --color-tint-3: var(--tint-3);
+  --color-tint-4: var(--tint-4); --color-tint-5: var(--tint-5); --color-tint-neutral: var(--tint-neutral);
+  --color-tint-paid: var(--tint-paid); --color-tint-agent: var(--tint-agent); --color-tint-seal: var(--tint-seal);
+  --color-tint-waiting: var(--tint-waiting); --color-tint-blocked: var(--tint-blocked);
+  --color-tile-waiting: var(--tile-waiting);
+  --color-slot-1-ink: var(--slot-1-ink); --color-slot-2-ink: var(--slot-2-ink); --color-slot-3-ink: var(--slot-3-ink);
+  --color-slot-4-ink: var(--slot-4-ink); --color-slot-5-ink: var(--slot-5-ink); --color-slot-neutral-ink: var(--slot-neutral-ink);
+  /* ux2: radius is not uniform. Tags 6, small controls 8, controls and wells 12, grouped lists 14, cards 18, sheets
+     and dialogs 24 (`rounded-sheet`; 2xl stays 20 for the chat composer). The named aliases say the job. */
+  --radius-xs: 4px; --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 18px; --radius-2xl: 20px; --radius-3xl: 28px;
+  --radius-control: 12px; --radius-group: 14px; --radius-card: 18px; --radius-sheet: 24px;
+  /* ux2: each shadow is a tight contact shadow plus a soft ambient one (plus a hairline ring), deeper as the thing
+     rises: sm (controls, a segment thumb), card (a card on the canvas), md (a raised tile or hovered card), lg (the one
+     lifted card, a floating panel), pop (popovers, dialogs, sheets). */
+  --shadow-sm: var(--elev-sm); --shadow-md: var(--elev-md); --shadow-lg: var(--elev-lg);
+  --shadow-card: var(--elev-card); --shadow-lift: var(--elev-lift); --shadow-pop: var(--elev-pop);
+  /* changed (apple-design): rem on a 16 px base, so the browser's text size is respected; identical at 100%. Tracking is
+     size-specific: small meta slightly open, body 0, titles and figures tighter as they grow. */
+  --text-meta: 0.75rem; --text-meta--line-height: 1rem; --text-meta--letter-spacing: 0.01em;
+  --text-ui: 0.875rem; --text-ui--line-height: 1.3125rem;
+  --text-chat: 0.9375rem; --text-chat--line-height: 1.5rem;
+  /* changed (ux2): the card title is the headline (17/600), the page title the large title (34/700), and the money
+     figures are heavier and larger, so a page reads by scale: one big title, big numbers, small quiet labels. */
+  --text-title: 1.0625rem; --text-title--line-height: 1.375rem; --text-title--font-weight: 600; --text-title--letter-spacing: -0.012em;
+  --text-page: 2.125rem; --text-page--line-height: 2.5rem; --text-page--font-weight: 700; --text-page--letter-spacing: -0.026em;
+  --text-amount: 1.75rem; --text-amount--line-height: 1.1; --text-amount--font-weight: 600; --text-amount--letter-spacing: -0.03em;
+  --text-hero: 2.75rem; --text-hero--line-height: 1.05; --text-hero--font-weight: 600; --text-hero--letter-spacing: -0.038em;
+  /* ux2: the Apple type scale (iOS Dynamic Type at its default size, body 16 for the web). Size, leading, weight and
+     tracking move as a set: the larger the size, the tighter the leading and the tracking; caption opens slightly. */
+  --text-large-title: 2.125rem; --text-large-title--line-height: 2.5rem; --text-large-title--font-weight: 700; --text-large-title--letter-spacing: -0.026em;
+  --text-title-1: 1.75rem; --text-title-1--line-height: 2.125rem; --text-title-1--font-weight: 700; --text-title-1--letter-spacing: -0.022em;
+  --text-title-2: 1.375rem; --text-title-2--line-height: 1.75rem; --text-title-2--font-weight: 600; --text-title-2--letter-spacing: -0.018em;
+  --text-title-3: 1.25rem; --text-title-3--line-height: 1.5625rem; --text-title-3--font-weight: 600; --text-title-3--letter-spacing: -0.015em;
+  --text-headline: 1.0625rem; --text-headline--line-height: 1.375rem; --text-headline--font-weight: 600; --text-headline--letter-spacing: -0.012em;
+  --text-body: 1rem; --text-body--line-height: 1.5rem; --text-body--letter-spacing: -0.003em;
+  --text-callout: 0.9375rem; --text-callout--line-height: 1.3125rem;
+  --text-subhead: 0.875rem; --text-subhead--line-height: 1.25rem;
+  --text-footnote: 0.8125rem; --text-footnote--line-height: 1.125rem; --text-footnote--letter-spacing: 0.003em;
+  --text-caption: 0.75rem; --text-caption--line-height: 1rem; --text-caption--letter-spacing: 0.01em;
+  --text-caption-2: 0.6875rem; --text-caption-2--line-height: 0.8125rem; --text-caption-2--font-weight: 500; --text-caption-2--letter-spacing: 0.02em;
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-stamp: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --animate-stamp: stamp 440ms var(--ease-stamp) both;
+  --animate-bleed: bleed 260ms var(--ease-settle) 260ms both;
+  --animate-rise: rise 240ms var(--ease-settle) both;
+  --animate-fade-up: fade-up 220ms var(--ease-settle) both;
+  /* added: the one loop (Touch ID pending) and the reduced-motion seal fallback */
+  --animate-breathe: breathe 1200ms cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  --animate-seal-fade: fade-in 120ms linear both;
+  /* ux2: the skeleton's light sweep (transform only; reduced motion keeps the block still). */
+  --animate-shimmer: shimmer 1600ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+:root {
+  --radius: 12px;
+  /* changed (ux2): the canvas is a grouped background (a faint cool grey, like iOS systemGroupedBackground) and every
+     surface on it is solid white, so a card or a grouped list reads as a raised sheet without a border. */
+  --canvas: oklch(0.964 0.005 262); --surface: oklch(1 0 0); --raised: oklch(1 0 0);
+  --sunk: oklch(0.95 0.006 260); --sunk-2: oklch(0.928 0.008 260);
+  --ink: oklch(0.235 0.028 262); --ink-2: oklch(0.42 0.022 260); --ink-3: oklch(0.53 0.018 258);
+  --ink-4: oklch(0.72 0.012 258); --ink-on: oklch(0.985 0.003 255);
+  --line: oklch(0.905 0.006 258); --line-2: oklch(0.86 0.008 258); --line-control: oklch(0.64 0.014 258);
+  /* ux2: ink at low alpha: the separator hairline inside grouped lists, and the two fills (hover, pressed, quiet
+     controls). Alpha, so each reads the same on white and on the canvas. */
+  --ink-lch: 0.235 0.028 262;
+  --separator: oklch(var(--ink-lch) / 0.1);
+  --fill: oklch(var(--ink-lch) / 0.045); --fill-strong: oklch(var(--ink-lch) / 0.085);
+  --primary-hover: oklch(0.31 0.035 262);
+  --paid: oklch(0.52 0.105 158); --paid-wash: oklch(0.962 0.03 160);
+  --waiting: oklch(0.455 0.1 80); --waiting-wash: oklch(0.968 0.045 90); --waiting-dot: oklch(0.78 0.15 80);
+  --blocked: oklch(0.45 0.16 0); --blocked-wash: oklch(0.965 0.02 5);
+  --agent: oklch(0.48 0.15 262); --agent-wash: oklch(0.962 0.024 262);
+  --seal: oklch(0.58 0.165 45); --seal-ink: oklch(0.5 0.15 42); --seal-wash: oklch(0.968 0.024 50);
+  /* validate_palette.js light, adjacent: CVD 11.8, normal 16.1, all >= 3:1 */
+  --chart-1: oklch(0.59 0.11 190); --chart-2: oklch(0.5 0.14 292); --chart-3: oklch(0.61 0.11 238);
+  --chart-4: oklch(0.65 0.13 76); --chart-5: oklch(0.57 0.15 352); --chart-neutral: oklch(0.66 0.014 258);
+  /* ux2: tints, each colour at 13 % (icon tiles, tinted buttons, a tinted row). The solid tile behind a white glyph
+     uses the colour itself (every one >= 3:1 with white); the waiting tile has its own amber (the waiting dot is too
+     light for a white glyph, the waiting text colour too brown). */
+  --tint-ink: oklch(var(--ink-lch) / 0.07);
+  --tint-1: color-mix(in oklab, var(--chart-1) 13%, transparent); --tint-2: color-mix(in oklab, var(--chart-2) 13%, transparent);
+  --tint-3: color-mix(in oklab, var(--chart-3) 13%, transparent); --tint-4: color-mix(in oklab, var(--chart-4) 15%, transparent);
+  --tint-5: color-mix(in oklab, var(--chart-5) 13%, transparent); --tint-neutral: color-mix(in oklab, var(--chart-neutral) 15%, transparent);
+  --tint-paid: color-mix(in oklab, var(--paid) 13%, transparent); --tint-agent: color-mix(in oklab, var(--agent) 12%, transparent);
+  --tint-seal: color-mix(in oklab, var(--seal) 13%, transparent); --tint-waiting: color-mix(in oklab, var(--waiting-dot) 22%, transparent);
+  --tint-blocked: color-mix(in oklab, var(--blocked) 11%, transparent);
+  --tile-waiting: oklch(0.64 0.15 68);
+  /* ux2: a pocket colour deepened with a quarter of ink, for a glyph or a figure on that colour's tint (every one
+     >= 3:1 there; the plain chart colours are not, on the canvas). */
+  --slot-1-ink: color-mix(in oklab, var(--chart-1) 72%, var(--ink)); --slot-2-ink: color-mix(in oklab, var(--chart-2) 80%, var(--ink));
+  --slot-3-ink: color-mix(in oklab, var(--chart-3) 72%, var(--ink)); --slot-4-ink: color-mix(in oklab, var(--chart-4) 68%, var(--ink));
+  --slot-5-ink: color-mix(in oklab, var(--chart-5) 80%, var(--ink)); --slot-neutral-ink: color-mix(in oklab, var(--chart-neutral) 60%, var(--ink));
+  /* changed (ux2): layered depth. A hairline ring (alpha, so it works on any surface), a tight contact shadow, and a
+     soft ambient one that grows with height. */
+  --elev-sm: 0 0 0 1px oklch(var(--ink-lch) / 0.06), 0 1px 1px oklch(var(--ink-lch) / 0.04), 0 1px 3px oklch(var(--ink-lch) / 0.06);
+  --elev-card: 0 0 0 1px oklch(var(--ink-lch) / 0.045), 0 1px 2px oklch(var(--ink-lch) / 0.04), 0 3px 10px -3px oklch(var(--ink-lch) / 0.06);
+  --elev-md: 0 0 0 1px oklch(var(--ink-lch) / 0.05), 0 1px 3px oklch(var(--ink-lch) / 0.06), 0 10px 24px -8px oklch(var(--ink-lch) / 0.12);
+  --elev-lg: 0 0 0 1px oklch(var(--ink-lch) / 0.055), 0 2px 5px -1px oklch(var(--ink-lch) / 0.07), 0 20px 44px -14px oklch(var(--ink-lch) / 0.2);
+  --elev-lift: var(--elev-lg), inset 0 1px 0 oklch(1 0 0 / 0.7);
+  --elev-pop: 0 0 0 1px oklch(var(--ink-lch) / 0.07), 0 4px 10px -2px oklch(var(--ink-lch) / 0.08), 0 28px 64px -16px oklch(var(--ink-lch) / 0.28);
+  --dur-press: 120ms; --dur-state: 180ms; --dur-enter: 240ms; --dur-seal: 600ms;
+  /* added: the hatch fills of the wallet meter (agent pays next / waits for you) */
+  --hatch-agent: repeating-linear-gradient(-45deg, var(--agent) 0 1.5px, oklch(0.9 0.04 262) 1.5px 4.5px);
+  --hatch-wait: repeating-linear-gradient(-45deg, var(--waiting-dot) 0 2px, oklch(0.93 0.06 88) 2px 4.5px);
+  /* added (apple-design): springs in Apple's two numbers. Damping 1.0 is critically damped (no bounce); the curve is
+     that spring sampled to rest (within 0.2 %), so a spring has no "duration", only a settle time, which the two
+     duration tokens hold: response 0.3 settles in 410 ms, response 0.4 in 540 ms. Bounce (damping 0.8) only ever
+     follows a momentum gesture, and lives in components/ui/sheet-physics.ts, not here. */
+  --ease-spring: linear(0, 0.047, 0.151, 0.275, 0.399, 0.512, 0.61, 0.693, 0.76, 0.814, 0.857, 0.891, 0.917, 0.937, 0.953,
+    0.964, 0.973, 0.98, 0.985, 0.989, 0.992, 0.994, 0.996, 0.997, 0.998, 1);
+  --dur-spring-fast: 410ms; /* response 0.3: dialogs, popovers, menus, the scrim */
+  --dur-spring: 540ms; /* response 0.4: sheets, and messages and cards arriving live */
+  --rise: 6px; /* how far a live message or card rises into place */
+  --pop-scale: 0.96; /* what a dialog or popover grows from, and shrinks back to */
+  --sheet-from: 100%; /* where a CSS-driven sheet (the top menu) comes from along its edge */
+  --press: 0.96; /* buttons, chips, segments, nav items: the instant pointer-down response */
+  --press-row: 0.985; /* tappable rows and cards scale less: they are bigger */
+  /* added (apple-design): the one translucent material (DESIGN.md §5), for floating chrome only. */
+  --material: oklch(0.995 0.0015 255 / 0.72);
+  --material-filter: blur(20px) saturate(180%);
+  --material-highlight: oklch(1 0 0 / 0.75);
+  --material-edge: var(--line);
+  color-scheme: light;
+}
+
+/* added (apple-design, skill §14): three independent settings, each a gentler equivalent rather than "off". */
+@media (prefers-reduced-motion: reduce) {
+  /* Slides, scales and springs become short opacity cross-fades; nothing overshoots; presses stop scaling. */
+  :root {
+    --ease-spring: cubic-bezier(0.2, 0, 0, 1);
+    --dur-spring-fast: 160ms;
+    --dur-spring: 200ms;
+    --rise: 0px;
+    --pop-scale: 1;
+    --sheet-from: 0%;
+    --press: 1;
+    --press-row: 1;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  /* Materials go solid: no blur, nothing showing through. */
+  :root { --material: var(--surface); --material-filter: none; }
+}
+@media (prefers-contrast: more) {
+  /* Near-solid surfaces, a defined border on floating chrome, stronger ink and rules. */
+  :root {
+    --material: var(--raised);
+    --material-filter: none;
+    --material-edge: var(--line-control);
+    --ink-2: oklch(0.33 0.026 261); --ink-3: oklch(0.42 0.022 260); --ink-4: oklch(0.56 0.016 258);
+    --line: oklch(0.82 0.01 258); --line-2: oklch(0.7 0.012 258);
+    /* ux2: separators and every surface's ring become defined lines; fills get stronger. */
+    --separator: oklch(var(--ink-lch) / 0.28);
+    --fill: oklch(var(--ink-lch) / 0.08); --fill-strong: oklch(var(--ink-lch) / 0.14);
+    --elev-card: 0 0 0 1px var(--line-2), 0 1px 2px oklch(var(--ink-lch) / 0.06);
+    --elev-sm: 0 0 0 1px var(--line-control);
+  }
+}
+
+@keyframes stamp { 0% { opacity: 0; transform: scale(1.35) rotate(-12deg) } 25% { opacity: 1 }
+  60% { transform: scale(0.97) rotate(-3deg); animation-timing-function: var(--ease-settle) }
+  100% { opacity: 1; transform: scale(1) rotate(-4deg) } }
+@keyframes bleed { 0% { opacity: 0.35; transform: scale(0.9) } 100% { opacity: 0; transform: scale(1.3) } }
+@keyframes rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+/* added */
+@keyframes breathe { 0%, 100% { opacity: 0.55 } 50% { opacity: 1 } }
+@keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+/* ux2: a highlight crossing a skeleton block, then a rest before the next pass. */
+@keyframes shimmer { 0% { transform: translateX(-100%) } 60%, 100% { transform: translateX(100%) } }
+/* added (apple-design): a no-op that runs for as long as an exit transition, so Radix keeps the surface mounted until
+   the exit has played (Presence waits for animationend). It animates nothing anyone can see. */
+@keyframes presence-hold { from { --presence-hold: 0 } to { --presence-hold: 1 } }
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body {
+    @apply bg-background text-foreground;
+    font-variant-numeric: tabular-nums;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  ::selection { background: oklch(0.235 0.028 262 / 0.14); }
+  /* changed (apple-design): reduced motion is no longer "everything in 1 ms". The motion tokens above turn slides, scales
+     and springs into short cross-fades; here the seal keeps its 120 ms fade (DESIGN.md §4) and its bleed and the
+     signer/tx lines stay still, and smooth scrolling stops. */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-sealing="true"] .chop { animation: var(--animate-seal-fade) !important; }
+    [data-sealing="true"] .chop::after { animation: none !important; }
+  }
+  /* added (apple-design): phones lose the double-tap-zoom delay (pinch zoom stays). */
+  html { touch-action: manipulation; }
+  /* added (apple-design): a press shows on pointer-down. Disclosure rows and plain text links dim; anything with its
+     own active: style (buttons, chips, segments, nav items) keeps it. */
+  :where(summary, a[href]):not([class*="active:"]):active { opacity: 0.6; }
+  /* added: browser surfaces in the palette */
+  html { scrollbar-color: var(--line-2) transparent; accent-color: var(--ink); caret-color: var(--ink); }
+  :where(a, button, [role="button"], summary) { -webkit-tap-highlight-color: transparent; }
+  /* A native file picker never pushes a phone layout sideways. */
+  input[type="file"] { min-width: 0; max-width: 100%; }
+  label:has(> input[type="file"]) { min-width: 0; max-width: 100%; }
+}
+
+/*
+ * added: the few shapes utilities can't express. Everything else lives in the components.
+ */
+@layer components {
+  /* The stub: the perforated foot every money card ends in (DESIGN.md §7). Full bleed inside a Card. */
+  .stub {
+    position: relative;
+    background-color: var(--canvas);
+    border-top: 1px dashed var(--line-2);
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  }
+  .stub::before,
+  .stub::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: var(--canvas);
+    box-shadow: inset 0 0 0 1px var(--line);
+    pointer-events: none;
+  }
+  /* Only the half over the card shows (plus the 1px ring outside its edge), so it reads as a punched notch. */
+  .stub::before { left: -7px; clip-path: inset(0 0 0 calc(50% - 1px)); }
+  .stub::after { right: -7px; clip-path: inset(0 calc(50% - 1px) 0 0); }
+
+  /* The chop: the seal a signature leaves. Cinnabar is used for nothing else (DESIGN.md §4). */
+  .chop {
+    position: relative;
+    display: inline-grid;
+    flex: none;
+    align-content: center;
+    justify-items: center;
+    gap: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--seal);
+    color: var(--raised);
+    font: 600 11px/1 var(--font-mono);
+    letter-spacing: 0.08em;
+    transform: rotate(-4deg);
+    box-shadow: inset 0 0 0 2px var(--seal), inset 0 0 0 3px oklch(1 0 0 / 0.75), 0 1px 1px oklch(0.4 0.12 40 / 0.25);
+  }
+  .chop::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 12px;
+    border: 2px solid var(--seal);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .chop[data-size="20"] { width: 20px; height: 20px; border-radius: 5px; font-size: 0; box-shadow: inset 0 0 0 1.5px var(--seal), inset 0 0 0 2.25px oklch(1 0 0 / 0.7); }
+  .chop[data-size="14"] { width: 14px; height: 14px; border-radius: 4px; font-size: 0; vertical-align: -2px; box-shadow: inset 0 0 0 1.25px var(--seal), inset 0 0 0 2px oklch(1 0 0 / 0.65); }
+  /* The brand mark is the same chop in ink: cinnabar is reserved for signatures. */
+  .chop[data-tone="ink"] { background: var(--ink); color: var(--ink-on); box-shadow: inset 0 0 0 1.5px var(--ink), inset 0 0 0 2.25px oklch(1 0 0 / 0.5); }
+
+  /* The seal moment: plays only on a live transition to signed (data-sealing), never when history renders. */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-sealing="true"] .chop { animation: var(--animate-stamp); }
+    [data-sealing="true"] .chop::after { animation: var(--animate-bleed); }
+    [data-sealing="true"] [data-seal-line="signer"] { animation: fade-up 220ms var(--ease-settle) 300ms both; }
+    [data-sealing="true"] [data-seal-line="tx"] { animation: fade-up 220ms var(--ease-settle) 360ms both; }
+  }
+
+  .hatch-agent { background: var(--hatch-agent); }
+  .hatch-wait { background: var(--hatch-wait); }
+
+  /*
+   * added (apple-design): motion on interruptible transitions, never keyframes, for anything a user can reverse.
+   * Enters start from @starting-style; exits go back along the same path; a re-open mid-exit turns around from the
+   * value on screen. Under reduced motion the tokens make each of these a short cross-fade.
+   */
+
+  /* Dialogs, popovers, menus, selects: grow from --pop-scale at their origin (popovers set the trigger as origin). */
+  .pop-surface {
+    transition-property: opacity, scale;
+    transition-duration: var(--dur-spring-fast);
+    transition-timing-function: var(--ease-spring);
+  }
+  .pop-surface[data-state="closed"] {
+    opacity: 0;
+    scale: var(--pop-scale);
+    animation: presence-hold var(--dur-spring-fast) linear both;
+  }
+  /* The scrim behind a dialog: opacity only. */
+  .scrim { transition: opacity var(--dur-spring-fast) var(--ease-spring); }
+  .scrim[data-state="closed"] { opacity: 0; animation: presence-hold var(--dur-spring-fast) linear both; }
+
+  /* A live arrival (a message, a card, the Next step's new line): it rises a few px into place on the default
+     spring. Only elements that arrive while the page is open carry the class, so history never animates. */
+  .enter-rise { transition: opacity var(--dur-spring) var(--ease-spring), translate var(--dur-spring) var(--ease-spring); }
+  .enter-fade { transition: opacity var(--dur-spring-fast) var(--ease-spring); }
+
+  /* The one translucent material (DESIGN.md §5): the top bar, the phone wallet strip and the chat composer float over
+     content that scrolls under them. Never one material on another; cards, sheets and the sign dialog stay solid. */
+  .material {
+    background-color: var(--material);
+    -webkit-backdrop-filter: var(--material-filter);
+    backdrop-filter: var(--material-filter);
+  }
+
+  /* The scroll edge (skill §12): no permanent line under the top bar; a hairline and a soft shade appear only while
+     content is under it (data-scrolled on <html>, set by components/shell/top-bar.tsx). */
+  .scroll-edge::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    height: 8px;
+    pointer-events: none;
+    background: linear-gradient(var(--material-edge) 0 1px, oklch(0.235 0.028 262 / 0.05) 1px, transparent);
+    opacity: 0;
+    transition: opacity var(--dur-state) var(--ease-settle);
+  }
+  :root[data-scrolled="true"] .scroll-edge::after { opacity: 1; }
+  /* On the phone and tablet chat the wallet strip sits under the bar, so the edge belongs to the strip, not the bar.
+     changed (ux2): the strip shows below 1280 px now that the side nav takes 248 px (ux2-chat moved the rail there). */
+  @media (width < 1280px) {
+    :root:has([data-chrome="strip"]) .scroll-edge:not([data-chrome="strip"])::after { display: none; }
+  }
+  @media (prefers-contrast: more) {
+    .scroll-edge::after { opacity: 1; }
+  }
+
+  /* Where each live arrival and each Radix surface starts from (see the motion block above). */
+  @starting-style {
+    .pop-surface { opacity: 0; scale: var(--pop-scale); }
+    .scrim { opacity: 0; }
+    .enter-rise { opacity: 0; translate: 0 var(--rise); }
+    .enter-fade { opacity: 0; }
+  }
+}

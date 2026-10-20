@@ -1,0 +1,1134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/plan-draft.json",
+  "description": "Applies to: fixtures/scenario-rina/plan-draft.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "draftId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "intent": {
+      "type": "object",
+      "properties": {
+        "intentVersion": {
+          "type": "number",
+          "const": 1
+        },
+        "countryCode": {
+          "type": "string",
+          "enum": [
+            "MY",
+            "ID",
+            "SG"
+          ]
+        },
+        "residency": {
+          "type": "string",
+          "enum": [
+            "citizen",
+            "pr",
+            "foreigner"
+          ]
+        },
+        "entityType": {
+          "type": "string",
+          "enum": [
+            "sole_prop",
+            "partnership",
+            "sdn_bhd",
+            "perorangan",
+            "pt_perorangan",
+            "cv",
+            "pt",
+            "sg_sole_prop",
+            "sg_partnership",
+            "pte_ltd"
+          ]
+        },
+        "productCategory": {
+          "type": "string",
+          "enum": [
+            "drinkware_food_contact",
+            "cosmetics",
+            "electrical",
+            "apparel",
+            "food",
+            "other"
+          ]
+        },
+        "sellChannel": {
+          "type": "string",
+          "enum": [
+            "shopee",
+            "tiktok_shop",
+            "lazada",
+            "own_site"
+          ]
+        },
+        "buyFrom": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "Sourcing country, ISO2 (e.g. CN)"
+        },
+        "budgetCeilingMinor": {
+          "type": "string",
+          "maxLength": 39,
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "description": "User-confirmed budget ceiling"
+        },
+        "horizonDays": {
+          "type": "number",
+          "enum": [
+            30,
+            60,
+            90
+          ]
+        },
+        "lineEmphasis": {
+          "type": "object",
+          "properties": {
+            "SUPPLIER": {
+              "type": "string",
+              "enum": [
+                "low",
+                "med",
+                "high"
+              ]
+            },
+            "PACKAGING": {
+              "type": "string",
+              "enum": [
+                "low",
+                "med",
+                "high"
+              ]
+            },
+            "LOGISTICS": {
+              "type": "string",
+              "enum": [
+                "low",
+                "med",
+                "high"
+              ]
+            },
+            "ADS": {
+              "type": "string",
+              "enum": [
+                "low",
+                "med",
+                "high"
+              ]
+            },
+            "PLATFORM_FEES": {
+              "type": "string",
+              "enum": [
+                "low",
+                "med",
+                "high"
+              ]
+            },
+            "LICENSING": {
+              "type": "string",
+              "enum": [
+                "low",
+                "med",
+                "high"
+              ]
+            },
+            "CONTINGENCY": {
+              "type": "string",
+              "enum": [
+                "low",
+                "med",
+                "high"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "adsPacing": {
+          "type": "string",
+          "enum": [
+            "conservative",
+            "standard"
+          ]
+        },
+        "answeredSlots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "countryCode",
+              "residency",
+              "entityType",
+              "productCategory",
+              "sellChannel",
+              "buyFrom",
+              "budgetCeilingMinor",
+              "horizonDays",
+              "adsPacing"
+            ]
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "slot": {
+                "type": "string",
+                "enum": [
+                  "countryCode",
+                  "residency",
+                  "entityType",
+                  "productCategory",
+                  "sellChannel",
+                  "buyFrom",
+                  "budgetCeilingMinor",
+                  "horizonDays",
+                  "adsPacing"
+                ]
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "slot",
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "intentVersion",
+        "countryCode",
+        "residency",
+        "entityType",
+        "productCategory",
+        "sellChannel",
+        "buyFrom",
+        "budgetCeilingMinor",
+        "horizonDays",
+        "lineEmphasis",
+        "adsPacing",
+        "answeredSlots",
+        "assumptions"
+      ],
+      "additionalProperties": false
+    },
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "enum": [
+            "1.0.0",
+            "2.0.0"
+          ]
+        },
+        "planId": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "32-byte value, 0x + 64 lowercase hex"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "prevPlanHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "ZERO_HEX32 for version 1"
+        },
+        "facilityId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+          "description": "Opaque id"
+        },
+        "countryCode": {
+          "type": "string",
+          "enum": [
+            "MY",
+            "ID",
+            "SG"
+          ]
+        },
+        "countryPackVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "countryPackHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "32-byte value, 0x + 64 lowercase hex"
+        },
+        "displayCurrency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 currency code"
+        },
+        "totalMinor": {
+          "type": "string",
+          "maxLength": 39,
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "description": "Money in minor units (1 BU = 100 minor), digit string"
+        },
+        "reserveBps": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Basis points (integer 0..10000)"
+        },
+        "agent": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{40}$",
+              "description": "EVM address, 0x + 40 lowercase hex"
+            },
+            "expiresAt": {
+              "type": "string",
+              "maxLength": 20,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "description": "Unix seconds, digit string"
+            }
+          },
+          "required": [
+            "address",
+            "expiresAt"
+          ],
+          "additionalProperties": false
+        },
+        "stages": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stageId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                "description": "Stage id (bytes32 on-chain via stringToHex), e.g. stage-1"
+              },
+              "releaseMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "gate": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "metric": {
+                        "type": "string",
+                        "enum": [
+                          "salesMinor",
+                          "orders"
+                        ]
+                      },
+                      "target": {
+                        "type": "string",
+                        "maxLength": 39,
+                        "pattern": "^(0|[1-9][0-9]*)$",
+                        "description": "Minor units when metric = salesMinor; a count when metric = orders"
+                      },
+                      "deadline": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "pattern": "^(0|[1-9][0-9]*)$",
+                        "description": "Unix seconds, digit string"
+                      }
+                    },
+                    "required": [
+                      "metric",
+                      "target",
+                      "deadline"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "stageId",
+              "releaseMinor",
+              "gate"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "lines": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "lineKey": {
+                "type": "string",
+                "enum": [
+                  "SUPPLIER",
+                  "PACKAGING",
+                  "LOGISTICS",
+                  "ADS",
+                  "PLATFORM_FEES",
+                  "LICENSING",
+                  "CONTINGENCY"
+                ]
+              },
+              "lineId": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "stringToHex(lineKey, {size: 32})"
+              },
+              "purpose": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "amountMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "perTxCapMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "windowCapMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "windowSeconds": {
+                "type": "string",
+                "maxLength": 10,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Duration in seconds (uint32), digit string"
+              },
+              "validUntil": {
+                "type": "string",
+                "maxLength": 20,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Unix seconds, digit string"
+              },
+              "payeeIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                  "description": "Payee id (bytes32 on-chain via stringToHex)"
+                }
+              },
+              "escrowOnly": {
+                "type": "boolean"
+              },
+              "pacing": {
+                "type": "object",
+                "properties": {
+                  "period": {
+                    "type": "string",
+                    "const": "day"
+                  },
+                  "amountMinor": {
+                    "type": "string",
+                    "maxLength": 39,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Money in minor units (1 BU = 100 minor), digit string"
+                  }
+                },
+                "required": [
+                  "period",
+                  "amountMinor"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "lineKey",
+              "lineId",
+              "purpose",
+              "amountMinor",
+              "perTxCapMinor",
+              "windowCapMinor",
+              "windowSeconds",
+              "validUntil",
+              "payeeIds",
+              "escrowOnly"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ruleId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_.-]{0,63}$"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "sourceRef": {
+                "type": "string",
+                "pattern": "^(\\/.*|constitution:[A-Z0-9_]+|compiler:[a-z0-9_.-]+)$"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "sourceUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "http(s) URL"
+                  },
+                  "retrievedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                    "description": "ISO-8601 UTC timestamp ending in Z"
+                  },
+                  "snippetHash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$",
+                    "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "enum": [
+                      "tier1",
+                      "tier2",
+                      "tier3"
+                    ]
+                  },
+                  "sourceType": {
+                    "type": "string",
+                    "enum": [
+                      "live",
+                      "mock"
+                    ]
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "verifiedOn": {
+                    "type": "string",
+                    "format": "date",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                    "description": "Calendar date YYYY-MM-DD"
+                  }
+                },
+                "required": [
+                  "sourceUrl",
+                  "retrievedAt",
+                  "snippetHash",
+                  "evidence",
+                  "sourceType"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "ruleId",
+              "text",
+              "sourceRef"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "aigc": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "promptHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "32-byte value, 0x + 64 lowercase hex"
+            }
+          },
+          "required": [
+            "model",
+            "promptHash"
+          ],
+          "additionalProperties": false
+        },
+        "compilerVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "planId",
+        "version",
+        "prevPlanHash",
+        "facilityId",
+        "countryCode",
+        "countryPackVersion",
+        "countryPackHash",
+        "displayCurrency",
+        "totalMinor",
+        "reserveBps",
+        "agent",
+        "stages",
+        "lines",
+        "rules",
+        "aigc",
+        "compilerVersion"
+      ],
+      "additionalProperties": false
+    },
+    "baseline": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "enum": [
+            "1.0.0",
+            "2.0.0"
+          ]
+        },
+        "planId": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "32-byte value, 0x + 64 lowercase hex"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "prevPlanHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "ZERO_HEX32 for version 1"
+        },
+        "facilityId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+          "description": "Opaque id"
+        },
+        "countryCode": {
+          "type": "string",
+          "enum": [
+            "MY",
+            "ID",
+            "SG"
+          ]
+        },
+        "countryPackVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "countryPackHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "32-byte value, 0x + 64 lowercase hex"
+        },
+        "displayCurrency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 currency code"
+        },
+        "totalMinor": {
+          "type": "string",
+          "maxLength": 39,
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "description": "Money in minor units (1 BU = 100 minor), digit string"
+        },
+        "reserveBps": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Basis points (integer 0..10000)"
+        },
+        "agent": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{40}$",
+              "description": "EVM address, 0x + 40 lowercase hex"
+            },
+            "expiresAt": {
+              "type": "string",
+              "maxLength": 20,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "description": "Unix seconds, digit string"
+            }
+          },
+          "required": [
+            "address",
+            "expiresAt"
+          ],
+          "additionalProperties": false
+        },
+        "stages": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stageId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                "description": "Stage id (bytes32 on-chain via stringToHex), e.g. stage-1"
+              },
+              "releaseMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "gate": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "metric": {
+                        "type": "string",
+                        "enum": [
+                          "salesMinor",
+                          "orders"
+                        ]
+                      },
+                      "target": {
+                        "type": "string",
+                        "maxLength": 39,
+                        "pattern": "^(0|[1-9][0-9]*)$",
+                        "description": "Minor units when metric = salesMinor; a count when metric = orders"
+                      },
+                      "deadline": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "pattern": "^(0|[1-9][0-9]*)$",
+                        "description": "Unix seconds, digit string"
+                      }
+                    },
+                    "required": [
+                      "metric",
+                      "target",
+                      "deadline"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "stageId",
+              "releaseMinor",
+              "gate"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "lines": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "lineKey": {
+                "type": "string",
+                "enum": [
+                  "SUPPLIER",
+                  "PACKAGING",
+                  "LOGISTICS",
+                  "ADS",
+                  "PLATFORM_FEES",
+                  "LICENSING",
+                  "CONTINGENCY"
+                ]
+              },
+              "lineId": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "stringToHex(lineKey, {size: 32})"
+              },
+              "purpose": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "amountMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "perTxCapMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "windowCapMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "windowSeconds": {
+                "type": "string",
+                "maxLength": 10,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Duration in seconds (uint32), digit string"
+              },
+              "validUntil": {
+                "type": "string",
+                "maxLength": 20,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Unix seconds, digit string"
+              },
+              "payeeIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                  "description": "Payee id (bytes32 on-chain via stringToHex)"
+                }
+              },
+              "escrowOnly": {
+                "type": "boolean"
+              },
+              "pacing": {
+                "type": "object",
+                "properties": {
+                  "period": {
+                    "type": "string",
+                    "const": "day"
+                  },
+                  "amountMinor": {
+                    "type": "string",
+                    "maxLength": 39,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Money in minor units (1 BU = 100 minor), digit string"
+                  }
+                },
+                "required": [
+                  "period",
+                  "amountMinor"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "lineKey",
+              "lineId",
+              "purpose",
+              "amountMinor",
+              "perTxCapMinor",
+              "windowCapMinor",
+              "windowSeconds",
+              "validUntil",
+              "payeeIds",
+              "escrowOnly"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ruleId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_.-]{0,63}$"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "sourceRef": {
+                "type": "string",
+                "pattern": "^(\\/.*|constitution:[A-Z0-9_]+|compiler:[a-z0-9_.-]+)$"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "sourceUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "http(s) URL"
+                  },
+                  "retrievedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                    "description": "ISO-8601 UTC timestamp ending in Z"
+                  },
+                  "snippetHash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$",
+                    "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "enum": [
+                      "tier1",
+                      "tier2",
+                      "tier3"
+                    ]
+                  },
+                  "sourceType": {
+                    "type": "string",
+                    "enum": [
+                      "live",
+                      "mock"
+                    ]
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "verifiedOn": {
+                    "type": "string",
+                    "format": "date",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                    "description": "Calendar date YYYY-MM-DD"
+                  }
+                },
+                "required": [
+                  "sourceUrl",
+                  "retrievedAt",
+                  "snippetHash",
+                  "evidence",
+                  "sourceType"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "ruleId",
+              "text",
+              "sourceRef"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "aigc": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "promptHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "32-byte value, 0x + 64 lowercase hex"
+            }
+          },
+          "required": [
+            "model",
+            "promptHash"
+          ],
+          "additionalProperties": false
+        },
+        "compilerVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "planId",
+        "version",
+        "prevPlanHash",
+        "facilityId",
+        "countryCode",
+        "countryPackVersion",
+        "countryPackHash",
+        "displayCurrency",
+        "totalMinor",
+        "reserveBps",
+        "agent",
+        "stages",
+        "lines",
+        "rules",
+        "aigc",
+        "compilerVersion"
+      ],
+      "additionalProperties": false
+    },
+    "diff": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the manifest"
+          },
+          "baseline": {
+            "description": "Value in the deterministic baseline (null if absent)",
+            "$ref": "#/$defs/__schema0"
+          },
+          "proposed": {
+            "description": "Value in the proposed manifest (null if absent)",
+            "$ref": "#/$defs/__schema1"
+          }
+        },
+        "required": [
+          "path",
+          "baseline",
+          "proposed"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "blastRadiusMinor": {
+      "type": "string",
+      "maxLength": 39,
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "description": "Max loss if the AI is fully compromised"
+    },
+    "constitutionReport": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "LINES_EXCEED_FACILITY_CAP",
+              "AGENT_EXPIRY_TOO_LATE",
+              "AGENT_EXPIRY_TOO_EARLY",
+              "PER_TX_CAP_OVER_25PCT",
+              "WINDOW_CAP_OVER_50PCT",
+              "LINE_VALIDITY_TOO_LONG",
+              "RESERVE_BELOW_FLOOR",
+              "STAGE1_OVER_40PCT",
+              "PLAN_ADDS_PAYEE",
+              "SUPPLIER_LINE_NOT_ESCROW",
+              "PAYEE_CAP_OVER_SCHEDULE",
+              "TOTALS_MISMATCH",
+              "MALFORMED_PLAN",
+              "REPLAN_LOOSENS"
+            ]
+          },
+          "ok": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code",
+          "ok"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "draftId",
+    "intent",
+    "manifest",
+    "baseline",
+    "diff",
+    "blastRadiusMinor",
+    "constitutionReport"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    },
+    "__schema1": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema1"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema1"
+          }
+        }
+      ]
+    }
+  }
+}

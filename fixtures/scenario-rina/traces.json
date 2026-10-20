@@ -1,0 +1,423 @@
+[
+  {
+    "traceId": "trace-PROPOSED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "PROPOSAL",
+    "summary": "Sample record: Ads payment, proposed; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-proposed",
+      "invoiceHash": "0x1a2bc575938cb53a82654c137f2160f47c40df0008356df08d0982b6d4e8f650",
+      "decisionId": "01a14202-2800-7344-8424-d235cd3bc74f"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x34fbed520bff187427ab0935bb9cb07452aff5975438906f3802fa9c558ba87a"
+  },
+  {
+    "traceId": "trace-POLICY_DENIED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Sample record: Packaging payment, refused by the rules; no real transaction.",
+    "verdict": "DENY",
+    "reasonCode": "CapExceeded",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-policy_denied",
+      "invoiceHash": "0xc5bfb4fd50367f14de5f67eed63689f8d201440880567b155f33846bcdf6ad9b",
+      "decisionId": "01a14202-2800-7b2d-834e-e125b726df3e"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x82845a424a588b2df28bf6783edc505e8b88fbd85a57197f937c965921de55ac"
+  },
+  {
+    "traceId": "trace-POLICY_OK",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "PROPOSAL",
+    "summary": "Sample record: Ads payment, allowed by the rules; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-policy_ok",
+      "invoiceHash": "0x4e52837d769d50223b1883eb2ab7905e1ed19f1fa7d60c4f47063de88aebeaf7",
+      "decisionId": "01a14202-2800-7e9f-85ea-ba259b57347f"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe8761712fc09933b6826c5b38ba60e9cc725b963ed4a68f1d89c88d1577200e5"
+  },
+  {
+    "traceId": "trace-SIGNED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "PROPOSAL",
+    "summary": "Sample record: Ads payment, signed; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-signed",
+      "invoiceHash": "0x59217bd8fc5ec874f12bd99749baf3df987758c4edf281d13a29ece90668258c",
+      "decisionId": "01a14202-2800-758b-8a7f-2dda20eeba14"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x25824714e0f0f0ef229a6525f06367eb333935f3b39c8a05a831f4ca21324c25"
+  },
+  {
+    "traceId": "trace-BROADCAST",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Ads payment, sent to the chain; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-broadcast",
+      "invoiceHash": "0xfd8c5e5a3490063e974a759270bb23301d44cb1f1cb8b232b9a75de04c169956",
+      "decisionId": "01a14202-2800-7b6f-8516-9f42aac008c0",
+      "txHash": "0x743baa7b8fecf09074846bac3f0f0d76d9699df700acb8addfc56850f9a66b74"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x8781e0cc35f6f13d0d7e594f76249106545ed2379e456c8f2b3c4501fafe7cac"
+  },
+  {
+    "traceId": "trace-INCLUDED",
+    "seq": 1,
+    "ts": "2026-10-16T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Ads payment, recorded on the chain; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-included",
+      "invoiceHash": "0xc37bc1907bcebc553930408781c153fa32f9a4aab45c40e015bb9aed45051a91",
+      "decisionId": "01a14202-2800-7e9e-830a-8ff1680e9924",
+      "txHash": "0x4f7184d26de9a0b44cfe311a83bda7c98a8bf2cc2070bcaf09800c14bde24d50"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x426130518a01cac02ac357e27cf63631c086ecfcc0e858f5a9db7165a6630e59"
+  },
+  {
+    "traceId": "trace-FINALIZED",
+    "seq": 1,
+    "ts": "2026-10-17T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Ads payment, final on the chain; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-finalized",
+      "invoiceHash": "0x8e3b1d3db5143c524f03460f9a1e3586b23550b819070881864b1784c8aaf2f5",
+      "decisionId": "01a14202-2800-7398-8e03-b5b2d85ab292",
+      "txHash": "0x206a91023d5d426a4c6e01683388edc8bcaf33fa2cdb869ad6e3c72e6f25859b"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x699320d6c9ee0d76077fb7b8492cc46d34110938ad51f03c83738c36aeae58fb"
+  },
+  {
+    "traceId": "trace-SETTLEMENT_REQUESTED",
+    "seq": 1,
+    "ts": "2026-10-18T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Ads payment, bank payout requested; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-settlement_requested",
+      "invoiceHash": "0x23af22af67b36fa807aaf700bcdc354d833b0393d647a901b535cda79e222e98",
+      "decisionId": "01a14202-2800-76df-825d-c97d4f161e3b",
+      "txHash": "0x18bf3b021c2c8367ed0c37e5b07050ce2a145cbb22969d7d1de8fbed7054213e",
+      "payoutId": "mock-payout-SETTLEMENT_REQUESTED"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xbb928aa746383ac71e72680a8c097668b3ec6ed583d69487b292d85f47cc8d00"
+  },
+  {
+    "traceId": "trace-SETTLED",
+    "seq": 1,
+    "ts": "2026-10-19T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Ads payment, paid out; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-settled",
+      "invoiceHash": "0xa21940afe3ea7862813261befcd57cd2520624c1e4b8cf7291dcd5e00f8d2bd6",
+      "decisionId": "01a14202-2800-7a35-865c-1a3a8a39892d",
+      "txHash": "0x025d0e2f1a3993dfa695a4adc96a9f68a7a7029c8ce347629dbc609eadcefa17",
+      "payoutId": "mock-payout-SETTLED"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x45f34cd70e4be47e830edb2ee4e7a159e12ae3ee62d076a3fbb7fb024a3b3cba"
+  },
+  {
+    "traceId": "trace-SETTLEMENT_FAILED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Ads payment, bank payout failed; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-settlement_failed",
+      "invoiceHash": "0x7ac78dbadf94132f1e0f9a12d69530bc44bde64553cb510bb113a78055d25a14",
+      "decisionId": "01a14202-2800-74d4-8222-b906f325dd1d",
+      "txHash": "0x4a41cbf93a5510157bad208a286cb0550c21c3df57c0078554967e88e2e255d5",
+      "payoutId": "mock-payout-SETTLEMENT_FAILED"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xa22e5c30d6b1bacd7a039562b60e35d029f178bb097bce54dde7fa9665569961"
+  },
+  {
+    "traceId": "trace-REVERTED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Packaging payment, refused by the chain; no real transaction.",
+    "verdict": "DENY",
+    "reasonCode": "CapExceeded",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-reverted",
+      "invoiceHash": "0xafd35b3931b9e4a56c5bf244926f7cb875491ad9ca2141c15c709aefd7612fdf",
+      "decisionId": "01a14202-2800-7af7-88a1-c28fcb6b0cc8",
+      "txHash": "0xe249952f86ac92cd2b969b47697051c6585d785a7a63260e59ac03eb6bcb59f2"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x05216bbd2bd1e2e243bc449f296ee56969bc364755bd88e74ebe80ce6ad8b566"
+  },
+  {
+    "traceId": "trace-DROPPED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Ads payment, dropped; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-dropped",
+      "invoiceHash": "0x78a2cb75a1849c14ca2dbbc126901df830df541b92908e6cb2acd6fa4bd5007c",
+      "decisionId": "01a14202-2800-7af7-8d9f-bb766371f00e",
+      "txHash": "0x4a9ca051129f9ee1b372c0f4abfc42506c081d121df1addbb664120033eddd20"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x551be26ebb64dc044b916388cc8a7af5c5ba5919bd4819b596514b1e5fa46dbf"
+  },
+  {
+    "traceId": "trace-CANCELLED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "PROPOSAL",
+    "summary": "Sample record: Ads payment, cancelled; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-ads-cancelled",
+      "invoiceHash": "0xc5d36ef2563168876fa2a5d18dd71c56e56c230279d48f767ecddca5114fd8e8",
+      "decisionId": "01a14202-2800-773e-882c-bde2e036a2c5"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x51f9cd1041a966db7236b4b8b8c4fa663553761eb50252f524787b07741fabde"
+  },
+  {
+    "traceId": "trace-payment-sample",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Supplier sample payment, paid out; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-sample",
+      "invoiceHash": "0x37edb9124317c78e1ba63f900c1ddac7b53be9fb789b0ff275b69cc555e765a7",
+      "decisionId": "01a14202-2800-7680-850c-4149cf83db55",
+      "txHash": "0xb82e41237a02285559a3cdc1c904715110fc0afe5aaa43c83af99279988abc65",
+      "payoutId": "mock-payout-sample"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xedda3286ea16adcec584555d691a53496eb478a9bdde2451a821737d3a6182d8"
+  },
+  {
+    "traceId": "trace-payment-deposit",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "worker",
+    "kind": "TX",
+    "summary": "Sample record: Supplier deposit, final on the chain; no real transaction.",
+    "verdict": "AUTO",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "payment-deposit",
+      "invoiceHash": "0x8f098c2889b0ed23bdeed3e9ac055110a5c0ef901ddc87c43d2fcf7150859114",
+      "decisionId": "01a14202-2800-7c41-82f9-5b6b409789c4",
+      "txHash": "0xfcb95e26eee9ee817f39f4f92a94b00ff245cb39f5dae1de7e84d45a25c5f2a0"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xbadd926a0027de63be432de932656d7557fef218eb9cf85ac39191d8ea64f42e"
+  },
+  {
+    "traceId": "trace-exception-OPEN",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (waiting for signatures).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-open"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x67b8872b92f85a27721513dc4e0d06a55af503de51d793d766b5a020cbc8b252"
+  },
+  {
+    "traceId": "trace-exception-FOUNDER_SIGNED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (signed by the founder).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-founder_signed"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x6cc37cf91208d6b05adb1ba46a933ed1a801ff4664eb3dc0f1e2d998e2ebd26a"
+  },
+  {
+    "traceId": "trace-exception-APPROVED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (approved by the loan officer).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-approved"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xc4188b6cdead8bd11d50998780b31eaa6f7fc58aa8110246db14bdc8028c62e9"
+  },
+  {
+    "traceId": "trace-exception-QUEUED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (in its waiting time).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-queued"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x75d56b95d638efc65430ca498b784217d478eb0e7683c64937602ec59c55a746"
+  },
+  {
+    "traceId": "trace-exception-EXECUTABLE",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (ready to go ahead).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-executable"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x2777c1f9c94d53217f5ac6bde1374bc29500c03ae358f3ba11067f3d9f71c17b"
+  },
+  {
+    "traceId": "trace-exception-EXECUTED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (done).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-executed"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xf4df1ed2c5439296e3be43547a938474ff69fccf4c08654c4f904d0b3372e1a1"
+  },
+  {
+    "traceId": "trace-exception-DENIED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (refused).",
+    "verdict": "DENY",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-denied"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x3a468785c640011461593fdfb24b4291cd9ef4e2fbd1f96426825410f16dfcad"
+  },
+  {
+    "traceId": "trace-exception-CANCELLED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (cancelled).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-cancelled"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe7b969be86ca2123f9966e8c66efdbf4d3cec2166c75620b83902035d4821e20"
+  },
+  {
+    "traceId": "trace-exception-EXPIRED",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: turn automatic payments back on (expired).",
+    "verdict": "NEEDS_OFFICER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-expired"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x5e3c9e2329637f843958dcd151ad2e1eff64ec97604f3f59759382a6d5bbfbff"
+  },
+  {
+    "traceId": "trace-exception-balance",
+    "seq": 1,
+    "ts": "2026-10-20T12:00:00Z",
+    "actor": "policy",
+    "kind": "EXCEPTION",
+    "summary": "Sample request: pay the balance to Brightwave Drinkware Co., Ltd. (waiting for signatures).",
+    "verdict": "NEEDS_FOUNDER",
+    "refs": {
+      "planVersion": 1,
+      "exceptionId": "exception-balance"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe980c15f18e86696b827edb410b79768b956a020f9178809f97277409de0d80e"
+  }
+]

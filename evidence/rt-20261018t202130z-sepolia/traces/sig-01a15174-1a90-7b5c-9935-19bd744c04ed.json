@@ -1,0 +1,38 @@
+[
+  {
+    "trace_id": "sig-01a15174-1a90-7b5c-9935-19bd744c04ed",
+    "seq": 0,
+    "ts": "2026-10-18T23:58:45.907Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Signature requested: PlanApproval for draft-01a15174-092f-7983-9f4e-9c9ef909c5b9 (passkey)",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe14836d3eaf35645fc32e67d3802dc8830af930f61e0c15de144a5fb40aca526"
+  },
+  {
+    "trace_id": "sig-01a15174-1a90-7b5c-9935-19bd744c04ed",
+    "seq": 1,
+    "ts": "2026-10-18T23:58:46.455Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder signed PlanApproval (passkey); verified and queued for the relayer",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0xe14836d3eaf35645fc32e67d3802dc8830af930f61e0c15de144a5fb40aca526",
+    "hash": "0xfb9f70031a8f54e021c4143236967543de1e9fe1dd6513cbfd00b80f9cffdab9"
+  }
+]

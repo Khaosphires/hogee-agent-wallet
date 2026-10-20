@@ -1,0 +1,51 @@
+{
+  "supplierId": "s15-c",
+  "displayName": "Sableline Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91440100DJ12WY03XN"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-15/s15-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-15/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "500",
+      "sourceUrl": "https://example.invalid/e3/set-15/s15-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xe0635ef8a67c9932b4a9182efc5bfdf7cf9ba5e45df3930ea0c6f22091262907",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 5000,
+    "leadTimeDays": 43,
+    "freightPerUnit": "90",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-198343-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.82,
+    "yearsOnPlatform": 5
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7551454121",
+    "holderName": "Sableline Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

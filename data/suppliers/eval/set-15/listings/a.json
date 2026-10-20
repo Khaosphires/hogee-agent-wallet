@@ -1,0 +1,49 @@
+{
+  "supplierId": "s15-a",
+  "displayName": "KOREA HYOKSIN TRADING CORPORATION",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-15/sanctions-screening-test-row",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-15/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "680",
+      "sourceUrl": "https://example.invalid/e3/set-15/sanctions-screening-test-row#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x3f70ea92457bb8ce614a1e63e8765b80b8307eb3bf203cc0691566a50889b223",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 23,
+    "freightPerUnit": "100",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-932716-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.93,
+    "yearsOnPlatform": 5
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7610509611",
+    "holderName": "SANCTIONS SCREENING TEST ROW - DO NOT PAY"
+  }
+}

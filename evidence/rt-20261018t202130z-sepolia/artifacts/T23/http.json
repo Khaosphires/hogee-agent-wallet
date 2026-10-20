@@ -1,0 +1,12 @@
+[
+  {
+    "label": "replayed webhook",
+    "method": "POST",
+    "path": "/api/webhooks/stripe",
+    "body": {
+      "eventId": "evt_testd1a6444ad979beedfe1e0aea"
+    },
+    "status": 200,
+    "response": "{\"duplicate\":true}"
+  }
+]

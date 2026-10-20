@@ -1,0 +1,57 @@
+{
+  "supplierId": "s19-a",
+  "displayName": "Umberwave Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200PGLWWTA56X"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-19/s19-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-19/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "480",
+      "sourceUrl": "https://example.invalid/e3/set-19/s19-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xf3ac7f288d86bf78446ddc354a85c139feed799428742018694a0d79698f261d",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 2000,
+    "leadTimeDays": 20,
+    "freightPerUnit": "70",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-200574-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-983248-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.85,
+    "yearsOnPlatform": 1
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7685097579",
+    "holderName": "Umberwave Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

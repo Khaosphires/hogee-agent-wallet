@@ -1,0 +1,195 @@
+[
+  {
+    "label": "request PlanApproval",
+    "method": "POST",
+    "path": "/api/signatures/request",
+    "body": {
+      "kind": "PlanApproval",
+      "refId": "draft-01a150ae-57ae-758f-89c1-2d1e8a47a7de",
+      "method": "passkey"
+    },
+    "status": 200,
+    "response": {
+      "requestId": "sig-01a150ae-97c1-7b09-a937-c001599eb6f0",
+      "typedData": {
+        "domain": {
+          "name": "Hogee",
+          "version": "1",
+          "verifyingContract": "0xf33306d0f610a2b1f72c91d175ed5d3bfa91710a",
+          "salt": "0xad2cf874712553c65a450322ecd5a8d900f5996d2fa7624cb6e05668b21a793c"
+        },
+        "types": {
+          "PlanApproval": [
+            {
+              "name": "planId",
+              "type": "bytes32"
+            },
+            {
+              "name": "version",
+              "type": "uint32"
+            },
+            {
+              "name": "prevPlanHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "planHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "countryPackHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "linesHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "stagesHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "totalMinor",
+              "type": "uint128"
+            },
+            {
+              "name": "reserveBps",
+              "type": "uint16"
+            },
+            {
+              "name": "agent",
+              "type": "address"
+            },
+            {
+              "name": "agentExpiry",
+              "type": "uint64"
+            },
+            {
+              "name": "deploymentId",
+              "type": "bytes32"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256"
+            },
+            {
+              "name": "expiry",
+              "type": "uint64"
+            }
+          ]
+        },
+        "primaryType": "PlanApproval",
+        "message": {
+          "planId": "0x2249fe8e97eff0610d03f3f6f048369b9af96e4ac494b3ec69a9990f0213b91d",
+          "version": "1",
+          "prevPlanHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "planHash": "0x6bbd06e4f0aac24f612a24a6da33fe4df3ba1baf0d7bb346561faaec91c7c958",
+          "countryPackHash": "0x51bc3e4ea41491536cc21413cb07c8aaff25ab21c782bec4b09c721829a18f98",
+          "linesHash": "0x47c377875b21e4fbd401b2991a9a2a5237994565095e1754430f8630a24a5d16",
+          "stagesHash": "0xd0116ea0f0a0bf9c27969db0bf60729ad20bfd79ada945e74ceb1a81e5697a51",
+          "totalMinor": "1000000",
+          "reserveBps": "500",
+          "agent": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+          "agentExpiry": "1797538956",
+          "deploymentId": "0x66696e616c2d3100000000000000000000000000000000000000000000000000",
+          "nonce": "110693232788139058717837736714873187410171611056371196364619662441938910831839",
+          "expiry": "1792355868"
+        }
+      },
+      "digest": "0x899dc37807f47bbc595dd0c3453fff2f666e07a28c5d577f4131460734104a95",
+      "challengeB64url": "iZ3DeAf0e7xZXdDDRT__L2ZuB6KMXVd_QTFGBzQQSpU",
+      "displayModel": {
+        "title": "Approve your launch plan",
+        "kind": "PlanApproval",
+        "rows": [
+          {
+            "label": "Plan version",
+            "value": "v1",
+            "effect": "neutral"
+          },
+          {
+            "label": "Total budget",
+            "value": "10,000 BU BU",
+            "effect": "neutral"
+          },
+          {
+            "label": "Supplier pocket",
+            "value": "5,000 BU BU; at most 1,250 BU BU per payment and 2,500 BU BU per 7 days; escrow only; until 2026-12-17",
+            "effect": "neutral"
+          },
+          {
+            "label": "Packaging pocket",
+            "value": "1,500 BU BU; at most 375 BU BU per payment and 750 BU BU per 7 days; until 2026-12-17",
+            "effect": "neutral"
+          },
+          {
+            "label": "Logistics pocket",
+            "value": "800 BU BU; at most 200 BU BU per payment and 400 BU BU per 7 days; until 2026-12-17",
+            "effect": "neutral"
+          },
+          {
+            "label": "Ads pocket",
+            "value": "1,200 BU BU; at most 300 BU BU per payment and 600 BU BU per 7 days; paced 75 BU BU a day; until 2026-12-17",
+            "effect": "neutral"
+          },
+          {
+            "label": "Platform fees pocket",
+            "value": "500 BU BU; at most 125 BU BU per payment and 250 BU BU per 7 days; until 2026-12-17",
+            "effect": "neutral"
+          },
+          {
+            "label": "Contingency pocket",
+            "value": "1,000 BU BU; at most 250 BU BU per payment and 500 BU BU per 7 days; until 2026-12-17",
+            "effect": "neutral"
+          },
+          {
+            "label": "Reserve on each sale",
+            "value": "5% of every sale is set aside",
+            "effect": "neutral"
+          },
+          {
+            "label": "Agent",
+            "value": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a may pay within these limits until 2026-12-17",
+            "effect": "neutral"
+          },
+          {
+            "label": "Stage 1",
+            "value": "4,000 BU BU released when this plan is committed",
+            "effect": "neutral"
+          },
+          {
+            "label": "Stage 2",
+            "value": "6,000 BU BU after sales reach 2,000 BU BU by 2026-11-17 and the loan officer approves",
+            "effect": "neutral"
+          }
+        ],
+        "digest": "0x899dc37807f47bbc595dd0c3453fff2f666e07a28c5d577f4131460734104a95",
+        "chainId": 11155111,
+        "contract": "0xf33306d0f610a2b1f72c91d175ed5d3bfa91710a",
+        "deploymentId": "final-1"
+      },
+      "expiresAt": "1792355868"
+    }
+  },
+  {
+    "label": "submit PlanApproval",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a150ae-97c1-7b09-a937-c001599eb6f0/submit",
+    "body": {
+      "passkey": {
+        "credentialId": "DRgLcm7TCkQ--zz3joCUtQ",
+        "r": "0xfe34502df5ad7dc4ecf79071863c67d04cc3a2b83aceed7ac16c1b40b5a3beb3",
+        "s": "0x22cecd9c3eb160ccd6a854e86137b7647fa7a12980f22fe38a9c4678f31f5c45",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000002",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"iZ3DeAf0e7xZXdDDRT__L2ZuB6KMXVd_QTFGBzQQSpU\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "status": 200,
+    "response": {
+      "actionId": "act-01a150ae-9a18-7a4a-ae8b-8c97df37751f",
+      "state": "PENDING"
+    }
+  }
+]

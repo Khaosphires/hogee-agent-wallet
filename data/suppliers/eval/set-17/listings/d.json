@@ -1,0 +1,57 @@
+{
+  "supplierId": "s17-d",
+  "displayName": "Fernstone Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913307232T49PJ9M1Y"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-17/s17-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-17/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "690",
+      "sourceUrl": "https://example.invalid/e3/set-17/s17-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xbba521421e976331e13682ec870ff45857778f50a5b1bce85833ec45da25128e",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 27,
+    "freightPerUnit": "100",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "GB-687482-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-961484-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.73,
+    "yearsOnPlatform": 1
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7465597933",
+    "holderName": "Fernstone Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

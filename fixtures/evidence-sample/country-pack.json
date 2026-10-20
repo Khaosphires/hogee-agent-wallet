@@ -1,0 +1,10 @@
+{
+  "sourceType": "mock",
+  "warning": "MOCK UI SAMPLE ONLY: no real transactions, valid signatures, verified rules or measured test results.",
+  "countryCode": "MY",
+  "version": "mock-unverified-1",
+  "hash": "0x38019351a43b12d40a29ba13032f31f9acc58a1013e5750d35ebd9e00596e949",
+  "hashVerified": false,
+  "facts": {},
+  "note": "Placeholder copied from the Rina plan. No country rules have been researched; no object-hash verification is claimed."
+}

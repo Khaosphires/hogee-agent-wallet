@@ -1,0 +1,98 @@
+{
+  "chainTag": "fisco",
+  "deploymentId": "final-2",
+  "fiscoMs": false,
+  "contracts": {
+    "PlanRegistry": {
+      "address": "0xd6f22c5f56c66c2477ffad9f0e058db01cb9c0c4",
+      "deployTx": "0x9d2aa9ee0d6b3aeba94ef9a786a4f2be2bbcbec2d70045f85b51483919654a41"
+    },
+    "Treasury": {
+      "address": "0x57c6ad72217c66f447790fd5462f19441919250a",
+      "deployTx": "0x13e4cc40c06b7bc5e1132ec3fe1d69d60c2631308b765122dd91977465fca9ac"
+    },
+    "TreasuryGovernance": {
+      "address": "0x7c4d006b049a5262e78047d6e543cc99dbf88aac",
+      "deployTx": null
+    },
+    "MilestoneEscrow": {
+      "address": "0xe2753360b05951726727df7ad912a8357393a286",
+      "deployTx": "0x2da1d66ad9629731ea2b5a885fd85886aa85bd1f66d6c822182fcf2d28b99ac7"
+    },
+    "SalesOracle": {
+      "address": "0x49771ec015f3ba94cb5a288a8cd33cebb7a7b23c",
+      "deployTx": "0x4263b08d58d6281f88c5e6cd2edbc66593eec11a8e985708cdcdbc869e8b686b"
+    }
+  },
+  "roles": {
+    "deployer": "0x3f2ca5f13952094b1bd2e177fa973af4d0817598",
+    "lender": "0x2d0c3e04f88aeaf427108c9a5672b6cc3a4da497",
+    "oracle": "0x0223fa4dc06be4c39bf7a3df47bd7c020f06ed4b",
+    "agent": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+    "relayer": "0x8177ed31e6c83740a09145ec5e2848257cf94dd0",
+    "observer": "0x0000000000000000000000000000000000000000",
+    "regulator": "0xe2e37c3e148bf34e1e25587cec9354b7a7564ae3"
+  },
+  "founderKey": {
+    "qx": "0xa793cfc739b0e93a3e1361c48cf333550e6a67127524f45ab22e5f16cd38406f",
+    "qy": "0x1ec70ef6f9e785c94027cca3b9e70e76db41b46443bd94c1639a68e0c9fa04a1",
+    "ownerEOA": "0x0000000000000000000000000000000000000000"
+  },
+  "params": {
+    "coolingSeconds": "120",
+    "loosenTimelockSeconds": "120",
+    "judgingWindowEnd": "1796083199",
+    "platformPayeeIds": [
+      "0x73686f7065652d61647300000000000000000000000000000000000000000000",
+      "0x73686f7065652d66656573000000000000000000000000000000000000000000",
+      "0x7370782d6c6f6769737469637300000000000000000000000000000000000000",
+      "0x6c68646e2d746178000000000000000000000000000000000000000000000000",
+      "0x73686f7065652d73672d61647300000000000000000000000000000000000000",
+      "0x73686f7065652d73672d66656573000000000000000000000000000000000000",
+      "0x7370782d73672d6c6f6769737469637300000000000000000000000000000000",
+      "0x697261732d746178000000000000000000000000000000000000000000000000"
+    ],
+    "platformPayoutHashes": [
+      "0x6307fed7f5396036d2b9d3aff080a4cda068f1d0d3511661fe792a1f8d2282b6",
+      "0x27739a41181296bcc5b40bed28530c9f7607c5d28c32e4f02a5a4dee00914496",
+      "0x357ea530e9d648cb2e38217e29cf512fc25eeff6c7798364a51aaa5f5e18f0cb",
+      "0xafe78d74b7947db68c2f8294a331b0fded8419cbe9d0d41668d6b1820d0337e8",
+      "0x92e6815c3addde510bb1402c0ccdcd0ba3854e5a80ad5ba5f172ca6304526560",
+      "0x4c2850eaacea402d6c9da14e784be7a504ee36b4dd9468e08158fed72a8b7e79",
+      "0x2cb8bbd03b3d7a6f000073ac6b84ef098ba0792c0502d8aed9e8167d0bc88295",
+      "0x44f793ede13fba80faac023a8fd0421f691341db14cf883b441d8ad21fafe857"
+    ]
+  },
+  "sepolia": {
+    "contracts": {
+      "PlanRegistry": "0x07289c8852f9780f5b5b7010be7fb68fce159450",
+      "Treasury": "0xe08872f9496d21053b52b1127ac30e87300564fa",
+      "TreasuryGovernance": "0x322f48d1f770b2c73459b33848b49669b8df3df1",
+      "MilestoneEscrow": "0xa5222ebe0be5ce769491f2f3396d14244d5d5761",
+      "SalesOracle": "0x49fcfc043244a861da24dc16d19d3065732278e2"
+    },
+    "broadcastFile": "contracts/broadcast/DeployFinal.s.sol/11155111/run-1792385076465.json",
+    "broadcastKeccak": "0xd729b12a79cd978406e1fa52cc6e85a5b65a3b3b92104431c730efb1fef0f52a"
+  },
+  "manifestJson": {
+    "chainId": 20200,
+    "deploymentId": "final-2",
+    "chainTag": "fisco",
+    "contracts": {
+      "PlanRegistry": {
+        "address": "0xd6F22c5F56C66c2477FfAD9f0e058DB01cB9C0C4"
+      },
+      "Treasury": {
+        "address": "0x57C6aD72217C66F447790fd5462F19441919250A"
+      },
+      "MilestoneEscrow": {
+        "address": "0xE2753360b05951726727df7aD912A8357393a286"
+      },
+      "SalesOracle": {
+        "address": "0x49771EC015F3ba94Cb5a288A8Cd33cebB7a7B23C"
+      }
+    },
+    "blockNumber": 1,
+    "deployedAt": "2026-10-20T00:30:05Z"
+  }
+}

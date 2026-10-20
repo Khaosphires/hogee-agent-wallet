@@ -1,0 +1,55 @@
+{
+  "supplierId": "s04-a",
+  "displayName": "Quartzbrook Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-04/s04-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-04/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "520",
+      "sourceUrl": "https://example.invalid/e3/set-04/s04-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x6f52c7afd2b656211805e26088b70dd8ca95d7940580a32684730b7d234cca6d",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 12,
+    "freightPerUnit": "70",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-488339-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-158503-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 5,
+    "responseRate": 0.9,
+    "yearsOnPlatform": 7
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7129178942",
+    "holderName": "Quartzbrook Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

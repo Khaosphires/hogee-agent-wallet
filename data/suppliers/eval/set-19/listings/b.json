@@ -1,0 +1,51 @@
+{
+  "supplierId": "s19-b",
+  "displayName": "Cedargate Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913307844T2C1PGY3D"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-19/s19-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-19/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "840",
+      "sourceUrl": "https://example.invalid/e3/set-19/s19-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xd8b747aad0ef4669c150c8b72d78adeabb6baf4bb473f6f1d947364f7e121155",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 50,
+    "freightPerUnit": "50",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-335740-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.4,
+    "responseRate": 0.9,
+    "yearsOnPlatform": 11
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7028922404",
+    "holderName": "Cedargate Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

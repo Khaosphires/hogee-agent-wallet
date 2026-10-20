@@ -1,0 +1,20 @@
+{
+  "sourceType": "mock",
+  "warning": "MOCK UI SAMPLE ONLY: no real transactions, valid signatures, verified rules or measured test results.",
+  "chainId": 11155111,
+  "deploymentId": "final-1",
+  "contracts": {
+    "Treasury": {
+      "address": "0x47e61994c68e7f179ead117b0ee0eefb5cf00371",
+      "verifiedUrl": "https://example.invalid/mock-contracts/Treasury"
+    },
+    "MilestoneEscrow": {
+      "address": "0xc7569dbf0b3bdf4edc035ab146a028938563f2bb",
+      "verifiedUrl": "https://example.invalid/mock-contracts/MilestoneEscrow"
+    },
+    "PlanRegistry": {
+      "address": "0xeb2ac803eae10e041f8eca517a48dc23d8162102",
+      "verifiedUrl": "https://example.invalid/mock-contracts/PlanRegistry"
+    }
+  }
+}

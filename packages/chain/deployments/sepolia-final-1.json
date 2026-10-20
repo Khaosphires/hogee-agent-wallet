@@ -1,0 +1,21 @@
+{
+  "chainId": 11155111,
+  "deploymentId": "final-1",
+  "chainTag": "sepolia",
+  "contracts": {
+    "PlanRegistry": {
+      "address": "0xf33306d0F610a2B1F72c91D175Ed5d3BfA91710a"
+    },
+    "Treasury": {
+      "address": "0x8cEF590Ec00D02A33e8AC0FF56E67f20C53C6b22"
+    },
+    "MilestoneEscrow": {
+      "address": "0xa1D1b9BeFAfF3217c08a0fE0C24b014513B176a7"
+    },
+    "SalesOracle": {
+      "address": "0x9eE722e2905aB76EaD5B10fB50B2778cc7dc152f"
+    }
+  },
+  "blockNumber": 11943074,
+  "deployedAt": "2026-10-18T19:14:12Z"
+}

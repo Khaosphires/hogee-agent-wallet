@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150ff-a6ba-7c78-b143-8e59ac107e66",
+    "seq": 0,
+    "ts": "2026-10-18T21:51:34.076Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T9 (Execute the queued raise right away): refused by policy DENY TimelockActive; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "TimelockActive",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xc00d1f609f00d03821933b75442417a8ce93656aadd64f7ce0744b5d3f487659"
+  }
+]

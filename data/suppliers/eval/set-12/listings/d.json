@@ -1,0 +1,57 @@
+{
+  "supplierId": "s12-d",
+  "displayName": "Willowbrook Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330784GLXDKKWW4N"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-12/s12-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-12/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "470",
+      "sourceUrl": "https://example.invalid/e3/set-12/s12-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x64fe268cbacf5173833d6a1d4a0ccb962d22baf7652247ee13dcdc602ce799c5",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 33,
+    "freightPerUnit": "50",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-716837-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "GB-784625-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.7,
+    "responseRate": 0.93,
+    "yearsOnPlatform": 8
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7551209998",
+    "holderName": "Willowbrook Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

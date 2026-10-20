@@ -1,0 +1,701 @@
+[
+  {
+    "traceId": "inspection:order-wavk4gkewt3zc-001:1",
+    "seq": 0,
+    "ts": "2026-10-19T05:13:59.375Z",
+    "actor": "founder",
+    "kind": "PROPOSAL",
+    "summary": "Inspection evidence recorded for order-wavk4gkewt3zc-001, milestone 1",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xc5c1b9f07bc1a3b02a134514db6c249eb5b1adb56f6f81a52f20e7ac9741d5e8"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 0,
+    "ts": "2026-10-19T05:03:34.432Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action signed at PLAN_PENDING → PLAN_PENDING: PlanApproval signed; plan submitted",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xf8c20590cd77287ec582afc0d28a6bdb40ab702e5db796debbfacdf0e4aebd85"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 1,
+    "ts": "2026-10-19T05:07:07.107Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action start_search at PLAN_ACTIVE → SEARCHING: Web supplier search sl-web-01a1528e-68d3-7bde-932d-27aa26cd34a8 started",
+    "refs": {},
+    "prevHash": "0xf8c20590cd77287ec582afc0d28a6bdb40ab702e5db796debbfacdf0e4aebd85",
+    "hash": "0xc6b8374ca9e1232e008b2a59109deb2f3abeb4aba182c9c62b97f058680981e0"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 2,
+    "ts": "2026-10-19T05:07:10.342Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action show_candidates at CANDIDATES → CANDIDATES: Candidates of search sl-web-01a1528e-68d3-7bde-932d-27aa26cd34a8 shown",
+    "refs": {},
+    "prevHash": "0xc6b8374ca9e1232e008b2a59109deb2f3abeb4aba182c9c62b97f058680981e0",
+    "hash": "0x756e2c1eb19f25b480bdc0cbf09d60e5a48e188265727f5f9f0a4fa97cfbf275"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 3,
+    "ts": "2026-10-19T05:07:29.823Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action pick at PICKED → PICKED: Picked 1 supplier(s); enquiry drafted",
+    "refs": {},
+    "prevHash": "0x756e2c1eb19f25b480bdc0cbf09d60e5a48e188265727f5f9f0a4fa97cfbf275",
+    "hash": "0xb96cf4b9676411686ede180735d20867cfb49d0f42e3db8ebd1a6033576ae807"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 4,
+    "ts": "2026-10-19T05:07:41.098Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action start_terms at PICKED → PICKED: Terms form opened (none)",
+    "refs": {},
+    "prevHash": "0xb96cf4b9676411686ede180735d20867cfb49d0f42e3db8ebd1a6033576ae807",
+    "hash": "0xa0870aa7d5ccb65fdbeee7a92652ecbf4ff85ab4c43995619ad371baa5fa22f0"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 5,
+    "ts": "2026-10-19T05:08:36.882Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action terms_saved at TERMS_CONFIRMED → TERMS_CONFIRMED: Terms terms-01a1528f-c345-722a-8c5c-56493c403e33 saved; SupplierApproval offered",
+    "refs": {},
+    "prevHash": "0xa0870aa7d5ccb65fdbeee7a92652ecbf4ff85ab4c43995619ad371baa5fa22f0",
+    "hash": "0xd74360809a254c260c4e188bb9f7909ef1d448388e0e2dad6b8500544fac53cc"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 6,
+    "ts": "2026-10-19T05:08:55.101Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action signed at ORDER_PENDING → ORDER_PENDING: SupplierApproval signed for terms-01a1528f-c345-722a-8c5c-56493c403e33 (ORDER_PENDING)",
+    "refs": {},
+    "prevHash": "0xd74360809a254c260c4e188bb9f7909ef1d448388e0e2dad6b8500544fac53cc",
+    "hash": "0xbe53229dc7be1aa4b62ad070d92552b43ce1ad79fa60e098f29165aa2c3910ae"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 7,
+    "ts": "2026-10-19T05:11:09.887Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action show_cfo at OPERATING → OPERATING: CFO view overview shown",
+    "refs": {},
+    "prevHash": "0xbe53229dc7be1aa4b62ad070d92552b43ce1ad79fa60e098f29165aa2c3910ae",
+    "hash": "0x59232cf1eb8ed83e1818ff78bb2ea57c5bd37a17dd0d81f092b576931d544e70"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 8,
+    "ts": "2026-10-19T05:14:24.175Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action signed at OPERATING → OPERATING: MilestoneRelease signed (hint)",
+    "refs": {},
+    "prevHash": "0x59232cf1eb8ed83e1818ff78bb2ea57c5bd37a17dd0d81f092b576931d544e70",
+    "hash": "0xc3ca4d90392a7f3c9cec2d63cd1ee009d41dfd3ba9df17b3f987ab985131e05e"
+  },
+  {
+    "traceId": "journey-01a14ff4-aeb9-7030-933d-4645a7d45d9b",
+    "seq": 9,
+    "ts": "2026-10-19T05:14:41.011Z",
+    "actor": "founder",
+    "kind": "TOOL_CALL",
+    "summary": "Journey action show_cfo at OPERATING → OPERATING: CFO view overview shown",
+    "refs": {},
+    "prevHash": "0xc3ca4d90392a7f3c9cec2d63cd1ee009d41dfd3ba9df17b3f987ab985131e05e",
+    "hash": "0xa613e13711ada520033cc7be408364d7dad951d8e14ed4f72838fa5bb4e1b366"
+  },
+  {
+    "traceId": "sig-01a1528b-06f3-73c0-b87d-49eb8ba1866d",
+    "seq": 0,
+    "ts": "2026-10-19T05:03:25.433Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Signature requested: PlanApproval for draft-01a15287-a075-7904-adc0-a7940860fd0e (passkey)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x15b6270ae6e9922d5d3c5e7605acfbf3e70057df0af25094bb7db89edb91d05a"
+  },
+  {
+    "traceId": "sig-01a1528b-06f3-73c0-b87d-49eb8ba1866d",
+    "seq": 1,
+    "ts": "2026-10-19T05:03:33.989Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder signed PlanApproval (passkey); verified and queued for the relayer",
+    "refs": {},
+    "prevHash": "0x15b6270ae6e9922d5d3c5e7605acfbf3e70057df0af25094bb7db89edb91d05a",
+    "hash": "0x5980d3dd07975b557db0c0ea19ee70fa53134d947db093d01a613e924095302c"
+  },
+  {
+    "traceId": "sig-01a1528d-3468-7ca8-8ccf-e9a78b630428",
+    "seq": 0,
+    "ts": "2026-10-19T05:05:48.138Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Signature requested: PlanApproval for draft-01a1528d-07fb-7f96-a0ff-46ad600e19f4 (passkey)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe4aba99843e62aad77275e566c99f48862d5cd9f2ca5c9f4e1187f54fd3bbc70"
+  },
+  {
+    "traceId": "sig-01a1528f-e285-70d9-9d45-8b0f4a5b5856",
+    "seq": 0,
+    "ts": "2026-10-19T05:08:43.784Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Signature requested: SupplierApproval for terms-01a1528f-c345-722a-8c5c-56493c403e33 (passkey)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xf42ab65f6c959d7fae0ca45621dd8fd4e60ef97929a165c5fff091656cdb1825"
+  },
+  {
+    "traceId": "sig-01a1528f-e285-70d9-9d45-8b0f4a5b5856",
+    "seq": 1,
+    "ts": "2026-10-19T05:08:53.742Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder chose web supplier supplier-wavk4gkewt3zc (terms terms-01a1528f-c345-722a-8c5c-56493c403e33) for order-wavk4gkewt3zc-001; the payee cools before any payment",
+    "refs": {},
+    "prevHash": "0xf42ab65f6c959d7fae0ca45621dd8fd4e60ef97929a165c5fff091656cdb1825",
+    "hash": "0xb9d7acaf089aec10fc1d0e3227303299225d75d4447184fc7860c0ed0d5f8a15"
+  },
+  {
+    "traceId": "sig-01a1528f-e285-70d9-9d45-8b0f4a5b5856",
+    "seq": 2,
+    "ts": "2026-10-19T05:08:53.743Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder signed SupplierApproval (passkey); verified and queued for the relayer",
+    "refs": {},
+    "prevHash": "0xb9d7acaf089aec10fc1d0e3227303299225d75d4447184fc7860c0ed0d5f8a15",
+    "hash": "0x6e196d2c649534fead4528e4a1238a50a06a0c97b2905b157cd3037227ec79ef"
+  },
+  {
+    "traceId": "sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+    "seq": 0,
+    "ts": "2026-10-19T05:14:02.455Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Signature requested: MilestoneRelease for order-wavk4gkewt3zc-001 (passkey)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xa2ad3ff216f5a2bd57157b8e261a211ec1c3f3288b690cc4b0f5e41f5945d86c"
+  },
+  {
+    "traceId": "sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+    "seq": 1,
+    "ts": "2026-10-19T05:14:18.252Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder released milestone 2 of order-wavk4gkewt3zc-001; queued for the relayer",
+    "refs": {
+      "paymentId": "release:sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+      "decisionId": "01a15294-fd0a-778a-99a0-0e0bc6bd924c"
+    },
+    "prevHash": "0xa2ad3ff216f5a2bd57157b8e261a211ec1c3f3288b690cc4b0f5e41f5945d86c",
+    "hash": "0xaae7db52eabf1ee996f43496139afca466ec83de1d32e4579350ec75f3758ec7"
+  },
+  {
+    "traceId": "sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+    "seq": 2,
+    "ts": "2026-10-19T05:14:18.253Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder signed MilestoneRelease (passkey); verified and queued for the relayer",
+    "refs": {},
+    "prevHash": "0xaae7db52eabf1ee996f43496139afca466ec83de1d32e4579350ec75f3758ec7",
+    "hash": "0x2a62c692b9976715c84e9bf1bae4832e3d59a0ef485998697101edb35023bc56"
+  },
+  {
+    "traceId": "sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+    "seq": 3,
+    "ts": "2026-10-19T05:15:22.880Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "MilestoneEscrow.releaseMilestone signed by the relayer key at nonce 25 and broadcast (sent)",
+    "refs": {
+      "paymentId": "release:sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+      "txHash": "0x3b395fe9f54d2a3a6b2950863c0d599bcc959f5b67d6c00886e71d686af4d88d"
+    },
+    "prevHash": "0x2a62c692b9976715c84e9bf1bae4832e3d59a0ef485998697101edb35023bc56",
+    "hash": "0x482cc43cce87583bd86cee4ced61aee70e288469c87c9e880b5c6b82aa9b3a9f"
+  },
+  {
+    "traceId": "sig-01a15295-1354-7d39-89b2-08b0a72456a1",
+    "seq": 0,
+    "ts": "2026-10-19T05:14:23.961Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Signature requested: MilestoneRelease for order-wavk4gkewt3zc-001 (passkey)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x372e3d3911b782593e5a1cd4756bd03b6c7642e609e3323d752fa90ff911e4da"
+  },
+  {
+    "traceId": "sl-web-01a1528e-68d3-7bde-932d-27aa26cd34a8",
+    "seq": 0,
+    "ts": "2026-10-19T05:07:07.095Z",
+    "actor": "reader",
+    "kind": "TOOL_CALL",
+    "summary": "Web supplier search started (recorded sample; query built from the committed plan)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x83045c007739dfb073e1b18f98ae8bcba9960b314cd2efde93c0ee4adf1088dd"
+  },
+  {
+    "traceId": "sl-web-01a1528e-68d3-7bde-932d-27aa26cd34a8",
+    "seq": 1,
+    "ts": "2026-10-19T05:07:08.805Z",
+    "actor": "reader",
+    "kind": "TOOL_CALL",
+    "summary": "Web supplier search ready: 5 unverified candidates ranked, 4 excluded by hard gates, 1 omitted",
+    "refs": {},
+    "prevHash": "0x83045c007739dfb073e1b18f98ae8bcba9960b314cd2efde93c0ee4adf1088dd",
+    "hash": "0x99f53d38e25c396b6b2593ce2475ba0bf0714e226b59e2778eb0600ba407f330"
+  },
+  {
+    "traceId": "terms-01a1528f-c345-722a-8c5c-56493c403e33",
+    "seq": 0,
+    "ts": "2026-10-19T05:08:35.784Z",
+    "actor": "founder",
+    "kind": "PROPOSAL",
+    "summary": "Founder confirmed terms for supplier-wavk4gkewt3zc: 2 milestones, simulated payout account ending 0400; nothing is paid before the SupplierApproval and its cooling",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe24d0ac0ac8b2f1b49b2b2a3035897b18677163f20a880e89b62a94905fa5c9d"
+  },
+  {
+    "traceId": "trace-01a15286-64c3-739f-a8be-18ce0e76f950",
+    "seq": 0,
+    "ts": "2026-10-19T04:58:21.765Z",
+    "actor": "officer",
+    "kind": "TX",
+    "summary": "Loan officer opened the facility: cap 1000000 minor, reserve floor 300 bps (signed by the demo lender key in the worker)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x192d5c43a1c5523c655f7dc0d25d3110af6db4da9e4c8c1d200056b12ebaf7fc"
+  },
+  {
+    "traceId": "trace-01a15286-65bf-7c27-80a2-0d0cfad9e275",
+    "seq": 0,
+    "ts": "2026-10-19T04:58:22.015Z",
+    "actor": "officer",
+    "kind": "SIGNATURE",
+    "summary": "Loan officer issued a one-time passkey enrolment code for the founder, valid until 2026-10-19T05:13:22.012Z",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x5556f6338d7aa02939e77aef949c14289aa8a8fdf25edb37d9bc9d84ee3b6400"
+  },
+  {
+    "traceId": "trace-01a15287-0642-738f-86a9-33ed86a0bfb6",
+    "seq": 0,
+    "ts": "2026-10-19T04:59:05.152Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "ad50efc3-b381-47b9-beed-0d8d4208ee70"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x1ee74e9425954bd2564b1bbf406cc3e2749ff53f6f37e58485c7b3113a3f9659"
+  },
+  {
+    "traceId": "trace-01a15287-0642-738f-86a9-33ed86a0bfb6",
+    "seq": 1,
+    "ts": "2026-10-19T04:59:05.152Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner asked 3 templated question(s): residency, entityType, buyFrom",
+    "refs": {
+      "decisionId": "01a15287-070f-71a1-80fb-c3aaf774d154"
+    },
+    "prevHash": "0x1ee74e9425954bd2564b1bbf406cc3e2749ff53f6f37e58485c7b3113a3f9659",
+    "hash": "0x74447b2514a7b588b7db3564ff7cdb7a102bfa1bce87a1637e72b097e45cb0de"
+  },
+  {
+    "traceId": "trace-01a15287-2011-7c7f-a3a5-996224c41ac3",
+    "seq": 0,
+    "ts": "2026-10-19T04:59:11.465Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "f8df95bd-794b-4d1d-996a-ed09ebc78060"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x044ed9fbde2fbba545b6f8a87f32cf37f26d8061ce0cfdcfdd3407f99034b9d2"
+  },
+  {
+    "traceId": "trace-01a15287-2011-7c7f-a3a5-996224c41ac3",
+    "seq": 1,
+    "ts": "2026-10-19T04:59:11.466Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner asked 3 templated question(s): entityType, buyFrom, horizonDays",
+    "refs": {
+      "decisionId": "01a15287-20fe-7817-a965-1d41cc18d3ce"
+    },
+    "prevHash": "0x044ed9fbde2fbba545b6f8a87f32cf37f26d8061ce0cfdcfdd3407f99034b9d2",
+    "hash": "0xc80ded9ce716f167304a6da62c2c93a270f5b1cf39a503ab13f8d67a10e9040f"
+  },
+  {
+    "traceId": "trace-01a15287-477a-7ea3-86b5-1f3ac75aa47a",
+    "seq": 0,
+    "ts": "2026-10-19T04:59:21.156Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "f9e84ba9-cbf4-40f3-a344-b5b528981604"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xeb419bce7c2d9d3cf1baa116acfd339c8127ffd3c2fff5507842f94f1cd5f138"
+  },
+  {
+    "traceId": "trace-01a15287-477a-7ea3-86b5-1f3ac75aa47a",
+    "seq": 1,
+    "ts": "2026-10-19T04:59:21.157Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner asked 3 templated question(s): buyFrom, horizonDays, adsPacing",
+    "refs": {
+      "decisionId": "01a15287-4847-77fc-ac4f-5c09e48b3484"
+    },
+    "prevHash": "0xeb419bce7c2d9d3cf1baa116acfd339c8127ffd3c2fff5507842f94f1cd5f138",
+    "hash": "0x729e7ef44b52ae33d02cf8e3f19fd56839efff1638582c08ec37bf021262f17c"
+  },
+  {
+    "traceId": "trace-01a15287-5fef-7220-b6b0-ee478e22d407",
+    "seq": 0,
+    "ts": "2026-10-19T04:59:27.463Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "296c1881-0398-4c66-a07f-27f5268cea01"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xcb1c3afb9719b6bbc4d2ce33818770308f268a6ffeff278a658f3391c64f5e95"
+  },
+  {
+    "traceId": "trace-01a15287-5fef-7220-b6b0-ee478e22d407",
+    "seq": 1,
+    "ts": "2026-10-19T04:59:27.464Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner asked 2 templated question(s): horizonDays, adsPacing",
+    "refs": {
+      "decisionId": "01a15287-60b8-7876-b6b3-51d6c398530c"
+    },
+    "prevHash": "0xcb1c3afb9719b6bbc4d2ce33818770308f268a6ffeff278a658f3391c64f5e95",
+    "hash": "0xf983fd8e456f9e86d6b7aa3e921387658618fe4cad03a3f4d40db498b329ab09"
+  },
+  {
+    "traceId": "trace-01a15287-7c49-73ef-8743-badefc78a0cd",
+    "seq": 0,
+    "ts": "2026-10-19T04:59:35.362Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "411bb299-ac64-43c0-b647-7164a4b5b8c0"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xc6f944bb0545d6ffc8ef8351a76179699284b8bd575d4fdc4a6601d104e1a01b"
+  },
+  {
+    "traceId": "trace-01a15287-7c49-73ef-8743-badefc78a0cd",
+    "seq": 1,
+    "ts": "2026-10-19T04:59:35.363Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner asked 1 templated question(s): adsPacing",
+    "refs": {
+      "decisionId": "01a15287-7d12-751d-a65a-2345f22f0caf"
+    },
+    "prevHash": "0xc6f944bb0545d6ffc8ef8351a76179699284b8bd575d4fdc4a6601d104e1a01b",
+    "hash": "0x044ecee60ba450c134cead3ee4d00ef709a58885454c5ae4be831c9a677dfd1f"
+  },
+  {
+    "traceId": "trace-01a15287-9eca-752e-924c-e873eca89f67",
+    "seq": 0,
+    "ts": "2026-10-19T04:59:49.319Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "16290549-b8e7-4eb2-a685-522e13e791a6"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x53b384eaafa3dd154b0e9055ac46416292370832aae85b55b0fb275f083ced50"
+  },
+  {
+    "traceId": "trace-01a15287-9eca-752e-924c-e873eca89f67",
+    "seq": 1,
+    "ts": "2026-10-19T04:59:49.319Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "5c043303-3203-4416-80aa-da6d40764f28"
+    },
+    "prevHash": "0x53b384eaafa3dd154b0e9055ac46416292370832aae85b55b0fb275f083ced50",
+    "hash": "0x111c59893ba081420580cf5e45dbf06409532937984ccf4cbcb28c7ee0d01772"
+  },
+  {
+    "traceId": "trace-01a15287-9eca-752e-924c-e873eca89f67",
+    "seq": 2,
+    "ts": "2026-10-19T04:59:49.320Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "refs": {
+      "llmCallId": "7a8c92ae-c8cd-466a-b8cd-f4959e9f3b13"
+    },
+    "prevHash": "0x111c59893ba081420580cf5e45dbf06409532937984ccf4cbcb28c7ee0d01772",
+    "hash": "0x1ef74181bd07a130f79d1db2930c43632d96b924ec4134befbe81f60dbacba03"
+  },
+  {
+    "traceId": "trace-01a15287-9eca-752e-924c-e873eca89f67",
+    "seq": 3,
+    "ts": "2026-10-19T04:59:49.320Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner proposed a plan intent; code compiled draft draft-01a15287-a075-7904-adc0-a7940860fd0e (blast radius 250000 minor)",
+    "refs": {
+      "decisionId": "01a15287-a075-73d9-bea1-ac7dbcdad99a"
+    },
+    "prevHash": "0x1ef74181bd07a130f79d1db2930c43632d96b924ec4134befbe81f60dbacba03",
+    "hash": "0x9aedca897faedd7d4944e4134f393e00cba95d66b486605288b24e8cf39e666c"
+  },
+  {
+    "traceId": "trace-01a15288-5e69-790a-a94b-50ce6a05e285",
+    "seq": 0,
+    "ts": "2026-10-19T05:00:31.209Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder registered a passkey (Touch ID) with the loan officer's enrolment code; the officer must approve this exact key before it goes on-chain",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xb1d59740ede0ec44d3da429f52330fa4460d27ab241d2fd86d9e5ed3344aeaff"
+  },
+  {
+    "traceId": "trace-01a15289-547f-750d-8bbc-d0cb54e23b93",
+    "seq": 0,
+    "ts": "2026-10-19T05:01:34.208Z",
+    "actor": "officer",
+    "kind": "SIGNATURE",
+    "summary": "Loan officer approved the founder's reviewed passkey; registerFounderKey is signed by the demo lender key in the worker",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xb09fb20787244d45d3b765a9bc21198c1fce74514dec33aa26ba8e2352d4523f"
+  },
+  {
+    "traceId": "trace-01a1528b-d5e8-7ecd-b1bd-9d886db1f381",
+    "seq": 0,
+    "ts": "2026-10-19T05:04:18.408Z",
+    "actor": "officer",
+    "kind": "TX",
+    "summary": "Loan officer funded 1000000 minor (budget units, signed by the demo lender key in the worker)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xd49355b754d4eec6b31d3aec17fb340cf33cc527d27bd873bccd33ef78bbee94"
+  },
+  {
+    "traceId": "trace-01a15299-f0b8-7de1-881f-e21bfa23e98f",
+    "seq": 0,
+    "ts": "2026-10-19T05:19:42.776Z",
+    "actor": "founder",
+    "kind": "TX",
+    "summary": "Pause requested: every agent payment stops (tighten-only)",
+    "refs": {},
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x559c92b7ee4d1789b1a6835fb2e19ea9b28aa0c76df4e8f14421dfb4b444c683"
+  },
+  {
+    "traceId": "trace:act:act-01a15286-64c2-7a3e-b4a7-a923a5919b1b",
+    "seq": 0,
+    "ts": "2026-10-19T04:58:22.771Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "Treasury.openFacility signed by the lender key at nonce 6 and broadcast (sent)",
+    "refs": {
+      "txHash": "0x289731777ee8807f45751803de8d68a82df7831e858ed63fb2f24b2d434f40bc"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xfd5578031a6485000edd8b2f48739cdba172408f9a3b8b12968e24022a2448d9"
+  },
+  {
+    "traceId": "trace:act:act-01a15289-547f-71e2-be2f-508cc70e73e1",
+    "seq": 0,
+    "ts": "2026-10-19T05:01:36.919Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "PlanRegistry.registerFounderKey signed by the lender key at nonce 7 and broadcast (sent)",
+    "refs": {
+      "txHash": "0xe0d564cbca3155cc3d2512a474d6d735fc7e7e887dc4de697b10f1e40eb05ff8"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xafd4e11cf131713c03541b98f41bd01e52b427a861c3eb0e10bc235b624f5083"
+  },
+  {
+    "traceId": "trace:act:act-01a1528b-2864-75e8-9b3a-a948c5ebe748",
+    "seq": 0,
+    "ts": "2026-10-19T05:03:35.992Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "PlanRegistry.commitPlan signed by the relayer key at nonce 23 and broadcast (sent)",
+    "refs": {
+      "txHash": "0x797b49a182d1acb728dcc071850c0050767bbba2c55c49da7b511891a999b245"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe683899f3ec0fdeae312e331f489c0960b04eb9666cd8e22f783d230e83ddbeb"
+  },
+  {
+    "traceId": "trace:act:act-01a1528b-d5e7-7116-ac22-66bfca00902a",
+    "seq": 0,
+    "ts": "2026-10-19T05:06:22.488Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "Treasury.fund signed by the lender key at nonce 8 and broadcast (sent)",
+    "refs": {
+      "txHash": "0xe0590ad09c6dcd96a93e4f6ab48ce21a3c23bcb01553ae51a3440ac494ea530c"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x348389866996d5d95533d586795dab4c10ed47b1bab5612549058551b1c6d1c1"
+  },
+  {
+    "traceId": "trace:act:act-01a15290-096e-750f-8f49-56e65b2d3960",
+    "seq": 0,
+    "ts": "2026-10-19T05:08:55.036Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "Treasury.bindPayee signed by the relayer key at nonce 24 and broadcast (sent)",
+    "refs": {
+      "txHash": "0x97b5c75de22ac02230b8b6823741aa6ee651073cabed4ba194ca047a706b233c"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xeb994bf9f00ba42797ad5aa4981b060a557a8254b790f80e84d2b5cc1a89536a"
+  },
+  {
+    "traceId": "trace:act:act-01a15299-f0b7-7bc2-9125-f8a6d43a70f7",
+    "seq": 0,
+    "ts": "2026-10-19T05:19:45.158Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "Treasury.pause signed by the agent key at nonce 44 and broadcast (sent)",
+    "refs": {
+      "txHash": "0xc56f57f202154872359f298c12bd088c9748b1ab408de76bdec31047b20dcd16"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x90536466c29828b3d6666f507cdc4e2747dca85a35530ae3a6d3f3c3a9eafa98"
+  },
+  {
+    "traceId": "trace:fund:order-wavk4gkewt3zc-001:0",
+    "seq": 0,
+    "ts": "2026-10-19T05:12:22.735Z",
+    "actor": "policy",
+    "kind": "PROPOSAL",
+    "summary": "Fund order-wavk4gkewt3zc-001 milestone 0: 75000 minor into escrow for supplier-wavk4gkewt3zc (signed schedule, plan v1)",
+    "verdict": "AUTO",
+    "reasonCode": "WITHIN_PLAN",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "fund:order-wavk4gkewt3zc-001:0",
+      "decisionId": "01a15293-39cb-7780-8bb7-7bfb9f1754fb"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x98b194ddd92891077d89bad9260a1cad95828e202bb3e7145400c97d27e83b46"
+  },
+  {
+    "traceId": "trace:fund:order-wavk4gkewt3zc-001:0",
+    "seq": 1,
+    "ts": "2026-10-19T05:12:23.462Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "MilestoneEscrow.fundMilestone signed by the agent key at nonce 42 and broadcast (sent)",
+    "refs": {
+      "paymentId": "fund:order-wavk4gkewt3zc-001:0",
+      "txHash": "0x5712892441da31eea153b3d15c3a6022d09d9e5e3b1d5c3848eb0b715b025e17"
+    },
+    "prevHash": "0x98b194ddd92891077d89bad9260a1cad95828e202bb3e7145400c97d27e83b46",
+    "hash": "0xfe5cf5b5951f4ca8c6179dd2c2d360cf4ccefc953225839cb764d82a7759fc63"
+  },
+  {
+    "traceId": "trace:fund:order-wavk4gkewt3zc-001:0",
+    "seq": 2,
+    "ts": "2026-10-19T05:30:22.194Z",
+    "actor": "oracle",
+    "kind": "PAYOUT",
+    "summary": "payout attempt 1 via mock: SUCCEEDED",
+    "refs": {
+      "paymentId": "fund:order-wavk4gkewt3zc-001:0",
+      "txHash": "0x5712892441da31eea153b3d15c3a6022d09d9e5e3b1d5c3848eb0b715b025e17",
+      "payoutId": "mock-699b9a0c657fac1829bc62fc"
+    },
+    "prevHash": "0xfe5cf5b5951f4ca8c6179dd2c2d360cf4ccefc953225839cb764d82a7759fc63",
+    "hash": "0x8a388f2feab2a20512338797818b05b9848be36b0906d8500ffc0266e8c2f2ee"
+  },
+  {
+    "traceId": "trace:fund:order-wavk4gkewt3zc-001:1",
+    "seq": 0,
+    "ts": "2026-10-19T05:12:23.650Z",
+    "actor": "policy",
+    "kind": "PROPOSAL",
+    "summary": "Fund order-wavk4gkewt3zc-001 milestone 1: 175000 minor into escrow for supplier-wavk4gkewt3zc (signed schedule, plan v1)",
+    "verdict": "AUTO",
+    "reasonCode": "WITHIN_PLAN",
+    "refs": {
+      "planVersion": 1,
+      "paymentId": "fund:order-wavk4gkewt3zc-001:1",
+      "decisionId": "01a15293-3d60-74b9-89b3-5ed0217484b8"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x4bdea9ed4c0b6a372a790c704e66c52ffb96ec885860074586a00e72e3a3b6a2"
+  },
+  {
+    "traceId": "trace:fund:order-wavk4gkewt3zc-001:1",
+    "seq": 1,
+    "ts": "2026-10-19T05:12:24.698Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "MilestoneEscrow.fundMilestone signed by the agent key at nonce 43 and broadcast (sent)",
+    "refs": {
+      "paymentId": "fund:order-wavk4gkewt3zc-001:1",
+      "txHash": "0xf0e5ad2995dbbac4678b184428625afd13ba235bc2e16ba4f89ac55b4f6c2cb5"
+    },
+    "prevHash": "0x4bdea9ed4c0b6a372a790c704e66c52ffb96ec885860074586a00e72e3a3b6a2",
+    "hash": "0xfd3ef170114052e5076fd1675deb0aedf01a054f89bbedff7896b2427b1369b4"
+  },
+  {
+    "traceId": "trace:release:sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+    "seq": 0,
+    "ts": "2026-10-19T05:51:25.505Z",
+    "actor": "oracle",
+    "kind": "PAYOUT",
+    "summary": "payout attempt 1 via mock: SUCCEEDED",
+    "refs": {
+      "paymentId": "release:sig-01a15294-bf54-7315-84e6-dfb11e8361df",
+      "txHash": "0x3b395fe9f54d2a3a6b2950863c0d599bcc959f5b67d6c00886e71d686af4d88d",
+      "payoutId": "mock-579f02fc7a6996aa528ce824"
+    },
+    "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xa36cb7cde7f7248d47d9ec96bcc7e24c2c4d76b876def326303f1df5d3e2d58c"
+  }
+]

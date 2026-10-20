@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/traces.json",
+  "description": "Applies to: fixtures/scenario-rina/traces.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "traceId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+        "description": "Opaque id"
+      },
+      "seq": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      },
+      "ts": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+        "description": "ISO-8601 UTC timestamp ending in Z"
+      },
+      "actor": {
+        "type": "string",
+        "enum": [
+          "planner",
+          "reader",
+          "policy",
+          "txbuilder",
+          "executor",
+          "worker",
+          "founder",
+          "officer",
+          "oracle",
+          "reconciler"
+        ]
+      },
+      "kind": {
+        "type": "string",
+        "enum": [
+          "LLM_CALL",
+          "TOOL_CALL",
+          "PROPOSAL",
+          "POLICY_VERDICT",
+          "TX",
+          "PAYOUT",
+          "SIGNATURE",
+          "EXCEPTION",
+          "DENIAL",
+          "ALERT"
+        ]
+      },
+      "summary": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "verdict": {
+        "type": "string",
+        "enum": [
+          "AUTO",
+          "NEEDS_FOUNDER",
+          "NEEDS_OFFICER",
+          "DENY"
+        ]
+      },
+      "reasonCode": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9_]{0,31}$",
+        "description": "Code stored on-chain as bytes32 (stringToHex)"
+      },
+      "refs": {
+        "type": "object",
+        "properties": {
+          "planVersion": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4294967295
+          },
+          "paymentId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "invoiceHash": {
+            "type": "string",
+            "pattern": "^0x[0-9a-f]{64}$",
+            "description": "32-byte value, 0x + 64 lowercase hex"
+          },
+          "decisionId": {
+            "type": "string",
+            "allOf": [
+              {
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+              },
+              {
+                "pattern": "^[0-9a-f-]+$"
+              }
+            ],
+            "description": "Agent decision id (UUIDv7; left-padded to bytes32 on-chain)"
+          },
+          "txHash": {
+            "type": "string",
+            "pattern": "^0x[0-9a-f]{64}$",
+            "description": "32-byte value, 0x + 64 lowercase hex"
+          },
+          "payoutId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "llmCallId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          }
+        },
+        "additionalProperties": false
+      },
+      "prevHash": {
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{64}$",
+        "description": "ZERO_HEX32 for the first event"
+      },
+      "hash": {
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{64}$",
+        "description": "32-byte value, 0x + 64 lowercase hex"
+      }
+    },
+    "required": [
+      "traceId",
+      "seq",
+      "ts",
+      "actor",
+      "kind",
+      "summary",
+      "refs",
+      "prevHash",
+      "hash"
+    ],
+    "additionalProperties": false
+  }
+}

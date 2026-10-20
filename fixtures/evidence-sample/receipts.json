@@ -1,0 +1,27 @@
+{
+  "sourceType": "mock",
+  "warning": "MOCK UI SAMPLE ONLY: no real transactions, valid signatures, verified rules or measured test results.",
+  "receipts": [
+    {
+      "taskId": "S5",
+      "receipt": {
+        "transactionHash": "0xfcb95e26eee9ee817f39f4f92a94b00ff245cb39f5dae1de7e84d45a25c5f2a0",
+        "blockNumber": "0x3d5",
+        "status": "0x1",
+        "to": "0xc7569dbf0b3bdf4edc035ab146a028938563f2bb",
+        "logs": []
+      }
+    },
+    {
+      "taskId": "T4",
+      "receipt": {
+        "transactionHash": "0xe249952f86ac92cd2b969b47697051c6585d785a7a63260e59ac03eb6bcb59f2",
+        "blockNumber": "0x3f2",
+        "status": "0x0",
+        "to": "0x47e61994c68e7f179ead117b0ee0eefb5cf00371",
+        "logs": []
+      },
+      "revertReason": "CapExceeded"
+    }
+  ]
+}

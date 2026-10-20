@@ -1,0 +1,440 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/shortlist.json",
+  "description": "Applies to: fixtures/scenario-rina/shortlist.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "READY",
+        "FAILED"
+      ]
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "supplierId": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+            "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "criteria": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "criterion": {
+                  "type": "string",
+                  "enum": [
+                    "landed_cost",
+                    "quality_evidence",
+                    "trust_verification",
+                    "lead_time",
+                    "compliance",
+                    "terms",
+                    "communication"
+                  ]
+                },
+                "weight": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "score": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                },
+                "evidenceIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                    "description": "Opaque id"
+                  }
+                }
+              },
+              "required": [
+                "criterion",
+                "weight",
+                "score",
+                "evidenceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "landedCost": {
+            "type": "object",
+            "properties": {
+              "cifMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "dutyMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "sstMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "feesMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "totalMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "fx": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "sourceUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "http(s) URL"
+                  },
+                  "retrievedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                    "description": "ISO-8601 UTC timestamp ending in Z"
+                  },
+                  "snippetHash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$",
+                    "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "enum": [
+                      "tier1",
+                      "tier2",
+                      "tier3"
+                    ]
+                  },
+                  "sourceType": {
+                    "type": "string",
+                    "enum": [
+                      "live",
+                      "mock"
+                    ]
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "verifiedOn": {
+                    "type": "string",
+                    "format": "date",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                    "description": "Calendar date YYYY-MM-DD"
+                  }
+                },
+                "required": [
+                  "value",
+                  "sourceUrl",
+                  "retrievedAt",
+                  "snippetHash",
+                  "evidence",
+                  "sourceType"
+                ],
+                "additionalProperties": false,
+                "description": "Offer currency → display currency rate (BNM)"
+              }
+            },
+            "required": [
+              "cifMinor",
+              "dutyMinor",
+              "sstMinor",
+              "feesMinor",
+              "totalMinor",
+              "fx"
+            ],
+            "additionalProperties": false
+          },
+          "payoutAccountHash": {
+            "type": "string",
+            "pattern": "^0x[0-9a-f]{64}$",
+            "description": "32-byte value, 0x + 64 lowercase hex"
+          },
+          "evidenceCoverageBps": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000,
+            "description": "Evidence coverage (never a probability)"
+          },
+          "gates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "gate": {
+                  "type": "string",
+                  "enum": [
+                    "NO_ESCROW",
+                    "PERSONAL_PAYEE",
+                    "MISSING_CERT",
+                    "OFF_PLATFORM_DISCOUNT",
+                    "AI_INJECTION",
+                    "OVER_MOQ",
+                    "SANCTIONS"
+                  ]
+                },
+                "passed": {
+                  "type": "boolean"
+                },
+                "evidenceIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                    "description": "Opaque id"
+                  }
+                }
+              },
+              "required": [
+                "gate",
+                "passed",
+                "evidenceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "redFlags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300,
+                  "description": "Where it came from, e.g. listing:supplier-c or a URL"
+                }
+              },
+              "required": [
+                "text",
+                "source"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "pros": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "evidenceIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                    "description": "Opaque id"
+                  }
+                }
+              },
+              "required": [
+                "text",
+                "evidenceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "cons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "evidenceIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                    "description": "Opaque id"
+                  }
+                }
+              },
+              "required": [
+                "text",
+                "evidenceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "whyNotNext": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "whatWouldChange": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "supplierId",
+          "displayName",
+          "rank",
+          "score",
+          "criteria",
+          "landedCost",
+          "payoutAccountHash",
+          "evidenceCoverageBps",
+          "gates",
+          "redFlags",
+          "pros",
+          "cons",
+          "whyNotNext",
+          "whatWouldChange"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "excluded": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "supplierId": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+            "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+          },
+          "gate": {
+            "type": "string",
+            "enum": [
+              "NO_ESCROW",
+              "PERSONAL_PAYEE",
+              "MISSING_CERT",
+              "OFF_PLATFORM_DISCOUNT",
+              "AI_INJECTION",
+              "OVER_MOQ",
+              "SANCTIONS"
+            ]
+          }
+        },
+        "required": [
+          "supplierId",
+          "gate"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rankStabilityPct": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "shortlistHash": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "32-byte value, 0x + 64 lowercase hex"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "weightsVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "failureReason": {
+      "default": null,
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "requestId",
+    "status",
+    "candidates",
+    "excluded",
+    "rankStabilityPct",
+    "shortlistHash",
+    "weightsVersion"
+  ],
+  "additionalProperties": false
+}

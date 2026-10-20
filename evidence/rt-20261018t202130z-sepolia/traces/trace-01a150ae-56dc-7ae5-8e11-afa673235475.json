@@ -1,0 +1,38 @@
+[
+  {
+    "trace_id": "trace-01a150ae-56dc-7ae5-8e11-afa673235475",
+    "seq": 0,
+    "ts": "2026-10-18T20:22:45.445Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe0d84fcfacb06668f60129d8ee5b9b7b3d6c143972f54ebcc14acc9541ea78ca"
+  },
+  {
+    "trace_id": "trace-01a150ae-56dc-7ae5-8e11-afa673235475",
+    "seq": 1,
+    "ts": "2026-10-18T20:22:45.445Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner proposed a plan intent; code compiled draft draft-01a150ae-57ae-758f-89c1-2d1e8a47a7de (blast radius 250000 minor)",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": "01a150ae-57ae-7c92-a1d2-3f274173089d",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0xe0d84fcfacb06668f60129d8ee5b9b7b3d6c143972f54ebcc14acc9541ea78ca",
+    "hash": "0x1fadf3e5e43ed66b04a7b654ebc8ddc6cf91b144e2addf7b15e5ce841f329202"
+  }
+]

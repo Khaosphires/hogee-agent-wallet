@@ -1,0 +1,107 @@
+{
+  "label": "recorded sample",
+  "kind": "listing",
+  "docId": "supplier-wavk4gkewt3zc",
+  "fields": {
+    "sellerName": {
+      "value": "Zhejiang Tidelume Cup Industry Co., Ltd.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wavk4gkewt3zc"
+    },
+    "productTitle": {
+      "value": "30oz stainless steel vacuum insulated tumbler with sliding lid",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wavk4gkewt3zc"
+    },
+    "unitPrice": {
+      "value": {
+        "amountMinor": "210",
+        "currency": "USD",
+        "unit": "USD",
+        "sourceUrl": "https://tidelume.en.made-in-china.com/product/kQZmLrTxYhVa/China-30oz-Stainless-Steel-Vacuum-Tumbler.html",
+        "snippetHash": "0x7f6bce8ead9e73c14979ad7b663aeaa3ffdc62e81dfde4615652ee68607f6461",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wavk4gkewt3zc"
+    },
+    "moq": {
+      "value": {
+        "value": "1000",
+        "unit": "pieces",
+        "sourceUrl": "https://tidelume.en.made-in-china.com/product/kQZmLrTxYhVa/China-30oz-Stainless-Steel-Vacuum-Tumbler.html",
+        "snippetHash": "0x76ba6a44ee4f7de8f8b8ab0e20d1d2c326277416979671110c1fd3260056765d",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wavk4gkewt3zc"
+    },
+    "leadTimeDays": {
+      "value": {
+        "value": "30",
+        "unit": "days",
+        "sourceUrl": "https://tidelume.en.made-in-china.com/product/kQZmLrTxYhVa/China-30oz-Stainless-Steel-Vacuum-Tumbler.html",
+        "snippetHash": "0x449a0ae0dcca267ed137a859ba392396db5d158fcbf08ab21bf85eace33c59c7",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wavk4gkewt3zc"
+    },
+    "certificates": {
+      "value": [
+        "LFGB and FDA food contact test reports"
+      ],
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wavk4gkewt3zc"
+    },
+    "claimsEscrow": {
+      "value": null,
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wavk4gkewt3zc"
+    }
+  },
+  "flags": [],
+  "redFlags": [],
+  "supplierGates": [],
+  "dropped": [],
+  "repaired": false,
+  "llmCallIds": [],
+  "extracted": {
+    "unitPrice": {
+      "value": "210",
+      "unit": "USD",
+      "snippetHash": "0x7f6bce8ead9e73c14979ad7b663aeaa3ffdc62e81dfde4615652ee68607f6461"
+    },
+    "moq": {
+      "value": "1000",
+      "unit": "pieces",
+      "snippetHash": "0x76ba6a44ee4f7de8f8b8ab0e20d1d2c326277416979671110c1fd3260056765d"
+    },
+    "leadTimeDays": {
+      "value": "30",
+      "unit": "days",
+      "snippetHash": "0x449a0ae0dcca267ed137a859ba392396db5d158fcbf08ab21bf85eace33c59c7"
+    }
+  }
+}

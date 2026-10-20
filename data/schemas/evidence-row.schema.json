@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceRow",
+  "description": "Applies to: each element of evidence/<run-id>/evidence.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "enum": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9",
+        "S10",
+        "S11",
+        "S12",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8",
+        "T9",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T22",
+        "T23",
+        "T24",
+        "T25",
+        "T26",
+        "T27",
+        "T28",
+        "T29",
+        "T30",
+        "T31",
+        "T32",
+        "T33",
+        "D-poison",
+        "D-plug"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "expected": {
+      "type": "string",
+      "enum": [
+        "success",
+        "revert",
+        "refused"
+      ]
+    },
+    "expectedError": {
+      "type": "string",
+      "enum": [
+        "PlanInvariantViolated",
+        "StalePlan",
+        "PayeeNotBound",
+        "PayeeCooling",
+        "CapExceeded",
+        "LineExpired",
+        "DuplicateIntent",
+        "DuplicateInvoice",
+        "DuplicateSale",
+        "NotOwner",
+        "NotLender",
+        "NotAgent",
+        "NotOracle",
+        "AgentExpired",
+        "ReserveLocked",
+        "TimelockActive",
+        "Paused",
+        "MilestoneLocked",
+        "EvidenceMissing",
+        "AmountExceedsSchedule",
+        "SignatureExpired",
+        "InvalidSignature",
+        "CircuitOpen",
+        "FounderKeyAlreadySet",
+        "MissingDecision",
+        "SettlementClosed",
+        "EscrowOnly"
+      ]
+    },
+    "layer": {
+      "type": "string",
+      "enum": [
+        "agent_refusal",
+        "onchain_revert",
+        "onchain_success",
+        "offchain"
+      ]
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    },
+    "txHash": {
+      "type": "string",
+      "pattern": "^0x[0-9a-f]{64}$",
+      "description": "32-byte value, 0x + 64 lowercase hex"
+    },
+    "chainId": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991,
+      "description": "EVM chain id (11155111 Sepolia, 31337 Anvil)"
+    },
+    "deploymentId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+      "description": "Deployment id, e.g. loop-1, final-1"
+    },
+    "block": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Block number"
+    },
+    "contract": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "function": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "decodedEvent": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "revertReason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "decisionId": {
+      "type": "string",
+      "allOf": [
+        {
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+        },
+        {
+          "pattern": "^[0-9a-f-]+$"
+        }
+      ],
+      "description": "Agent decision id (UUIDv7; left-padded to bytes32 on-chain)"
+    },
+    "traceId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "payoutId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "explorerUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "http(s) URL"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 300
+      },
+      "description": "Paths relative to the bundle root"
+    }
+  },
+  "required": [
+    "taskId",
+    "title",
+    "expected",
+    "layer",
+    "outcome",
+    "chainId",
+    "deploymentId",
+    "contract",
+    "function",
+    "artifacts"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,1269 @@
+{
+  "format": "hogee.fisco-mirror/2",
+  "preflight": {
+    "block": 5,
+    "reads": [
+      {
+        "label": "eth_chainId",
+        "value": "20200"
+      },
+      {
+        "label": "eth_getCode(PlanRegistry) bytes",
+        "value": "20771"
+      },
+      {
+        "label": "eth_getCode(Treasury) bytes",
+        "value": "20539"
+      },
+      {
+        "label": "eth_getCode(MilestoneEscrow) bytes",
+        "value": "5645"
+      },
+      {
+        "label": "eth_getCode(SalesOracle) bytes",
+        "value": "731"
+      },
+      {
+        "label": "PlanRegistry.deploymentId/chainTag/fiscoMs",
+        "value": "final-2 / fisco / false"
+      },
+      {
+        "label": "Treasury.deploymentId/chainTag/fiscoMs",
+        "value": "final-2 / fisco / false"
+      },
+      {
+        "label": "MilestoneEscrow.deploymentId/chainTag/fiscoMs",
+        "value": "final-2 / fisco / false"
+      },
+      {
+        "label": "Treasury.lender()",
+        "value": "0x2d0c3e04f88aeaf427108c9a5672b6cc3a4da497"
+      },
+      {
+        "label": "Treasury.oracle()",
+        "value": "0x0223fa4dc06be4c39bf7a3df47bd7c020f06ed4b"
+      },
+      {
+        "label": "Treasury.observer()",
+        "value": "0x0000000000000000000000000000000000000000"
+      },
+      {
+        "label": "Treasury.governance()",
+        "value": "0x7c4d006b049a5262e78047d6e543cc99dbf88aac"
+      },
+      {
+        "label": "PlanRegistry.planVersion()",
+        "value": "0"
+      },
+      {
+        "label": "Treasury.facility().opened",
+        "value": "false"
+      },
+      {
+        "label": "date guard: earliest plan expiry",
+        "value": "stages.stage-2.gate.deadline 2026-11-03T04:59:36.000Z"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "seq": 1,
+      "id": "G0",
+      "title": "The regulator registers the agent's account (before its first transaction)",
+      "contract": "AccountManager",
+      "function": "setAccountStatus",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xd15962626231a03d123f1aeb380fb7d2e3b328759320923b9fd90d7eef7cf083"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 1,
+        "after": 2
+      },
+      "links": {}
+    },
+    {
+      "seq": 2,
+      "id": "S1",
+      "title": "Open the facility (10,000 BU cap, 300 bps reserve floor)",
+      "contract": "Treasury",
+      "function": "openFacility",
+      "signerRole": "lender",
+      "auth": "none",
+      "amountMinor": "1000000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x72478bc4d7cfb823d14824e2685d865ee228482f6adfc1657f6a46a802794bb0"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 0,
+        "after": 1
+      },
+      "links": {
+        "sepoliaTx": "0x289731777ee8807f45751803de8d68a82df7831e858ed63fb2f24b2d434f40bc"
+      }
+    },
+    {
+      "seq": 3,
+      "id": "S2",
+      "title": "Register the founder's passkey (no owner EOA)",
+      "contract": "PlanRegistry",
+      "function": "registerFounderKey",
+      "signerRole": "lender",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xa28c7e902aae5430e642fcc6da52417434f85265e7a93fdecf3f77ec0010a79f"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 1,
+        "after": 2
+      },
+      "links": {}
+    },
+    {
+      "seq": 4,
+      "id": "S3",
+      "title": "Commit plan v1, the final-2 manifest (stage 1 released)",
+      "contract": "PlanRegistry",
+      "function": "commitPlan",
+      "signerRole": "relayer",
+      "auth": "passkey",
+      "amountMinor": "1000000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xcadad5e45699ec90fdd95d900112f4e853a29ece6814e933a1bcc95f52cc2186"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 0,
+        "after": 1
+      },
+      "links": {
+        "sepoliaTx": "0x797b49a182d1acb728dcc071850c0050767bbba2c55c49da7b511891a999b245"
+      }
+    },
+    {
+      "seq": 5,
+      "id": "S4",
+      "title": "Fund the facility, 10,000 BU",
+      "contract": "Treasury",
+      "function": "fund",
+      "signerRole": "lender",
+      "auth": "none",
+      "amountMinor": "1000000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x9ec6ff98b9f31a70c4fe65a9c1ee747050adaeb7784a7de9fd08315eb52c2d86"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 2,
+        "after": 3
+      },
+      "links": {
+        "sepoliaTx": "0xe0590ad09c6dcd96a93e4f6ab48ce21a3c23bcb01553ae51a3440ac494ea530c"
+      }
+    },
+    {
+      "seq": 6,
+      "id": "S5",
+      "title": "Bind the supplier for the 2,500 BU order (final-2's SupplierApproval)",
+      "contract": "Treasury",
+      "function": "bindPayee",
+      "signerRole": "relayer",
+      "auth": "passkey",
+      "amountMinor": "250000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x615bf1070f8ea2b161b4b7622a4896514c09b5f01f836bd17ea8d650382d3b0d"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 1,
+        "after": 2
+      },
+      "links": {
+        "sepoliaTx": "0x97b5c75de22ac02230b8b6823741aa6ee651073cabed4ba194ca047a706b233c"
+      }
+    },
+    {
+      "seq": 7,
+      "id": "S6",
+      "title": "Fund milestone 0, 750 BU (auto-release)",
+      "contract": "MilestoneEscrow",
+      "function": "fundMilestone",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "75000",
+      "expected": "ok",
+      "probe": {
+        "ok": false,
+        "error": "PayeeCooling"
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xc5b0fe8e82587c73729669be1f0a1520f0f233cca5fa92cf68de3b2de51a9864"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 0,
+        "after": 1
+      },
+      "links": {
+        "sepoliaTx": "0x5712892441da31eea153b3d15c3a6022d09d9e5e3b1d5c3848eb0b715b025e17"
+      }
+    },
+    {
+      "seq": 8,
+      "id": "R7",
+      "title": "Spend 300 BU on LOGISTICS (per-tx cap 200 BU)",
+      "contract": "Treasury",
+      "function": "spend",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "30000",
+      "expected": "refused",
+      "expectedError": "CapExceeded",
+      "probe": {
+        "ok": false,
+        "error": "CapExceeded"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0x77184c18dfe26c29ed8d0792315a8b52b90c77e784300b108e5173ddb5c23529"
+      },
+      "reads": [
+        {
+          "label": "Treasury.pocket(LOGISTICS).spentMinor",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "label": "Treasury.rollingSpent(LOGISTICS)",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "label": "Treasury.balances().spentMinor",
+          "before": "0",
+          "after": "0"
+        }
+      ],
+      "nonce": {
+        "before": 1,
+        "after": 2
+      },
+      "links": {}
+    },
+    {
+      "seq": 9,
+      "id": "D7",
+      "title": "Record the R7 denial on-chain",
+      "contract": "Treasury",
+      "function": "recordDenied",
+      "signerRole": "agent",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xe0fae458eced1e3122c1ffc91095a4a8d4312de01a547f11d183171f8b0a8c7b"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 2,
+        "after": 3
+      },
+      "links": {
+        "recordsDenialOf": "R7"
+      }
+    },
+    {
+      "seq": 10,
+      "id": "R8",
+      "title": "The agent releases milestone 1 itself",
+      "contract": "MilestoneEscrow",
+      "function": "releaseMilestone",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "175000",
+      "expected": "refused",
+      "expectedError": "MilestoneLocked",
+      "probe": {
+        "ok": false,
+        "error": "MilestoneLocked"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0x5ac813b685b084e12553eecc861e509a6b5911cac71652e0f6921e94650f9c32"
+      },
+      "reads": [
+        {
+          "label": "MilestoneEscrow.isNonceUsed(13a7bac08a0e…)",
+          "before": "false",
+          "after": "false"
+        },
+        {
+          "label": "MilestoneEscrow.milestones(order-wavk4gkewt3zc-001)[1]",
+          "before": "funded 0/175000 released false",
+          "after": "funded 0/175000 released false"
+        },
+        {
+          "label": "Treasury.balances().escrowedMinor",
+          "before": "75000",
+          "after": "75000"
+        }
+      ],
+      "nonce": {
+        "before": 3,
+        "after": 4
+      },
+      "links": {}
+    },
+    {
+      "seq": 11,
+      "id": "R9a",
+      "title": "The agent signs plan v2 raising a cap",
+      "contract": "PlanRegistry",
+      "function": "commitPlan",
+      "signerRole": "agent",
+      "auth": "ecdsa-agent",
+      "expected": "refused",
+      "expectedError": "NotOwner",
+      "probe": {
+        "ok": false,
+        "error": "NotOwner"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0x75591bbfb54c24ba8438f5ab387875a25af4aa815fc1b6b5d472f3bf85dc0296"
+      },
+      "reads": [
+        {
+          "label": "PlanRegistry.planVersion()",
+          "before": "1",
+          "after": "1"
+        },
+        {
+          "label": "PlanRegistry.isNonceUsed(c502da1b6e8d…)",
+          "before": "false",
+          "after": "false"
+        },
+        {
+          "label": "PlanRegistry.line(LOGISTICS).perTxCapMinor",
+          "before": "20000",
+          "after": "20000"
+        }
+      ],
+      "nonce": {
+        "before": 4,
+        "after": 5
+      },
+      "links": {}
+    },
+    {
+      "seq": 12,
+      "id": "R9b",
+      "title": "The agent raises the LOGISTICS per-tx cap through tighten",
+      "contract": "Treasury",
+      "function": "tighten",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "30000",
+      "expected": "refused",
+      "expectedError": "NotOwner",
+      "probe": {
+        "ok": false,
+        "error": "NotOwner"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0xe4f1654d966f232746ced2dc8854157361ba92ae9642c765955e7512b0eddd6f"
+      },
+      "reads": [
+        {
+          "label": "Treasury.pocket(LOGISTICS).perTxCapMinor",
+          "before": "20000",
+          "after": "20000"
+        }
+      ],
+      "nonce": {
+        "before": 5,
+        "after": 6
+      },
+      "links": {}
+    },
+    {
+      "seq": 13,
+      "id": "D9",
+      "title": "Record the R9a denial on-chain (no line)",
+      "contract": "Treasury",
+      "function": "recordDenied",
+      "signerRole": "agent",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x63dcccf82a2462acaecaadec4f2c3af56c47a46b149a9a4e5410790a287b6835"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 6,
+        "after": 7
+      },
+      "links": {
+        "recordsDenialOf": "R9a"
+      }
+    },
+    {
+      "seq": 14,
+      "id": "S10",
+      "title": "Fund milestone 1, 1,750 BU",
+      "contract": "MilestoneEscrow",
+      "function": "fundMilestone",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "175000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x4dde99dd4dc08caec30dce0b7b1d26c4e06868051af7b9bd9d2e6ebd7d492b5e"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 7,
+        "after": 8
+      },
+      "links": {
+        "sepoliaTx": "0xf0e5ad2995dbbac4678b184428625afd13ba235bc2e16ba4f89ac55b4f6c2cb5"
+      }
+    },
+    {
+      "seq": 15,
+      "id": "S11",
+      "title": "Record 2,000 BU of sales (stage 2 gate)",
+      "contract": "SalesOracle",
+      "function": "recordSale",
+      "signerRole": "oracle",
+      "auth": "none",
+      "amountMinor": "200000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x78d03ae6dc7cdec4fa174150bf30e002e50d7486ef4d382a8de6ec9b33584d9f"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 0,
+        "after": 1
+      },
+      "links": {}
+    },
+    {
+      "seq": 16,
+      "id": "S12",
+      "title": "Release stage 2, 6,000 BU (lender-signed, relayer sends)",
+      "contract": "Treasury",
+      "function": "releaseStage",
+      "signerRole": "relayer",
+      "auth": "ecdsa-lender",
+      "amountMinor": "600000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x94ad143a9685ee650136cd33fcb010a61a452e1430589eaba76371c5438aec81"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 2,
+        "after": 3
+      },
+      "links": {}
+    },
+    {
+      "seq": 17,
+      "id": "T28a",
+      "title": "Replay final-2's milestone-1 release calldata byte for byte",
+      "contract": "MilestoneEscrow",
+      "function": "releaseMilestone",
+      "signerRole": "relayer",
+      "auth": "passkey",
+      "amountMinor": "175000",
+      "expected": "refused",
+      "expectedError": "SignatureExpired",
+      "probe": {
+        "ok": false,
+        "error": "SignatureExpired"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0x1890f25bc4206faa55166eda2dcce9778e1836541278b465de54b1466a880898"
+      },
+      "reads": [
+        {
+          "label": "MilestoneEscrow.isNonceUsed(62eb274374d5…)",
+          "before": "false",
+          "after": "false"
+        },
+        {
+          "label": "MilestoneEscrow.milestones(order-wavk4gkewt3zc-001)[1]",
+          "before": "funded 175000/175000 released false",
+          "after": "funded 175000/175000 released false"
+        },
+        {
+          "label": "Treasury.balances().escrowedMinor",
+          "before": "250000",
+          "after": "250000"
+        }
+      ],
+      "nonce": {
+        "before": 3,
+        "after": 4
+      },
+      "links": {
+        "sepoliaTx": "0x3b395fe9f54d2a3a6b2950863c0d599bcc959f5b67d6c00886e71d686af4d88d"
+      }
+    },
+    {
+      "seq": 18,
+      "id": "T28b",
+      "title": "A fresh milestone-1 release signed over the Sepolia domain",
+      "contract": "MilestoneEscrow",
+      "function": "releaseMilestone",
+      "signerRole": "relayer",
+      "auth": "passkey",
+      "amountMinor": "175000",
+      "expected": "refused",
+      "expectedError": "InvalidSignature",
+      "probe": {
+        "ok": false,
+        "error": "InvalidSignature"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0x2fed4ab460bb773b2c8cf9a83de9bf65bac5a709594b95d9a8651e1cb76666eb"
+      },
+      "reads": [
+        {
+          "label": "MilestoneEscrow.isNonceUsed(23bbbc0ab157…)",
+          "before": "false",
+          "after": "false"
+        },
+        {
+          "label": "MilestoneEscrow.milestones(order-wavk4gkewt3zc-001)[1]",
+          "before": "funded 175000/175000 released false",
+          "after": "funded 175000/175000 released false"
+        },
+        {
+          "label": "Treasury.balances().escrowedMinor",
+          "before": "250000",
+          "after": "250000"
+        }
+      ],
+      "nonce": {
+        "before": 4,
+        "after": 5
+      },
+      "links": {}
+    },
+    {
+      "seq": 19,
+      "id": "S15",
+      "title": "Release milestone 1, 1,750 BU, under the FISCO domain (control)",
+      "contract": "MilestoneEscrow",
+      "function": "releaseMilestone",
+      "signerRole": "relayer",
+      "auth": "passkey",
+      "amountMinor": "175000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x92e88102e9ce960f61a3882cc54a4d1d0cbcc64350880a3379edc8fb17e343f5"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 5,
+        "after": 6
+      },
+      "links": {
+        "sepoliaTx": "0x3b395fe9f54d2a3a6b2950863c0d599bcc959f5b67d6c00886e71d686af4d88d"
+      }
+    },
+    {
+      "seq": 20,
+      "id": "G1",
+      "title": "The regulator freezes the agent's account",
+      "contract": "AccountManager",
+      "function": "setAccountStatus",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x6aa14b0635b6943d84c40a296b78a2264734bb067e9cf7a13f303b47b607bf25"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 2,
+        "after": 3
+      },
+      "links": {}
+    },
+    {
+      "seq": 21,
+      "id": "V1",
+      "title": "The regulator confirms on chain that the account is frozen",
+      "contract": "AccountManager",
+      "function": "getAccountStatus",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xfcde0feee5c3627130ae474380d705bd835286451a4a60d1a3cc22ddeda21f7c"
+      },
+      "reads": [
+        {
+          "label": "accountStatus",
+          "before": "0",
+          "after": "1"
+        }
+      ],
+      "nonce": {
+        "before": 3,
+        "after": 4
+      },
+      "links": {}
+    },
+    {
+      "seq": 22,
+      "id": "F1",
+      "title": "The agent spends 100 BU while frozen: refused by the chain",
+      "contract": "Treasury",
+      "function": "spend",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "10000",
+      "expected": "refused",
+      "expectedError": "AccountFrozen",
+      "probe": {
+        "ok": false,
+        "error": "AccountFrozen"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0x20189a93a49cc9048b194e896c964793abc0bd4c463d1637bd74e25e188a1127"
+      },
+      "reads": [
+        {
+          "label": "Treasury.pocket(PLATFORM_FEES).spentMinor",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "label": "Treasury.paused()",
+          "before": "false",
+          "after": "false"
+        },
+        {
+          "label": "Treasury.balances().spentMinor",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "label": "accountStatus",
+          "before": "1",
+          "after": "1"
+        }
+      ],
+      "nonce": {
+        "before": 8,
+        "after": 9
+      },
+      "links": {}
+    },
+    {
+      "seq": 23,
+      "id": "G2",
+      "title": "The regulator unfreezes the agent's account",
+      "contract": "AccountManager",
+      "function": "setAccountStatus",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x8207740c7eb18f7d8c0ce00d062dffda7fcbcd72ce314613d9834aaff476c873"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 4,
+        "after": 5
+      },
+      "links": {}
+    },
+    {
+      "seq": 24,
+      "id": "V2",
+      "title": "The regulator confirms on chain that the account is normal again",
+      "contract": "AccountManager",
+      "function": "getAccountStatus",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x1bac0f78e860b4a88f3ec1054a1c5bd5aa411a5920a45f88238b0af77bd6747e"
+      },
+      "reads": [
+        {
+          "label": "accountStatus",
+          "before": "1",
+          "after": "0"
+        }
+      ],
+      "nonce": {
+        "before": 5,
+        "after": 6
+      },
+      "links": {}
+    },
+    {
+      "seq": 25,
+      "id": "C1",
+      "title": "The same spend, probed only: the chain would take it again",
+      "contract": "Treasury",
+      "function": "spend",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "10000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "call": {
+        "from": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+        "to": "0x57c6ad72217c66f447790fd5462f19441919250a",
+        "data": "0x114ca870504c4154464f524d5f464545530000000000000000000000000000000000000073686f7065652d73672d666565730000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002710fa666225064fea32ee14a34cc9339b130bd8a66b078f41558ffc3c8447e4605d0000000000000000000000000000000000000000000000000000000000000001cebc68277f074ee21f567f761f67ba2454514bc5cbb341938177777d682f9a55b22b53b3ef587d9dee42a90965a556fd2e1e56b49ba0c10fa6f6bada4c82a365",
+        "block": 29
+      },
+      "outcome": {
+        "kind": "probe-only"
+      },
+      "reads": [
+        {
+          "label": "accountStatus",
+          "before": "0",
+          "after": "0"
+        }
+      ],
+      "nonce": {
+        "before": 9,
+        "after": 9
+      },
+      "links": {}
+    },
+    {
+      "seq": 26,
+      "id": "G3",
+      "title": "The regulator becomes Treasury's method-auth admin (committee proposal)",
+      "contract": "CommitteeManager",
+      "function": "createResetAdminProposal",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xc2e2aa3e0e8b0d0aa0ad3e1bc0b3abb91ff607aeeb2ec4a69dd09e0b89a79f59"
+      },
+      "reads": [
+        {
+          "label": "treasuryAdmin",
+          "before": "0x3f2ca5f13952094b1bd2e177fa973af4d0817598",
+          "after": "0xe2e37c3e148bf34e1e25587cec9354b7a7564ae3"
+        }
+      ],
+      "nonce": {
+        "before": 6,
+        "after": 7
+      },
+      "links": {}
+    },
+    {
+      "seq": 27,
+      "id": "G4",
+      "title": "The regulator sets Treasury.spend to blacklist mode",
+      "contract": "ContractAuth",
+      "function": "setMethodAuthType",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xe7c57feb6d718dc60edf36e0b0750eb016ca44d1be1b411fe0e9e8141eb9181f"
+      },
+      "reads": [
+        {
+          "label": "spendAllowed",
+          "before": "true",
+          "after": "true"
+        }
+      ],
+      "nonce": {
+        "before": 7,
+        "after": 8
+      },
+      "links": {}
+    },
+    {
+      "seq": 28,
+      "id": "G5",
+      "title": "The regulator bans Treasury.spend for the agent",
+      "contract": "ContractAuth",
+      "function": "closeMethodAuth",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x23190d25ac64b5cce4c70f05640592640c6e216d50adb1b09a129649344d9381"
+      },
+      "reads": [
+        {
+          "label": "spendAllowed",
+          "before": "true",
+          "after": "false"
+        }
+      ],
+      "nonce": {
+        "before": 8,
+        "after": 9
+      },
+      "links": {}
+    },
+    {
+      "seq": 29,
+      "id": "M1",
+      "title": "The agent spends 100 BU while spend is banned: refused by the chain",
+      "contract": "Treasury",
+      "function": "spend",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "10000",
+      "expected": "refused",
+      "expectedError": "PermissionDenied",
+      "probe": {
+        "ok": false,
+        "error": "PermissionDenied"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0x761b661c46165c7d3483e237422679afae25ee0e77390b4a95ba6b89dae18fb6"
+      },
+      "reads": [
+        {
+          "label": "Treasury.pocket(PLATFORM_FEES).spentMinor",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "label": "Treasury.paused()",
+          "before": "false",
+          "after": "false"
+        },
+        {
+          "label": "Treasury.balances().spentMinor",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "label": "spendAllowed",
+          "before": "false",
+          "after": "false"
+        }
+      ],
+      "nonce": {
+        "before": 9,
+        "after": 10
+      },
+      "links": {}
+    },
+    {
+      "seq": 30,
+      "id": "C2",
+      "title": "The agent's other calls still pass: recordDenied, probed only",
+      "contract": "Treasury",
+      "function": "recordDenied",
+      "signerRole": "agent",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "call": {
+        "from": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+        "to": "0x57c6ad72217c66f447790fd5462f19441919250a",
+        "data": "0x17449f80504c4154464f524d5f46454553000000000000000000000000000000000000001125bd5988d25169611de6a9a5d9363c3b53a93c2368eb8bab8592c08570934b5065726d697373696f6e44656e69656400000000000000000000000000000000367310fc21c219f4f3ae0328ab990d95f83291e87cecabbe3d32b8060b8729de",
+        "block": 33
+      },
+      "outcome": {
+        "kind": "probe-only"
+      },
+      "reads": [
+        {
+          "label": "spendAllowed",
+          "before": "false",
+          "after": "false"
+        }
+      ],
+      "nonce": {
+        "before": 10,
+        "after": 10
+      },
+      "links": {}
+    },
+    {
+      "seq": 31,
+      "id": "G6",
+      "title": "The regulator lifts the ban on Treasury.spend",
+      "contract": "ContractAuth",
+      "function": "openMethodAuth",
+      "signerRole": "regulator",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x5d4cdb456d20d1c38f529cfbaef6c543a387b43d9a38dab6d4c5f5043e9aee7a"
+      },
+      "reads": [
+        {
+          "label": "spendAllowed",
+          "before": "false",
+          "after": "true"
+        }
+      ],
+      "nonce": {
+        "before": 9,
+        "after": 10
+      },
+      "links": {}
+    },
+    {
+      "seq": 32,
+      "id": "C3",
+      "title": "The same spend, probed only: allowed again",
+      "contract": "Treasury",
+      "function": "spend",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "10000",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "call": {
+        "from": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+        "to": "0x57c6ad72217c66f447790fd5462f19441919250a",
+        "data": "0x114ca870504c4154464f524d5f464545530000000000000000000000000000000000000073686f7065652d73672d666565730000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002710fa666225064fea32ee14a34cc9339b130bd8a66b078f41558ffc3c8447e4605d0000000000000000000000000000000000000000000000000000000000000001cebc68277f074ee21f567f761f67ba2454514bc5cbb341938177777d682f9a55b22b53b3ef587d9dee42a90965a556fd2e1e56b49ba0c10fa6f6bada4c82a365",
+        "block": 34
+      },
+      "outcome": {
+        "kind": "probe-only"
+      },
+      "reads": [
+        {
+          "label": "spendAllowed",
+          "before": "true",
+          "after": "true"
+        }
+      ],
+      "nonce": {
+        "before": 10,
+        "after": 10
+      },
+      "links": {}
+    },
+    {
+      "seq": 33,
+      "id": "S16",
+      "title": "Pause the treasury (lender)",
+      "contract": "Treasury",
+      "function": "pause",
+      "signerRole": "lender",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xeca86a47de64584602b31258b4ebed00bc811901f1a6eb1695d47cdcdf596147"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 3,
+        "after": 4
+      },
+      "links": {
+        "sepoliaTx": "0xc56f57f202154872359f298c12bd088c9748b1ab408de76bdec31047b20dcd16"
+      }
+    },
+    {
+      "seq": 34,
+      "id": "R17",
+      "title": "Spend 100 BU within caps while paused",
+      "contract": "Treasury",
+      "function": "spend",
+      "signerRole": "agent",
+      "auth": "none",
+      "amountMinor": "10000",
+      "expected": "refused",
+      "expectedError": "Paused",
+      "probe": {
+        "ok": false,
+        "error": "Paused"
+      },
+      "outcome": {
+        "kind": "mined-reverted",
+        "txHash": "0xf8f64ffcdbecb0721b9ce9c49536b36773ddc7a633bda09d83d17c275044a8ac"
+      },
+      "reads": [
+        {
+          "label": "Treasury.pocket(PLATFORM_FEES).spentMinor",
+          "before": "0",
+          "after": "0"
+        },
+        {
+          "label": "Treasury.paused()",
+          "before": "true",
+          "after": "true"
+        },
+        {
+          "label": "Treasury.balances().spentMinor",
+          "before": "0",
+          "after": "0"
+        }
+      ],
+      "nonce": {
+        "before": 10,
+        "after": 11
+      },
+      "links": {}
+    },
+    {
+      "seq": 35,
+      "id": "D17",
+      "title": "Record the R17 denial on-chain",
+      "contract": "Treasury",
+      "function": "recordDenied",
+      "signerRole": "agent",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0x289aa3cfdfc43f77cc08fa4028f6cea81ca89aad630fe7183d542f74a3ead92f"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 11,
+        "after": 12
+      },
+      "links": {
+        "recordsDenialOf": "R17"
+      }
+    },
+    {
+      "seq": 36,
+      "id": "S18a",
+      "title": "Confirm the milestone-0 settlement (as final-2)",
+      "contract": "Treasury",
+      "function": "confirmSettlement",
+      "signerRole": "oracle",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xfda155443773b784d7ff03b0ef1cdf2329f92742f59e13d7d05fc1c49f4b3984"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 1,
+        "after": 2
+      },
+      "links": {
+        "sepoliaTx": "0x1a2be483785e32b0601a2996518b80e55df5a738b42cfe2a5b346bfb40a6de31"
+      }
+    },
+    {
+      "seq": 37,
+      "id": "S18b",
+      "title": "Confirm the milestone-1 settlement (as final-2)",
+      "contract": "Treasury",
+      "function": "confirmSettlement",
+      "signerRole": "oracle",
+      "auth": "none",
+      "expected": "ok",
+      "probe": {
+        "ok": true
+      },
+      "outcome": {
+        "kind": "mined",
+        "txHash": "0xa318289a9182c2e11484e17f6c7830d9c0ab08095c0d3de262a58601b9115667"
+      },
+      "reads": [],
+      "nonce": {
+        "before": 2,
+        "after": 3
+      },
+      "links": {
+        "sepoliaTx": "0xb00e0ac40e66cb9504ebddc60233da0def5b1e9c874fa2732511d1d525478117"
+      }
+    }
+  ],
+  "final": {
+    "block": 39,
+    "reads": [
+      {
+        "label": "releasedMinor",
+        "value": "1000000"
+      },
+      {
+        "label": "revenueTotalMinor",
+        "value": "200000"
+      },
+      {
+        "label": "paused",
+        "value": "true"
+      },
+      {
+        "label": "agentAccountStatus",
+        "value": "0"
+      },
+      {
+        "label": "spendAllowedForAgent",
+        "value": "true"
+      },
+      {
+        "label": "Treasury.reserve()",
+        "value": "10000"
+      },
+      {
+        "label": "Treasury.balances().fundedMinor",
+        "value": "1000000"
+      },
+      {
+        "label": "Treasury.balances().spentMinor",
+        "value": "0"
+      },
+      {
+        "label": "Treasury.balances().escrowedMinor",
+        "value": "250000"
+      },
+      {
+        "label": "PlanRegistry.planVersion()",
+        "value": "1"
+      },
+      {
+        "label": "MilestoneEscrow.milestones(order-wavk4gkewt3zc-001)[0]",
+        "value": "funded 75000/75000 released true"
+      },
+      {
+        "label": "MilestoneEscrow.milestones(order-wavk4gkewt3zc-001)[1]",
+        "value": "funded 175000/175000 released true"
+      },
+      {
+        "label": "Treasury.settlementState(milestone 0)",
+        "value": "1"
+      },
+      {
+        "label": "Treasury.settlementState(milestone 1)",
+        "value": "1"
+      },
+      {
+        "label": "Treasury.pocket(LOGISTICS).perTxCapMinor",
+        "value": "20000"
+      },
+      {
+        "label": "Treasury.pocket(PLATFORM_FEES).spentMinor",
+        "value": "0"
+      }
+    ]
+  }
+}

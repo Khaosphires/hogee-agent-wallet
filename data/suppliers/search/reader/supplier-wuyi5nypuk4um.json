@@ -1,0 +1,118 @@
+{
+  "label": "recorded sample",
+  "kind": "listing",
+  "docId": "supplier-wuyi5nypuk4um",
+  "fields": {
+    "sellerName": {
+      "value": "Shenzhen Glintora Cup Co., Ltd.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wuyi5nypuk4um"
+    },
+    "productTitle": {
+      "value": "20oz insulated stainless steel tumbler with slide lid",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wuyi5nypuk4um"
+    },
+    "unitPrice": {
+      "value": {
+        "amountMinor": "195",
+        "currency": "USD",
+        "unit": "USD",
+        "sourceUrl": "https://glintora.en.made-in-china.com/product/pWsJdLqCvHrN/China-Insulated-Tumbler-20oz.html",
+        "snippetHash": "0x93fd921c5ec2a508747496b452e6f73dbf321155dd1f5d97ddda32495224e6c8",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wuyi5nypuk4um"
+    },
+    "moq": {
+      "value": {
+        "value": "500",
+        "unit": "pieces",
+        "sourceUrl": "https://glintora.en.made-in-china.com/product/pWsJdLqCvHrN/China-Insulated-Tumbler-20oz.html",
+        "snippetHash": "0xc658a7dec13e0811c74d61e4fc3ba220422f2aebd67a291e8d0d95c13556449d",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wuyi5nypuk4um"
+    },
+    "leadTimeDays": {
+      "value": {
+        "value": "18",
+        "unit": "days",
+        "sourceUrl": "https://glintora.en.made-in-china.com/product/pWsJdLqCvHrN/China-Insulated-Tumbler-20oz.html",
+        "snippetHash": "0xb7cb73c6f98935deef882f1254a3ca00c78381b94ea0578be477c7e8db530fdf",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wuyi5nypuk4um"
+    },
+    "certificates": {
+      "value": [],
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wuyi5nypuk4um"
+    },
+    "claimsEscrow": {
+      "value": false,
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wuyi5nypuk4um"
+    }
+  },
+  "flags": [
+    {
+      "flag": "OFF_PLATFORM_PAYMENT",
+      "index": 131,
+      "excerpt": "1.95 / piece, moq 500 pieces. pay us directly to save 6%. recorded sample: fictional listing, not a real supplier or off"
+    }
+  ],
+  "redFlags": [
+    {
+      "text": "Pushes payment outside the platform: \"1.95 / piece, moq 500 pieces. pay us directly to save 6%. recorded sample: ficti\"",
+      "source": "listing:supplier-wuyi5nypuk4um"
+    }
+  ],
+  "supplierGates": [
+    "OFF_PLATFORM_DISCOUNT"
+  ],
+  "dropped": [],
+  "repaired": false,
+  "llmCallIds": [],
+  "extracted": {
+    "unitPrice": {
+      "value": "195",
+      "unit": "USD",
+      "snippetHash": "0x93fd921c5ec2a508747496b452e6f73dbf321155dd1f5d97ddda32495224e6c8"
+    },
+    "moq": {
+      "value": "500",
+      "unit": "pieces",
+      "snippetHash": "0xc658a7dec13e0811c74d61e4fc3ba220422f2aebd67a291e8d0d95c13556449d"
+    },
+    "leadTimeDays": {
+      "value": "18",
+      "unit": "days",
+      "snippetHash": "0xb7cb73c6f98935deef882f1254a3ca00c78381b94ea0578be477c7e8db530fdf"
+    }
+  }
+}

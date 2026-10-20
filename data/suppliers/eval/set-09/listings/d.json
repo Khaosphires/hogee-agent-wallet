@@ -1,0 +1,49 @@
+{
+  "supplierId": "s09-d",
+  "displayName": "Opalpeak Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-09/s09-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-09/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "800",
+      "sourceUrl": "https://example.invalid/e3/set-09/s09-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xcb2e9f9ded39fe2ac3706d8e9d5271334ed50dccf8c29f8d6f3eefacb2953ec7",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 10,
+    "freightPerUnit": "110",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-035574-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.73,
+    "yearsOnPlatform": 14
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7338548311",
+    "holderName": "Opalpeak Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

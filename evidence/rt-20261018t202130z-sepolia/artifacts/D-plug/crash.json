@@ -1,0 +1,8 @@
+{
+  "signal": "SIGKILL",
+  "code": null,
+  "out": "{\"step\":\"broadcast\",\"paymentId\":\"pay-01a15108-6aa3-7124-9b86-0e16d7ad9bd4\",\"pid\":75957}\n",
+  "err": "",
+  "paymentStateAfterKill": "BROADCAST",
+  "txHashAfterKill": "0xc00e5e1961e890b3e68d39083bb08058b9e6d2323777bdc8c1ef1ca56c5506ce"
+}

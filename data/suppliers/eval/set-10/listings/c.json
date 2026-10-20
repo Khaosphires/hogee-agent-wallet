@@ -1,0 +1,51 @@
+{
+  "supplierId": "s10-c",
+  "displayName": "Amberbrook Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330100F17PRFUQ0C"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-10/s10-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-10/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "590",
+      "sourceUrl": "https://example.invalid/e3/set-10/s10-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xd0fa2a3b97d7357d19ba729b5b87edabc7891b47ab48896a75cf205c9a62b397",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 2000,
+    "leadTimeDays": 29,
+    "freightPerUnit": "90",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-846813-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.82,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7285450866",
+    "holderName": "Amberbrook Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

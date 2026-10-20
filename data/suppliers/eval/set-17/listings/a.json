@@ -1,0 +1,51 @@
+{
+  "supplierId": "s17-a",
+  "displayName": "Kestrelline Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330723RQ1L502Y0T"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-17/s17-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-17/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "820",
+      "sourceUrl": "https://example.invalid/e3/set-17/s17-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x50d1d0ecd7086c43c94931bcc84f095dd878f5c26f85740fb7571b5f67185cbd",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 41,
+    "freightPerUnit": "60",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-791323-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.1,
+    "responseRate": 0.98,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7421273409",
+    "holderName": "Kestrelline Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

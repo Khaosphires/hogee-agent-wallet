@@ -1,0 +1,25 @@
+{
+  "order-a-001": [
+    {
+      "idx": 0,
+      "amountMinor": "30000",
+      "funded": "30000",
+      "released": true,
+      "autoRelease": true
+    },
+    {
+      "idx": 1,
+      "amountMinor": "120000",
+      "funded": "120000",
+      "released": false,
+      "autoRelease": true
+    },
+    {
+      "idx": 2,
+      "amountMinor": "280000",
+      "funded": "0",
+      "released": false,
+      "autoRelease": false
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15178-ada6-7bf2-b617-99f1d388dc6d",
+    "seq": 0,
+    "ts": "2026-10-19T00:03:45.703Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Red-team T15 (TIGHTEN_REVOKE_AGENT: the agent key is revoked (as an operator would after a leak)): policy verdict AUTO TIGHTEN_OK; nothing signed",
+    "policy_verdict": "AUTO",
+    "reason_code": "TIGHTEN_OK",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xffe137f0fb42211e91df4f487c5aef9f65d0bd05585461e7bd0a6f7aca04b63c"
+  }
+]

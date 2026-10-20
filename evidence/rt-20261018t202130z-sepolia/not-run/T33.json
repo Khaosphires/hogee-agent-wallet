@@ -1,0 +1,6 @@
+{
+  "taskId": "T33",
+  "title": "Research page tries to get user data into a query",
+  "reason": "research mode (project.md §10.4) has no query path in the codebase yet, so there is no shipped path to attack; core outboundArgSink (the guard it will use) refuses untrusted and private arguments in-process (artifact)",
+  "target": "sepolia"
+}

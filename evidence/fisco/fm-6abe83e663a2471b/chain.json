@@ -1,0 +1,36 @@
+{
+  "clientVersion": "FISCO-BCOS-Web3RPC/3.17.1-Release/Darwin/appleclang/b29d0cbe161e2cb743aba89967c71fc4160dc9bb",
+  "chainId": 20200,
+  "nodeCount": 5,
+  "sealerCount": 4,
+  "observerCount": 1,
+  "consensus": "pbft",
+  "genesis": {
+    "features": {
+      "feature_evm_cancun": 1,
+      "feature_evm_timestamp": 1,
+      "feature_evm_address": 1
+    },
+    "txGasLimit": "3000000000"
+  },
+  "evm": {
+    "timestampUnit": "seconds",
+    "p256At0x100": false
+  },
+  "txType": "legacy",
+  "gasPrice": "0x0",
+  "headAtStart": 5,
+  "headAtEnd": 39,
+  "auth": {
+    "check": true,
+    "admin": "0xe2e37c3e148bf34e1e25587cec9354b7a7564ae3"
+  },
+  "headHashAtEnd": "0x1c4aad98c2ae32015ec8856dcfdaffcd247d6bb85d86266d2ad4efbd4fc637c4",
+  "observerNode": {
+    "index": 4,
+    "proposalTx": "0x7ac8ce40b5c5897b39bbb546c08370d003126a00524ddd7853866aad48b6cc2f",
+    "proposalBlock": 1,
+    "weight": 0,
+    "nodeIdKeccak": "0xea5f51b3aed2de4432150da2eb7b84ca22b8a36fa988f4bfc75abfa87e67d08b"
+  }
+}

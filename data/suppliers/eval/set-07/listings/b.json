@@ -1,0 +1,44 @@
+{
+  "supplierId": "s07-b",
+  "displayName": "Ferngate Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445100F1M78TXK67"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-07/s07-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-07/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "560",
+      "sourceUrl": "https://example.invalid/e3/set-07/s07-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x05e2ae8d809fecd236374d72af72c559f338881938eb8bc9e2046b3b9ac19fcb",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 22,
+    "freightPerUnit": "80",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.77,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7768352075",
+    "holderName": "Ferngate Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

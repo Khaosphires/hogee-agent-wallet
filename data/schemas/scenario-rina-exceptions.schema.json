@@ -1,0 +1,1598 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/exceptions.json",
+  "description": "Applies to: fixtures/scenario-rina/exceptions.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "array",
+  "items": {
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "RAISE_CAP"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "lineKey": {
+                "type": "string",
+                "enum": [
+                  "SUPPLIER",
+                  "PACKAGING",
+                  "LOGISTICS",
+                  "ADS",
+                  "PLATFORM_FEES",
+                  "LICENSING",
+                  "CONTINGENCY"
+                ]
+              },
+              "cap": {
+                "type": "string",
+                "enum": [
+                  "perTx",
+                  "window"
+                ]
+              },
+              "newCapMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              }
+            },
+            "required": [
+              "lineKey",
+              "cap",
+              "newCapMinor"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "ADD_PAYEE"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "payeeId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                "description": "Payee id (bytes32 on-chain via stringToHex)"
+              },
+              "lineKey": {
+                "type": "string",
+                "enum": [
+                  "SUPPLIER",
+                  "PACKAGING",
+                  "LOGISTICS",
+                  "ADS",
+                  "PLATFORM_FEES",
+                  "LICENSING",
+                  "CONTINGENCY"
+                ]
+              }
+            },
+            "required": [
+              "payeeId",
+              "lineKey"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "EXTEND_EXPIRY"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "const": "agent"
+                  },
+                  "newExpiresAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "target",
+                  "newExpiresAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "const": "line"
+                  },
+                  "lineKey": {
+                    "type": "string",
+                    "enum": [
+                      "SUPPLIER",
+                      "PACKAGING",
+                      "LOGISTICS",
+                      "ADS",
+                      "PLATFORM_FEES",
+                      "LICENSING",
+                      "CONTINGENCY"
+                    ]
+                  },
+                  "newExpiresAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "target",
+                  "lineKey",
+                  "newExpiresAt"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "MOVE_POCKETS"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "fromLineKey": {
+                "type": "string",
+                "enum": [
+                  "SUPPLIER",
+                  "PACKAGING",
+                  "LOGISTICS",
+                  "ADS",
+                  "PLATFORM_FEES",
+                  "LICENSING",
+                  "CONTINGENCY"
+                ]
+              },
+              "toLineKey": {
+                "type": "string",
+                "enum": [
+                  "SUPPLIER",
+                  "PACKAGING",
+                  "LOGISTICS",
+                  "ADS",
+                  "PLATFORM_FEES",
+                  "LICENSING",
+                  "CONTINGENCY"
+                ]
+              },
+              "amountMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              }
+            },
+            "required": [
+              "fromLineKey",
+              "toLineKey",
+              "amountMinor"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "UNPAUSE"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "lineKey": {
+                "type": "string",
+                "enum": [
+                  "SUPPLIER",
+                  "PACKAGING",
+                  "LOGISTICS",
+                  "ADS",
+                  "PLATFORM_FEES",
+                  "LICENSING",
+                  "CONTINGENCY"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "WITHDRAW_RESERVE"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "amountMinor": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "taxPayeeId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                "description": "Payee id (bytes32 on-chain via stringToHex)"
+              }
+            },
+            "required": [
+              "amountMinor",
+              "taxPayeeId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "RELEASE_ESCROW_BALANCE"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "orderId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                "description": "Escrow order id (bytes32 on-chain via stringToHex)"
+              },
+              "idx": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "evidenceHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "required": [
+              "orderId",
+              "idx",
+              "evidenceHash"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "RELEASE_STAGE"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "stageId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                "description": "Stage id (bytes32 on-chain via stringToHex), e.g. stage-1"
+              }
+            },
+            "required": [
+              "stageId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "REPLAN"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "draftId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                "description": "Opaque id"
+              }
+            },
+            "required": [
+              "draftId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "exceptionId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "requestedBy": {
+            "type": "string",
+            "enum": [
+              "agent",
+              "founder",
+              "officer",
+              "worker"
+            ]
+          },
+          "requires": {
+            "type": "object",
+            "properties": {
+              "founder": {
+                "type": "boolean"
+              },
+              "lender": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "founder",
+              "lender"
+            ],
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "FOUNDER_SIGNED",
+              "APPROVED",
+              "QUEUED",
+              "EXECUTABLE",
+              "EXECUTED",
+              "DENIED",
+              "CANCELLED",
+              "EXPIRED"
+            ]
+          },
+          "timelock": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "queuedAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  },
+                  "executableAt": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Unix seconds, digit string"
+                  }
+                },
+                "required": [
+                  "queuedAt",
+                  "executableAt"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "txs": {
+            "type": "object",
+            "properties": {
+              "queue": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "execute": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              }
+            },
+            "additionalProperties": false
+          },
+          "blastRadiusMinor": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "POLICY_ESCALATION"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "proposal": {
+                "type": "object",
+                "properties": {
+                  "lineKey": {
+                    "type": "string",
+                    "enum": [
+                      "SUPPLIER",
+                      "PACKAGING",
+                      "LOGISTICS",
+                      "ADS",
+                      "PLATFORM_FEES",
+                      "LICENSING",
+                      "CONTINGENCY"
+                    ]
+                  },
+                  "payeeId": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                    "description": "Payee id (bytes32 on-chain via stringToHex)"
+                  },
+                  "amountMinor": {
+                    "type": "string",
+                    "maxLength": 39,
+                    "pattern": "^(0|[1-9][0-9]*)$",
+                    "description": "Money in minor units (1 BU = 100 minor), digit string"
+                  },
+                  "invoiceId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                    "description": "Opaque id"
+                  },
+                  "pacingSlot": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "lineKey",
+                  "payeeId",
+                  "amountMinor"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "proposal"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "exceptionId",
+          "title",
+          "requestedBy",
+          "requires",
+          "status",
+          "timelock",
+          "txs",
+          "blastRadiusMinor",
+          "traceId",
+          "kind",
+          "payload"
+        ],
+        "additionalProperties": false
+      }
+    ]
+  }
+}

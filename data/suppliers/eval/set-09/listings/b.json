@@ -1,0 +1,51 @@
+{
+  "supplierId": "s09-b",
+  "displayName": "Amberbay Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330723RE8TRKFN43"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-09/s09-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-09/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "790",
+      "sourceUrl": "https://example.invalid/e3/set-09/s09-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xef9ac51aca90460e6368f17224a613952b64f9910ef14ed4a8e424d2cdbe8ed0",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 47,
+    "freightPerUnit": "40",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": true,
+    "payeeType": "personal"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-084804-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4,
+    "responseRate": 0.95,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7940377096",
+    "holderName": "Personal account of a sales manager (fictional) - DO NOT PAY"
+  }
+}

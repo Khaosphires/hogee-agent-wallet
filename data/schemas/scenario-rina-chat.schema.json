@@ -1,0 +1,1775 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/chat.json",
+  "description": "Applies to: fixtures/scenario-rina/chat.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "role": {
+        "type": "string",
+        "enum": [
+          "system",
+          "user",
+          "assistant"
+        ]
+      },
+      "parts": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-question"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "questionId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        },
+                        "slot": {
+                          "type": "string",
+                          "enum": [
+                            "countryCode",
+                            "residency",
+                            "entityType",
+                            "productCategory",
+                            "sellChannel",
+                            "buyFrom",
+                            "budgetCeilingMinor",
+                            "horizonDays",
+                            "adsPacing"
+                          ]
+                        },
+                        "text": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 500
+                        },
+                        "options": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 100
+                              },
+                              "label": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 200
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "questionId",
+                        "slot",
+                        "text",
+                        "options"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-intent"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "intent": {
+                          "type": "object",
+                          "properties": {
+                            "intentVersion": {
+                              "type": "number",
+                              "const": 1
+                            },
+                            "countryCode": {
+                              "type": "string",
+                              "enum": [
+                                "MY",
+                                "ID",
+                                "SG"
+                              ]
+                            },
+                            "residency": {
+                              "type": "string",
+                              "enum": [
+                                "citizen",
+                                "pr",
+                                "foreigner"
+                              ]
+                            },
+                            "entityType": {
+                              "type": "string",
+                              "enum": [
+                                "sole_prop",
+                                "partnership",
+                                "sdn_bhd",
+                                "perorangan",
+                                "pt_perorangan",
+                                "cv",
+                                "pt",
+                                "sg_sole_prop",
+                                "sg_partnership",
+                                "pte_ltd"
+                              ]
+                            },
+                            "productCategory": {
+                              "type": "string",
+                              "enum": [
+                                "drinkware_food_contact",
+                                "cosmetics",
+                                "electrical",
+                                "apparel",
+                                "food",
+                                "other"
+                              ]
+                            },
+                            "sellChannel": {
+                              "type": "string",
+                              "enum": [
+                                "shopee",
+                                "tiktok_shop",
+                                "lazada",
+                                "own_site"
+                              ]
+                            },
+                            "buyFrom": {
+                              "type": "string",
+                              "pattern": "^[A-Z]{2}$",
+                              "description": "Sourcing country, ISO2 (e.g. CN)"
+                            },
+                            "budgetCeilingMinor": {
+                              "type": "string",
+                              "maxLength": 39,
+                              "pattern": "^(0|[1-9][0-9]*)$",
+                              "description": "User-confirmed budget ceiling"
+                            },
+                            "horizonDays": {
+                              "type": "number",
+                              "enum": [
+                                30,
+                                60,
+                                90
+                              ]
+                            },
+                            "lineEmphasis": {
+                              "type": "object",
+                              "properties": {
+                                "SUPPLIER": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "med",
+                                    "high"
+                                  ]
+                                },
+                                "PACKAGING": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "med",
+                                    "high"
+                                  ]
+                                },
+                                "LOGISTICS": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "med",
+                                    "high"
+                                  ]
+                                },
+                                "ADS": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "med",
+                                    "high"
+                                  ]
+                                },
+                                "PLATFORM_FEES": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "med",
+                                    "high"
+                                  ]
+                                },
+                                "LICENSING": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "med",
+                                    "high"
+                                  ]
+                                },
+                                "CONTINGENCY": {
+                                  "type": "string",
+                                  "enum": [
+                                    "low",
+                                    "med",
+                                    "high"
+                                  ]
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            "adsPacing": {
+                              "type": "string",
+                              "enum": [
+                                "conservative",
+                                "standard"
+                              ]
+                            },
+                            "answeredSlots": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": [
+                                  "countryCode",
+                                  "residency",
+                                  "entityType",
+                                  "productCategory",
+                                  "sellChannel",
+                                  "buyFrom",
+                                  "budgetCeilingMinor",
+                                  "horizonDays",
+                                  "adsPacing"
+                                ]
+                              }
+                            },
+                            "assumptions": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "slot": {
+                                    "type": "string",
+                                    "enum": [
+                                      "countryCode",
+                                      "residency",
+                                      "entityType",
+                                      "productCategory",
+                                      "sellChannel",
+                                      "buyFrom",
+                                      "budgetCeilingMinor",
+                                      "horizonDays",
+                                      "adsPacing"
+                                    ]
+                                  },
+                                  "text": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 500
+                                  }
+                                },
+                                "required": [
+                                  "slot",
+                                  "text"
+                                ],
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "required": [
+                            "intentVersion",
+                            "countryCode",
+                            "residency",
+                            "entityType",
+                            "productCategory",
+                            "sellChannel",
+                            "buyFrom",
+                            "budgetCeilingMinor",
+                            "horizonDays",
+                            "lineEmphasis",
+                            "adsPacing",
+                            "answeredSlots",
+                            "assumptions"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "intent"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-plan-draft"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "draftId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        }
+                      },
+                      "required": [
+                        "draftId"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-shortlist"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "requestId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        }
+                      },
+                      "required": [
+                        "requestId"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-redflag"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 500
+                        },
+                        "source": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 300,
+                          "description": "Where it came from, e.g. listing:supplier-c or a URL"
+                        }
+                      },
+                      "required": [
+                        "text",
+                        "source"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-needs"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "draftId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "pattern": "^[A-Z]{3}$",
+                          "description": "ISO 4217 currency code"
+                        },
+                        "totalMinor": {
+                          "type": "string",
+                          "maxLength": 39,
+                          "pattern": "^(0|[1-9][0-9]*)$",
+                          "description": "Money in minor units (1 BU = 100 minor), digit string"
+                        },
+                        "reserveBps": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10000,
+                          "description": "Basis points (integer 0..10000)"
+                        },
+                        "items": {
+                          "minItems": 1,
+                          "maxItems": 40,
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "itemId": {
+                                "type": "string",
+                                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                "description": "Opaque id"
+                              },
+                              "group": {
+                                "type": "string",
+                                "enum": [
+                                  "REGISTRATION",
+                                  "BUDGET_LINE",
+                                  "SUPPLIER",
+                                  "ACCOUNT",
+                                  "TAX_RESERVE"
+                                ]
+                              },
+                              "title": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 120
+                              },
+                              "detail": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 300
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "amountMinor": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "maxLength": 39,
+                                    "pattern": "^(0|[1-9][0-9]*)$",
+                                    "description": "Money in minor units (1 BU = 100 minor), digit string"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "lineKey": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "SUPPLIER",
+                                      "PACKAGING",
+                                      "LOGISTICS",
+                                      "ADS",
+                                      "PLATFORM_FEES",
+                                      "LICENSING",
+                                      "CONTINGENCY"
+                                    ]
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "sourceRef": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^(\\/.*|constitution:[A-Z0-9_]+|compiler:[a-z0-9_.-]+)$"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "status": {
+                                "type": "string",
+                                "enum": [
+                                  "TODO",
+                                  "IN_PLAN",
+                                  "DONE"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "itemId",
+                              "group",
+                              "title",
+                              "detail",
+                              "amountMinor",
+                              "lineKey",
+                              "sourceRef",
+                              "status"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "draftId",
+                        "currency",
+                        "totalMinor",
+                        "reserveBps",
+                        "items"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-sign"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "enum": [
+                            "PlanApproval",
+                            "SupplierApproval",
+                            "MilestoneRelease",
+                            "LoosenRequest",
+                            "StageRelease",
+                            "OwnerSpend"
+                          ]
+                        },
+                        "refId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        },
+                        "title": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        },
+                        "summary": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 300
+                        },
+                        "cta": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 40
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "refId",
+                        "title",
+                        "summary",
+                        "cta"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-next"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "actions": {
+                          "minItems": 1,
+                          "maxItems": 4,
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 40
+                              },
+                              "action": {
+                                "oneOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "start_search"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      },
+                                      "quantity": {
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "maximum": 100000
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "use_catalog"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "show_candidates"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      },
+                                      "searchId": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                        "description": "Opaque id"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId",
+                                      "searchId"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "pick"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      },
+                                      "searchId": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                        "description": "Opaque id"
+                                      },
+                                      "supplierIds": {
+                                        "minItems": 1,
+                                        "maxItems": 5,
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                                          "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId",
+                                      "searchId",
+                                      "supplierIds"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "start_terms"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      },
+                                      "supplierId": {
+                                        "type": "string",
+                                        "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                                        "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+                                      },
+                                      "preset": {
+                                        "type": "string",
+                                        "enum": [
+                                          "P30_70",
+                                          "P50_50",
+                                          "P0_100",
+                                          "P30_40_30"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId",
+                                      "supplierId"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "terms_saved"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      },
+                                      "termsId": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                        "description": "Opaque id"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId",
+                                      "termsId"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "signed"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      },
+                                      "kind": {
+                                        "type": "string",
+                                        "enum": [
+                                          "PlanApproval",
+                                          "SupplierApproval",
+                                          "MilestoneRelease",
+                                          "LoosenRequest",
+                                          "StageRelease",
+                                          "OwnerSpend"
+                                        ]
+                                      },
+                                      "refId": {
+                                        "type": "string",
+                                        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                        "description": "Opaque id"
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId",
+                                      "kind",
+                                      "refId"
+                                    ],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "const": "show_cfo"
+                                      },
+                                      "actionId": {
+                                        "type": "string",
+                                        "allOf": [
+                                          {
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                          },
+                                          {
+                                            "pattern": "^[0-9a-f-]+$"
+                                          }
+                                        ],
+                                        "description": "Chat action id (UUIDv7, single use per session)"
+                                      },
+                                      "view": {
+                                        "type": "string",
+                                        "enum": [
+                                          "overview",
+                                          "spending",
+                                          "sales",
+                                          "pnl",
+                                          "forecast",
+                                          "reserve"
+                                        ]
+                                      }
+                                    },
+                                    "required": [
+                                      "type",
+                                      "actionId",
+                                      "view"
+                                    ],
+                                    "additionalProperties": false
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "action"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "actions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-action"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "start_search"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                },
+                                "quantity": {
+                                  "type": "integer",
+                                  "minimum": 1,
+                                  "maximum": 100000
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "use_catalog"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "show_candidates"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                },
+                                "searchId": {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                  "description": "Opaque id"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId",
+                                "searchId"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "pick"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                },
+                                "searchId": {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                  "description": "Opaque id"
+                                },
+                                "supplierIds": {
+                                  "minItems": 1,
+                                  "maxItems": 5,
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                                    "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId",
+                                "searchId",
+                                "supplierIds"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "start_terms"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                },
+                                "supplierId": {
+                                  "type": "string",
+                                  "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                                  "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+                                },
+                                "preset": {
+                                  "type": "string",
+                                  "enum": [
+                                    "P30_70",
+                                    "P50_50",
+                                    "P0_100",
+                                    "P30_40_30"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId",
+                                "supplierId"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "terms_saved"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                },
+                                "termsId": {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                  "description": "Opaque id"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId",
+                                "termsId"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "signed"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                },
+                                "kind": {
+                                  "type": "string",
+                                  "enum": [
+                                    "PlanApproval",
+                                    "SupplierApproval",
+                                    "MilestoneRelease",
+                                    "LoosenRequest",
+                                    "StageRelease",
+                                    "OwnerSpend"
+                                  ]
+                                },
+                                "refId": {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                                  "description": "Opaque id"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId",
+                                "kind",
+                                "refId"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "show_cfo"
+                                },
+                                "actionId": {
+                                  "type": "string",
+                                  "allOf": [
+                                    {
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+                                    },
+                                    {
+                                      "pattern": "^[0-9a-f-]+$"
+                                    }
+                                  ],
+                                  "description": "Chat action id (UUIDv7, single use per session)"
+                                },
+                                "view": {
+                                  "type": "string",
+                                  "enum": [
+                                    "overview",
+                                    "spending",
+                                    "sales",
+                                    "pnl",
+                                    "forecast",
+                                    "reserve"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "actionId",
+                                "view"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "action"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-search"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "searchId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        }
+                      },
+                      "required": [
+                        "searchId"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-candidates"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "searchId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        }
+                      },
+                      "required": [
+                        "searchId"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-enquiry"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "supplierIds": {
+                          "minItems": 1,
+                          "maxItems": 5,
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                            "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+                          }
+                        },
+                        "subject": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 150
+                        },
+                        "body": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 2000
+                        }
+                      },
+                      "required": [
+                        "supplierIds",
+                        "subject",
+                        "body"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-terms"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "supplierId": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                          "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+                        },
+                        "searchId": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                              "description": "Opaque id"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "milestones": {
+                          "anyOf": [
+                            {
+                              "minItems": 1,
+                              "maxItems": 8,
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "bps": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 10000,
+                                    "description": "Basis points (integer 0..10000)"
+                                  },
+                                  "trigger": {
+                                    "type": "string",
+                                    "enum": [
+                                      "ON_ORDER",
+                                      "ON_SAMPLE_OK",
+                                      "ON_SHIPMENT",
+                                      "ON_DELIVERY_INSPECTED"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "bps",
+                                  "trigger"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "preset": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "P30_70",
+                                "P50_50",
+                                "P0_100",
+                                "P30_40_30"
+                              ]
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "source": {
+                          "type": "string",
+                          "enum": [
+                            "preset",
+                            "founder_text",
+                            "none"
+                          ]
+                        },
+                        "question": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "DEPOSIT_TRIGGER"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "presetAvailability": {
+                          "maxItems": 4,
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "preset": {
+                                "type": "string",
+                                "enum": [
+                                  "P30_70",
+                                  "P50_50",
+                                  "P0_100",
+                                  "P30_40_30"
+                                ]
+                              },
+                              "ok": {
+                                "type": "boolean"
+                              },
+                              "code": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "TERMS_COUNT",
+                                      "TERMS_PCT_RANGE",
+                                      "TERMS_PCT_SUM",
+                                      "TERMS_TRIGGER_ORDER",
+                                      "TERMS_LAST_NOT_INSPECTED",
+                                      "TERMS_TOTAL_INVALID",
+                                      "TERMS_OVER_POCKET",
+                                      "TERMS_MILESTONE_ZERO",
+                                      "TERMS_AUTO_NOT_FIRST",
+                                      "TERMS_WEB_AUTO_COUNT",
+                                      "TERMS_AUTO_OVER_PER_TX",
+                                      "TERMS_UPFRONT_OVER_HALF",
+                                      "TERMS_UPFRONT_OVER_WINDOW",
+                                      "TERMS_CANDIDATE",
+                                      "TERMS_CURRENCY",
+                                      "TERMS_PAYEE_PERSONAL",
+                                      "TERMS_ACCOUNT_FORMAT",
+                                      "TERMS_HOLDER_MISMATCH",
+                                      "TERMS_SANCTIONS",
+                                      "TERMS_ALREADY_BOUND",
+                                      "TERMS_SUPERSEDED"
+                                    ]
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "preset",
+                              "ok",
+                              "code"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "supplierId",
+                        "searchId",
+                        "milestones",
+                        "preset",
+                        "source",
+                        "question",
+                        "presetAvailability"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-order"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "termsId": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                          "description": "Opaque id"
+                        }
+                      },
+                      "required": [
+                        "termsId"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "data-cfo"
+                    },
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "view": {
+                          "type": "string",
+                          "enum": [
+                            "overview",
+                            "spending",
+                            "sales",
+                            "pnl",
+                            "forecast",
+                            "reserve"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "view"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "transient": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "pattern": "^(?!data-)[a-z][a-z0-9-]*$"
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "additionalProperties": {}
+            }
+          ]
+        }
+      }
+    },
+    "required": [
+      "id",
+      "role",
+      "parts"
+    ],
+    "additionalProperties": {}
+  }
+}

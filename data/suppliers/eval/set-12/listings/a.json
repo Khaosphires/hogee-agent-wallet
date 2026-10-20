@@ -1,0 +1,57 @@
+{
+  "supplierId": "s12-a",
+  "displayName": "Deltabrook Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913301008ATPGWFU6Y"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-12/s12-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-12/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "510",
+      "sourceUrl": "https://example.invalid/e3/set-12/s12-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xe97795ad30ff9a6a2b2713b111edcd7ebdc9179ee270fa21ef774144166f514f",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 19,
+    "freightPerUnit": "50",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": false,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-867658-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-388213-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.89,
+    "yearsOnPlatform": 4
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7887380139",
+    "holderName": "Deltabrook Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

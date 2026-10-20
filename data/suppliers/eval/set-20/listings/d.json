@@ -1,0 +1,57 @@
+{
+  "supplierId": "s20-d",
+  "displayName": "Cedarbrook Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91441900CG141UYX56"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-20/s20-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-20/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "800",
+      "sourceUrl": "https://example.invalid/e3/set-20/s20-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x9abad8af68ece1c190390989378887cb59362a08fd2083cc937ffbf1b86e25e3",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 45,
+    "freightPerUnit": "80",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-349881-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-153876-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.1,
+    "responseRate": 0.9,
+    "yearsOnPlatform": 13
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7523090853",
+    "holderName": "Cedarbrook Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

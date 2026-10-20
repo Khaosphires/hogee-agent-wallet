@@ -1,0 +1,537 @@
+{
+  "$comment": [
+    "PII recognizers for @hogee/privacy redact() (project.md §12.2, §26.8). Each entry is a Presidio ad-hoc recognizer",
+    "(name, supported_language, supported_entity, patterns[{name, regex, score}], context). Keys starting with hogee_ are",
+    "our extensions; strip them before sending an entry to Presidio /analyze. hogee_validator names a TypeScript check",
+    "(packages/privacy/src/validators.ts); a pattern-level one overrides the recognizer's. hogee_context_required: the",
+    "match counts only with a context word inside the window around it. hogee_negative_context: a listed word vetoes the",
+    "match only when it lies within negative_before characters before it and only spaces, a colon or a currency symbol",
+    "separate them. Never vetoed: a phone with its country code (+65, 0065, (65)), a MY 01X or ID 08XX mobile, an area",
+    "code in brackets ((03), (021)), a valid 15- or 16-digit card (packages/privacy/src/detect.ts). hogee_context_window",
+    "overrides context_window for one recognizer; same_line stops it at a line break.",
+    "Regexes are JavaScript and Python compatible, ASCII only (input is folded to ASCII digits/letters first), and must",
+    "pass the linear-time check in packages/privacy/src/safe-regex.ts (bounded quantifiers only). Synthetic examples only."
+  ],
+  "version": 1,
+  "context_window": {
+    "before": 32,
+    "after": 16,
+    "negative_before": 12,
+    "boost": 0.35
+  },
+  "protected": [
+    {
+      "name": "uuid",
+      "regex": "(?<![A-Za-z0-9])[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}(?![A-Za-z0-9])"
+    },
+    {
+      "name": "0x hex (hashes, addresses)",
+      "regex": "(?<![A-Za-z0-9])0[xX][0-9A-Fa-f]{1,256}"
+    }
+  ],
+  "recognizers": [
+    {
+      "name": "MyKadRecognizer",
+      "supported_language": "en",
+      "supported_entity": "MY_NRIC",
+      "patterns": [
+        {
+          "name": "mykad YYMMDD-PB-###G (separated)",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{6}[- ]\\d{2}[- ]\\d{4}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.9
+        },
+        {
+          "name": "mykad 12 digits (plain)",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{12}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.6,
+          "hogee_validator": "MY_NRIC_PLAIN"
+        }
+      ],
+      "context": [
+        "ic",
+        "i/c",
+        "nric",
+        "mykad",
+        "kad pengenalan",
+        "no. kp",
+        "no kp",
+        "identity card",
+        "身份证"
+      ],
+      "hogee_validator": "MY_NRIC"
+    },
+    {
+      "name": "NikRecognizer",
+      "supported_language": "en",
+      "supported_entity": "ID_NIK",
+      "patterns": [
+        {
+          "name": "nik 16 digits",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{16}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.7
+        },
+        {
+          "name": "nik grouped 6-6-4",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{6}[ .]\\d{6}[ .]\\d{4}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.8
+        },
+        {
+          "name": "nik grouped 4-4-4-4",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{4}[ -]\\d{4}[ -]\\d{4}[ -]\\d{4}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.8
+        }
+      ],
+      "context": [
+        "nik",
+        "ktp",
+        "e-ktp",
+        "nomor induk kependudukan",
+        "kartu tanda penduduk"
+      ],
+      "hogee_validator": "ID_NIK"
+    },
+    {
+      "name": "NpwpRecognizer",
+      "supported_language": "en",
+      "supported_entity": "ID_NPWP",
+      "patterns": [
+        {
+          "name": "npwp 99.999.999.9-999.999",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{2}\\.\\d{3}\\.\\d{3}\\.\\d-\\d{3}\\.\\d{3}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.9
+        },
+        {
+          "name": "npwp 15-16 digits (needs context)",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{15,16}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.5,
+          "hogee_context_required": true
+        }
+      ],
+      "context": [
+        "npwp",
+        "npwp16",
+        "nomor pokok wajib pajak",
+        "tax id",
+        "taxpayer id"
+      ],
+      "hogee_validator": "ID_NPWP"
+    },
+    {
+      "name": "SgNricRecognizer",
+      "supported_language": "en",
+      "supported_entity": "SG_NRIC",
+      "patterns": [
+        {
+          "name": "nric/fin [STFGM]9999999X",
+          "regex": "(?<![A-Za-z0-9])[STFGMstfgm]\\d{7}[A-Za-z](?![A-Za-z0-9])",
+          "score": 0.9
+        }
+      ],
+      "context": [
+        "nric",
+        "fin",
+        "ic",
+        "identity card",
+        "singpass"
+      ],
+      "hogee_validator": "SG_NRIC"
+    },
+    {
+      "name": "CreditCardRecognizer",
+      "supported_language": "en",
+      "supported_entity": "CREDIT_CARD",
+      "patterns": [
+        {
+          "name": "card 4-4-4-4 (grouped)",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])\\d{4}[ -]\\d{4}[ -]\\d{4}[ -]\\d{1,7}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.8
+        },
+        {
+          "name": "card 4-6-5 (grouped)",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])\\d{4}[ -]\\d{6}[ -]\\d{4,5}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.8
+        },
+        {
+          "name": "card 13-19 digits",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{13,19}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.6
+        }
+      ],
+      "context": [
+        "card",
+        "credit",
+        "debit",
+        "visa",
+        "mastercard",
+        "amex",
+        "kad kredit",
+        "cc"
+      ],
+      "hogee_validator": "CREDIT_CARD",
+      "hogee_negative_context": [
+        "rm",
+        "myr",
+        "sgd",
+        "s$",
+        "idr",
+        "rp",
+        "usd",
+        "us$",
+        "$",
+        "bu",
+        "amount",
+        "total",
+        "balance",
+        "budget",
+        "cap",
+        "limit",
+        "cost",
+        "fee",
+        "minor",
+        "price",
+        "jumlah",
+        "harga"
+      ]
+    },
+    {
+      "name": "MyBankAccountRecognizer",
+      "supported_language": "en",
+      "supported_entity": "MY_BANK_ACCOUNT",
+      "patterns": [
+        {
+          "name": "account 10-16 digits",
+          "regex": "(?<![A-Za-z0-9])(?<!\\d[.,])\\d{10,16}(?![A-Za-z0-9])(?![.,]\\d)",
+          "score": 0.5,
+          "hogee_context_required": true
+        },
+        {
+          "name": "account grouped",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])\\d{3,6}[ -]\\d{2,8}(?:[ -]\\d{1,8}){0,2}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.5,
+          "hogee_context_required": true
+        }
+      ],
+      "context": [
+        "account",
+        "acct",
+        "acc",
+        "a/c",
+        "akaun",
+        "no. akaun",
+        "nombor akaun",
+        "bank",
+        "maybank",
+        "cimb",
+        "rhb",
+        "ambank",
+        "hong leong",
+        "public bank",
+        "bank islam",
+        "bank rakyat",
+        "bsn",
+        "affin",
+        "alliance bank",
+        "ocbc",
+        "uob",
+        "hsbc",
+        "duitnow"
+      ],
+      "hogee_validator": "MY_BANK_ACCOUNT",
+      "hogee_negative_context": [
+        "rm",
+        "myr",
+        "sgd",
+        "s$",
+        "idr",
+        "rp",
+        "usd",
+        "us$",
+        "$",
+        "bu",
+        "amount",
+        "total",
+        "balance",
+        "budget",
+        "cap",
+        "limit",
+        "cost",
+        "fee",
+        "minor",
+        "price",
+        "jumlah",
+        "harga"
+      ],
+      "hogee_context_window": {
+        "before": 48,
+        "after": 16,
+        "same_line": true
+      }
+    },
+    {
+      "name": "SgPhoneRecognizer",
+      "supported_language": "en",
+      "supported_entity": "SG_PHONE",
+      "patterns": [
+        {
+          "name": "+65 9999 9999",
+          "regex": "(?<![A-Za-z0-9+])(?:\\+65|0065|\\(\\+?65\\))[ -]?[3689]\\d{3}[ -]?\\d{4}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.85
+        },
+        {
+          "name": "9999 9999 (needs context)",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])[3689]\\d{3}[ -]?\\d{4}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.4,
+          "hogee_context_required": true
+        }
+      ],
+      "context": [
+        "phone",
+        "tel",
+        "telephone",
+        "mobile",
+        "hp",
+        "h/p",
+        "handphone",
+        "cell",
+        "call",
+        "contact",
+        "whatsapp",
+        "wa",
+        "sms",
+        "reach me",
+        "telefon",
+        "no. tel",
+        "nombor telefon",
+        "telp",
+        "nomor hp",
+        "no hp",
+        "ponsel",
+        "hubungi",
+        "电话",
+        "手机",
+        "联系",
+        "paynow",
+        "number",
+        "no.",
+        "ph",
+        "mob",
+        "telegram"
+      ],
+      "hogee_negative_context": [
+        "rm",
+        "myr",
+        "sgd",
+        "s$",
+        "idr",
+        "rp",
+        "usd",
+        "us$",
+        "$",
+        "bu",
+        "amount",
+        "total",
+        "balance",
+        "budget",
+        "cap",
+        "limit",
+        "cost",
+        "fee",
+        "minor",
+        "price",
+        "jumlah",
+        "harga"
+      ]
+    },
+    {
+      "name": "MyPhoneRecognizer",
+      "supported_language": "en",
+      "supported_entity": "MY_PHONE",
+      "patterns": [
+        {
+          "name": "+60 1X-XXX XXXX / +60 3-XXXX XXXX",
+          "regex": "(?<![A-Za-z0-9+])(?:\\+60|0060|\\(\\+?60\\))[ -]?(?:1\\d|[3-9])[ -]?\\d{3,4}[ -]?\\d{4}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.85
+        },
+        {
+          "name": "01X-XXX XXXX (mobile)",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])01\\d[ -]?\\d{3,4}[ -]?\\d{4}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.6
+        },
+        {
+          "name": "0X-XXXX XXXX (landline, needs context)",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])0[3-9][ -]?\\d{3,4}[ -]?\\d{4}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.4,
+          "hogee_context_required": true
+        },
+        {
+          "name": "(0X) XXXX XXXX / (08X) XXX XXX (landline, bracketed area code)",
+          "regex": "(?<![0-9+-])\\((?:03\\)[ -]?\\d{4}[ -]?\\d{4}|0[4-79]\\)[ -]?\\d{3}[ -]?\\d{4}|08[2-9]\\)[ -]?\\d{3}[ -]?\\d{3})(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.6
+        }
+      ],
+      "context": [
+        "phone",
+        "tel",
+        "telephone",
+        "mobile",
+        "hp",
+        "h/p",
+        "handphone",
+        "cell",
+        "call",
+        "contact",
+        "whatsapp",
+        "wa",
+        "sms",
+        "reach me",
+        "telefon",
+        "no. tel",
+        "nombor telefon",
+        "telp",
+        "nomor hp",
+        "no hp",
+        "ponsel",
+        "hubungi",
+        "电话",
+        "手机",
+        "联系",
+        "duitnow",
+        "nombor",
+        "number",
+        "no.",
+        "ph",
+        "mob",
+        "telegram"
+      ],
+      "hogee_negative_context": [
+        "rm",
+        "myr",
+        "sgd",
+        "s$",
+        "idr",
+        "rp",
+        "usd",
+        "us$",
+        "$",
+        "bu",
+        "amount",
+        "total",
+        "balance",
+        "budget",
+        "cap",
+        "limit",
+        "cost",
+        "fee",
+        "minor",
+        "price",
+        "jumlah",
+        "harga"
+      ]
+    },
+    {
+      "name": "IdPhoneRecognizer",
+      "supported_language": "en",
+      "supported_entity": "ID_PHONE",
+      "patterns": [
+        {
+          "name": "+62 8XX-XXXX-XXXX",
+          "regex": "(?<![A-Za-z0-9+])(?:\\+62|0062|\\(\\+?62\\))[ -]?[2-9]\\d{1,2}[ -]?\\d{3,4}[ -]?\\d{3,5}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.85
+        },
+        {
+          "name": "08XX-XXXX-XXXX (mobile)",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])08\\d{1,2}[ -]?\\d{3,4}[ -]?\\d{3,5}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.6,
+          "hogee_validator": "ID_MOBILE"
+        },
+        {
+          "name": "0XX-XXXX-XXXX (landline, needs context)",
+          "regex": "(?<![A-Za-z0-9+-])(?<!\\d[.,])0[2-7]\\d{1,2}[ -]?\\d{3,4}[ -]?\\d{3,4}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.4,
+          "hogee_context_required": true
+        },
+        {
+          "name": "(0XX) XXXX XXXX (landline, bracketed area code)",
+          "regex": "(?<![0-9+-])\\(0[2-79]\\d{1,2}\\)[ -]?\\d{3,4}[ -]?\\d{3,4}(?![A-Za-z0-9-])(?![.,]\\d)",
+          "score": 0.6
+        }
+      ],
+      "context": [
+        "phone",
+        "tel",
+        "telephone",
+        "mobile",
+        "hp",
+        "h/p",
+        "handphone",
+        "cell",
+        "call",
+        "contact",
+        "whatsapp",
+        "wa",
+        "sms",
+        "reach me",
+        "telefon",
+        "no. tel",
+        "nombor telefon",
+        "telp",
+        "nomor hp",
+        "no hp",
+        "ponsel",
+        "hubungi",
+        "电话",
+        "手机",
+        "联系",
+        "nomor",
+        "number",
+        "no.",
+        "ph",
+        "mob",
+        "telegram"
+      ],
+      "hogee_negative_context": [
+        "rm",
+        "myr",
+        "sgd",
+        "s$",
+        "idr",
+        "rp",
+        "usd",
+        "us$",
+        "$",
+        "bu",
+        "amount",
+        "total",
+        "balance",
+        "budget",
+        "cap",
+        "limit",
+        "cost",
+        "fee",
+        "minor",
+        "price",
+        "jumlah",
+        "harga"
+      ]
+    },
+    {
+      "name": "EmailRecognizer",
+      "supported_language": "en",
+      "supported_entity": "EMAIL_ADDRESS",
+      "patterns": [
+        {
+          "name": "email",
+          "regex": "(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9-]{1,63}(?:\\.[A-Za-z0-9-]{1,63}){1,8}(?![A-Za-z0-9-])",
+          "score": 0.85
+        }
+      ],
+      "context": [
+        "email",
+        "e-mail",
+        "emel",
+        "mail"
+      ],
+      "hogee_validator": "EMAIL"
+    }
+  ]
+}

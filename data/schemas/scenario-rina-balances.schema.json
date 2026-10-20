@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/balances.json",
+  "description": "Applies to: fixtures/scenario-rina/balances.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "fundedMinor": {
+      "type": "string",
+      "maxLength": 39,
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "description": "Money in minor units (1 BU = 100 minor), digit string"
+    },
+    "releasedMinor": {
+      "type": "string",
+      "maxLength": 39,
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "description": "Money in minor units (1 BU = 100 minor), digit string"
+    },
+    "revenueMinor": {
+      "type": "string",
+      "maxLength": 39,
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "description": "Money in minor units (1 BU = 100 minor), digit string"
+    },
+    "reserveMinor": {
+      "type": "string",
+      "maxLength": 39,
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "description": "Money in minor units (1 BU = 100 minor), digit string"
+    },
+    "escrowMinor": {
+      "type": "string",
+      "maxLength": 39,
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "description": "Money in minor units (1 BU = 100 minor), digit string"
+    },
+    "pockets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineKey": {
+            "type": "string",
+            "enum": [
+              "SUPPLIER",
+              "PACKAGING",
+              "LOGISTICS",
+              "ADS",
+              "PLATFORM_FEES",
+              "LICENSING",
+              "CONTINGENCY"
+            ]
+          },
+          "allocated": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "spent": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "available": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "perTxCap": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "windowCap": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "windowSpent": {
+            "type": "string",
+            "maxLength": 39,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Money in minor units (1 BU = 100 minor), digit string"
+          },
+          "validUntil": {
+            "type": "string",
+            "maxLength": 20,
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "Unix seconds, digit string"
+          },
+          "paused": {
+            "type": "boolean"
+          },
+          "circuitOpen": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "lineKey",
+          "allocated",
+          "spent",
+          "available",
+          "perTxCap",
+          "windowCap",
+          "windowSpent",
+          "validUntil",
+          "paused",
+          "circuitOpen"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "agent": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{40}$",
+          "description": "EVM address, 0x + 40 lowercase hex"
+        },
+        "expiresAt": {
+          "type": "string",
+          "maxLength": 20,
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "description": "Unix seconds, digit string"
+        },
+        "revoked": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "address",
+        "expiresAt",
+        "revoked"
+      ],
+      "additionalProperties": false
+    },
+    "paused": {
+      "type": "boolean"
+    },
+    "drift": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Reconciler drift count"
+    }
+  },
+  "required": [
+    "fundedMinor",
+    "releasedMinor",
+    "revenueMinor",
+    "reserveMinor",
+    "escrowMinor",
+    "pockets",
+    "agent",
+    "paused",
+    "drift"
+  ],
+  "additionalProperties": false
+}

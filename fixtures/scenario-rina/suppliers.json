@@ -1,0 +1,712 @@
+[
+  {
+    "supplierId": "supplier-a",
+    "displayName": "Brightwave Drinkware Co., Ltd.",
+    "country": "CN",
+    "ids": {},
+    "listing": {
+      "url": "https://example.invalid/suppliers/A",
+      "sourceType": "mock",
+      "rawTextRef": "fixtures/scenario-rina/README.md#supplier-a"
+    },
+    "offer": {
+      "currency": "MYR",
+      "fobUnit": {
+        "value": "800",
+        "sourceUrl": "https://example.invalid/rina/supplier-A-price",
+        "retrievedAt": "2026-10-20T12:00:00Z",
+        "snippetHash": "0x570d6f4fbf76098a6345ebf024f1fb1964233902ff321aeab9c6ee2bd17b95ae",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "moq": 400,
+      "leadTimeDays": 25,
+      "freightPerUnit": "100",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [],
+    "metrics": {
+      "rating": 4.8,
+      "responseRate": 0.98,
+      "yearsOnPlatform": 9
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "0000",
+      "holderName": "BRIGHTWAVE DRINKWARE CO., LTD. - SAMPLE, DO NOT PAY"
+    },
+    "evidence": [
+      {
+        "evidenceId": "evidence-A-landed_cost",
+        "supplierId": "supplier-a",
+        "criterion": "landed_cost",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/A/landed_cost",
+        "snippetHash": "0x4ce3d0b8f6821335e70800d9a497b60e5a37c14e0f75f7fa761645be81576cb8",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-A-quality_evidence",
+        "supplierId": "supplier-a",
+        "criterion": "quality_evidence",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/A/quality_evidence",
+        "snippetHash": "0x8fe6d46184eda4c0a46c1302e977419dc4b6790461882078e4b85067582ec38c",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-A-trust_verification",
+        "supplierId": "supplier-a",
+        "criterion": "trust_verification",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/A/trust_verification",
+        "snippetHash": "0x638ca56be8e5b5d07631cca7efcedd7aa1ab1a11ab97324b34347118d933faca",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-A-lead_time",
+        "supplierId": "supplier-a",
+        "criterion": "lead_time",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/A/lead_time",
+        "snippetHash": "0x8aa00628533da1f01846258e3b3a5d01d6417366ff9265612ea5cee516500d4c",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-A-compliance",
+        "supplierId": "supplier-a",
+        "criterion": "compliance",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/A/compliance",
+        "snippetHash": "0x8d2c4020bdb745e48904883b51e6986012b880e7528f7e4af32e743ee6ee1a72",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-A-terms",
+        "supplierId": "supplier-a",
+        "criterion": "terms",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/A/terms",
+        "snippetHash": "0xc595b6beb6268094392bb64aa9a48c39f468f1b0b052c6c371e66dfc2b509080",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-A-communication",
+        "supplierId": "supplier-a",
+        "criterion": "communication",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/A/communication",
+        "snippetHash": "0x584cf921d690a1c39ee17777f89b9859306f5bdd344e1c71efdcdc95cda3e6ab",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      }
+    ]
+  },
+  {
+    "supplierId": "supplier-b",
+    "displayName": "Harbourline Cups Co., Ltd.",
+    "country": "CN",
+    "ids": {},
+    "listing": {
+      "url": "https://example.invalid/suppliers/B",
+      "sourceType": "mock",
+      "rawTextRef": "fixtures/scenario-rina/README.md#supplier-b"
+    },
+    "offer": {
+      "currency": "MYR",
+      "fobUnit": {
+        "value": "750",
+        "sourceUrl": "https://example.invalid/rina/supplier-B-price",
+        "retrievedAt": "2026-10-20T12:00:00Z",
+        "snippetHash": "0x9cd369b7bc2accbdbda2f0ed88e335eecea6bc1715f32c2e733f0fd158fdb98b",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "moq": 400,
+      "leadTimeDays": 35,
+      "freightPerUnit": "100",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [],
+    "metrics": {
+      "rating": 4.3,
+      "responseRate": 0.9,
+      "yearsOnPlatform": 4
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "0000",
+      "holderName": "HARBOURLINE CUPS CO., LTD. - SAMPLE, DO NOT PAY"
+    },
+    "evidence": [
+      {
+        "evidenceId": "evidence-B-landed_cost",
+        "supplierId": "supplier-b",
+        "criterion": "landed_cost",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/B/landed_cost",
+        "snippetHash": "0xa3f4b8fe3f527f92f8ce0e1297d3136e52a48893951d0d819d138a8150dbb324",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-B-quality_evidence",
+        "supplierId": "supplier-b",
+        "criterion": "quality_evidence",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/B/quality_evidence",
+        "snippetHash": "0x0ce33b7757f68f31c1ecd026fe17b87759ec210f5053da6fb29e78bd026a7ef4",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-B-trust_verification",
+        "supplierId": "supplier-b",
+        "criterion": "trust_verification",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/B/trust_verification",
+        "snippetHash": "0x0cfa1054ea48063a5fbc586275cbce3064f9f0a352f7580f0c0e5e3523e17e93",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-B-lead_time",
+        "supplierId": "supplier-b",
+        "criterion": "lead_time",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/B/lead_time",
+        "snippetHash": "0x9164b4878f5cf7a508a6b789425845a8d73b2357b5be701ee4cb3daf108b0dbe",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-B-compliance",
+        "supplierId": "supplier-b",
+        "criterion": "compliance",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/B/compliance",
+        "snippetHash": "0x7d9b7158aa10840ce9b43cf353ca501fc5132ca912549b565aa13a3c6613ac8d",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-B-terms",
+        "supplierId": "supplier-b",
+        "criterion": "terms",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/B/terms",
+        "snippetHash": "0xf6535e211cbcfdadecbd5edafd9c094301fc91237315909656f4cbaaa2628b93",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-B-communication",
+        "supplierId": "supplier-b",
+        "criterion": "communication",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/B/communication",
+        "snippetHash": "0x0aa2ba4e7174d4cc97d61240f18deb15580e5aed5d7ec2b9d3afdb4a6121c642",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      }
+    ]
+  },
+  {
+    "supplierId": "supplier-c",
+    "displayName": "Clearpeak Tumbler Factory Co., Ltd.",
+    "country": "CN",
+    "ids": {},
+    "listing": {
+      "url": "https://example.invalid/suppliers/C",
+      "sourceType": "mock",
+      "rawTextRef": "fixtures/scenario-rina/README.md#supplier-c"
+    },
+    "offer": {
+      "currency": "MYR",
+      "fobUnit": {
+        "value": "600",
+        "sourceUrl": "https://example.invalid/rina/supplier-C-price",
+        "retrievedAt": "2026-10-20T12:00:00Z",
+        "snippetHash": "0xb5607cd91ac59903b0b844c459ca164fd8096b2895b0881ec5004c7ee5acc7b4",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "moq": 400,
+      "leadTimeDays": 15,
+      "freightPerUnit": "100",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": false,
+      "offPlatformDiscount": true,
+      "payeeType": "personal"
+    },
+    "certificates": [],
+    "metrics": {
+      "rating": 5,
+      "responseRate": 1,
+      "yearsOnPlatform": 1
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "0000",
+      "holderName": "CLEARPEAK TUMBLER FACTORY CO., LTD. - SAMPLE, DO NOT PAY"
+    },
+    "evidence": [
+      {
+        "evidenceId": "evidence-C-landed_cost",
+        "supplierId": "supplier-c",
+        "criterion": "landed_cost",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/C/landed_cost",
+        "snippetHash": "0x9872cbbbfbd11032e4d3673ed874322ea5545e95d3f81f15681045297c901f48",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-C-quality_evidence",
+        "supplierId": "supplier-c",
+        "criterion": "quality_evidence",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/C/quality_evidence",
+        "snippetHash": "0xce4f84a9caaaa0dfabf4554fa165cef8b94ff9c0fec16d49ab0e5df77dfbc19c",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-C-trust_verification",
+        "supplierId": "supplier-c",
+        "criterion": "trust_verification",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/C/trust_verification",
+        "snippetHash": "0xafff894d774950c5372bf8a85e77e40f478f7432e01f17a30d292176acc651e3",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-C-lead_time",
+        "supplierId": "supplier-c",
+        "criterion": "lead_time",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/C/lead_time",
+        "snippetHash": "0x367aef572b56451340071d7d5ed7ca7bfb581b13e94b74b2d50afac137c2eaab",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-C-compliance",
+        "supplierId": "supplier-c",
+        "criterion": "compliance",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/C/compliance",
+        "snippetHash": "0x67d8253708b2a7ab1bddfda3929374e5c6af2fc8bc5757a4c513ef2cb9726355",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-C-terms",
+        "supplierId": "supplier-c",
+        "criterion": "terms",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/C/terms",
+        "snippetHash": "0x2ef62ef324b629c2df2f4e25fe8a3562946354330c6737f662d088c457cedfd7",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-C-communication",
+        "supplierId": "supplier-c",
+        "criterion": "communication",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/C/communication",
+        "snippetHash": "0xb25d6415b198750c28a7cdd197dc7b7e8e8cdba03f299eacd6681175b1687e4f",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      }
+    ]
+  },
+  {
+    "supplierId": "supplier-d",
+    "displayName": "Redmaple Homeware Co., Ltd.",
+    "country": "CN",
+    "ids": {},
+    "listing": {
+      "url": "https://example.invalid/suppliers/D",
+      "sourceType": "mock",
+      "rawTextRef": "fixtures/scenario-rina/README.md#supplier-d"
+    },
+    "offer": {
+      "currency": "MYR",
+      "fobUnit": {
+        "value": "900",
+        "sourceUrl": "https://example.invalid/rina/supplier-D-price",
+        "retrievedAt": "2026-10-20T12:00:00Z",
+        "snippetHash": "0xbb948587e2818888cb3c891456dd4e2c5a05f760c7e7011ae0998ce06f02f182",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "moq": 400,
+      "leadTimeDays": 30,
+      "freightPerUnit": "100",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [],
+    "metrics": {
+      "rating": 4.5,
+      "responseRate": 0.95,
+      "yearsOnPlatform": 6
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "0000",
+      "holderName": "REDMAPLE HOMEWARE CO., LTD. - SAMPLE, DO NOT PAY"
+    },
+    "evidence": [
+      {
+        "evidenceId": "evidence-D-landed_cost",
+        "supplierId": "supplier-d",
+        "criterion": "landed_cost",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/D/landed_cost",
+        "snippetHash": "0x4b94fe6fd344f42079b429eac953c9558425701833293132abea9851ee136f06",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-D-quality_evidence",
+        "supplierId": "supplier-d",
+        "criterion": "quality_evidence",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/D/quality_evidence",
+        "snippetHash": "0xb14b8e4acf51782d1598634da1a59a411f5592e6e07aa603a8d9b4d69b1355e9",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-D-trust_verification",
+        "supplierId": "supplier-d",
+        "criterion": "trust_verification",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/D/trust_verification",
+        "snippetHash": "0x80a5764ae5f2338a77ead60e58f1cb11983e1308c37b3b177dc3e3723f87db02",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-D-lead_time",
+        "supplierId": "supplier-d",
+        "criterion": "lead_time",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/D/lead_time",
+        "snippetHash": "0x3a9c12a1e60e5185c7b32d0d1c566889b5579216b049f251d1abbe35c8ed656e",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-D-compliance",
+        "supplierId": "supplier-d",
+        "criterion": "compliance",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/D/compliance",
+        "snippetHash": "0xbb827c740a4aae60dbb694f5e8e5a1dac72c599757f91b8728fb1840557f9243",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-D-terms",
+        "supplierId": "supplier-d",
+        "criterion": "terms",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/D/terms",
+        "snippetHash": "0x73860b180ba1c5950db71ba5dc242b9c20431dfda5d058158c27df73ce735966",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-D-communication",
+        "supplierId": "supplier-d",
+        "criterion": "communication",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/D/communication",
+        "snippetHash": "0xede0900ae84117d12c544bb187e4555d9911d0da9bf0393528dc708e90f798fe",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      }
+    ]
+  },
+  {
+    "supplierId": "supplier-e",
+    "displayName": "Grandriver Housewares Manufacturing Co., Ltd.",
+    "country": "CN",
+    "ids": {},
+    "listing": {
+      "url": "https://example.invalid/suppliers/E",
+      "sourceType": "mock",
+      "rawTextRef": "fixtures/scenario-rina/README.md#supplier-e"
+    },
+    "offer": {
+      "currency": "MYR",
+      "fobUnit": {
+        "value": "1100",
+        "sourceUrl": "https://example.invalid/rina/supplier-E-price",
+        "retrievedAt": "2026-10-20T12:00:00Z",
+        "snippetHash": "0x4f655bebe389835cf90939e6bbf44160a4617bb3efaea4d3ab7fba95ba626bce",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "moq": 1000,
+      "leadTimeDays": 45,
+      "freightPerUnit": "100",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [],
+    "metrics": {
+      "rating": 4,
+      "responseRate": 0.8,
+      "yearsOnPlatform": 2
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "0000",
+      "holderName": "GRANDRIVER HOUSEWARES MANUFACTURING CO., LTD. - SAMPLE, DO NOT PAY"
+    },
+    "evidence": [
+      {
+        "evidenceId": "evidence-E-landed_cost",
+        "supplierId": "supplier-e",
+        "criterion": "landed_cost",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/E/landed_cost",
+        "snippetHash": "0xb93d05cadfd40b6bcecc9238bb782736e8ab1f045669ddf1beb20d463a605cad",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-E-quality_evidence",
+        "supplierId": "supplier-e",
+        "criterion": "quality_evidence",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/E/quality_evidence",
+        "snippetHash": "0x1c54d69f3313b14a410e93d47c912bb364a93a32e1b3e4cd9f03c1859360c2e3",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-E-trust_verification",
+        "supplierId": "supplier-e",
+        "criterion": "trust_verification",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/E/trust_verification",
+        "snippetHash": "0x4211ea3f5f0310bc24e0539c4a41abbb341ce83a1975295b4b9637c4bfd07af3",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-E-lead_time",
+        "supplierId": "supplier-e",
+        "criterion": "lead_time",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/E/lead_time",
+        "snippetHash": "0x5c098cd40426fa0a743a28e91c2d7a746edbc86fa4f9aac128cbcfd61ba544c8",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-E-compliance",
+        "supplierId": "supplier-e",
+        "criterion": "compliance",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/E/compliance",
+        "snippetHash": "0x2fa31025440706f36bf7825d845cae193cb94094dc96250b551c0bbc5d4e46ce",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-E-terms",
+        "supplierId": "supplier-e",
+        "criterion": "terms",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/E/terms",
+        "snippetHash": "0x6a81ccefeaba9e1fb1a47c1435aa93f2f41cddf2a7fca52b4e2e4f0de347c297",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "evidenceId": "evidence-E-communication",
+        "supplierId": "supplier-e",
+        "criterion": "communication",
+        "tier": "tier3",
+        "sourceType": "mock",
+        "sourceUrl": "https://example.invalid/suppliers/E/communication",
+        "snippetHash": "0x43ed9feb80624f3495ed972317f31035f1255595cf937d228cc2c0a097f65265",
+        "value": "Synthetic UI example; not independently verified.",
+        "taint": {
+          "trust": "untrusted",
+          "sensitivity": "public"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s19-c",
+  "displayName": "Emberbrook Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445100QH7B2HQ15G"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-19/s19-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-19/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "500",
+      "sourceUrl": "https://example.invalid/e3/set-19/s19-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xdff894cbb7ed3db3992979254293679b38cbceb76bcb9244db44a57309247977",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 29,
+    "freightPerUnit": "40",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-992142-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.72,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7353003828",
+    "holderName": "Emberbrook Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

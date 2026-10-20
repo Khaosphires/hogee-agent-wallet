@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150f6-b484-7fc8-9a6a-ec27b9c93d23",
+    "seq": 0,
+    "ts": "2026-10-18T21:41:47.781Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Spend proposal PLATFORM_FEES: 20000 minor to shopee-fees (invoice inv-rt-t4-2-mvecowen) → DENY (CapExceeded)",
+    "policy_verdict": "DENY",
+    "reason_code": "CapExceeded",
+    "plan_version": 1,
+    "payment_id": null,
+    "invoice_hash": "0xae0afdcd9c5beb59212e69af98e7fecb78fd49b970817a62ab5372a77ca2b1b8",
+    "decision_id": "01a150f6-b484-7025-9f25-8d946734dab9",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xa0c7adbf88ed1fde6223e8b227a4743e96aff5177abe0d05eb5436baee26ecca"
+  }
+]

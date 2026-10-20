@@ -1,0 +1,51 @@
+{
+  "supplierId": "s09-a",
+  "displayName": "Granitecrest Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913307842TJCJAAE53"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-09/s09-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-09/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "880",
+      "sourceUrl": "https://example.invalid/e3/set-09/s09-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xa4c37b6c4e7b14ad80b7c2fc890cf17c917c038df0b79a6f2d6f10142785ed84",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 29,
+    "freightPerUnit": "50",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Supertest Lab Online (no public register)",
+      "ref": "1468-2481",
+      "tier": "tier3"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.86,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7806938967",
+    "holderName": "Granitecrest Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

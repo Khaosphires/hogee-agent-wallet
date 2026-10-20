@@ -1,0 +1,38 @@
+[
+  {
+    "trace_id": "trace-01a150f7-48fc-7ea6-8da1-5b175e1dc027",
+    "seq": 0,
+    "ts": "2026-10-18T21:42:25.788Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Spend proposal LOGISTICS: 6000 minor to spx-logistics (invoice inv-rt-t14-legit-3-mvecppp2) → AUTO (WITHIN_PLAN)",
+    "policy_verdict": "AUTO",
+    "reason_code": "WITHIN_PLAN",
+    "plan_version": 1,
+    "payment_id": "pay-01a150f7-48fc-7e5a-86ef-f39cec9f91bc",
+    "invoice_hash": "0x29645451e0087499a5d7c8d2706f9d5753f3e8df977a45a5c5b7fa663873d41c",
+    "decision_id": "01a150f7-48fc-75e8-876d-bd57197c2190",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xdde169270a7c2614c77fa2ad1ae8c2f3637fa6f817b068216d064fa2423a7992"
+  },
+  {
+    "trace_id": "trace-01a150f7-48fc-7ea6-8da1-5b175e1dc027",
+    "seq": 1,
+    "ts": "2026-10-18T21:42:27.476Z",
+    "actor": "executor",
+    "kind": "TX",
+    "summary": "Treasury.spend signed by the agent key at nonce 7 and broadcast (sent)",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": "pay-01a150f7-48fc-7e5a-86ef-f39cec9f91bc",
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": "0x42f011cb3e1b0fd05f894008f3d7b1281289e631e2cbf4679770c1b05e067905",
+    "payout_id": null,
+    "prev_hash": "0xdde169270a7c2614c77fa2ad1ae8c2f3637fa6f817b068216d064fa2423a7992",
+    "hash": "0x715d698497edcf4651b29ccee7d00e40b971cbe09a06e9401c5baa745c7d8b04"
+  }
+]

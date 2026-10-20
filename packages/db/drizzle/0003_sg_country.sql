@@ -1,0 +1,1 @@
+ALTER TYPE "public"."country_code" ADD VALUE 'SG';

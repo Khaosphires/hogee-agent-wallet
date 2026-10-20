@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15178-2731-7266-8a5b-ebead9858755",
+    "seq": 0,
+    "ts": "2026-10-19T00:03:11.283Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Spend proposal ADS: 7500 minor to shopee-ads (pacing slot 3) → DENY (Paused)",
+    "policy_verdict": "DENY",
+    "reason_code": "Paused",
+    "plan_version": 2,
+    "payment_id": null,
+    "invoice_hash": "0x0000000000000000000000000000000000000000000000000000000000000003",
+    "decision_id": "01a15178-2731-7ba4-b350-74b2c2ccd07b",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xd4003a35c09c06b8931baa1f22f8ebfec001076dc0a5575a8488cbe2b239e868"
+  }
+]

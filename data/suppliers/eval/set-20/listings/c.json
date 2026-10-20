@@ -1,0 +1,49 @@
+{
+  "supplierId": "s20-c",
+  "displayName": "KOREAN TANGUN TRADING CORPORATION",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-20/sanctions-screening-test-row",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-20/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "600",
+      "sourceUrl": "https://example.invalid/e3/set-20/sanctions-screening-test-row#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x29638bdfe33ddc88ba311a67bcba66f95c30bbe8af6e01587ebe450d90240d84",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 23,
+    "freightPerUnit": "50",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-213698-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.4,
+    "responseRate": 0.94,
+    "yearsOnPlatform": 11
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7058380329",
+    "holderName": "SANCTIONS SCREENING TEST ROW - DO NOT PAY"
+  }
+}

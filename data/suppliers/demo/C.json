@@ -1,0 +1,139 @@
+{
+  "supplier": {
+    "supplierId": "supplier-c",
+    "displayName": "Clearpeak Tumbler Factory Co., Ltd. (demo)",
+    "country": "CN",
+    "ids": {
+      "uscc": "913302000DA9AHG4XF"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-c",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/c.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "450",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-c#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0xca7913cc7db21929b77f7d660b069f012ce74f55648c332ccc1b70725623024f",
+        "evidence": "tier2",
+        "sourceType": "mock"
+      },
+      "moq": 300,
+      "leadTimeDays": 12,
+      "freightPerUnit": "60",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "LFGB food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-C-LFGB-2026",
+        "tier": "tier2"
+      }
+    ],
+    "metrics": {
+      "rating": 5,
+      "responseRate": 1,
+      "yearsOnPlatform": 3
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8112765142",
+      "holderName": "Clearpeak Tumbler Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-c-price",
+      "supplierId": "supplier-c",
+      "criterion": "landed_cost",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-c#price",
+      "snippetHash": "0xca7913cc7db21929b77f7d660b069f012ce74f55648c332ccc1b70725623024f",
+      "value": "Price: CNY 4.50 per piece FOB Ningbo.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-c-lead-time",
+      "supplierId": "supplier-c",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-c#lead",
+      "snippetHash": "0x1fb7223862398970feebe09dc32b75721e462dfa8ae091a0424946eb2f31baae",
+      "value": "Lead time: 12 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-c-terms",
+      "supplierId": "supplier-c",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-c#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-c-response-rate",
+      "supplierId": "supplier-c",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-c#response-rate",
+      "snippetHash": "0xde29a035791c586cc2ca3551f99dd789d064d923966de5f85e33a25f0cc6fbb6",
+      "value": "Platform response rate (demo metric): 100%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-c-cert-1-quality",
+      "supplierId": "supplier-c",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-c#cert-1",
+      "snippetHash": "0x761b0fc1ed311365eb7e1b934bac8d384d73451fc2a0397989746cfda647c647",
+      "value": "LFGB food contact test report: ref DEMO-C-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-c-cert-1-compliance",
+      "supplierId": "supplier-c",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-c#cert-1",
+      "snippetHash": "0x761b0fc1ed311365eb7e1b934bac8d384d73451fc2a0397989746cfda647c647",
+      "value": "LFGB food contact test report: ref DEMO-C-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

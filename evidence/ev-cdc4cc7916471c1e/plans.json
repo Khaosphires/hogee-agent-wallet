@@ -1,0 +1,273 @@
+[
+  {
+    "planRowId": "plan-01a14faf-c937-7a6b-9df5-964b6e2694c2",
+    "version": 1,
+    "status": "COMMITTED",
+    "planHash": "0x371b6c500235bc9933eef3fe41b178a30e70ea367174644e58b1ff63d0a6d853",
+    "prevPlanHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "countryPackHash": "0x750264d394599cede9eaefc4cadd25d87151b843fa1a42809872fe5ef6dbcf78",
+    "txHash": "0x99035a75518e285074ce58b1b761d89b1d8e4884e5532a254fc53a1e741e17a4",
+    "manifest": {
+      "schemaVersion": "2.0.0",
+      "planId": "0x178eb1b7e706ccb436250aa3c502a7b456069cd90bd83680790c74281f6f49ab",
+      "version": 1,
+      "prevPlanHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "facilityId": "fac-mei",
+      "countryCode": "SG",
+      "countryPackVersion": "2026-10-18-researched.1",
+      "countryPackHash": "0x750264d394599cede9eaefc4cadd25d87151b843fa1a42809872fe5ef6dbcf78",
+      "displayCurrency": "SGD",
+      "totalMinor": "1000000",
+      "reserveBps": 500,
+      "agent": {
+        "address": "0x55b06f35a213ab03fdfc1558fb62e8cc1321a0eb",
+        "expiresAt": "1797522282"
+      },
+      "stages": [
+        {
+          "stageId": "stage-1",
+          "releaseMinor": "400000",
+          "gate": null
+        },
+        {
+          "stageId": "stage-2",
+          "releaseMinor": "600000",
+          "gate": {
+            "metric": "salesMinor",
+            "target": "200000",
+            "deadline": "1794930282"
+          }
+        }
+      ],
+      "lines": [
+        {
+          "lineKey": "SUPPLIER",
+          "lineId": "0x535550504c494552000000000000000000000000000000000000000000000000",
+          "purpose": "Goods from the chosen supplier (escrow milestones only)",
+          "amountMinor": "500000",
+          "perTxCapMinor": "125000",
+          "windowCapMinor": "250000",
+          "windowSeconds": "604800",
+          "validUntil": "1797522282",
+          "payeeIds": [],
+          "escrowOnly": true
+        },
+        {
+          "lineKey": "PACKAGING",
+          "lineId": "0x5041434b4147494e470000000000000000000000000000000000000000000000",
+          "purpose": "Custom printed packaging",
+          "amountMinor": "150000",
+          "perTxCapMinor": "37500",
+          "windowCapMinor": "75000",
+          "windowSeconds": "604800",
+          "validUntil": "1797522282",
+          "payeeIds": [],
+          "escrowOnly": false
+        },
+        {
+          "lineKey": "LOGISTICS",
+          "lineId": "0x4c4f474953544943530000000000000000000000000000000000000000000000",
+          "purpose": "Inbound freight and last-mile delivery",
+          "amountMinor": "80000",
+          "perTxCapMinor": "20000",
+          "windowCapMinor": "40000",
+          "windowSeconds": "604800",
+          "validUntil": "1797522282",
+          "payeeIds": [
+            "spx-sg-logistics"
+          ],
+          "escrowOnly": false
+        },
+        {
+          "lineKey": "ADS",
+          "lineId": "0x4144530000000000000000000000000000000000000000000000000000000000",
+          "purpose": "Marketplace ads, paced daily",
+          "amountMinor": "120000",
+          "perTxCapMinor": "30000",
+          "windowCapMinor": "60000",
+          "windowSeconds": "604800",
+          "validUntil": "1797522282",
+          "payeeIds": [
+            "shopee-sg-ads"
+          ],
+          "escrowOnly": false,
+          "pacing": {
+            "period": "day",
+            "amountMinor": "7500"
+          }
+        },
+        {
+          "lineKey": "PLATFORM_FEES",
+          "lineId": "0x504c4154464f524d5f4645455300000000000000000000000000000000000000",
+          "purpose": "Marketplace platform and transaction fees",
+          "amountMinor": "50000",
+          "perTxCapMinor": "12500",
+          "windowCapMinor": "25000",
+          "windowSeconds": "604800",
+          "validUntil": "1797522282",
+          "payeeIds": [
+            "shopee-sg-fees"
+          ],
+          "escrowOnly": false
+        },
+        {
+          "lineKey": "CONTINGENCY",
+          "lineId": "0x434f4e54494e47454e4359000000000000000000000000000000000000000000",
+          "purpose": "Unplanned costs (owner-approved payees only)",
+          "amountMinor": "100000",
+          "perTxCapMinor": "25000",
+          "windowCapMinor": "50000",
+          "windowSeconds": "604800",
+          "validUntil": "1797522282",
+          "payeeIds": [],
+          "escrowOnly": false
+        }
+      ],
+      "rules": [
+        {
+          "ruleId": "entity.sg_sole_prop",
+          "text": "Business type: sole proprietorship.",
+          "sourceRef": "/entities/0/eligibility",
+          "source": {
+            "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+            "retrievedAt": "2026-10-18T13:57:49Z",
+            "snippetHash": "0x79c8ca5c5c2e5e813ff392251b8eac4b8cfc7a24e1f4fc1e664df00865a123a5",
+            "evidence": "tier1",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "registration.acra_business.fee.11500",
+          "text": "Register: ACRA business registration, government fee SGD 115.00; paid by the founder before funding.",
+          "sourceRef": "/registrations/0/cost",
+          "source": {
+            "sourceUrl": "https://www.acra.gov.sg/manage/sole-proprietorship-partnerships/service-transaction-fees/",
+            "retrievedAt": "2026-10-18T13:56:55Z",
+            "snippetHash": "0xb4a2e6b9e38f88c8110ab27258ed53f5c8836d0bc9ec010183d1abc5bee7b16a",
+            "evidence": "tier1",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "indirect-tax.not-registered",
+          "text": "No GST registration at launch: a reseller below SGD 1,000,000.00 turnover.",
+          "sourceRef": "/indirectTax/registrationThreshold",
+          "source": {
+            "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-registration-deregistration/do-i-need-to-register-for-gst",
+            "retrievedAt": "2026-10-18T13:59:37Z",
+            "snippetHash": "0x8c91741bf348475081b1cf0922732fa145b4b02d6d94d5956a955b945464f1d5",
+            "evidence": "tier1",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "einvoicing.not-required",
+          "text": "E-invoicing (InvoiceNow) not required: it is for GST-registered businesses, and there is no GST registration at launch.",
+          "sourceRef": "/indirectTax/registrationThreshold",
+          "source": {
+            "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-registration-deregistration/do-i-need-to-register-for-gst",
+            "retrievedAt": "2026-10-18T13:59:37Z",
+            "snippetHash": "0x8c91741bf348475081b1cf0922732fa145b4b02d6d94d5956a955b945464f1d5",
+            "evidence": "tier1",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "duty.mfn",
+          "text": "Import from CN at the MFN tariff rate: duty 0.00% for drinkware_food_contact.",
+          "sourceRef": "/imports/mfnDutyRateBps/drinkware_food_contact",
+          "source": {
+            "sourceUrl": "https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/duties-and-dutiable-goods/duties-and-dutiable-goods-overview/",
+            "retrievedAt": "2026-10-18T14:02:32Z",
+            "snippetHash": "0x726d3e18c6cca8db1b83d5d59d1979fe0aa992b7540e9b2532111e3e7338274c",
+            "evidence": "tier1",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "import-tax.rate",
+          "text": "Import GST 9.00% on CIF + duty.",
+          "sourceRef": "/indirectTax/rate",
+          "source": {
+            "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/current-gst-rates",
+            "retrievedAt": "2026-10-18T13:59:10Z",
+            "snippetHash": "0xf1b6aa26136026e4e0a5e4519af85afa6eaea612dff2780028d7dfc9a4faac52",
+            "evidence": "tier1",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "approval.sfa.fee.0",
+          "text": "Product approval: SFA, fee SGD 0.00 for 1 product.",
+          "sourceRef": "/productApprovals/drinkware_food_contact/cost",
+          "source": {
+            "sourceUrl": "https://www.sfa.gov.sg/food-import-export/licence-permit-registration/application-process-fees-for-licence-permit-registration-for-import-export",
+            "retrievedAt": "2026-10-18T13:57:53Z",
+            "snippetHash": "0x2b07e37846b466330e1d714536a3cd805f35993cd6e4d58537890f2a41d73f2e",
+            "evidence": "tier1",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "reserve.policy",
+          "text": "Sales reserve 5.00% of each sale (tax set-aside policy 5.00%; pack floor 3.00%; facility floor 3.00%).",
+          "sourceRef": "/reserveFloorBps",
+          "source": {
+            "sourceUrl": "https://github.com/Khaosphires/hogee/blob/a6bbf8f292cf679fc05f71414287f488df0f899d/data/country-packs/README.md#sg-demo-reserve-assumption",
+            "retrievedAt": "2026-10-18T14:28:48Z",
+            "snippetHash": "0x00aeea60040a0ad32b50ffef80f2b24a08d85a34fc93c6a88008825ce0802d65",
+            "evidence": "tier3",
+            "sourceType": "mock"
+          }
+        },
+        {
+          "ruleId": "marketplace.shopee.fees",
+          "text": "shopee fees: commission fee (sellers outside PXP; waived for a new seller's first 120 days) 14.17%, transaction fee 3.27%.",
+          "sourceRef": "/marketplaces/0/fees/0/rateBps",
+          "source": {
+            "sourceUrl": "https://seller.shopee.sg/edu/article/13107/seller-fees",
+            "retrievedAt": "2026-10-18T14:05:30Z",
+            "snippetHash": "0xf0d98f2f01d5e0a9e715bb8fcde0284ac9b41249276e45c502561d01fef75a2f",
+            "evidence": "tier2",
+            "sourceType": "live"
+          }
+        },
+        {
+          "ruleId": "ads.pacing",
+          "text": "Ads paced at 75 BU/day: 8 daily slots fit the 600 BU cap of each 7-day window, one slot spare for timing.",
+          "sourceRef": "compiler:ads-pacing"
+        },
+        {
+          "ruleId": "stage.gate",
+          "text": "Stage 1 releases 4,000 BU at signing; stage 2 (6,000 BU) needs sales of 2,000 BU by 2026-11-17 and the loan officer's signature.",
+          "sourceRef": "compiler:stage-gate"
+        },
+        {
+          "ruleId": "constitution.caps",
+          "text": "Every line: at most 25% per payment and 50% per 7-day window.",
+          "sourceRef": "constitution:PER_TX_CAP_OVER_25PCT"
+        },
+        {
+          "ruleId": "constitution.supplier-escrow",
+          "text": "The supplier is paid only through escrow milestones; the balance needs your signature and inspection evidence.",
+          "sourceRef": "constitution:SUPPLIER_LINE_NOT_ESCROW"
+        },
+        {
+          "ruleId": "constitution.stage1",
+          "text": "At most 40% of the budget is released before the stage gate.",
+          "sourceRef": "constitution:STAGE1_OVER_40PCT"
+        },
+        {
+          "ruleId": "constitution.payees",
+          "text": "The plan adds no payees: only registered platform accounts and suppliers you approve can be paid.",
+          "sourceRef": "constitution:PLAN_ADDS_PAYEE"
+        }
+      ],
+      "aigc": {
+        "model": "anthropic:claude-sonnet-5-5",
+        "promptHash": "0x05ff4b91e9fe612760892aa973fc386d85d0a86e082ad5876d7fd6e73ae99e67"
+      },
+      "compilerVersion": "1.0.0"
+    }
+  }
+]

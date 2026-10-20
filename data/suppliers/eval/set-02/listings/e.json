@@ -1,0 +1,55 @@
+{
+  "supplierId": "s02-e",
+  "displayName": "Nimbusbrook Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-02/s02-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-02/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "610",
+      "sourceUrl": "https://example.invalid/e3/set-02/s02-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x948c9f61b139d6a401dc0ead8af377a30acabb00a1a98c0d69b10b695093c0ea",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 12,
+    "freightPerUnit": "50",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": false,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-921384-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-222315-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.8,
+    "responseRate": 0.79,
+    "yearsOnPlatform": 10
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7306468600",
+    "holderName": "Nimbusbrook Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

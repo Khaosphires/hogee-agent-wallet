@@ -1,0 +1,51 @@
+{
+  "supplierId": "s05-d",
+  "displayName": "Nimbuspeak Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914403000BJ66ULGXH"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-05/s05-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-05/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "570",
+      "sourceUrl": "https://example.invalid/e3/set-05/s05-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x1a6a53d474337fc2d2bcef3301e7bdbe92b329a5717cec57efbdfb6e9428b499",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 47,
+    "freightPerUnit": "100",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-871325-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.88,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7358704859",
+    "holderName": "Nimbuspeak Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

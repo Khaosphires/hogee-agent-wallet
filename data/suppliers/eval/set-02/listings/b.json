@@ -1,0 +1,51 @@
+{
+  "supplierId": "s02-b",
+  "displayName": "Birchcrest Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91350200HA7DPQFE2J"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-02/s02-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-02/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "740",
+      "sourceUrl": "https://example.invalid/e3/set-02/s02-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x895b9675419c179730c7cc28e5be5eb004f1b8d29eb00bdb996a57c4f9013770",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 25,
+    "freightPerUnit": "50",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-888565-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.8,
+    "responseRate": 0.84,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7263432095",
+    "holderName": "Birchcrest Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15178-6b34-7356-9983-a77b2215dddd",
+    "seq": 0,
+    "ts": "2026-10-19T00:03:28.695Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Spend proposal LOGISTICS: 2000 minor to spx-logistics (invoice inv-rt-t10-55-mvehr3ia) → DENY (Paused)",
+    "policy_verdict": "DENY",
+    "reason_code": "Paused",
+    "plan_version": 2,
+    "payment_id": null,
+    "invoice_hash": "0x40c29a8ff3ff3675c49ddfe8518d1c82bb61b21b9b7780c6e23dbc7db0117277",
+    "decision_id": "01a15178-6b34-70c3-99d9-48b4d98ee2ab",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x4aeb90a9a2992f51630190cd14d4253409b47ea5b88d7bf9af145f30dafeace2"
+  }
+]

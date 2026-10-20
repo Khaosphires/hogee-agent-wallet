@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15100-3d63-7e12-8c91-52701c90c33d",
+    "seq": 0,
+    "ts": "2026-10-18T21:52:14.764Z",
+    "actor": "planner",
+    "kind": "TOOL_CALL",
+    "summary": "[eval E1 rt-t31-chat] planner turn → rejected (NO_PROPOSAL); the founder sees templated text only; no draft stored, nothing signed; nothing signed",
+    "policy_verdict": null,
+    "reason_code": "NO_PROPOSAL",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xa3f05185c6cd751ec5e3eb89701fce1bb13694468f3b5b5472d7553676dd0812"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s20-e",
+  "displayName": "Harborgate Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200QQEW58PW9B"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-20/s20-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-20/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "770",
+      "sourceUrl": "https://example.invalid/e3/set-20/s20-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x99816ba6cb8a9159f38f9b7b2da41bb5683b355a8a86bdf5fde04c843348fd05",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 30,
+    "freightPerUnit": "40",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "ISO 9001 quality management",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "ISO-670466",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.8,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7529842839",
+    "holderName": "Harborgate Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

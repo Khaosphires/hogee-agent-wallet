@@ -1,0 +1,57 @@
+{
+  "supplierId": "s16-a",
+  "displayName": "Nimbusgate Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330723W2AD6UARX2"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-16/s16-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-16/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "680",
+      "sourceUrl": "https://example.invalid/e3/set-16/s16-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x4dd67957d53ec83eae4a0ea05d0604425f8a64bd187254407ea5c0157dbd43b8",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 26,
+    "freightPerUnit": "110",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-594314-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-438550-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.1,
+    "responseRate": 0.93,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7951802571",
+    "holderName": "Nimbusgate Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

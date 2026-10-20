@@ -1,0 +1,29 @@
+{
+  "name": "@hogee/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Frozen zod schemas + enums (G0), then compiler, policy, scorer, taint, JCS hashing (P1).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "gen:schemas": "tsx scripts/gen-json-schemas.ts",
+    "gen:schemas:check": "tsx scripts/gen-json-schemas.ts --check",
+    "validate:data": "tsx scripts/validate-data.ts"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "fast-check": "4.10.2",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@noble/hashes": "2.4.0",
+    "canonicalize": "5.1.0",
+    "zod": "4.6.7"
+  }
+}

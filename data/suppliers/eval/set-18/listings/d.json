@@ -1,0 +1,57 @@
+{
+  "supplierId": "s18-d",
+  "displayName": "Zephyrstone Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91441900UM291LMC1A"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-18/s18-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-18/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "610",
+      "sourceUrl": "https://example.invalid/e3/set-18/s18-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xac9d121fedae5bd9b55b56e2f6ff31d4e7c2490c28616828c38ef271e946af5a",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 39,
+    "freightPerUnit": "60",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-588715-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "GB-014645-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 5,
+    "responseRate": 0.81,
+    "yearsOnPlatform": 5
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7799374703",
+    "holderName": "Zephyrstone Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

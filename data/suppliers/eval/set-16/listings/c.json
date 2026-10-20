@@ -1,0 +1,57 @@
+{
+  "supplierId": "s16-c",
+  "displayName": "Pineline Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914401006XPB72LB76"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-16/s16-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-16/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "620",
+      "sourceUrl": "https://example.invalid/e3/set-16/s16-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x82daea37639d54819c29dfbcc8c2ecd1441567d9949c1d4601d1b0e6210a5b95",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 33,
+    "freightPerUnit": "100",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": false,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-311387-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-245976-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.89,
+    "yearsOnPlatform": 1
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7222086542",
+    "holderName": "Pineline Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

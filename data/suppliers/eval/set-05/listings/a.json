@@ -1,0 +1,57 @@
+{
+  "supplierId": "s05-a",
+  "displayName": "Granitecrest Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914451005YGFW92T2Q"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-05/s05-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-05/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "790",
+      "sourceUrl": "https://example.invalid/e3/set-05/s05-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x0cf1ce2d1ffcacb0d7b87f5c8d6c28cd9a5cc71b64b21a5f5a26c5cdf72e6c51",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 22,
+    "freightPerUnit": "100",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "GB-260538-1",
+      "tier": "tier1"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-140688-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4,
+    "responseRate": 0.77,
+    "yearsOnPlatform": 11
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7224664177",
+    "holderName": "Granitecrest Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

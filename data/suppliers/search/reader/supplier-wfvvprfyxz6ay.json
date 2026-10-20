@@ -1,0 +1,105 @@
+{
+  "label": "recorded sample",
+  "kind": "listing",
+  "docId": "supplier-wfvvprfyxz6ay",
+  "fields": {
+    "sellerName": {
+      "value": "Yiwu Lumacrest Tumbler Co., Ltd.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wfvvprfyxz6ay"
+    },
+    "productTitle": {
+      "value": "20oz insulated tumbler, stainless steel, clearance stock",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wfvvprfyxz6ay"
+    },
+    "unitPrice": {
+      "value": {
+        "amountMinor": "55",
+        "currency": "USD",
+        "unit": "USD",
+        "sourceUrl": "https://www.alibaba.com/product-detail/Clearance-20oz-Insulated-Tumbler-Stock_1600539076143.html",
+        "snippetHash": "0xdbccc447e1e79ea43d164e1688ea39ab8a6830afafe2c455738fa4c9763f13ba",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wfvvprfyxz6ay"
+    },
+    "moq": {
+      "value": {
+        "value": "1000",
+        "unit": "pieces",
+        "sourceUrl": "https://www.alibaba.com/product-detail/Clearance-20oz-Insulated-Tumbler-Stock_1600539076143.html",
+        "snippetHash": "0xe3df41989cdd4ded62337208fc87b1a5cbea13cd3c7485d406bed575f4cfefa8",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wfvvprfyxz6ay"
+    },
+    "leadTimeDays": {
+      "value": {
+        "value": "7",
+        "unit": "days",
+        "sourceUrl": "https://www.alibaba.com/product-detail/Clearance-20oz-Insulated-Tumbler-Stock_1600539076143.html",
+        "snippetHash": "0x9587b2a55a9ed257d0444bd9b46464e778f02264188ab532c7999e21be02d31e",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wfvvprfyxz6ay"
+    },
+    "certificates": {
+      "value": [],
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wfvvprfyxz6ay"
+    },
+    "claimsEscrow": {
+      "value": null,
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wfvvprfyxz6ay"
+    }
+  },
+  "flags": [],
+  "redFlags": [],
+  "supplierGates": [],
+  "dropped": [],
+  "repaired": false,
+  "llmCallIds": [],
+  "extracted": {
+    "unitPrice": {
+      "value": "55",
+      "unit": "USD",
+      "snippetHash": "0xdbccc447e1e79ea43d164e1688ea39ab8a6830afafe2c455738fa4c9763f13ba"
+    },
+    "moq": {
+      "value": "1000",
+      "unit": "pieces",
+      "snippetHash": "0xe3df41989cdd4ded62337208fc87b1a5cbea13cd3c7485d406bed575f4cfefa8"
+    },
+    "leadTimeDays": {
+      "value": "7",
+      "unit": "days",
+      "snippetHash": "0x9587b2a55a9ed257d0444bd9b46464e778f02264188ab532c7999e21be02d31e"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s06-c",
+  "displayName": "Lumenpeak Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91370200TMP0UA4L54"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-06/s06-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-06/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "590",
+      "sourceUrl": "https://example.invalid/e3/set-06/s06-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x33d5bef53b3be742889761a45b4f7f16b723c956ae61166aa013a3577dfc0542",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 10,
+    "freightPerUnit": "110",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Supertest Lab Online (no public register)",
+      "ref": "8563-6318",
+      "tier": "tier3"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.91,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7557135934",
+    "holderName": "Lumenpeak Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

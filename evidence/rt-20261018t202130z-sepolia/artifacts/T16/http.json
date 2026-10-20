@@ -1,0 +1,25 @@
+[
+  {
+    "label": "resubmit a used request",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a150af-8202-7420-9075-7edf827e00d0/submit",
+    "body": {
+      "passkey": {
+        "credentialId": "DRgLcm7TCkQ--zz3joCUtQ",
+        "r": "0xf8051864524bee3e4571a9ea1e3fe298b6bc45dfad6999f9ae2fc15111e98f8d",
+        "s": "0x353a6989cec39428db20605f2a20649d2eb8d2b940ccb2e5148380914400305d",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000006",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "status": 409,
+    "response": {
+      "error": {
+        "code": "CONFLICT",
+        "message": "This signature request was already used"
+      }
+    }
+  }
+]

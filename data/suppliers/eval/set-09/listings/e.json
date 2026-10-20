@@ -1,0 +1,51 @@
+{
+  "supplierId": "s09-e",
+  "displayName": "Umbercrest Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913301000LGLB9FEXW"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-09/s09-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-09/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "880",
+      "sourceUrl": "https://example.invalid/e3/set-09/s09-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xa4c37b6c4e7b14ad80b7c2fc890cf17c917c038df0b79a6f2d6f10142785ed84",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 21,
+    "freightPerUnit": "110",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-707206-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.85,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7461252997",
+    "holderName": "Umbercrest Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

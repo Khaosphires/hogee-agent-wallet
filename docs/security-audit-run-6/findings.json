@@ -1,0 +1,832 @@
+[
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "packages/api/src/evidence/collect.ts:capped:whole-history-row-cap",
+    "title": "Unbounded founder-persona writers can push a facility past the evidence export's whole-history row cap, blocking every later export",
+    "description": "collect() selects each table's entire facility history, with no time, run or increment window, and throws EvidenceTooLargeError once any table has more than 50,000 rows. The traces count includes eval traces, because they are counted before they are excluded. By design the export then fails instead of truncating. Two of the collected tables, traces and signature_requests, grow through routes that any client past the request guard can call. A caller without a valid signed persona cookie reads as founder:rina, the only persona that POST /api/signatures/request and POST /api/signatures/:id/submit require. Each request that passes prepare() inserts a PENDING signature_requests row and a SIGNATURE trace. Each submit with a schema-valid wrong signature, for example 0x followed by 130 zeros or a passkey with another credentialId, appends an ALERT trace and leaves the request PENDING. One request therefore accepts any number of refusals until its 900-second chain-time expiry, and new requests can be created at will. Neither writer has a per-facility, per-request or rate bound. After about 50,000 such calls, every POST /api/evidence/export returns 409 CONFLICT ('traces has more than 50000 rows for this facility') before any run is claimed, and `make evidence` exits 1. Bundles already on disk stay readable, but no later decision can be exported. The cap is a compile-time constant, and no code deletes traces or signature_requests rows. Recovery therefore needs an operator to edit the hash-chained tables or ship a code change. Who can drive this beyond the facility's own founder depends on deployment exposure. The default allowed hosts are localhost:3000 and 127.0.0.1:3000, and the guard refuses cross-site browser POSTs.",
+    "claimed_root_cause": "The exporter applies MAX_ROWS_PER_TABLE to each table's whole facility history and fails the entire export when any table exceeds it. The signature-request and signature-refusal writers it collects from accept unbounded growth from any client that reads as the founder persona. Nothing prunes, windows or increments the exported history, so once the cap is crossed the failure persists.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 117,
+        "scope": "routes.requestSignature",
+        "description": "POST /api/signatures/request, and POST /api/signatures/:id/submit at line 122, are gated only by personas: FOUNDER (founder:rina)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/register.ts",
+        "line": 157,
+        "scope": "register",
+        "description": "The persona comes from personaOf. A missing, unsigned or invalid cookie reads as DEFAULT_PERSONA founder:rina (persona-cookie.ts lines 14 and 64), so the FOUNDER check at line 158 admits any client past the request guard. Lines 156-163 apply no rate, volume or per-facility limit."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/signatures.ts",
+        "line": 78,
+        "scope": "requestSignature",
+        "description": "Each call that passes prepare() inserts a PENDING signature_requests row and, at line 82, a SIGNATURE trace. Nothing bounds pending requests per facility, kind or refId."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/signatures.ts",
+        "line": 98,
+        "scope": "refuse",
+        "description": "Any schema-valid wrong signature (verifiedSig, lines 128, 133 and 134) appends an ALERT trace in its own committed transaction and leaves the request PENDING. One request therefore accepts unlimited refusals until its chain-time expiry."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 226,
+        "scope": "exportEvidence",
+        "description": "Every POST /api/evidence/export, and make evidence (cli.ts line 29), calls prepare(), which runs collect() over the facility's whole history (line 131). An error there releases the lock and is rethrown at line 253 before any run is claimed."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/collect.ts",
+        "line": 38,
+        "scope": "capped",
+        "description": "More than 50,000 rows in any table throws EvidenceTooLargeError. traces (line 136, counted before eval traces are excluded at line 137) and signature_requests (line 92) are selected over the whole facility history with no window."
+      },
+      {
+        "kind": "sink",
+        "file": "packages/api/src/routes/evidence.ts",
+        "line": 46,
+        "scope": "evidenceRoutes.exportEvidence",
+        "description": "EvidenceTooLargeError becomes 409 CONFLICT. Every later export of the facility fails the same way, and the CLI exits 1 (cli.ts lines 33-36)."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api/src/evidence/collect.ts",
+        "line": 18,
+        "description": "MAX_ROWS_PER_TABLE = 50_000 is a compile-time constant with no environment override, documented as 'A facility above these sizes is not exported'."
+      },
+      {
+        "file": "packages/api/src/evidence/collect.ts",
+        "line": 37,
+        "description": "Each table query gets limit 50,001 appended to its full facility-scoped select. There is no time, run or increment window."
+      },
+      {
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 8,
+        "description": "The design states that the export fails on any limit instead of truncating evidence. docs/G0-DECISIONS.md line 277 records the same limits."
+      },
+      {
+        "file": "packages/api/src/routes/signatures.ts",
+        "line": 11,
+        "description": "Documented behaviour: a failed verification leaves the request PENDING and writes an ALERT trace."
+      },
+      {
+        "file": "packages/api/src/services/signing/verify.ts",
+        "line": 28,
+        "description": "verifyEcdsaSignature returns false when v is not 27 or 28. A signature of 0x followed by 130 zeros, which EcdsaSignature (core schemas/primitives.ts line 96) accepts, is therefore refused. A passkey with another credentialId is refused at signatures.ts line 111 without any cryptography."
+      },
+      {
+        "file": "packages/api/src/services/signing/typed.ts",
+        "line": 14,
+        "description": "SIGNATURE_TTL_S = 900n: a request stays submittable for 15 minutes of chain time, and new requests can be created at will."
+      },
+      {
+        "file": "packages/api/src/services/traces.ts",
+        "line": 24,
+        "description": "appendIn only inserts hash-chained events. No code in packages/ or apps/ deletes traces or signature_requests rows, so recovery needs an operator database edit or a code change to the cap."
+      },
+      {
+        "file": "packages/api/src/request-guard.ts",
+        "line": 12,
+        "description": "Reachability limit: the default HOGEE_ALLOWED_HOSTS is localhost:3000,127.0.0.1:3000, and cross-site browser POSTs are refused (lines 59-61). Only direct clients that send an allowed Host can drive the writers."
+      }
+    ],
+    "blockers": [
+      "Deployment exposure decides who the attacker is. Whether any principal other than the facility's own founder on the local machine can reach /api/signatures/* and /api/evidence/export depends on the deployed HOGEE_ALLOWED_HOSTS value and on the network exposure of the API or the web /api proxy. The source default is localhost:3000 and 127.0.0.1:3000, and the deployed values are not visible in the repository.",
+      "Confirmation needs a bounded local observation: the export refused with 409 after refused submissions against a lowered cap, with a founder key registered on a local chain and a signable refId. This run permits no target-controlled execution, because the macOS host cannot enforce the required sandbox memory, disk and file-size limits."
+    ],
+    "validation_plan": {
+      "local": "Use an approved sandbox with no network. Set up Postgres 16 with a dummy facility and a local Anvil chain with the deployment, and register a dummy founder ECDSA owner on-chain. Build with MAX_ROWS_PER_TABLE set to 5. Prepare a signable dummy plan draft. Then: (1) POST /api/signatures/request {\"kind\":\"PlanApproval\",\"refId\":\"<draft id>\",\"method\":\"eip712\"} once. (2) POST /api/signatures/<requestId>/submit {\"ecdsa\":{\"signature\":\"0x<130 zeros>\"}} until the facility has more than 5 traces. Each call should answer InvalidSignature and add one ALERT row. (3) POST /api/evidence/export twice. Expected: both return 409 CONFLICT with 'traces has more than 5 rows for this facility', there is no evidence_runs row for a new run, and no new evidence/<runId> directory exists. Stop at the first refusal.",
+      "deployment": "These are owner-observed checks, not audit traffic. (1) Read the deployed HOGEE_ALLOWED_HOSTS and check whether the API or the web app's /api proxy is reachable from any client other than the founder's own machine, for example a shared or public demo URL. (2) Run read-only counts: select count(*) from traces where facility_id = '<facility>'; the same count on signature_requests; and the number of INVALID_SIGNATURE ALERT traces per day, to judge headroom against 50,000. Fix: bound the founder-persona writers per facility. For example, reuse an existing unexpired PENDING request for the same kind and refId, and expire a request after a few refusals. Make the exporter export a window or an increment instead of failing on whole-history size, for example everything since the last READY run, or keep refusal-only ALERT traces outside the cap. Regression: after 50,001 refused submissions, POST /api/evidence/export still returns {runId}."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "packages/api/src/evidence/export.ts:exportEvidence:unbounded-bundle-retention",
+    "title": "Evidence export writes a full new bundle for every state change, with no aggregate limit, retention or per-caller rate limit",
+    "description": "POST /api/evidence/export has no persona list, is not demoOnly and has no rate limit. Its runId is a hash of everything collect() returns, so any row change produces a new runId. Ordinary worker activity is enough to cause this, and an anonymous caller (persona founder:rina) can also force it: POST /api/signatures/request appends a signature_requests row and a SIGNATURE trace, and a refused POST /api/signatures/:id/submit appends an ALERT trace. Every new run does the same work again. It re-reads one receipt per mined tx and one block per distinct block from the RPC, with no cache. It renames a complete copy of the facility's history into evidence/<runId>; one bundle can be up to 128 MB and 5,000 files. Then verifyBundle checks the whole bundle synchronously on the API process's event loop. Nothing in the repository ever removes earlier ev-* runs: sweep() deletes only .export-* temp folders, and every cap applies to a single bundle. The single-flight advisory lock means one build runs at a time and a concurrent call gets 409, so the export rate is limited by how long a build takes. It is not a volume limit. A caller that repeats {optionally change one row; POST export; wait until it is no longer busy} therefore gets three persistent or shared effects. It adds one full history copy to the evidence volume per iteration. It repeats the full receipt and block fetch against the operator's RPC endpoint, which the worker also uses. It raises the cost of every GET /api/evidence/runs, because listRuns reads and schema-parses up to three 4 MB index files for every retained run before it applies the 200-run slice. This depends on deployment. By default the web app binds localhost:3000, and the request guard refuses foreign Host headers and cross-site browser POSTs, so a web page cannot drive the loop. The caller must be a local process or a client of a deployment that exposes /api.",
+    "claimed_root_cause": "The exporter bounds each bundle (50,000 rows per table, 5,000 files, 32 MB per file, 128 MB per bundle) and serialises builds with an advisory lock. Nothing bounds the total. There is no cap on retained runs or total evidence bytes, superseded runs are never pruned, and nothing limits how often a caller or interval can start a new run. Idempotency only short-circuits a byte-identical source state, and both ordinary worker activity and anonymous row-appending routes change that state all the time.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 226,
+        "scope": "routes.exportEvidence",
+        "description": "POST /api/evidence/export is declared with req {} and has no personas and no demoOnly, so any caller that reaches /api can start an export."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/register.ts",
+        "line": 158,
+        "scope": "register",
+        "description": "The only per-route gates are demoOnly (line 156) and personas (line 158). Neither applies here, and there is no rate, interval or volume limit. The scope is built from server config at line 163."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/evidence.ts",
+        "line": 42,
+        "scope": "evidenceRoutes.exportEvidence",
+        "description": "The handler calls exportEvidence(deps, scope, { root }) on every request and returns as soon as the run is claimed. The build continues in the background."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 136,
+        "scope": "prepare",
+        "description": "The runId is 'ev-' plus a keccak hash of the format, exporter, facility, deployment, chain, pack hash and the whole collected object (payments, chain actions, signature requests, plans, traces, LLM calls, rationales, denials). Any row change produces a new runId."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 227,
+        "scope": "exportEvidence",
+        "description": "Only an existing evidence/<runId> with exactly this runId returns early (created:false). Any other state records a PENDING evidence_runs row and starts a full build."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 148,
+        "scope": "build",
+        "description": "Each new run calls fetchChainData for every mined tx hash with no cache, then serialises the whole history, every receipt and every block into a files map of up to 128 MB."
+      },
+      {
+        "kind": "sink",
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 193,
+        "scope": "publish",
+        "description": "The complete bundle is renamed into evidence/<runId> as a new directory that persists. No code path in packages/api, apps/worker, packages/db or the Makefile deletes, replaces or caps earlier ev-* runs."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 29,
+        "description": "MAX_BUNDLE_BYTES = 128 MB is checked at line 175 together with MAX_BUNDLE_FILES and MAX_FILE_BYTES. It limits one bundle only, not the evidence directory or the number of runs."
+      },
+      {
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 203,
+        "description": "sweep() removes only real .export-* directories. It is the only cleanup apart from the tmp rm at line 196. Retained ev-* runs are never pruned."
+      },
+      {
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 86,
+        "description": "pg_try_advisory_lock makes builds single-flight, and a concurrent call becomes a 409 CONFLICT. This limits throughput to one build at a time. It does not limit the number of builds or how much is retained."
+      },
+      {
+        "file": "packages/api/src/evidence/export.ts",
+        "line": 239,
+        "description": "verifyBundle(files), which is synchronous (tools/verify-evidence/src/index.ts line 38), re-verifies the whole bundle in the API process after every new run is published."
+      },
+      {
+        "file": "packages/api/src/evidence/fetch.ts",
+        "line": 52,
+        "description": "Every build issues one eth_getTransactionReceipt per mined tx, and one eth_getBlockByNumber per distinct block at line 60. Concurrency is 4 and nothing is cached between runs."
+      },
+      {
+        "file": "packages/api/src/evidence/store.ts",
+        "line": 101,
+        "description": "listRuns loops over every run directory and reads manifest.json, evidence.json and contracts.json (each up to MAX_INDEX_FILE_BYTES = 4 MB) with JSON.parse and zod. It slices to MAX_LISTED_RUNS (line 19) only at line 105, so the cost of each listing grows with the number of retained runs."
+      },
+      {
+        "file": "packages/api/src/routes/evidence.ts",
+        "line": 21,
+        "description": "GET /api/evidence/runs calls listRuns(root, facilityId) on every request. The route has no persona list."
+      },
+      {
+        "file": "packages/api/src/routes/signatures.ts",
+        "line": 82,
+        "description": "requestSignature inserts a signature_requests row (lines 77-81) and a SIGNATURE trace in one transaction on every successful call. The route requires FOUNDER, and that is the default persona."
+      },
+      {
+        "file": "packages/api/src/routes/signatures.ts",
+        "line": 103,
+        "description": "refuse() appends an ALERT trace for every invalid signature submitted against a PENDING, unexpired request and leaves the request PENDING, so each attempt changes the source state."
+      },
+      {
+        "file": "packages/api/src/http/persona.ts",
+        "line": 16,
+        "description": "A request without a valid signed cookie, or any request when PERSONA_COOKIE_SECRET is unset, gets persona founder:rina."
+      },
+      {
+        "file": "packages/api/src/runtime/deps.ts",
+        "line": 51,
+        "description": "The evidence directory is HOGEE_EVIDENCE_DIR, or resolve(dataDir, '..', 'evidence') by default, on the deployment's own volume."
+      },
+      {
+        "file": "packages/api/src/request-guard.ts",
+        "line": 56,
+        "description": "Calibration: the Host allow-list (default localhost:3000,127.0.0.1:3000) and the refusals of cross-site Sec-Fetch-Site and foreign Origin on POSTs (lines 59 and 61) stop a web page from driving the loop. A POST that carries neither header is allowed, so any non-browser client that reaches the host can drive it."
+      },
+      {
+        "file": "apps/web/package.json",
+        "line": 9,
+        "description": "Calibration: next start (and next dev at line 7) binds --hostname localhost --port 3000. In the default deployment only local processes reach /api. project.md D2 (line 90) says localhost first, and D17 (line 102) adds an always-on host."
+      }
+    ],
+    "blockers": [
+      "Reachability is a deployment fact that source cannot settle. By default /api binds localhost and the guard refuses cross-site browser POSTs, so the lower-trust caller exists only if the always-on host (D17), or another deployment, exposes /api to untrusted clients through its network binding, a proxy or HOGEE_ALLOWED_HOSTS.",
+      "The size of the effect needs execution, which this run does not allow. Under the single-flight lock the achievable rate is one bundle per build duration. The real per-run bundle size, build duration, RPC call count and GET /api/evidence/runs latency at N retained runs could not be measured, so it is unknown whether the growth matters within an operator's normal review interval.",
+      "Free space and quotas on the volume that holds evidence/, whether Postgres or the worker shares that volume, and the quota and rate limits of the RPC provider shared with the worker are deployment facts outside the repository."
+    ],
+    "validation_plan": {
+      "local": "Use an isolated fixture: local Postgres and Anvil only, no external network, MOCK_API=0, a dummy facility with about 5 mined payments, and HOGEE_EVIDENCE_DIR on a small quota-limited temp volume (for example 200 MB). Then: (1) POST /api/evidence/export and poll GET /api/evidence/runs until the run is listed. (2) Insert one dummy trace row directly, or POST /api/signatures/request for a dummy refId. (3) Repeat steps 1 and 2 four times. After each iteration record the number of ev-* directories, the total bytes under the evidence dir, the eth_getTransactionReceipt and eth_getBlockByNumber calls counted on an Anvil RPC proxy, and the build duration. Expected: one new full-history directory per iteration, total bytes growing roughly linearly, receipt calls per iteration equal to the mined-tx count, and listRuns opening the index files of every run. Stop after 5 iterations and delete the temp volume.",
+      "deployment": "Owner-observed only, no audit traffic. The owner should check: the network binding of the Next server and any proxy in front of /api; HOGEE_ALLOWED_HOSTS on the always-on host; free space and quotas on the evidence volume, and whether Postgres or the worker shares it; and the RPC provider's quota and rate limits shared with the worker. Fix options: (a) keep only the newest run per facility, or cap retained runs and bytes and prune the oldest after a successful publish, under the export lock; (b) restrict POST /api/evidence/export to the officer persona, or enforce a minimum interval between new runs (for example, refuse when evidence_runs has a run finished within the last N minutes); (c) in listRuns, take the newest MAX_LISTED_RUNS ids from evidence_runs ordered by finished_at before reading any files. Regression test: N exports with one row changed between each leave at most the configured number of runs and bytes, and listRuns reads at most MAX_LISTED_RUNS runs."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "tools/verify-evidence/src/chain.ts:row-labelled-chain-view",
+    "title": "DB row labels choose which transactions the evidence bundle and verifier see, so relabelling a mined row drops its tx and events from a bundle that still verifies",
+    "description": "The exporter reads chain data only for rows the DB labels as mined. minedTxHashes (packages/api/src/evidence/fetch.ts:27-31) keeps a row's tx hash only when its state is in MINED_PAYMENT_STATES or MINED_ACTION_STATES (fetch.ts:11-12). That list is the export's only chain read (export.ts:148), and the deployment's logs are never enumerated. The verifier works the same way. checkChain parses and binds a row's raw signed tx only while it iterates the bundle's receipts (tools/verify-evidence/src/chain.ts:180-199). It reports a missing receipt only when the row's own label is mined (chain.ts:200-204). So a DATABASE_URL holder can relabel a mined row: a payment to CANCELLED, DROPPED or BROADCAST, or a chain action to BROADCAST or PENDING. The exporter then builds a self-consistent bundle without that tx's receipt or events, and verifyBundle returns ok:true (index.ts:58; make verify exits 0, cli.ts:62). The row's tx hash and raw bytes are still exported (collect.ts:47-51), but nothing reads them. Neither ParsedTx.nonce (crypto.ts:118) nor the row's nonce field is ever compared. The SQL constraints do not stop this. payments_cancelled_iff_nonce_consumed and payments_nonce_consumed_by_foreign_tx (0000_initial_schema.sql:404-405) only require a CANCELLED row to name some other hex32. Any value satisfies them, and that column is not exported (payments-view.ts:64-66). Deleting a row outright is just as invisible, because the export enumerates rows only.\n\nWhat stays consistent after a drop. The replay has no cumulative state for a non-pacing Spent. It ignores Denied and SettlementConfirmed, and checkRationales needs no event per preimage (rationales.ts:59-67). A refusal row whose recordDenied action was relabelled is still emitted, only without txHash (rows.ts:146,155-160), and checkRows checks an anchor only when txHash is set (audit.ts:82). Partial controls do exist: a skipped pacing slot (replay.ts:112), a non-cumulative milestone total (replay.ts:175), a committed plan without PlanCommitted (plans.ts:156), and later spends that need a dropped fund or loosen (outflow and cap checks). So the omission that verifies is a non-pacing spend, or the last pacing spend or milestone funding; an anchored Denied, CircuitTripped or LoosenExecuted that no later event depends on; or an event that replay does not use, such as FacilityOpened.\n\nThe project's own tamper model is an attacker who rewrites hashes.json (verify-bundle.test.ts:1-5). Under it, a bundle editor can make the same bundle directly. This root cause is still separate from unanchored receipts: even when every receipt the bundle includes is genuine, the omission is not detected.\n\nVariant (ii): for OWNER_SPEND, RELEASE_MILESTONE and WITHDRAW_RESERVE rows, checkSpendCall returns early (chain.ts:83). The row's kind, line, payee and amount are never compared with its calldata or with the OwnerSpent, MilestoneReleased or ReserveWithdrawn events.\n\nVariant (iii), with an honest DB: a T29 orphan is an agent-key effect that no signed payment row explains (apps/worker/src/jobs/orphans.ts:2-13). No row names its tx, so it is never fetched. checkOrphans (replay.ts:270-279) sees only receipts that some row owns (chain.ts:181-185), so it does not fire on an exporter-built bundle. A VERIFIED bundle can therefore show the safety pause without the orphan spend that caused it.\n\nImpact limit: a relabelled payment row still names its tx hash, and its Sepolia link would show it mined to a reviewer who checks every row by hand. A deleted row or an orphan leaves nothing to check.\n\nSmallest fix:\n- The exporter fetches a receipt for every row tx hash whatever its state. For each CANCELLED row it exports nonce_consumed_by_tx_hash and that tx's receipt and raw bytes. It adds eth_getLogs over the deployment contracts from the deployment block to the export block, with the receipts of those txs.\n- The verifier parses every row's raw bytes. Each row that names a tx must have its receipt, or (CANCELLED only) a mined tx in the bundle with the same (signer, nonce). Any listed log whose tx no row owns is treated as an orphan. Non-agent payment rows are bound to their OwnerSpent, MilestoneReleased and ReserveWithdrawn events.\n- Per-signer nonce-gap reporting is not a valid check here. The nonce allocator is one row per signer key, shared by every facility (packages/db/src/schema/payments.ts:269-270), so a single facility's bundle has legitimate gaps.\n- Completeness against a bundle editor also needs the receipt and log anchoring tracked under unanchored-receipt-content.",
+    "claimed_root_cause": "DB row state chooses the set of transactions that the bundle and the verifier consider. The exporter fetches receipts only for rows labelled mined and never enumerates the deployment's logs (fetch.ts:27-31). checkChain parses and binds a row's signed tx only when its receipt is present (chain.ts:180-199), and it asks for a receipt only when the row's label says mined (chain.ts:200-204). A non-mined label is never proven: there is no consumer tx for CANCELLED and no (signer, nonce) check. Row values are bound to calldata only for SPEND and FUND_MILESTONE (chain.ts:83).",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/evidence/collect.ts",
+        "line": 57,
+        "scope": "payments",
+        "description": "Payment rows are read from Postgres as stored, with their state label, tx hash, nonce and raw signed bytes. A DATABASE_URL holder can set a mined row to CANCELLED, DROPPED or BROADCAST. Chain actions are read the same way at collect.ts:68 and can be set to BROADCAST or PENDING."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/fetch.ts",
+        "line": 29,
+        "scope": "minedTxHashes",
+        "description": "Only rows whose state is in MINED_PAYMENT_STATES or MINED_ACTION_STATES (fetch.ts:11-12) contribute a tx hash. This is the export's only chain read (export.ts:148), so the relabelled row's receipt and block are never fetched, and the deployment's logs are never enumerated."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/collect.ts",
+        "line": 50,
+        "scope": "signed",
+        "description": "rawSignedTx is still exported because tx_hash is set. payments.json names the tx and carries its bytes, but the bundle has no receipt for it."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/rows.ts",
+        "line": 146,
+        "scope": "refusalRows",
+        "description": "[second path] When a recordDenied action is relabelled, its receipt is not fetched. The agent_refusal row is still emitted, without a txHash (rows.ts:155-160), and checkRows checks an anchor only when txHash is set (audit.ts:82)."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 180,
+        "scope": "checkChain",
+        "description": "Raw txs are parsed and bound to rows only while iterating the bundle's receipts (chain.ts:180-199). A row with no receipt is never parsed, and checkStatus's 'is X but has a receipt' check (chain.ts:134) cannot fire."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 202,
+        "scope": "checkChain",
+        "description": "A missing receipt is a problem only when the row's own label says mined. Payment rows in CANCELLED, DROPPED or BROADCAST and action rows in BROADCAST or PENDING are exempt, and no (signer, nonce) evidence is asked for. ParsedTx.nonce is never read."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 83,
+        "scope": "checkSpendCall",
+        "description": "[second path] (variant ii) Rows of kind OWNER_SPEND, RELEASE_MILESTONE or WITHDRAW_RESERVE return before any calldata or event comparison. Their kind, line, payee and amount are not bound to the tx."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 274,
+        "scope": "checkOrphans",
+        "description": "[second path] (variant iii) Orphan detection sees only events from receipts some row owns (chain.ts:181-185). No row names a T29 orphan's tx, so it is never fetched and never judged. On the relabel path, the replay simply runs on fewer events. Only a skipped pacing slot (replay.ts:112), a non-cumulative milestone total (replay.ts:175), and later spends that depend on a dropped fund or loosen can expose the gap."
+      },
+      {
+        "kind": "sink",
+        "file": "tools/verify-evidence/src/index.ts",
+        "line": 58,
+        "scope": "verifyBundle",
+        "description": "ok is checks.every(c => c.ok), so verifyBundle returns ok:true and make verify exits 0 (cli.ts:62) for a bundle that leaves out a mined non-pacing spend, an anchored Denied, a LoosenExecuted that no later spend relies on, or a T29 orphan."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "tools/verify-evidence/src/crypto.ts",
+        "line": 118,
+        "description": "ParsedTx.nonce is computed, but no verifier source reads it. The only other nonce in src/ is the exported row field (bundle.ts:131), which is never compared either."
+      },
+      {
+        "file": "packages/core/src/schemas/enums.ts",
+        "line": 239,
+        "description": "CANCELLED is a terminal, signed payment state that keeps its tx hash and bytes. DROPPED and BROADCAST also keep a tx hash. Chain actions have BROADCAST and PENDING (enums.ts:214)."
+      },
+      {
+        "file": "packages/db/drizzle/0000_initial_schema.sql",
+        "line": 404,
+        "description": "A CANCELLED row only has to name some other hex32 in nonce_consumed_by_tx_hash (lines 404-405), and no trigger restricts state transitions. A raw-SQL writer satisfies the check with any value."
+      },
+      {
+        "file": "packages/api/src/services/payments-view.ts",
+        "line": 64,
+        "description": "PAYMENT_COLUMNS leaves out nonce_consumed_by_tx_hash, so even an honest CANCELLED row carries no proof of the tx that consumed its nonce."
+      },
+      {
+        "file": "packages/db/src/schema/payments.ts",
+        "line": 269,
+        "description": "The nonce allocator is one row per signer key, shared by every facility the key serves. A single facility's bundle therefore has legitimate nonce gaps, and the fix must use (signer, nonce) collision evidence, not gap reporting."
+      },
+      {
+        "file": "apps/worker/src/jobs/orphans.ts",
+        "line": 2,
+        "description": "A T29 orphan is an agent-key effect that no signed payment row explains, so the row-driven exporter never fetches its receipt."
+      },
+      {
+        "file": "tools/verify-evidence/src/audit.ts",
+        "line": 82,
+        "description": "checkRows requires an anchoring receipt only when a row has a txHash. A refusal row built without the recordDenied receipt passes."
+      },
+      {
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 112,
+        "description": "Partial control: a skipped pacing slot fails, so only the last pacing spend can be dropped silently. A non-pacing Spent has no cumulative counterpart, and Denied and SettlementConfirmed are not replayed."
+      },
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 4,
+        "description": "The project's own tamper model: the attacker rewrites hashes.json and the semantic checks must still catch the tamper. A dropped receipt with a relabelled row is not among the tested tampers."
+      },
+      {
+        "file": "project.md",
+        "line": 820,
+        "description": "The verifier is specified to replay the event log against plan rules (line 817) and to exit non-zero on any mismatch."
+      },
+      {
+        "file": "docs/G0-DECISIONS.md",
+        "line": 278,
+        "description": "The design claims evidence rows come only from facts, but which chain facts are present is selected by DB labels."
+      }
+    ],
+    "blockers": [
+      "Run-6 forbids target execution, so the predicted result is not observed: verifyBundle(...).ok === true on the fixture with one receipt removed, its payment row relabelled and hashes.json rehashed. A full source read finds no check that would fail it (the Payment schema has no state rule, payment.ts:40-54), but the result has not been observed."
+    ],
+    "validation_plan": {
+      "local": "In an approved sandbox (no network, read-only target, scratch-only writes, CPU, memory and time limits), run a scratch vitest file that imports tools/verify-evidence/test/fixture.ts.\n1. Relabel path. Run fx = await buildFixture(). Remove receipts/<fx.spendTxs[1]>.json from fx.files: that is the LOGISTICS invoice spend, the last and non-pacing one, so replay.ts:112 is not involved. Set payments.json[1].payment.state to 'CANCELLED' with editJson, then rehash. Predicted: verifyBundle(files).ok === true; the 'transactions' detail drops from 6 to 5 signed transactions, and the 'event replay' detail says 1 spend instead of 2. Repeat with 'DROPPED' and 'BROADCAST'; the prediction is the same.\n2. Chain-action path. Remove the act-open receipt and set its chain-actions.json state to 'BROADCAST'; ok is predicted true.\n3. Negative controls. Doing the same to act-fund must fail (the outflow exceeds the funded amount). Doing it to act-commit must fail (plans.ts:156). Dropping the first of two ADS pacing spends (opts.spends with ADS refs 1 and 2) must fail with 'pacing slot ... is not the next slot'.\n4. Variant (ii). On an unmodified fixture, set payments.json[1].payment to kind 'OWNER_SPEND', decisionId null, rationaleHash null and amountMinor '1', then rehash. Predicted: ok === true while the Spent event says 15000.\n5. After the fix, step 1 must fail with a missing-receipt or (signer, nonce) problem, and step 4 must fail with a row/event mismatch.",
+      "deployment": "Owner check, only on a disposable local Anvil deployment with a scratch Postgres (never the Sepolia deployment or a shared DB), with the worker stopped. After one non-pacing SPEND payment reaches FINALIZED, run: update payments set state = 'DROPPED' where facility_id = <scratch facility> and id = <that payment id>. DROPPED needs no nonce_consumed_by_tx_hash. Then run make evidence and make verify. Predicted: exit code 0, and the new bundle has no receipts/<that tx>.json. Discard the scratch DB and chain afterwards."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "tools/verify-evidence/src/rationales.ts:unavailable-preimage-accepted",
+    "title": "Verifier accepts a self-declared 'pre-1.16' missing rationale preimage for any decision",
+    "description": "checkRationales resolves every payment-row ref and every Spent, MilestoneFunded and Denied ref to its rationales.json entry. An entry with status 'unavailable' only adds a note (rationales.ts:66-68), whenever the decision was taken. Problems.note never fails a check (util.ts:21-32), so verifyBundle stays ok (index.ts:58) and the CLI prints VERIFIED and exits 0 (cli.ts:55-62). The schema accepts an unavailable entry for any hash and decisionId (bundle.ts:172-177), and the loader recomputes hashes.json from the bundle's own files with no outside anchor (load.ts:75-85). So anyone who handles a bundle can replace an 'available' entry with {status:'unavailable', reason:'pre-1.16 row'} and rehash it. A DATABASE_URL holder can instead delete a rationales row (no trigger or rule prevents it, 0001_rationales.sql), and the exporter then writes the same marker for every named hash that has no stored row (collect.ts:205-206). Either way, the agent's committed justification for an on-chain Spent, MilestoneFunded or Denied is withheld and the bundle still verifies, while SUMMARY.md tells readers those decisions predate task 1.16 (summary.ts:46). The design exempts only rows decided before 1.16 (G0-DECISIONS.md:275). A time check is possible from source: decisionIds are UUIDv7 (primitives.ts:108), and for a mined payment the row's decisionId and rationaleHash are bound to the agent-signed calldata (chain.ts:91-101). Correction to the hunter's evidence: the source-visible writers do not create the gap by themselves. Every insertDecided caller passes a fresh decide() result that carries its preimage, resumes reuse the stored row without calling insertDecided (agent-actions-spend.ts:127), and pacing, proposals and founder-payments insert the preimage in the same transaction. So the result needs a DATABASE_URL holder or someone who edits the bundle. Smallest fix: in checkRationales, accept 'unavailable' only when every ref to that hash has a decisionId whose UUIDv7 millisecond time is before a RATIONALES_SINCE constant pinned in the verifier (the task 1.16 migration, commit 58eff38, 2026-10-18T09:08:20Z); otherwise add a problem. The exporter should refuse to export a post-cutoff decision that has no preimage, and SUMMARY.md should only call an entry pre-1.16 when it passes that test.",
+    "claimed_root_cause": "The 'pre-1.16' exemption depends only on the entry's self-declared status. Neither the verifier (rationales.ts:66-68) nor the exporter (collect.ts:205-206) derives it from when the decision was taken, although the decisionId's UUIDv7 time is available and, for a mined payment, bound to the agent-signed calldata.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "tools/verify-evidence/src/load.ts",
+        "line": 46,
+        "scope": "loadBundle (REQUIRED files)",
+        "description": "A received bundle's rationales.json is parsed with RationalesFile. hashes.json is recomputed from the same files (load.ts:75-85), so an edited and rehashed file loads."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/bundle.ts",
+        "line": 172,
+        "scope": "RationaleEntry",
+        "description": "The 'unavailable' branch accepts any rationaleHash and decisionId. Only reason has to be the literal 'pre-1.16 row'."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/collect.ts",
+        "line": 194,
+        "scope": "rationales (exporter)",
+        "description": "[second path] Every payment rationaleHash, and every denial proposal hash (line 195), is named as a commitment to export."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/evidence/collect.ts",
+        "line": 206,
+        "scope": "rationales (exporter)",
+        "description": "[second path] A named hash with no stored rationales or denials row, for example one a DATABASE_URL holder deleted, is written as unavailable/'pre-1.16 row' whenever it was decided."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/rationales.ts",
+        "line": 66,
+        "scope": "checkRationales",
+        "description": "A ref (payment row or Spent/MilestoneFunded/Denied event) that resolves to an unavailable entry only joins the 'unavailable' set. The decision's time is never read."
+      },
+      {
+        "kind": "sink",
+        "file": "tools/verify-evidence/src/rationales.ts",
+        "line": 68,
+        "scope": "checkRationales",
+        "description": "p.note(): the 'rationale commitments' check stays ok (util.ts:21-32), so verifyBundle returns ok (index.ts:58) and the CLI prints VERIFIED and exits 0 (cli.ts:60-62)."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "docs/G0-DECISIONS.md",
+        "line": 275,
+        "description": "Design decision: only rows decided before 1.16 lack a preimage and may be reported without failing."
+      },
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 169,
+        "description": "The project's test switches an entry to unavailable and asserts res.ok is true (line 175)."
+      },
+      {
+        "file": "tools/verify-evidence/test/fixture.ts",
+        "line": 206,
+        "description": "The fixture's decisionIds encode 2026-10-16T12:00Z, before the 1.16 cutoff, so the existing test does not exercise a post-cutoff decision and would still pass after the fix."
+      },
+      {
+        "file": "packages/core/src/schemas/primitives.ts",
+        "line": 108,
+        "description": "decisionId is a UUIDv7 (left-padded to bytes32 on-chain), so a source-visible decision time exists."
+      },
+      {
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 91,
+        "description": "A mined payment's decisionId and rationaleHash must equal the agent-signed calldata (lines 91-101), so its UUIDv7 time is anchored by the agent's signature."
+      },
+      {
+        "file": "tools/verify-evidence/src/load.ts",
+        "line": 75,
+        "description": "checkHashes only compares files against the bundle's own hashes.json, which an editor can regenerate (hashesFileOf, line 88)."
+      },
+      {
+        "file": "packages/db/drizzle/0001_rationales.sql",
+        "line": 1,
+        "description": "The rationales table has no trigger or rule against DELETE, so a DATABASE_URL holder can remove a preimage before export."
+      },
+      {
+        "file": "packages/api/src/evidence/summary.ts",
+        "line": 46,
+        "description": "SUMMARY.md says, without any check, that the unavailable entries were decided before task 1.16."
+      },
+      {
+        "file": "apps/worker/src/jobs/agent-actions-sign.ts",
+        "line": 72,
+        "description": "insertRationale is skipped only when the Decision has no rationale. Both callers (agent-actions-spend.ts:131, agent-actions-escrow.ts:65) pass a fresh decide() result that carries it, so this is not a production source of missing post-1.16 preimages."
+      },
+      {
+        "file": "apps/worker/src/jobs/agent-actions-spend.ts",
+        "line": 127,
+        "description": "A resumed decision reuses the stored row's decisionId and rationaleHash and never calls insertDecided; its preimage was stored with the original row."
+      }
+    ],
+    "blockers": [
+      "The result needed to confirm this (verifyBundle ok === true and CLI exit 0 on a post-cutoff fixture with a withheld preimage) needs target code to run, which run-6 forbids. The existing test covers only pre-cutoff decisionIds (fixture.ts:206), so the post-cutoff verdict has not been observed."
+    ],
+    "validation_plan": {
+      "local": "In an approved sandbox (no network, empty environment, read-only target, scratch-only writes, low CPU, memory and time limits): copy buildFixture from tools/verify-evidence/test/fixture.ts into scratch and change the decisionId template at line 206 to `01a15175-3c00-7000-8000-${String(i + 1).padStart(12, \"0\")}`, which is UUIDv7 time 2026-10-19T00:00:00Z, after the 2026-10-18T09:08:20Z cutoff. Rebuild the signed spend txs as the fixture does and check that verifyBundle(fixture.files).ok === true. Then replace rationales[0] with {status:'unavailable', rationaleHash, decisionId, reason:'pre-1.16 row'}, regenerate hashes.json with hashesFileOf, and call verifyBundle again. Predicted today: ok === true, and the 'rationale commitments' detail ends with '1 preimage(s) unavailable (pre-1.16 row)'. After the fix: that check fails, and verify-bundle.test.ts:164-177 (2026-10-16 ids) still passes.",
+      "deployment": "Owner-observed, on a local Anvil deployment with a scratch database only (never a shared or Sepolia database, and no audit traffic): after one fresh agent spend is mined, delete that payment's row from rationales in the scratch database, run make evidence and then make verify on the new bundle. Expect exit 0, 'VERIFIED: every check passed', the note '1 preimage(s) unavailable (pre-1.16 row)', and SUMMARY.md saying one decision was decided before task 1.16."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "tools/verify-evidence/src/replay.ts:replay-laxer-than-treasury",
+    "title": "Event replay accepts Spent and MilestoneFunded logs that Treasury and MilestoneEscrow refuse: payees that are unbound or delisted, an expired agent, unchecked milestone funding, the 64-entry window limit, and a line pause counted as the T29 treasury pause",
+    "description": "checkReplay is the verifier's semantic check of a bundle's event log. Its own header says it mirrors Treasury's checks (replay.ts:2-8). The tests also rely on it to catch a rewritten receipt log after hashes.json is recomputed (verify-bundle.test.ts:86-93). That matters because chain.ts checks a log's order, receipt membership, deployment address and bloom (chain.ts:139-162), and checks spend calldata only against the payment row (chain.ts:81-107), never against the Spent log. Checked against current source, the replay is laxer than the contracts in six ways. (1) checkPayee (replay.ts:100) adds a problem only when a payee is neither listed nor bound. Treasury requires both a binding and a listing by the current plan version (TreasuryState.sol:274; the version stamp comes from Treasury._syncLine at Treasury.sol:458, and a re-commit may drop payees, PlanReplan.sol:66-75). So a Spent to a listed payee that was never bound passes, and so does a Spent to a bound payee that a later version delisted (the run-2 fix scenario). With no binding, the cooling and lifetime-cap checks are skipped too. The repo's own valid-bundle fixture depends on this: its commit receipt carries no PayeeBound log (fixture.ts:176-180), both Spents pay line.payeeIds[0] (fixture.ts:204, 212), and the test expects every check to pass (verify-bundle.test.ts:32-35). (2) There is no agent-expiry state. applyPlan never reads PlanCommitted.agentExpiry, and onLoosenExecuted ignores kinds 3 and 4, while Treasury reverts AgentExpired (TreasuryState.sol:204). This only matters when agentExpiry is earlier than a line's validUntil, for example after a re-commit that lowers agentExpiry (PlanReplan.sol:37). In the demo plan both are day 60 (rina.ts:60, 64), so there the line-expiry check masks it for Spent. (3) onMilestoneFunded (replay.ts:168-181) is not given a block time. It checks only the sender and revocation, the decision, the cumulative total, and the pocket, released and funded totals on the SUPPLIER line. It has no treasury-pause, agent-expiry, zero-amount, line active/validUntil/circuit/paused, or payee binding/cooling check, all of which MilestoneEscrow.sol:67-72 and TreasuryModuleHooks.sol:24-32 enforce. (4) The rolling window checks only the summed amount (replay.ts:138-141). Treasury's 64 live-entry limit (Treasury.sol:366) is not modelled. (5) checkOrphans (replay.ts:277) accepts any later TreasuryPaused, including the line-level TreasuryPaused(lineId) that tighten kind 5 emits (Treasury.sol:189). T29 requires Treasury.paused() to become true (project.md:719, safety-pause.ts:2), and that comes from pause() emitting TreasuryPaused(0) (Treasury.sol:211). An honest export fetches receipts only for its own payment and chain-action rows (fetch.ts:27-31), so this branch only ever sees a Spent in a chain-action-owned receipt. In every case the check returns ok with 'N events replayed, M spends within the plan', and the bundle verifies. Boundary: genuine node receipts from a correct Treasury never contain these logs. The gap is that the verifier judges and the P2 explorer rely on cannot independently detect a Treasury or MilestoneEscrow regression of these rules, or a bundle whose receipt logs and rows were rewritten around stored agent-signed raw transactions (the separate tools/verify-evidence:unanchored-receipt-content candidate). Forged logs still need agent-signed raw tx bytes (chain.ts:120-121; replay.ts:126, 172). Smallest fix: (a) per line, track the payees the current version lists (reset on each PlanCommitted; on LoosenExecuted kind 3 add the queued target payee to the aux line), and require both a binding and that listing for Spent and OwnerSpent. (b) Track agentExpiry from PlanCommitted and LoosenExecuted kind 4, and check it with the block time for Spent and MilestoneFunded. (c) Pass the block time to onMilestoneFunded. Resolve orderId to its line and payee from the PayeeBound orderId, then add the treasury-pause, agent-expiry, zero-amount, line-state (active, validUntil, circuit, paused) and binding/cooling checks. (d) Count live window entries. (e) Accept an orphan only when a later TreasuryPaused has lineId 0. Update test/fixture.ts to emit the PayeeBound logs that Treasury._syncLine emits for listed platform payees.",
+    "claimed_root_cause": "replay.ts reproduces only part of Treasury's and MilestoneEscrow's preconditions. checkPayee uses listed OR bound instead of bound AND listed-by-current-version. applyPlan and onLoosenExecuted keep no agentExpiry. onMilestoneFunded has no block time and skips the pause, expiry, zero-amount, line-state and binding checks. The window model has no live-entry count. checkOrphans treats any TreasuryPaused, including a line-level one, as the T29 treasury pause.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "tools/verify-evidence/src/index.ts",
+        "line": 38,
+        "scope": "verifyBundle",
+        "description": "Takes the bundle files that a judge, make verify or the P2 explorer received. ok is true only when every check, including event replay, is ok."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 155,
+        "scope": "decodeLogs",
+        "description": "Receipt logs are decoded into ChainEvents. Their content is checked only for order, receipt membership, deployment address and logsBloom (lines 139-162), not against the calldata or a receipts root."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/index.ts",
+        "line": 51,
+        "scope": "verifyBundle",
+        "description": "checkReplay runs on the decoded events in chain order."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 61,
+        "scope": "applyPlan",
+        "description": "PlanCommitted sets planId, version and agent, but its agentExpiry is never read. onLoosenExecuted (lines 183-195) also ignores kinds 3 and 4, so onSpent has no agent-expiry state to check."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 100,
+        "scope": "checkPayee",
+        "description": "Adds a problem only when the payee is neither listed nor bound. Treasury requires bound AND listed by the current version. Without a binding, the cooling and lifetime-cap checks are skipped too."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 140,
+        "scope": "onSpent",
+        "description": "The rolling window checks only the summed amount. Treasury's 64 live-entry limit is not modelled."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 172,
+        "scope": "onMilestoneFunded",
+        "description": "With no block time, it checks only the sender, decision, cumulative total, and pocket/released/funded on the SUPPLIER line. It has no treasury-pause, agent-expiry, zero-amount, line-state or payee binding/cooling check."
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 277,
+        "scope": "checkOrphans",
+        "description": "Any later TreasuryPaused satisfies the orphan rule, including the line-level TreasuryPaused(lineId) emitted by tighten kind 5."
+      },
+      {
+        "kind": "sink",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 309,
+        "scope": "checkReplay",
+        "description": "Returns ok true with 'N events replayed, M spends within the plan' because none of the gaps above adds a problem."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "contracts/src/TreasuryState.sol",
+        "line": 274,
+        "description": "spend row 10: reverts PayeeNotBound unless the payee is bound and _listedVersion equals the current plan version."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 458,
+        "description": "_syncLine stamps _listedVersion only for the payees this version lists, and binds listed platform payees with a PayeeBound log (lines 461-466)."
+      },
+      {
+        "file": "contracts/src/PlanReplan.sol",
+        "line": 66,
+        "description": "A re-commit may drop payees; only adding one counts as a loosening."
+      },
+      {
+        "file": "contracts/src/TreasuryState.sol",
+        "line": 204,
+        "description": "_requireSpendingAgent reverts AgentExpired after agentExpiry (spend, and fundMilestone through requireSpendingAgent)."
+      },
+      {
+        "file": "contracts/src/PlanReplan.sol",
+        "line": 37,
+        "description": "A re-commit may lower agentExpiry below the line validUntil (only raising it is a loosening)."
+      },
+      {
+        "file": "packages/core/src/demo/rina.ts",
+        "line": 60,
+        "description": "In the demo plan, agentExpiresAt and validUntil (line 64) are both day 60, so line expiry masks the missing agent-expiry check for Spent there."
+      },
+      {
+        "file": "contracts/src/MilestoneEscrow.sol",
+        "line": 67,
+        "description": "fundMilestone first calls requireSpendingAgent (agent, revocation, treasury pause, expiry)."
+      },
+      {
+        "file": "contracts/src/MilestoneEscrow.sol",
+        "line": 72,
+        "description": "fundMilestone refuses a zero amount."
+      },
+      {
+        "file": "contracts/src/TreasuryModuleHooks.sol",
+        "line": 24,
+        "description": "checkEscrowLine requires an active, unexpired line with a closed circuit that is not paused, and a bound payee past cooling."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 366,
+        "description": "_requireCaps reverts once the line already has 64 live window entries."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 189,
+        "description": "tighten(TIGHTEN_PAUSE_LINE) emits TreasuryPaused(lineId), which checkOrphans accepts as the T29 pause."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 211,
+        "description": "Only pause() sets _paused and emits TreasuryPaused(bytes32(0))."
+      },
+      {
+        "file": "apps/worker/src/jobs/safety-pause.ts",
+        "line": 2,
+        "description": "The T29 response must end with Treasury.paused() true."
+      },
+      {
+        "file": "project.md",
+        "line": 719,
+        "description": "T29: a leaked agent key spending outside the backend is answered by an auto-pause."
+      },
+      {
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 2,
+        "description": "The header claims the replay mirrors Treasury's checks and updates the rules exactly as the contract does."
+      },
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 86,
+        "description": "A rewritten Spent log, with hashes.json recomputed, is expected to be caught by 'event replay', so the replay is the semantic barrier for log content."
+      },
+      {
+        "file": "tools/verify-evidence/test/fixture.ts",
+        "line": 176,
+        "description": "The fixture's commitPlan receipt carries only PlanCommitted (no PayeeBound), yet its Spents (line 212) pay line.payeeIds[0]."
+      },
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 32,
+        "description": "The test expects that fixture to pass every check, so accepting listed-but-unbound payees is load-bearing (source reading; not executed)."
+      },
+      {
+        "file": "packages/api/src/evidence/fetch.ts",
+        "line": 27,
+        "description": "The exporter fetches receipts only for its own mined payment and chain-action rows, so genuine orphan spends never reach a bundle."
+      }
+    ],
+    "blockers": [
+      "Run-6 forbids target execution (macOS cannot enforce the required sandbox limits, and no promotion code exists). The end-to-end verifyBundle verdict on the crafted bundles in the local plan was therefore not observed. Those bundles must also pass every other check (plan chain and signature for a re-signed v2, rationales, rows, receipts). Only the replay functions and the fixture source were read.",
+      "Whether any bundle a judge receives can contain such a log is not settled by this candidate. From source, a correct Treasury and MilestoneEscrow refuse all six patterns, and the exporter copies node receipts only for its own rows. The gap is therefore observable only with a contract regression (none is shown) or with a bundle whose receipt logs and rows were rewritten around stored agent-signed raw transactions (the separate tools/verify-evidence:unanchored-receipt-content candidate)."
+    ],
+    "validation_plan": {
+      "local": "Use an approved OS-enforced sandbox: no network, empty allowlisted environment, read-only target and toolchain, scratch-only writes, explicit CPU, memory and wall-clock limits. Copy tools/verify-evidence/test into scratch, add the cases below using buildFixture and its helpers (test/fixture.ts), and run only that vitest file. For each case record the 'event replay (caps, payees, duplicates)' check and the overall ok. (A) Unchanged fixture: no PayeeBound in the commit receipt, Spents to line.payeeIds[0]. Predicted today: ok true. A fixed replay must fail it until the fixture adds the Treasury PayeeBound logs that _syncLine emits for listed platform payees. (B) Add those PayeeBound logs. Then add a founder-signed v2 commit (prevPlanHash = v1 planHash; same lines, amounts and caps; LOGISTICS payeeIds without its payee) with its plans.json entry, PlanApproval signature request and chain action. Then add a planVersion-2 Spent to the dropped LOGISTICS payee. Predicted today: ok true; Treasury would revert PayeeNotBound. (C) Use a manifest whose agent.expiresAt is one day before the lines' validUntil (still after the judging window end), plus a Spent whose block time falls between the two. Predicted today: ok true; Treasury reverts AgentExpired. (D) Add an agent-signed fundMilestone tx to the fixture's MilestoneEscrow address, with a FUND_MILESTONE payment row and its MilestoneFunded log, placed after a TreasuryPaused(0) log from a pause chain action. Add a second one with amountMinor 0. Predicted today: ok true for both. (E) Add 65 Spents of 1 minor each, with distinct invoices on the LOGISTICS line, inside one windowSeconds, keeping the sum under windowCap. Predicted today: ok true; Treasury reverts the 65th. (F) Add a Spent in a receipt owned by a chain action with no payment row, followed only by TreasuryPaused(lineId) from a tighten kind-5 chain action. Predicted today: ok true with the 'orphan spend(s) followed by a pause' note. After the fix, every case must fail 'event replay'. Discard the scratch copy; nothing is promoted."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "tools/verify-evidence:unanchored-receipt-content",
+    "title": "verifyBundle reports ok / VERIFIED for a consistently rewritten bundle because receipts, logs, blocks and SUMMARY.md are bound to nothing outside the bundle's own files",
+    "description": "Boundary: bundle -> verifier verdict (a judge runs `make verify`, tools/verify-evidence/src/cli.ts, on a bundle they received). Anyone who can edit the bundle before that point, including the submitting team or anyone relaying or mirroring it, can change what the chain is shown to have done, with no key, and still get ok:true and 'VERIFIED: every check passed'. Every tx hash and raw signed tx stays intact, and the editor then regenerates hashes.json with the exported hashesFileOf. Minimal case (source-traced, not executed): a successful agent spend is presented as a blocked attack. In its receipt, set status to 0x0, logs to [] and logsBloom to logsBloom([]) (512 zero nibbles; logsBloom is exported at index.ts:29). Set the payments.json row to state REVERTED with revertReason CapExceeded. Add an onchain_revert evidence row (expected revert, expectedError and revertReason CapExceeded, outcome pass, contract Treasury, artifacts include the receipt). Then rehash. Each check still passes. transactions: the raw bytes, sender, destination and spend arguments are unchanged. receipts: a REVERTED row with status 0x0 is accepted (chain.ts:128-137), the bloom of [] matches (chain.ts:162), and the block is still in blocks.json (chain.ts:197). event replay: it replays only the events present, and nothing requires a successful spend tx to carry its Spent. rationale commitments: the payment's preimage is still listed. evidence rows: status 0x0 matches onchain_revert, and the pass is derived from the row's own revertReason (audit.ts:61). summary.ts:50-51 admits that revert reasons are unverified; this case also defeats the status check. Variants with the same root cause: (b) The founder key is read from the FounderKeyRegistered log (signatures.ts:23). The verifier never decodes the lender-signed registerFounderKey calldata (abi.ts:34 has no such function; PlanRegistry.sol:82). qx and qy are unindexed log data, so swapping them does not even change the bloom. PlanCommitted is accepted from any receipt (plans.ts:171), and the commitPlan calldata check is skipped when the commit action has no raw bytes (plans.ts:181). So an editor can swap the passkey key and re-sign with their own key. They then mark the commit action BROADCAST with rawSignedTx null, drop its receipt, move the PlanCommitted log into another PlanRegistry receipt, and the founder signature verifies against a key the lender never registered. This is the route to T27 (plan B shown, plan A signed), which verify-bundle.test.ts:133-139 treats as caught. (c) The block timestamps that drive the cooling, window and validUntil replay come from blocks.json, whose RawBlock has no header (bundle.ts:208). (d) SUMMARY.md, the human-readable index that says 'Do not edit' and that make verify recomputes everything (summary.ts:23-24), is only checked for existence (load.ts:110), so its row table and counts can be rewritten freely. Calibration: Sigstore-style or ledger bundles carry inclusion proofs to a trusted root. This verifier has no such root, so VERIFIED establishes internal consistency only, while index.ts:3, chain.ts:7 and SUMMARY.md claim more. A fully offline verifier cannot authenticate chain effects without at least one external anchor. Some binding is possible offline, though, and the rest can be reduced to one hash a judge can check. Fix: (1) Offline bindings. Every decoded event must sit in the receipt of the tx whose authenticated calldata produced it and must match that calldata: Spent and MilestoneFunded equal the spend and fundMilestone arguments; a successful spend or fundMilestone receipt carries exactly that event; PlanCommitted sits in the commitPlan tx's receipt and matches its approval; FounderKeyRegistered sits in the registerFounderKey tx's receipt and equals its decoded (qx, qy, ownerEOA). Never skip checkCalldata for a COMMITTED or SUPERSEDED plan. Regenerate SUMMARY.md inside the verifier and require byte equality. These bindings do not stop a status flip (reverted receipts carry no logs) or a wholesale fabrication with fresh keys. (2) Anchor. Ship each referenced block's RLP header plus receipt-trie and transaction-trie proofs. Verify keccak(header) = blockHash, inclusion against receiptsRoot and transactionsRoot, and the parentHash links. Print the head block hash and the contract addresses as the anchor a judge compares with Sepolia, and say in the CLI output and SUMMARY.md that VERIFIED is relative to that anchor.",
+    "claimed_root_cause": "verifyBundle has no trust anchor and no binding beyond the bundle's own files. hashes.json is an unkeyed index that anyone can regenerate (hashesFileOf, load.ts:88, exported at index.ts:24). Receipts and blocks are unauthenticated JSON. RawBlock (bundle.ts:208) holds no header, so no receiptsRoot or transactionsRoot inclusion can be checked. The receipt checks are self-referential: the bloom is recomputed from the same logs (chain.ts:162), the block hash is compared only with blocks.json (chain.ts:197), and the status is compared only with the row's own state label (chain.ts:128-137). Decoded events are never bound to the authenticated calldata of their own signed tx: registerFounderKey is not decoded, PlanCommitted may come from any receipt, commitPlan calldata is skipped when raw bytes are absent, and nothing requires a successful spend receipt to carry its Spent. SUMMARY.md is only checked for existence (load.ts:110). The test suite's attacker rewrites hashes.json but never recomputes logsBloom and never edits the row label together with the receipt (verify-bundle.test.ts:4-5, 95-108).",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "tools/verify-evidence/src/cli.ts",
+        "line": 52,
+        "scope": "main",
+        "description": "make verify reads a received bundle directory with readBundleDir; line 53 passes the files to verifyBundle"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/load.ts",
+        "line": 75,
+        "scope": "checkHashes",
+        "description": "The only file-level integrity control compares each file with hashes.json, which hashesFileOf (load.ts:88, exported at index.ts:24) regenerates for any edited file set"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/bundle.ts",
+        "line": 208,
+        "scope": "RawBlock",
+        "description": "A block holds only number, hash, parentHash and timestamp: no header from which blockHash, receiptsRoot or transactionsRoot could be recomputed"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 128,
+        "scope": "checkStatus",
+        "description": "Receipt status is compared only with the row state in payments.json or chain-actions.json, which the editor changes together (REVERTED with 0x0 passes)"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 162,
+        "scope": "decodeLogs",
+        "description": "logsBloom is compared with the bloom of the same (edited) logs, so removing or changing logs goes unnoticed once the bloom is recomputed; unindexed data such as qx and qy is not in the bloom at all"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 197,
+        "scope": "checkChain",
+        "description": "The receipt's block hash is compared only with blocks.json; lines 200-204 require a receipt only for rows whose own state label says mined"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/signatures.ts",
+        "line": 23,
+        "scope": "founderKeyOf",
+        "description": "The founder key is taken from a FounderKeyRegistered log, never from the lender-signed registerFounderKey calldata"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/plans.ts",
+        "line": 181,
+        "scope": "checkApprovals",
+        "description": "The commitPlan calldata check runs only if the commit action still carries raw bytes, and the PlanCommitted event used at line 171 may come from any receipt"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/replay.ts",
+        "line": 302,
+        "scope": "checkReplay",
+        "description": "The replay walks only the events present; a Spent that is removed, or a spend tx flipped to reverted, simply drops out with no check that a successful agent tx carries its event"
+      },
+      {
+        "kind": "propagation",
+        "file": "tools/verify-evidence/src/audit.ts",
+        "line": 61,
+        "scope": "checkOnchainRow",
+        "description": "An onchain_revert row passes from receipt status 0x0 plus the row's own revertReason, so a forged blocked-attack row is accepted"
+      },
+      {
+        "kind": "sink",
+        "file": "tools/verify-evidence/src/index.ts",
+        "line": 58,
+        "scope": "verifyBundle",
+        "description": "ok is true because every check passed on the consistently rewritten bundle; the CLI prints 'VERIFIED: every check passed' (cli.ts:60) and exits 0"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 4,
+        "description": "The project's stated tamper model: each tamper is also checked after the attacker rewrites hashes.json, and the semantic check must still catch it"
+      },
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 95,
+        "description": "The status flip is caught only because the payment row is left FINALIZED; changing the row to REVERTED too removes the mismatch"
+      },
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 102,
+        "description": "A topic edit is 'caught by the logs bloom' only because the test attacker does not recompute logsBloom, a public export (index.ts:29)"
+      },
+      {
+        "file": "tools/verify-evidence/test/verify-bundle.test.ts",
+        "line": 133,
+        "description": "T27 (plan B shown, plan A signed) is treated as caught, but only while the founder key and the commitPlan calldata are left untouched"
+      },
+      {
+        "file": "tools/verify-evidence/test/fixture.ts",
+        "line": 95,
+        "description": "The fixture builds every receipt's logsBloom with the verifier's own exported logsBloom, which an editor can call the same way"
+      },
+      {
+        "file": "tools/verify-evidence/src/chain.ts",
+        "line": 7,
+        "description": "The module claims the bloom check means a log address or topic cannot change unnoticed, which is false once the bloom is recomputed"
+      },
+      {
+        "file": "tools/verify-evidence/src/index.ts",
+        "line": 3,
+        "description": "The verifier claims nothing is trusted because the exporter wrote it, yet receipts, blocks and events are trusted as written"
+      },
+      {
+        "file": "tools/verify-evidence/src/abi.ts",
+        "line": 34,
+        "description": "hogeeCallsAbi decodes only commitPlan, spend and fundMilestone, so registerFounderKey calldata is never bound to the FounderKeyRegistered key"
+      },
+      {
+        "file": "contracts/src/PlanRegistry.sol",
+        "line": 82,
+        "description": "registerFounderKey(qx, qy, ownerEOA) takes the key as calldata in a lender-signed tx and emits FounderKeyRegistered with qx and qy unindexed"
+      },
+      {
+        "file": "packages/api/src/evidence/summary.ts",
+        "line": 23,
+        "description": "SUMMARY.md tells readers not to edit it, that hashes.json protects every file and that make verify recomputes everything, yet load.ts:110 only checks that it exists"
+      },
+      {
+        "file": "packages/api/src/evidence/summary.ts",
+        "line": 50,
+        "description": "The exporter admits revert reasons are unverified and that the verifier checks only the status, which is itself unauthenticated"
+      },
+      {
+        "file": "roles/ROLE-P1-lead.md",
+        "line": 169,
+        "description": "Task 1.16 acceptance: make verify exits non-zero on a tampered bundle"
+      },
+      {
+        "file": "project.md",
+        "line": 819,
+        "description": "The spec has the verifier check receipts only against stored hashes (hashes.json) with zero runtime network; no chain anchor is designed into the verifier"
+      },
+      {
+        "file": "project.md",
+        "line": 821,
+        "description": "The explorer links to Sepolia Etherscan, the only source-visible external anchor, whose use by judges is a process fact"
+      }
+    ],
+    "blockers": [
+      "Run-6 policy forbids executing target code, so the tampered fixtures (buildFixture plus the edits plus rehash) could not be run through verifyBundle. ok:true is predicted from source, not observed. The unexecuted steps are the zod parsing of the edited files and viem's decoding of the edited logs.",
+      "Whether the judging workflow anchors the bundle outside the verifier is a process fact that source cannot settle. It would do so if judges compare tx hashes, contract addresses or block hashes with Sepolia Etherscan through the explorer links (project.md:821). That fact decides whether a VERIFIED verdict on a rewritten bundle can mislead a judge in practice."
+    ],
+    "validation_plan": {
+      "local": "In an approved sandbox (no network, scratch-only writes, bounded time and memory), add vitest cases to tools/verify-evidence/test/verify-bundle.test.ts. Import buildFixture, editJson, rehash, CHAIN_ID and DEPLOYMENT_ID from ./fixture, and logsBloom, receiptPath and verifyBundle from ../src/index. Case A (status flip): fx1 = await buildFixture({spends:[{line:'LOGISTICS',amount:1000n,ref:1,after:60}]}); tx = fx1.spendTxs[0]. In receiptPath(tx), set status '0x0', logs [] and logsBloom logsBloom([]). In payments.json, set [0].payment.state 'REVERTED' and [0].payment.revertReason 'CapExceeded'. In evidence.json, push {taskId:'T3', title:'Spend over the per-tx cap is blocked', expected:'revert', expectedError:'CapExceeded', layer:'onchain_revert', outcome:'pass', txHash:tx, chainId:CHAIN_ID, deploymentId:DEPLOYMENT_ID, contract:'Treasury', function:'spend', revertReason:'CapExceeded', artifacts:[receiptPath(tx)]}. Then run verifyBundle(rehash(files)). Predicted today: ok === true and no failed check. After the fix it must be false. Case B (Spent dropped from a successful receipt): from the default buildFixture(), in receiptPath(fx.spendTxs[1]) set logs [] and logsBloom logsBloom([]), then rehash. Predicted: ok === true. Case C (founder key swap): take a fresh P-256 key K' (private key '66' repeated 32 times). Find the act-key tx in chain-actions.json. In its receipt, set the FounderKeyRegistered log's data to encodeAbiParameters([{type:'bytes32'},{type:'bytes32'}],[qx',qy']); the bloom is unchanged. Replace signatures.json[0].submission.passkey with an assertion over the unchanged stored digest, built as fixture.ts passkeyAssert does but signed with K'. In chain-actions.json, set act-commit's state 'BROADCAST' and rawSignedTx null. Delete receipts/<fx.commitTx>.json and append its PlanCommitted log to the act-key receipt, with that receipt's transactionHash, blockHash and blockNumber and logIndex '0x1'; set that receipt's logsBloom to logsBloom(its logs). Point evidence.json row 0 (S2) at the act-key tx: txHash, block, and artifacts [receiptPath(act-key tx)]. Then rehash. Predicted: ok === true, with the P-256 signature verified against K' instead of the key in the lender-signed registerFounderKey calldata. After the fix, cases A, B and C must each fail.",
+      "deployment": "Owner-observed only, no audit traffic to any live endpoint. The owner confirms whether judges are told to treat make verify / VERIFIED as sufficient, or are also told to compare the bundle's tx hashes, contract addresses or block hashes with Sepolia Etherscan. Optionally, the owner compares one exported bundle's receipt statuses with Sepolia themselves."
+    }
+  }
+]

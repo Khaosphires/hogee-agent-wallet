@@ -1,0 +1,80 @@
+[
+  {
+    "llmCallId": "4d49c89b-c55e-4a53-b1bc-eb3b172a586e",
+    "traceId": "trace-01a14faf-c8c0-7c1a-bba3-a1e707a23700",
+    "role": "planner",
+    "provider": "anthropic",
+    "modelId": "claude-sonnet-5-5",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096,
+      "providerOptions": {
+        "anthropic": {
+          "effort": "medium",
+          "thinking": {
+            "type": "between_tools"
+          }
+        }
+      }
+    },
+    "promptHash": "0x74a82e21ed7dafbeaaa3e8f68c26474a4e4e1aee3e2439d468cde3ca64f1aea3",
+    "responseHash": "0x0453ab7d2eff2678d7010c690c72fb695c99512db0dbb78441116775970d6ba1",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 0,
+    "tokens": {
+      "input": 12,
+      "output": 7
+    },
+    "createdAt": "2026-10-18T15:44:42.700Z"
+  },
+  {
+    "llmCallId": "bbfbd830-b999-4907-b70f-18d88ac5cc60",
+    "traceId": "trace-01a14faf-c8d5-781b-a246-a9fedda3b711",
+    "role": "planner",
+    "provider": "anthropic",
+    "modelId": "claude-sonnet-5-5",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096,
+      "providerOptions": {
+        "anthropic": {
+          "effort": "medium",
+          "thinking": {
+            "type": "between_tools"
+          }
+        }
+      }
+    },
+    "promptHash": "0x05ff4b91e9fe612760892aa973fc386d85d0a86e082ad5876d7fd6e73ae99e67",
+    "responseHash": "0x53bacab87dacc4d2e97de9126f4706968aa6be5cbeb06a0685f063a1e582c948",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 0,
+    "tokens": {
+      "input": 12,
+      "output": 7
+    },
+    "createdAt": "2026-10-18T15:44:42.713Z"
+  }
+]

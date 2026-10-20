@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15103-fbb9-7cc7-920c-e879e9a06898",
+    "seq": 0,
+    "ts": "2026-10-18T21:56:17.980Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Spend proposal CONTINGENCY: 1000 minor to spx-logistics (invoice inv-rt-t26-0-4-mved7jth) → DENY (PayeeNotBound)",
+    "policy_verdict": "DENY",
+    "reason_code": "PayeeNotBound",
+    "plan_version": 1,
+    "payment_id": null,
+    "invoice_hash": "0x2fc3925a53214c415449ff8df1b5a1ef786185bf712ae939986abba6ecd6b820",
+    "decision_id": "01a15103-fbb9-7828-ada7-9c3a556d54d4",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x6ad4164276894df4e351667f9c6bc5af6697ad35110de7e10b412cab888e1a64"
+  }
+]

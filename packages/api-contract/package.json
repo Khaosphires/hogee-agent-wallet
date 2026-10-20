@@ -1,0 +1,24 @@
+{
+  "name": "@hogee/api-contract",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Every HTTP route as zod {method, path, req, res, errors} (frozen at G0, P1).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:contract": "vitest run test/contract"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@hogee/core": "workspace:*",
+    "zod": "4.6.7"
+  }
+}

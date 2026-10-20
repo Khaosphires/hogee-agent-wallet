@@ -1,0 +1,51 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# builds and reports
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+
+# foundry (soldeer dependencies are restored with `forge soldeer install`)
+contracts/out/
+contracts/cache/
+contracts/dependencies/
+contracts/broadcast/*/31337/
+contracts/broadcast/*/20200/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# secrets: never commit real values (project.md §25.5)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# evidence bundles are generated; force-add only the final submission bundle (git add -f)
+evidence/*
+!evidence/.gitkeep
+
+# OS, editors, local AI-tool state
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.claude/settings.local.json
+.claude-flow/
+# Agent worktrees (Claude Code); never part of a commit
+.claude/worktrees/
+
+# P3 local Python tool installs (data/golden/README.md)
+.p3-tools/

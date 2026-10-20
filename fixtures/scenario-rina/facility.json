@@ -1,0 +1,10 @@
+{
+  "facilityId": "fac-rina",
+  "founderId": "founder-rina",
+  "capMinor": "1000000",
+  "currency": "MYR",
+  "reserveFloorBps": 300,
+  "lenderAddress": "0x0463af6b4bcdd2f27430411928de39a7d99897a4",
+  "chainId": 11155111,
+  "deploymentId": "final-1"
+}

@@ -1,0 +1,13 @@
+{
+  "chainId": 11155111,
+  "blockNumber": 11950253,
+  "blockHash": "0x84470a44a94d16a27a59f8609a6ef9c317a6ef9f1bc8965c693d81e4f4a7a809",
+  "capturedAt": "2026-10-19T19:30:26.670Z",
+  "addresses": {
+    "PlanRegistry": "0x07289c8852f9780f5b5b7010be7fb68fce159450",
+    "Treasury": "0xe08872f9496d21053b52b1127ac30e87300564fa",
+    "TreasuryGovernance": "0x322f48d1f770b2c73459b33848b49669b8df3df1",
+    "MilestoneEscrow": "0xa5222ebe0be5ce769491f2f3396d14244d5d5761",
+    "SalesOracle": "0x49fcfc043244a861da24dc16d19d3065732278e2"
+  }
+}

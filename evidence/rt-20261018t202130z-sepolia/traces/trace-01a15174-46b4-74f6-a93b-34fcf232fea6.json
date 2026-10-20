@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15174-46b4-74f6-a93b-34fcf232fea6",
+    "seq": 0,
+    "ts": "2026-10-18T23:58:57.205Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T20 (A LOGISTICS spend decided under v1): refused by policy DENY StalePlan; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "StalePlan",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xef78c7fe7b942ccc1791f90c8f7c33d6783a8df6e2955cd474b1a5af00b81247"
+  }
+]

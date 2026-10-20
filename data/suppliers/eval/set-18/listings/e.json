@@ -1,0 +1,49 @@
+{
+  "supplierId": "s18-e",
+  "displayName": "Amberbay Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-18/s18-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-18/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "690",
+      "sourceUrl": "https://example.invalid/e3/set-18/s18-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x28187979ed3f5b8ad7f97d0440258ccac57b8ed8e2c4ce0b6e38e92680c1d8ae",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 32,
+    "freightPerUnit": "80",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-149385-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.1,
+    "responseRate": 0.77,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7837237365",
+    "holderName": "Amberbay Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

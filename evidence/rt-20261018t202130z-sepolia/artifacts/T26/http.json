@@ -1,0 +1,802 @@
+[
+  {
+    "label": "injected spend 1",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-0-4-mved7jth",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "PayeeNotBound",
+      "traceId": "trace-01a15103-fbb9-7cc7-920c-e879e9a06898"
+    }
+  },
+  {
+    "label": "injected spend 2",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-1-5-mved8cy5",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "PayeeNotBound",
+      "traceId": "trace-01a15104-9050-7134-b26c-97ed3de155a8"
+    }
+  },
+  {
+    "label": "injected spend 3",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-2-6-mved9q09",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "PayeeNotBound",
+      "traceId": "trace-01a15105-877d-7869-adec-9c6122d2f0d8"
+    }
+  },
+  {
+    "label": "injected spend 4",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-3-7-mvedaklh",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-2354-7a39-97b7-440de504d460"
+    }
+  },
+  {
+    "label": "injected spend 5",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-4-8-mvedavs7",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-5b23-7422-a120-c09a53bcedf9"
+    }
+  },
+  {
+    "label": "injected spend 6",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-5-9-mvedb6cs",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-907b-703c-a37c-9edb8f920ba8"
+    }
+  },
+  {
+    "label": "injected spend 7",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-6-10-mvedb7ng",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-96fb-71e3-a032-1a0e4379010e"
+    }
+  },
+  {
+    "label": "injected spend 8",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-7-11-mvedb8xp",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-9d72-7275-bf28-a28c64032c26"
+    }
+  },
+  {
+    "label": "injected spend 9",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-8-12-mvedba7p",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-a467-77ab-b4d2-9671616e0b0a"
+    }
+  },
+  {
+    "label": "injected spend 10",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-9-13-mvedbbl6",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-aad9-7553-865e-eaae1f7ab4c2"
+    }
+  },
+  {
+    "label": "injected spend 11",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-10-14-mvedbcuz",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-b168-76e4-97a5-d9c039f95ebc"
+    }
+  },
+  {
+    "label": "injected spend 12",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-11-15-mvedbe5o",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-b7fa-79d0-b16f-4ee3da0863dd"
+    }
+  },
+  {
+    "label": "injected spend 13",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-12-16-mvedbfgc",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-be71-7388-9eac-2a9da4aa4e5f"
+    }
+  },
+  {
+    "label": "injected spend 14",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-13-17-mvedbgqa",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-c526-7f43-8481-e10b8b07d409"
+    }
+  },
+  {
+    "label": "injected spend 15",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-14-18-mvedbi20",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-cbc8-7e32-875d-54e81836668b"
+    }
+  },
+  {
+    "label": "injected spend 16",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-15-19-mvedbjd7",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-d261-72b8-8217-64e196c9571d"
+    }
+  },
+  {
+    "label": "injected spend 17",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-16-20-mvedbko4",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-d8f9-75e6-ad4e-63264423e434"
+    }
+  },
+  {
+    "label": "injected spend 18",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-17-21-mvedblyz",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-dff9-7584-af59-04757a74acb1"
+    }
+  },
+  {
+    "label": "injected spend 19",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-18-22-mvedbncs",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-e689-7e73-8d2e-f7aadd49bde3"
+    }
+  },
+  {
+    "label": "injected spend 20",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-19-23-mvedbonf",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-ed5f-7cba-b9dd-5586c97a07d0"
+    }
+  },
+  {
+    "label": "injected spend 21",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-20-24-mvedbq00",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-f3d8-71d1-bb6b-a2a3f8a1e9f9"
+    }
+  },
+  {
+    "label": "injected spend 22",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-21-25-mvedbra2",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-fa5b-74ff-b822-aeecb18e6656"
+    }
+  },
+  {
+    "label": "injected spend 23",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-22-26-mvedbskc",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-00dd-7131-9e3d-4b4061117f27"
+    }
+  },
+  {
+    "label": "injected spend 24",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-23-27-mvedbtun",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-0760-7d86-a594-acd575b383b0"
+    }
+  },
+  {
+    "label": "injected spend 25",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-24-28-mvedbv4x",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-0ddf-7fba-80fb-da966871654c"
+    }
+  },
+  {
+    "label": "injected spend 26",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-25-29-mvedbwf5",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-144a-7595-8391-8bca09230cf0"
+    }
+  },
+  {
+    "label": "injected spend 27",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-26-30-mvedbxor",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-1ac8-7553-a436-d27ba826d2b4"
+    }
+  },
+  {
+    "label": "injected spend 28",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-27-31-mvedbyyx",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-215d-7d14-be2c-d0566596a9f8"
+    }
+  },
+  {
+    "label": "injected spend 29",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-28-32-mvedc09r",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-27c9-77f6-874f-4d88aa9c54fe"
+    }
+  },
+  {
+    "label": "injected spend 30",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-29-33-mvedc1jg",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-2e33-71e3-aac5-ee029a751762"
+    }
+  },
+  {
+    "label": "injected spend 31",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-30-34-mvedc2sz",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-34cf-75eb-b8da-dc0b63a85aba"
+    }
+  },
+  {
+    "label": "injected spend 32",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-31-35-mvedc441",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-3b9f-7e69-b505-846dd0f7b40b"
+    }
+  },
+  {
+    "label": "injected spend 33",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-32-36-mvedc5gg",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-4216-7d0a-a8c6-8b0a5af92573"
+    }
+  },
+  {
+    "label": "injected spend 34",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-33-37-mvedc6qh",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-489d-7910-903c-7bda84943eec"
+    }
+  },
+  {
+    "label": "injected spend 35",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-34-38-mvedc80w",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-4f29-78b2-8530-fbc7f33e4686"
+    }
+  },
+  {
+    "label": "injected spend 36",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-35-39-mvedc9bg",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-55bc-7031-b7a6-666b341112cf"
+    }
+  },
+  {
+    "label": "injected spend 37",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-36-40-mvedcam7",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-5c25-7fb9-ad9d-760acd22525c"
+    }
+  },
+  {
+    "label": "injected spend 38",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-37-41-mvedcbvq",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-62a0-7714-a1b4-ec60b8fca560"
+    }
+  },
+  {
+    "label": "injected spend 39",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-38-42-mvedcd5t",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-6a57-7d08-8aef-458195bc5e24"
+    }
+  },
+  {
+    "label": "injected spend 40",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-39-43-mvedceop",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-70df-7b68-a344-1fa3ad091cfe"
+    }
+  },
+  {
+    "label": "injected spend 41",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-40-44-mvedcfz5",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-7773-78ca-b652-cc4eb3029d6c"
+    }
+  },
+  {
+    "label": "injected spend 42",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-41-45-mvedch9w",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-7e88-7045-acf2-1539664582d8"
+    }
+  },
+  {
+    "label": "injected spend 43",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-42-46-mvedcioa",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-8619-7aaf-aed3-081580d4ed02"
+    }
+  },
+  {
+    "label": "injected spend 44",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-43-47-mvedck62",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-8ca7-7f20-9287-e45577f51196"
+    }
+  },
+  {
+    "label": "injected spend 45",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-44-48-mvedclgs",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-948a-75c2-9a91-4d373bcb445d"
+    }
+  },
+  {
+    "label": "injected spend 46",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-45-49-mvedcn0u",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-9dbf-7a99-a941-acca2f42b788"
+    }
+  },
+  {
+    "label": "injected spend 47",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-46-50-mvedcoua",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-a535-702a-8f71-fe5ef88e2fcd"
+    }
+  },
+  {
+    "label": "injected spend 48",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-47-51-mvedcqbc",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-abd6-71c3-a0cf-284967e1223d"
+    }
+  },
+  {
+    "label": "injected spend 49",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-48-52-mvedcrmf",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-b282-7a4c-8155-f66da30e070d"
+    }
+  },
+  {
+    "label": "injected spend 50",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "CONTINGENCY",
+      "invoiceId": "inv-rt-t26-49-53-mvedcsxy",
+      "reason": "urgent"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-b913-7546-9f45-3d61bef8a27f"
+    }
+  }
+]

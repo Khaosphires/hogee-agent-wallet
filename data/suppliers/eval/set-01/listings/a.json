@@ -1,0 +1,51 @@
+{
+  "supplierId": "s01-a",
+  "displayName": "Cedarbrook Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913307233HJJ956B7J"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-01/s01-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-01/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "600",
+      "sourceUrl": "https://example.invalid/e3/set-01/s01-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xec6221a414382d557455942153cc772e46e8b2d3e92ac0fe7f1dff940ceb6be8",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 31,
+    "freightPerUnit": "90",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "ISO 9001 quality management",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "ISO-634971",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.4,
+    "responseRate": 0.93,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7955993399",
+    "holderName": "Cedarbrook Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

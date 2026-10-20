@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PiiCanaryFile",
+  "description": "Applies to: data/pii/canary-patterns.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "$comment": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "protected": {
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "regex": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "name",
+          "regex"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "patterns": {
+      "minItems": 1,
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "entity": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{1,63}$"
+          },
+          "regex": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "validator": {
+            "type": "string",
+            "enum": [
+              "MY_NRIC",
+              "MY_NRIC_PLAIN",
+              "ID_NIK",
+              "ID_NPWP",
+              "SG_NRIC",
+              "CREDIT_CARD",
+              "MY_BANK_ACCOUNT",
+              "ID_MOBILE",
+              "EMAIL"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "entity",
+          "regex"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "version",
+    "protected",
+    "patterns"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,183 @@
+[
+  {
+    "label": "exception RAISE_CAP",
+    "method": "POST",
+    "path": "/api/exceptions",
+    "body": {
+      "kind": "RAISE_CAP",
+      "payload": {
+        "lineKey": "PLATFORM_FEES",
+        "cap": "perTx",
+        "newCapMinor": "12500"
+      },
+      "reason": "Back to the plan's cap"
+    },
+    "status": 200,
+    "response": {
+      "exceptionId": "exc-01a150ff-1173-7e0d-abd4-45b04edc6c9e",
+      "title": "Raise the Platform fees per-payment limit to 125 BU BU",
+      "requestedBy": "founder",
+      "requires": {
+        "founder": true,
+        "lender": true
+      },
+      "status": "OPEN",
+      "timelock": null,
+      "txs": {},
+      "blastRadiusMinor": "2500",
+      "traceId": "trace-01a150ff-1173-727b-963e-5839753baade",
+      "kind": "RAISE_CAP",
+      "payload": {
+        "lineKey": "PLATFORM_FEES",
+        "cap": "perTx",
+        "newCapMinor": "12500"
+      }
+    }
+  },
+  {
+    "label": "founder approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a150ff-1173-7e0d-abd4-45b04edc6c9e/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "SIGNATURE_REQUIRED",
+      "signature": {
+        "requestId": "sig-01a150ff-1952-7977-8e8d-0b3871bbb41a",
+        "typedData": {
+          "domain": {
+            "name": "Hogee",
+            "version": "1",
+            "verifyingContract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+            "salt": "0xad2cf874712553c65a450322ecd5a8d900f5996d2fa7624cb6e05668b21a793c"
+          },
+          "types": {
+            "LoosenRequest": [
+              {
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "name": "target",
+                "type": "bytes32"
+              },
+              {
+                "name": "aux",
+                "type": "bytes32"
+              },
+              {
+                "name": "newValue",
+                "type": "uint256"
+              },
+              {
+                "name": "deploymentId",
+                "type": "bytes32"
+              },
+              {
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "name": "expiry",
+                "type": "uint64"
+              }
+            ]
+          },
+          "primaryType": "LoosenRequest",
+          "message": {
+            "kind": "1",
+            "target": "0x504c4154464f524d5f4645455300000000000000000000000000000000000000",
+            "aux": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "newValue": "12500",
+            "deploymentId": "0x66696e616c2d3100000000000000000000000000000000000000000000000000",
+            "nonce": "95503408628056555255391427432552876109580164958706098224892806708564956321563",
+            "expiry": "1792361148"
+          }
+        },
+        "digest": "0x8118d18cad69561b3c66d099e3f6b325e64ca82b5c04b115a563ceb3f1f534a7",
+        "challengeB64url": "gRjRjK1pVhs8ZtCZ4_azJeZMqCtcBLEVpWPOs_H1NKc",
+        "displayModel": {
+          "title": "Request a loosening",
+          "kind": "LoosenRequest",
+          "rows": [
+            {
+              "label": "Change",
+              "value": "Raise the Platform fees per-payment limit to 125 BU BU",
+              "effect": "loosen"
+            },
+            {
+              "label": "Most money this change can move",
+              "value": "25 BU BU",
+              "effect": "loosen"
+            },
+            {
+              "label": "What happens next",
+              "value": "The loan officer must co-sign; then a waiting period runs during which either of you can veto it",
+              "effect": "neutral"
+            }
+          ],
+          "digest": "0x8118d18cad69561b3c66d099e3f6b325e64ca82b5c04b115a563ceb3f1f534a7",
+          "chainId": 11155111,
+          "contract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+          "deploymentId": "final-1"
+        },
+        "expiresAt": "1792361148"
+      }
+    }
+  },
+  {
+    "label": "submit LoosenRequest",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a150ff-1952-7977-8e8d-0b3871bbb41a/submit",
+    "body": {
+      "passkey": {
+        "credentialId": "DRgLcm7TCkQ--zz3joCUtQ",
+        "r": "0x3472d1b642e619c4045d1ef7e171e8ca8af977bab55e19dadf8155b971682134",
+        "s": "0x04ee2a01aa97b2ced44a64971b07560459cb6dd6b25afb4473a7ede9d3950333",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000005",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"gRjRjK1pVhs8ZtCZ4_azJeZMqCtcBLEVpWPOs_H1NKc\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "status": 200,
+    "response": {
+      "actionId": "act-01a150ff-1abd-7202-9dac-cac81651d48e",
+      "state": "PENDING"
+    }
+  },
+  {
+    "label": "officer approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a150ff-1173-7e0d-abd4-45b04edc6c9e/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "APPROVED",
+      "exception": {
+        "exceptionId": "exc-01a150ff-1173-7e0d-abd4-45b04edc6c9e",
+        "title": "Raise the Platform fees per-payment limit to 125 BU BU",
+        "requestedBy": "founder",
+        "requires": {
+          "founder": true,
+          "lender": true
+        },
+        "status": "APPROVED",
+        "timelock": null,
+        "txs": {},
+        "blastRadiusMinor": "2500",
+        "traceId": "trace-01a150ff-1173-727b-963e-5839753baade",
+        "kind": "RAISE_CAP",
+        "payload": {
+          "lineKey": "PLATFORM_FEES",
+          "cap": "perTx",
+          "newCapMinor": "12500"
+        }
+      },
+      "action": {
+        "actionId": "act-01a150ff-1abd-7202-9dac-cac81651d48e",
+        "state": "PENDING"
+      }
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "sl-01a150af-794b-7aa8-ae89-482c5e38da65",
+    "seq": 0,
+    "ts": "2026-10-18T20:23:59.584Z",
+    "actor": "reader",
+    "kind": "TOOL_CALL",
+    "summary": "Shortlist ready: 2 ranked, 3 excluded by hard gates",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xf366116617fe35846d1667bb979c3db5473c104e5ec8435adfb90bf5f85f9eac"
+  }
+]

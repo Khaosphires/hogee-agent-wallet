@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150ff-eeea-7006-a4d9-c926855eb882",
+    "seq": 0,
+    "ts": "2026-10-18T21:51:52.555Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T12 (A replan with reserveBps 0 (literal from the page)): refused by policy DENY PlanInvariantViolated; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "PlanInvariantViolated",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xce5a2b8b2a29ba6471ab7b887b24b568264f0de0df04a8e67fa303bcf567c8f5"
+  }
+]

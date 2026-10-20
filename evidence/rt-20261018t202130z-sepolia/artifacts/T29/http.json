@@ -1,0 +1,171 @@
+[
+  {
+    "label": "exception UNPAUSE",
+    "method": "POST",
+    "path": "/api/exceptions",
+    "body": {
+      "kind": "UNPAUSE",
+      "payload": {},
+      "reason": "Resume after the T29 drill"
+    },
+    "status": 200,
+    "response": {
+      "exceptionId": "exc-01a15171-3691-7b68-8125-856872b8d4d6",
+      "title": "Resume all payments",
+      "requestedBy": "founder",
+      "requires": {
+        "founder": true,
+        "lender": true
+      },
+      "status": "OPEN",
+      "timelock": null,
+      "txs": {},
+      "blastRadiusMinor": "230500",
+      "traceId": "trace-01a15171-3691-7f08-bc46-009a7df4a7f0",
+      "kind": "UNPAUSE",
+      "payload": {}
+    }
+  },
+  {
+    "label": "founder approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a15171-3691-7b68-8125-856872b8d4d6/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "SIGNATURE_REQUIRED",
+      "signature": {
+        "requestId": "sig-01a15171-3fe1-7d1f-8c7e-5f96f4fea59e",
+        "typedData": {
+          "domain": {
+            "name": "Hogee",
+            "version": "1",
+            "verifyingContract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+            "salt": "0xad2cf874712553c65a450322ecd5a8d900f5996d2fa7624cb6e05668b21a793c"
+          },
+          "types": {
+            "LoosenRequest": [
+              {
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "name": "target",
+                "type": "bytes32"
+              },
+              {
+                "name": "aux",
+                "type": "bytes32"
+              },
+              {
+                "name": "newValue",
+                "type": "uint256"
+              },
+              {
+                "name": "deploymentId",
+                "type": "bytes32"
+              },
+              {
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "name": "expiry",
+                "type": "uint64"
+              }
+            ]
+          },
+          "primaryType": "LoosenRequest",
+          "message": {
+            "kind": "7",
+            "target": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "aux": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "newValue": "0",
+            "deploymentId": "0x66696e616c2d3100000000000000000000000000000000000000000000000000",
+            "nonce": "3094627248037480062084241946550327305851321115028420850294824549904127092584",
+            "expiry": "1792368636"
+          }
+        },
+        "digest": "0xc0d25a951b4a7d2a8c3fe11da20b92067e3d03e42bfce67edc1280cc110c5833",
+        "challengeB64url": "wNJalRtKfSqMP-EdoguSBn49A-Qr_OZ-3BKAzBEMWDM",
+        "displayModel": {
+          "title": "Request a loosening",
+          "kind": "LoosenRequest",
+          "rows": [
+            {
+              "label": "Change",
+              "value": "Resume all payments",
+              "effect": "loosen"
+            },
+            {
+              "label": "Most money this change can move",
+              "value": "2,305 BU BU",
+              "effect": "loosen"
+            },
+            {
+              "label": "What happens next",
+              "value": "The loan officer must co-sign; then a waiting period runs during which either of you can veto it",
+              "effect": "neutral"
+            }
+          ],
+          "digest": "0xc0d25a951b4a7d2a8c3fe11da20b92067e3d03e42bfce67edc1280cc110c5833",
+          "chainId": 11155111,
+          "contract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+          "deploymentId": "final-1"
+        },
+        "expiresAt": "1792368636"
+      }
+    }
+  },
+  {
+    "label": "submit LoosenRequest",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a15171-3fe1-7d1f-8c7e-5f96f4fea59e/submit",
+    "body": {
+      "passkey": {
+        "credentialId": "DRgLcm7TCkQ--zz3joCUtQ",
+        "r": "0xb5916ae527436efa3d104e9b0157c7b06f3b2fb57db01021fd7640482a570fd2",
+        "s": "0x5160d0fedd1a4f3c5a4eb1b2544ccccd766c47f7d1b1fe776b9ccbcef91854b9",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000007",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"wNJalRtKfSqMP-EdoguSBn49A-Qr_OZ-3BKAzBEMWDM\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "status": 200,
+    "response": {
+      "actionId": "act-01a15171-4154-7a1c-a352-519dee94198f",
+      "state": "PENDING"
+    }
+  },
+  {
+    "label": "officer approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a15171-3691-7b68-8125-856872b8d4d6/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "APPROVED",
+      "exception": {
+        "exceptionId": "exc-01a15171-3691-7b68-8125-856872b8d4d6",
+        "title": "Resume all payments",
+        "requestedBy": "founder",
+        "requires": {
+          "founder": true,
+          "lender": true
+        },
+        "status": "APPROVED",
+        "timelock": null,
+        "txs": {},
+        "blastRadiusMinor": "230500",
+        "traceId": "trace-01a15171-3691-7f08-bc46-009a7df4a7f0",
+        "kind": "UNPAUSE",
+        "payload": {}
+      },
+      "action": {
+        "actionId": "act-01a15171-4154-7a1c-a352-519dee94198f",
+        "state": "PENDING"
+      }
+    }
+  }
+]

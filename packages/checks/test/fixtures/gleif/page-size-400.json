@@ -1,0 +1,1 @@
+{"errors":[{"status":"400","title":"Invalid Query Parameter","detail":"The page.size must be between 1 and 200.","source":{"parameter":"page.size"}}]}

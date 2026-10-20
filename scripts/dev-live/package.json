@@ -1,0 +1,24 @@
+{
+  "name": "@hogee/dev-live",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "One-command local live stack (MOCK_API=0): Anvil + final-1, a throwaway Postgres, the worker and apps/web (P1, for P2 task 2.14).",
+  "scripts": {
+    "start": "node --import tsx src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@hogee/chain": "workspace:*",
+    "@hogee/db": "workspace:*",
+    "@hogee/redteam": "workspace:*",
+    "tsx": "4.23.15",
+    "viem": "2.57.6"
+  }
+}

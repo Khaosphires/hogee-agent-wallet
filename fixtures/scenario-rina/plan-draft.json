@@ -1,0 +1,373 @@
+{
+  "draftId": "draft-rina-mock",
+  "intent": {
+    "intentVersion": 1,
+    "countryCode": "MY",
+    "residency": "citizen",
+    "entityType": "sole_prop",
+    "productCategory": "drinkware_food_contact",
+    "sellChannel": "shopee",
+    "buyFrom": "CN",
+    "budgetCeilingMinor": "1000000",
+    "horizonDays": 60,
+    "lineEmphasis": {
+      "SUPPLIER": "high",
+      "PACKAGING": "med",
+      "LOGISTICS": "med",
+      "ADS": "med",
+      "PLATFORM_FEES": "med",
+      "CONTINGENCY": "med",
+      "LICENSING": "med"
+    },
+    "adsPacing": "conservative",
+    "answeredSlots": [
+      "residency",
+      "productCategory",
+      "budgetCeilingMinor",
+      "buyFrom",
+      "sellChannel"
+    ],
+    "assumptions": [
+      {
+        "slot": "entityType",
+        "text": "Sole proprietorship is a mock planning assumption."
+      },
+      {
+        "slot": "horizonDays",
+        "text": "Use a 60-day mock horizon."
+      },
+      {
+        "slot": "adsPacing",
+        "text": "Use conservative daily ad pacing."
+      }
+    ]
+  },
+  "manifest": {
+    "schemaVersion": "1.0.0",
+    "planId": "0x5b0b206261a8cff4faca40f807a51f4ed549ba1ebdada65d2daf4e5f15a928a6",
+    "version": 1,
+    "prevPlanHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "facilityId": "fac-rina",
+    "countryCode": "MY",
+    "countryPackVersion": "mock-unverified-1",
+    "countryPackHash": "0x38019351a43b12d40a29ba13032f31f9acc58a1013e5750d35ebd9e00596e949",
+    "displayCurrency": "MYR",
+    "totalMinor": "1000000",
+    "reserveBps": 500,
+    "agent": {
+      "address": "0xe6e43aaadd13397f8d14775346316a31759cd4b5",
+      "expiresAt": "1797292800"
+    },
+    "stages": [
+      {
+        "stageId": "stage-1",
+        "releaseMinor": "400000",
+        "gate": null
+      },
+      {
+        "stageId": "stage-2",
+        "releaseMinor": "600000",
+        "gate": {
+          "metric": "salesMinor",
+          "target": "200000",
+          "deadline": "1794700800"
+        }
+      }
+    ],
+    "lines": [
+      {
+        "lineKey": "SUPPLIER",
+        "purpose": "Insulated tumblers from the chosen supplier (escrow milestones only)",
+        "amountMinor": "500000",
+        "perTxCapMinor": "125000",
+        "windowCapMinor": "250000",
+        "escrowOnly": true,
+        "payeeIds": [],
+        "lineId": "0x535550504c494552000000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "PACKAGING",
+        "purpose": "Custom printed packaging",
+        "amountMinor": "150000",
+        "perTxCapMinor": "37500",
+        "windowCapMinor": "75000",
+        "escrowOnly": false,
+        "payeeIds": [],
+        "lineId": "0x5041434b4147494e470000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "LOGISTICS",
+        "purpose": "Inbound freight and last-mile delivery",
+        "amountMinor": "80000",
+        "perTxCapMinor": "20000",
+        "windowCapMinor": "40000",
+        "escrowOnly": false,
+        "payeeIds": [
+          "spx-logistics"
+        ],
+        "lineId": "0x4c4f474953544943530000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "ADS",
+        "purpose": "Marketplace ads, paced daily",
+        "amountMinor": "120000",
+        "perTxCapMinor": "30000",
+        "windowCapMinor": "60000",
+        "escrowOnly": false,
+        "payeeIds": [
+          "shopee-ads"
+        ],
+        "lineId": "0x4144530000000000000000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800",
+        "pacing": {
+          "period": "day",
+          "amountMinor": "7500"
+        }
+      },
+      {
+        "lineKey": "PLATFORM_FEES",
+        "purpose": "Marketplace platform and transaction fees",
+        "amountMinor": "50000",
+        "perTxCapMinor": "12500",
+        "windowCapMinor": "25000",
+        "escrowOnly": false,
+        "payeeIds": [
+          "shopee-fees"
+        ],
+        "lineId": "0x504c4154464f524d5f4645455300000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "CONTINGENCY",
+        "purpose": "Unplanned costs (owner-approved payees only)",
+        "amountMinor": "100000",
+        "perTxCapMinor": "25000",
+        "windowCapMinor": "50000",
+        "escrowOnly": false,
+        "payeeIds": [],
+        "lineId": "0x434f4e54494e47454e4359000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      }
+    ],
+    "rules": [
+      {
+        "ruleId": "mock-reserve",
+        "text": "Demo assumption: 5% of recorded sales is reserved; this is not a verified tax rate.",
+        "sourceRef": "compiler:mock-reserve-assumption"
+      },
+      {
+        "ruleId": "mock-supplier",
+        "text": "Supplier funds use the founder-approved milestone schedule.",
+        "sourceRef": "constitution:SUPPLIER_LINE_NOT_ESCROW"
+      }
+    ],
+    "aigc": {
+      "model": "mock-scripted-no-model-call",
+      "promptHash": "0xce36bd4d871b5aac8f87bd0e4fa8f5ca5c8e28989b6fb7980fddad71f7a33deb"
+    },
+    "compilerVersion": "mock-fixture-v1"
+  },
+  "baseline": {
+    "schemaVersion": "1.0.0",
+    "planId": "0x5b0b206261a8cff4faca40f807a51f4ed549ba1ebdada65d2daf4e5f15a928a6",
+    "version": 1,
+    "prevPlanHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "facilityId": "fac-rina",
+    "countryCode": "MY",
+    "countryPackVersion": "mock-unverified-1",
+    "countryPackHash": "0x38019351a43b12d40a29ba13032f31f9acc58a1013e5750d35ebd9e00596e949",
+    "displayCurrency": "MYR",
+    "totalMinor": "1000000",
+    "reserveBps": 500,
+    "agent": {
+      "address": "0xe6e43aaadd13397f8d14775346316a31759cd4b5",
+      "expiresAt": "1797292800"
+    },
+    "stages": [
+      {
+        "stageId": "stage-1",
+        "releaseMinor": "400000",
+        "gate": null
+      },
+      {
+        "stageId": "stage-2",
+        "releaseMinor": "600000",
+        "gate": {
+          "metric": "salesMinor",
+          "target": "200000",
+          "deadline": "1794700800"
+        }
+      }
+    ],
+    "lines": [
+      {
+        "lineKey": "SUPPLIER",
+        "purpose": "Insulated tumblers from the chosen supplier (escrow milestones only)",
+        "amountMinor": "500000",
+        "perTxCapMinor": "125000",
+        "windowCapMinor": "250000",
+        "escrowOnly": true,
+        "payeeIds": [],
+        "lineId": "0x535550504c494552000000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "PACKAGING",
+        "purpose": "Custom printed packaging",
+        "amountMinor": "150000",
+        "perTxCapMinor": "37500",
+        "windowCapMinor": "75000",
+        "escrowOnly": false,
+        "payeeIds": [],
+        "lineId": "0x5041434b4147494e470000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "LOGISTICS",
+        "purpose": "Inbound freight and last-mile delivery",
+        "amountMinor": "80000",
+        "perTxCapMinor": "20000",
+        "windowCapMinor": "40000",
+        "escrowOnly": false,
+        "payeeIds": [
+          "spx-logistics"
+        ],
+        "lineId": "0x4c4f474953544943530000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "ADS",
+        "purpose": "Marketplace ads, paced daily",
+        "amountMinor": "120000",
+        "perTxCapMinor": "30000",
+        "windowCapMinor": "60000",
+        "escrowOnly": false,
+        "payeeIds": [
+          "shopee-ads"
+        ],
+        "lineId": "0x4144530000000000000000000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800",
+        "pacing": {
+          "period": "day",
+          "amountMinor": "7500"
+        }
+      },
+      {
+        "lineKey": "PLATFORM_FEES",
+        "purpose": "Marketplace platform and transaction fees",
+        "amountMinor": "50000",
+        "perTxCapMinor": "12500",
+        "windowCapMinor": "25000",
+        "escrowOnly": false,
+        "payeeIds": [
+          "shopee-fees"
+        ],
+        "lineId": "0x504c4154464f524d5f4645455300000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      },
+      {
+        "lineKey": "CONTINGENCY",
+        "purpose": "Unplanned costs (owner-approved payees only)",
+        "amountMinor": "100000",
+        "perTxCapMinor": "25000",
+        "windowCapMinor": "50000",
+        "escrowOnly": false,
+        "payeeIds": [],
+        "lineId": "0x434f4e54494e47454e4359000000000000000000000000000000000000000000",
+        "windowSeconds": "604800",
+        "validUntil": "1797292800"
+      }
+    ],
+    "rules": [
+      {
+        "ruleId": "mock-reserve",
+        "text": "Demo assumption: 5% of recorded sales is reserved; this is not a verified tax rate.",
+        "sourceRef": "compiler:mock-reserve-assumption"
+      },
+      {
+        "ruleId": "mock-supplier",
+        "text": "Supplier funds use the founder-approved milestone schedule.",
+        "sourceRef": "constitution:SUPPLIER_LINE_NOT_ESCROW"
+      }
+    ],
+    "aigc": {
+      "model": "mock-scripted-no-model-call",
+      "promptHash": "0xce36bd4d871b5aac8f87bd0e4fa8f5ca5c8e28989b6fb7980fddad71f7a33deb"
+    },
+    "compilerVersion": "mock-fixture-v1"
+  },
+  "diff": [],
+  "blastRadiusMinor": "400000",
+  "constitutionReport": [
+    {
+      "code": "LINES_EXCEED_FACILITY_CAP",
+      "ok": true
+    },
+    {
+      "code": "AGENT_EXPIRY_TOO_LATE",
+      "ok": true
+    },
+    {
+      "code": "AGENT_EXPIRY_TOO_EARLY",
+      "ok": true
+    },
+    {
+      "code": "PER_TX_CAP_OVER_25PCT",
+      "ok": true
+    },
+    {
+      "code": "WINDOW_CAP_OVER_50PCT",
+      "ok": true
+    },
+    {
+      "code": "LINE_VALIDITY_TOO_LONG",
+      "ok": true
+    },
+    {
+      "code": "RESERVE_BELOW_FLOOR",
+      "ok": true
+    },
+    {
+      "code": "STAGE1_OVER_40PCT",
+      "ok": true
+    },
+    {
+      "code": "PLAN_ADDS_PAYEE",
+      "ok": true
+    },
+    {
+      "code": "SUPPLIER_LINE_NOT_ESCROW",
+      "ok": true
+    },
+    {
+      "code": "PAYEE_CAP_OVER_SCHEDULE",
+      "ok": true
+    },
+    {
+      "code": "TOTALS_MISMATCH",
+      "ok": true
+    },
+    {
+      "code": "MALFORMED_PLAN",
+      "ok": true
+    },
+    {
+      "code": "REPLAN_LOOSENS",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s01-c",
+  "displayName": "Amberpeak Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913205007A595PPR0D"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-01/s01-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-01/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "850",
+      "sourceUrl": "https://example.invalid/e3/set-01/s01-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x30b82a09f29dfb18f1660f794cb23711eeea6044b52b06c3f15c553eb25ea8b4",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 32,
+    "freightPerUnit": "50",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": true,
+    "payeeType": "personal"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-801237-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.6,
+    "responseRate": 0.76,
+    "yearsOnPlatform": 7
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7002895957",
+    "holderName": "Personal account of a sales manager (fictional) - DO NOT PAY"
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "verdicts": [
+    {
+      "i": 1,
+      "verdict": "DENY",
+      "reasonCode": "PayeeNotBound",
+      "traceId": "trace-01a15103-fbb9-7cc7-920c-e879e9a06898"
+    },
+    {
+      "i": 2,
+      "verdict": "DENY",
+      "reasonCode": "PayeeNotBound",
+      "traceId": "trace-01a15104-9050-7134-b26c-97ed3de155a8"
+    },
+    {
+      "i": 3,
+      "verdict": "DENY",
+      "reasonCode": "PayeeNotBound",
+      "traceId": "trace-01a15105-877d-7869-adec-9c6122d2f0d8"
+    },
+    {
+      "i": 4,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-2354-7a39-97b7-440de504d460"
+    },
+    {
+      "i": 5,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-5b23-7422-a120-c09a53bcedf9"
+    },
+    {
+      "i": 6,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-907b-703c-a37c-9edb8f920ba8"
+    },
+    {
+      "i": 7,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-96fb-71e3-a032-1a0e4379010e"
+    },
+    {
+      "i": 8,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-9d72-7275-bf28-a28c64032c26"
+    },
+    {
+      "i": 9,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-a467-77ab-b4d2-9671616e0b0a"
+    },
+    {
+      "i": 10,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-aad9-7553-865e-eaae1f7ab4c2"
+    },
+    {
+      "i": 11,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-b168-76e4-97a5-d9c039f95ebc"
+    },
+    {
+      "i": 12,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-b7fa-79d0-b16f-4ee3da0863dd"
+    },
+    {
+      "i": 13,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-be71-7388-9eac-2a9da4aa4e5f"
+    },
+    {
+      "i": 14,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-c526-7f43-8481-e10b8b07d409"
+    },
+    {
+      "i": 15,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-cbc8-7e32-875d-54e81836668b"
+    },
+    {
+      "i": 16,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-d261-72b8-8217-64e196c9571d"
+    },
+    {
+      "i": 17,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-d8f9-75e6-ad4e-63264423e434"
+    },
+    {
+      "i": 18,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-dff9-7584-af59-04757a74acb1"
+    },
+    {
+      "i": 19,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-e689-7e73-8d2e-f7aadd49bde3"
+    },
+    {
+      "i": 20,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-ed5f-7cba-b9dd-5586c97a07d0"
+    },
+    {
+      "i": 21,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-f3d8-71d1-bb6b-a2a3f8a1e9f9"
+    },
+    {
+      "i": 22,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15106-fa5b-74ff-b822-aeecb18e6656"
+    },
+    {
+      "i": 23,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-00dd-7131-9e3d-4b4061117f27"
+    },
+    {
+      "i": 24,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-0760-7d86-a594-acd575b383b0"
+    },
+    {
+      "i": 25,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-0ddf-7fba-80fb-da966871654c"
+    },
+    {
+      "i": 26,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-144a-7595-8391-8bca09230cf0"
+    },
+    {
+      "i": 27,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-1ac8-7553-a436-d27ba826d2b4"
+    },
+    {
+      "i": 28,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-215d-7d14-be2c-d0566596a9f8"
+    },
+    {
+      "i": 29,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-27c9-77f6-874f-4d88aa9c54fe"
+    },
+    {
+      "i": 30,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-2e33-71e3-aac5-ee029a751762"
+    },
+    {
+      "i": 31,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-34cf-75eb-b8da-dc0b63a85aba"
+    },
+    {
+      "i": 32,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-3b9f-7e69-b505-846dd0f7b40b"
+    },
+    {
+      "i": 33,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-4216-7d0a-a8c6-8b0a5af92573"
+    },
+    {
+      "i": 34,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-489d-7910-903c-7bda84943eec"
+    },
+    {
+      "i": 35,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-4f29-78b2-8530-fbc7f33e4686"
+    },
+    {
+      "i": 36,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-55bc-7031-b7a6-666b341112cf"
+    },
+    {
+      "i": 37,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-5c25-7fb9-ad9d-760acd22525c"
+    },
+    {
+      "i": 38,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-62a0-7714-a1b4-ec60b8fca560"
+    },
+    {
+      "i": 39,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-6a57-7d08-8aef-458195bc5e24"
+    },
+    {
+      "i": 40,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-70df-7b68-a344-1fa3ad091cfe"
+    },
+    {
+      "i": 41,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-7773-78ca-b652-cc4eb3029d6c"
+    },
+    {
+      "i": 42,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-7e88-7045-acf2-1539664582d8"
+    },
+    {
+      "i": 43,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-8619-7aaf-aed3-081580d4ed02"
+    },
+    {
+      "i": 44,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-8ca7-7f20-9287-e45577f51196"
+    },
+    {
+      "i": 45,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-948a-75c2-9a91-4d373bcb445d"
+    },
+    {
+      "i": 46,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-9dbf-7a99-a941-acca2f42b788"
+    },
+    {
+      "i": 47,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-a535-702a-8f71-fe5ef88e2fcd"
+    },
+    {
+      "i": 48,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-abd6-71c3-a0cf-284967e1223d"
+    },
+    {
+      "i": 49,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-b282-7a4c-8155-f66da30e070d"
+    },
+    {
+      "i": 50,
+      "verdict": "DENY",
+      "reasonCode": "CircuitOpen",
+      "traceId": "trace-01a15107-b913-7546-9f45-3d61bef8a27f"
+    }
+  ],
+  "anchors": [
+    {
+      "tx_hash": "0x776f79c3a1de78155f518765ab2352f726371860964b5847fd49bba3580846d5",
+      "state": "INCLUDED"
+    },
+    {
+      "tx_hash": "0xe66c8bfc6492d3ac59c1d85d6a51caca07f647a010187490a897bc093526872a",
+      "state": "INCLUDED"
+    },
+    {
+      "tx_hash": "0x270ff1883c02a3f53f0301e4474f4c176875c7808bfe3bde10c68746d28cc3c2",
+      "state": "INCLUDED"
+    }
+  ]
+}

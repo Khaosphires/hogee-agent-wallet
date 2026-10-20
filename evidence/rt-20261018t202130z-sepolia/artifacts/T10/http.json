@@ -1,0 +1,18 @@
+[
+  {
+    "label": "invoice while paused",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "LOGISTICS",
+      "invoiceId": "inv-rt-t10-55-mvehr3ia",
+      "reason": "courier"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "Paused",
+      "traceId": "trace-01a15178-6b34-7356-9983-a77b2215dddd"
+    }
+  }
+]

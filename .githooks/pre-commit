@@ -1,0 +1,8 @@
+#!/bin/sh
+# Blocks any commit that contains a secret (project.md §25.5).
+# Enabled automatically by `pnpm install` (root "prepare" script sets core.hooksPath=.githooks).
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks is not installed. Install it (see README 'Prerequisites') and commit again." >&2
+  exit 1
+fi
+exec gitleaks git --pre-commit --staged --redact --no-banner

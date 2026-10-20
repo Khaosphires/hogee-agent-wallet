@@ -1,0 +1,156 @@
+[
+  {
+    "id": "chat-1",
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "text": "I want to sell custom insulated tumblers on Shopee in Selangor with a budget of RM10,000."
+      }
+    ]
+  },
+  {
+    "id": "chat-2",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "text": "Are you a Malaysian citizen, permanent resident or foreign resident?"
+      },
+      {
+        "type": "data-question",
+        "data": {
+          "questionId": "q-residency",
+          "slot": "residency",
+          "text": "What is your residency?",
+          "options": [
+            {
+              "value": "citizen",
+              "label": "citizen"
+            },
+            {
+              "value": "pr",
+              "label": "pr"
+            },
+            {
+              "value": "foreigner",
+              "label": "foreigner"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "chat-3",
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "text": "I am a Malaysian citizen."
+      }
+    ]
+  },
+  {
+    "id": "chat-4",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "text": "Will you buy from China, and is RM10,000 your total budget ceiling?"
+      }
+    ]
+  },
+  {
+    "id": "chat-5",
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "text": "Yes, buy from China. Keep the total within RM10,000 and start with samples."
+      }
+    ]
+  },
+  {
+    "id": "chat-6",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "text": "Here is a mock launch plan. Supplier prices and reserve percentages are illustrative; local requirements still need verification."
+      },
+      {
+        "type": "data-intent",
+        "data": {
+          "intent": {
+            "intentVersion": 1,
+            "countryCode": "MY",
+            "residency": "citizen",
+            "entityType": "sole_prop",
+            "productCategory": "drinkware_food_contact",
+            "sellChannel": "shopee",
+            "buyFrom": "CN",
+            "budgetCeilingMinor": "1000000",
+            "horizonDays": 60,
+            "lineEmphasis": {
+              "SUPPLIER": "high",
+              "PACKAGING": "med",
+              "LOGISTICS": "med",
+              "ADS": "med",
+              "PLATFORM_FEES": "med",
+              "CONTINGENCY": "med",
+              "LICENSING": "med"
+            },
+            "adsPacing": "conservative",
+            "answeredSlots": [
+              "residency",
+              "productCategory",
+              "budgetCeilingMinor",
+              "buyFrom",
+              "sellChannel"
+            ],
+            "assumptions": [
+              {
+                "slot": "entityType",
+                "text": "Sole proprietorship is a mock planning assumption."
+              },
+              {
+                "slot": "horizonDays",
+                "text": "Use a 60-day mock horizon."
+              },
+              {
+                "slot": "adsPacing",
+                "text": "Use conservative daily ad pacing."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type": "data-plan-draft",
+        "data": {
+          "draftId": "draft-rina-mock"
+        }
+      }
+    ]
+  },
+  {
+    "id": "chat-7",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "data-shortlist",
+        "data": {
+          "requestId": "shortlist-rina-mock"
+        }
+      },
+      {
+        "type": "data-redflag",
+        "data": {
+          "text": "Clearpeak Tumbler Factory Co., Ltd.'s page contains instructions aimed at the AI and asks for a personal payment.",
+          "source": "supplier-c"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,388 @@
+[
+  {
+    "label": "exception RAISE_CAP",
+    "method": "POST",
+    "path": "/api/exceptions",
+    "body": {
+      "kind": "RAISE_CAP",
+      "payload": {
+        "lineKey": "ADS",
+        "cap": "perTx",
+        "newCapMinor": "30000"
+      },
+      "reason": "Raise ads back"
+    },
+    "status": 200,
+    "response": {
+      "exceptionId": "exc-01a15174-d645-7d31-9581-629c6ad3671e",
+      "title": "Raise the Ads per-payment limit to 300 BU BU",
+      "requestedBy": "founder",
+      "requires": {
+        "founder": true,
+        "lender": true
+      },
+      "status": "OPEN",
+      "timelock": null,
+      "txs": {},
+      "blastRadiusMinor": "10000",
+      "traceId": "trace-01a15174-d645-742e-b27a-c201188899bd",
+      "kind": "RAISE_CAP",
+      "payload": {
+        "lineKey": "ADS",
+        "cap": "perTx",
+        "newCapMinor": "30000"
+      }
+    }
+  },
+  {
+    "label": "founder approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a15174-d645-7d31-9581-629c6ad3671e/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "SIGNATURE_REQUIRED",
+      "signature": {
+        "requestId": "sig-01a15174-de19-7263-80c0-715a87472ce2",
+        "typedData": {
+          "domain": {
+            "name": "Hogee",
+            "version": "1",
+            "verifyingContract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+            "salt": "0xad2cf874712553c65a450322ecd5a8d900f5996d2fa7624cb6e05668b21a793c"
+          },
+          "types": {
+            "LoosenRequest": [
+              {
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "name": "target",
+                "type": "bytes32"
+              },
+              {
+                "name": "aux",
+                "type": "bytes32"
+              },
+              {
+                "name": "newValue",
+                "type": "uint256"
+              },
+              {
+                "name": "deploymentId",
+                "type": "bytes32"
+              },
+              {
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "name": "expiry",
+                "type": "uint64"
+              }
+            ]
+          },
+          "primaryType": "LoosenRequest",
+          "message": {
+            "kind": "1",
+            "target": "0x4144530000000000000000000000000000000000000000000000000000000000",
+            "aux": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "newValue": "30000",
+            "deploymentId": "0x66696e616c2d3100000000000000000000000000000000000000000000000000",
+            "nonce": "81870254166767466291030727804393438272291509323457453177179190268105260755779",
+            "expiry": "1792368864"
+          }
+        },
+        "digest": "0x6af0e0f01dee432e3879fb171b5901383f9243a43a336964166b2dbf888534ec",
+        "challengeB64url": "avDg8B3uQy44efsXG1kBOD-SQ6Q6M2lkFmstv4iFNOw",
+        "displayModel": {
+          "title": "Request a loosening",
+          "kind": "LoosenRequest",
+          "rows": [
+            {
+              "label": "Change",
+              "value": "Raise the Ads per-payment limit to 300 BU BU",
+              "effect": "loosen"
+            },
+            {
+              "label": "Most money this change can move",
+              "value": "100 BU BU",
+              "effect": "loosen"
+            },
+            {
+              "label": "What happens next",
+              "value": "The loan officer must co-sign; then a waiting period runs during which either of you can veto it",
+              "effect": "neutral"
+            }
+          ],
+          "digest": "0x6af0e0f01dee432e3879fb171b5901383f9243a43a336964166b2dbf888534ec",
+          "chainId": 11155111,
+          "contract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+          "deploymentId": "final-1"
+        },
+        "expiresAt": "1792368864"
+      }
+    }
+  },
+  {
+    "label": "submit LoosenRequest",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a15174-de19-7263-80c0-715a87472ce2/submit",
+    "body": {
+      "passkey": {
+        "credentialId": "DRgLcm7TCkQ--zz3joCUtQ",
+        "r": "0xb13220ce00d9d0afc0aabdd1fb5f61fa626b82276bc19b737135e29f56ad3e0b",
+        "s": "0x620eb691d3c9bfd48ce62be5f8d3a652e4da05ad75a1164d421c800c65ab1390",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000009",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"avDg8B3uQy44efsXG1kBOD-SQ6Q6M2lkFmstv4iFNOw\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "status": 200,
+    "response": {
+      "actionId": "act-01a15174-df84-798d-a2af-5cba197fb252",
+      "state": "PENDING"
+    }
+  },
+  {
+    "label": "officer approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a15174-d645-7d31-9581-629c6ad3671e/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "APPROVED",
+      "exception": {
+        "exceptionId": "exc-01a15174-d645-7d31-9581-629c6ad3671e",
+        "title": "Raise the Ads per-payment limit to 300 BU BU",
+        "requestedBy": "founder",
+        "requires": {
+          "founder": true,
+          "lender": true
+        },
+        "status": "APPROVED",
+        "timelock": null,
+        "txs": {},
+        "blastRadiusMinor": "10000",
+        "traceId": "trace-01a15174-d645-742e-b27a-c201188899bd",
+        "kind": "RAISE_CAP",
+        "payload": {
+          "lineKey": "ADS",
+          "cap": "perTx",
+          "newCapMinor": "30000"
+        }
+      },
+      "action": {
+        "actionId": "act-01a15174-df84-798d-a2af-5cba197fb252",
+        "state": "PENDING"
+      }
+    }
+  },
+  {
+    "label": "open exceptions",
+    "method": "GET",
+    "path": "/api/exceptions?status=OPEN",
+    "status": 200,
+    "response": [
+      {
+        "exceptionId": "exc-01a15102-69aa-7872-bfff-05836bb7a17b",
+        "title": "Release funding stage-2: its gate is met on-chain",
+        "requestedBy": "worker",
+        "requires": {
+          "founder": false,
+          "lender": true
+        },
+        "status": "OPEN",
+        "timelock": null,
+        "txs": {},
+        "blastRadiusMinor": "600000",
+        "traceId": "trace:exc:exc-01a15102-69aa-7872-bfff-05836bb7a17b",
+        "kind": "RELEASE_STAGE",
+        "payload": {
+          "stageId": "stage-2"
+        }
+      }
+    ]
+  },
+  {
+    "label": "officer approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a15102-69aa-7872-bfff-05836bb7a17b/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "APPROVED",
+      "exception": {
+        "exceptionId": "exc-01a15102-69aa-7872-bfff-05836bb7a17b",
+        "title": "Release funding stage-2: its gate is met on-chain",
+        "requestedBy": "worker",
+        "requires": {
+          "founder": false,
+          "lender": true
+        },
+        "status": "APPROVED",
+        "timelock": null,
+        "txs": {},
+        "blastRadiusMinor": "600000",
+        "traceId": "trace:exc:exc-01a15102-69aa-7872-bfff-05836bb7a17b",
+        "kind": "RELEASE_STAGE",
+        "payload": {
+          "stageId": "stage-2"
+        }
+      },
+      "action": {
+        "actionId": "act-01a15175-8dd7-79b5-9d3a-fa3a9fad9417",
+        "state": "PENDING"
+      }
+    }
+  },
+  {
+    "label": "inspection upload",
+    "method": "POST",
+    "path": "/api/escrow/order-a-001/inspection",
+    "status": 200,
+    "response": "{\"evidenceHash\":\"0xe42634739612a40a8a97826875cf41af9752822338e5c2b1e8fb082f6c597ea9\"}"
+  },
+  {
+    "label": "request MilestoneRelease",
+    "method": "POST",
+    "path": "/api/signatures/request",
+    "body": {
+      "kind": "MilestoneRelease",
+      "refId": "order-a-001",
+      "method": "passkey"
+    },
+    "status": 200,
+    "response": {
+      "requestId": "sig-01a15176-9449-75ef-891f-5958711066c0",
+      "typedData": {
+        "domain": {
+          "name": "Hogee",
+          "version": "1",
+          "verifyingContract": "0xa1d1b9befaff3217c08a0fe0c24b014513b176a7",
+          "salt": "0xad2cf874712553c65a450322ecd5a8d900f5996d2fa7624cb6e05668b21a793c"
+        },
+        "types": {
+          "MilestoneRelease": [
+            {
+              "name": "orderId",
+              "type": "bytes32"
+            },
+            {
+              "name": "idx",
+              "type": "uint8"
+            },
+            {
+              "name": "amountMinor",
+              "type": "uint128"
+            },
+            {
+              "name": "evidenceHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "deploymentId",
+              "type": "bytes32"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256"
+            },
+            {
+              "name": "expiry",
+              "type": "uint64"
+            }
+          ]
+        },
+        "primaryType": "MilestoneRelease",
+        "message": {
+          "orderId": "0x6f726465722d612d303031000000000000000000000000000000000000000000",
+          "idx": "2",
+          "amountMinor": "280000",
+          "evidenceHash": "0xe42634739612a40a8a97826875cf41af9752822338e5c2b1e8fb082f6c597ea9",
+          "deploymentId": "0x66696e616c2d3100000000000000000000000000000000000000000000000000",
+          "nonce": "29704525935432039741028511771083451488728553939109290477436022969909667491541",
+          "expiry": "1792368984"
+        }
+      },
+      "digest": "0xfee9557a111acd65c16e60260c5f327c513b504dc53c3aea6145a99701d34619",
+      "challengeB64url": "_ulVehEazWXBbmAmDF8yfFE7UE3FPDrqYUWplwHTRhk",
+      "displayModel": {
+        "title": "Release milestone 3 of order-a-001",
+        "kind": "MilestoneRelease",
+        "rows": [
+          {
+            "label": "Pays",
+            "value": "2,800 BU BU from escrow to supplier-a",
+            "effect": "loosen"
+          },
+          {
+            "label": "Inspection evidence",
+            "value": "0xe42634739612a40a8a97826875cf41af9752822338e5c2b1e8fb082f6c597ea9",
+            "effect": "neutral"
+          },
+          {
+            "label": "Order",
+            "value": "order-a-001",
+            "effect": "neutral"
+          }
+        ],
+        "digest": "0xfee9557a111acd65c16e60260c5f327c513b504dc53c3aea6145a99701d34619",
+        "chainId": 11155111,
+        "contract": "0xa1d1b9befaff3217c08a0fe0c24b014513b176a7",
+        "deploymentId": "final-1"
+      },
+      "expiresAt": "1792368984"
+    }
+  },
+  {
+    "label": "submit MilestoneRelease",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a15176-9449-75ef-891f-5958711066c0/submit",
+    "body": {
+      "passkey": {
+        "credentialId": "DRgLcm7TCkQ--zz3joCUtQ",
+        "r": "0x9d9328a42cacd1e461ce6c8f84d1a44d24c95e91bf440fdee2d37626243b0365",
+        "s": "0x2e0a0ff91ce62af61496c9469d3c957b6f6fc13de62710d8cc317a7488628c5d",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d9763050000000a",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"_ulVehEazWXBbmAmDF8yfFE7UE3FPDrqYUWplwHTRhk\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "status": 200,
+    "response": {
+      "actionId": "release:sig-01a15176-9449-75ef-891f-5958711066c0",
+      "state": "PENDING"
+    }
+  },
+  {
+    "label": "pause",
+    "method": "POST",
+    "path": "/api/control/pause",
+    "body": {},
+    "status": 200,
+    "response": {
+      "actionId": "act-01a15177-bb5b-7038-ad21-e370fb1ae6bd",
+      "state": "PENDING"
+    }
+  },
+  {
+    "label": "next ads slot",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "ADS",
+      "pacingSlot": 3,
+      "reason": "daily ads"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "Paused",
+      "traceId": "trace-01a15178-2731-7266-8a5b-ebead9858755"
+    }
+  }
+]

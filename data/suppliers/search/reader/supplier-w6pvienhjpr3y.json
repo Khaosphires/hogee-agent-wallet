@@ -1,0 +1,107 @@
+{
+  "label": "recorded sample",
+  "kind": "listing",
+  "docId": "supplier-w6pvienhjpr3y",
+  "fields": {
+    "sellerName": {
+      "value": "Wuyi Starquill Steelware Co., Ltd.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w6pvienhjpr3y"
+    },
+    "productTitle": {
+      "value": "20oz powder coated vacuum tumbler with straw lid",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w6pvienhjpr3y"
+    },
+    "unitPrice": {
+      "value": {
+        "amountMinor": "245",
+        "currency": "USD",
+        "unit": "USD",
+        "sourceUrl": "https://starquill.en.alibaba.com/product/1600563318207-822044718/Powder_Coated_20oz_Vacuum_Tumbler.html",
+        "snippetHash": "0x00b5ec7ae23bc55f033e0541fdcb127a794a2847fa7cd6c52f8e365d3dd1d1c1",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w6pvienhjpr3y"
+    },
+    "moq": {
+      "value": {
+        "value": "500",
+        "unit": "pieces",
+        "sourceUrl": "https://starquill.en.alibaba.com/product/1600563318207-822044718/Powder_Coated_20oz_Vacuum_Tumbler.html",
+        "snippetHash": "0x836c9c696ea00e54ed7c05926102df86d55a182f18cc25293789debe4e66efa7",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w6pvienhjpr3y"
+    },
+    "leadTimeDays": {
+      "value": {
+        "value": "28",
+        "unit": "days",
+        "sourceUrl": "https://starquill.en.alibaba.com/product/1600563318207-822044718/Powder_Coated_20oz_Vacuum_Tumbler.html",
+        "snippetHash": "0x751ea06299f73ee46aace81954cb4c45f6051a0db9489d7003e31bbb8230b3ce",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w6pvienhjpr3y"
+    },
+    "certificates": {
+      "value": [
+        "FDA food contact test report"
+      ],
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w6pvienhjpr3y"
+    },
+    "claimsEscrow": {
+      "value": true,
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w6pvienhjpr3y"
+    }
+  },
+  "flags": [],
+  "redFlags": [],
+  "supplierGates": [],
+  "dropped": [],
+  "repaired": false,
+  "llmCallIds": [],
+  "extracted": {
+    "unitPrice": {
+      "value": "245",
+      "unit": "USD",
+      "snippetHash": "0x00b5ec7ae23bc55f033e0541fdcb127a794a2847fa7cd6c52f8e365d3dd1d1c1"
+    },
+    "moq": {
+      "value": "500",
+      "unit": "pieces",
+      "snippetHash": "0x836c9c696ea00e54ed7c05926102df86d55a182f18cc25293789debe4e66efa7"
+    },
+    "leadTimeDays": {
+      "value": "28",
+      "unit": "days",
+      "snippetHash": "0x751ea06299f73ee46aace81954cb4c45f6051a0db9489d7003e31bbb8230b3ce"
+    }
+  }
+}

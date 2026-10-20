@@ -1,0 +1,51 @@
+{
+  "supplierId": "s05-c",
+  "displayName": "Quartzcrest Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330784GMH4HY760W"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-05/s05-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-05/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "490",
+      "sourceUrl": "https://example.invalid/e3/set-05/s05-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x7587f798b520bf8e1509906e19540ec588fb10754f81ea5942bbba88ce03ee8e",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 10,
+    "freightPerUnit": "100",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-755637-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.81,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7217040409",
+    "holderName": "Quartzcrest Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

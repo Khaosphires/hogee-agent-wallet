@@ -1,0 +1,44 @@
+{
+  "supplierId": "s08-d",
+  "displayName": "Birchbrook Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91441900Y7HEN7PF3J"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-08/s08-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-08/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "830",
+      "sourceUrl": "https://example.invalid/e3/set-08/s08-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x715a00cd9315c97f56034baa24b71e96afd4e3e76fc4fb948c2cf58bb4016e19",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 31,
+    "freightPerUnit": "60",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [],
+  "metrics": {
+    "rating": 5,
+    "responseRate": 0.94,
+    "yearsOnPlatform": 15
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7679392815",
+    "holderName": "Birchbrook Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

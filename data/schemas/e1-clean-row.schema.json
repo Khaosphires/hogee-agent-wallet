@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E1CleanRow",
+  "description": "Applies to: each line of evals/datasets/e1/clean.jsonl",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "caseId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "vector": {
+      "type": "string",
+      "const": "invoice"
+    },
+    "lang": {
+      "type": "string",
+      "enum": [
+        "en",
+        "ms",
+        "id"
+      ]
+    },
+    "payload": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20000
+    },
+    "payeeId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+      "description": "Payee id (bytes32 on-chain via stringToHex)"
+    },
+    "lineKey": {
+      "type": "string",
+      "enum": [
+        "SUPPLIER",
+        "PACKAGING",
+        "LOGISTICS",
+        "ADS",
+        "PLATFORM_FEES",
+        "LICENSING",
+        "CONTINGENCY"
+      ]
+    },
+    "amountMinor": {
+      "type": "string",
+      "maxLength": 39,
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "description": "Money in minor units (1 BU = 100 minor), digit string"
+    },
+    "expected": {
+      "type": "string",
+      "const": "paid"
+    }
+  },
+  "required": [
+    "caseId",
+    "vector",
+    "lang",
+    "payload",
+    "payeeId",
+    "lineKey",
+    "amountMinor",
+    "expected"
+  ],
+  "additionalProperties": false
+}

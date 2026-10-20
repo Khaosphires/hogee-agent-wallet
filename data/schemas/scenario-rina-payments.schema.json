@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/payments.json",
+  "description": "Applies to: fixtures/scenario-rina/payments.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "paymentId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+        "description": "Opaque id"
+      },
+      "kind": {
+        "type": "string",
+        "enum": [
+          "SPEND",
+          "FUND_MILESTONE",
+          "RELEASE_MILESTONE",
+          "OWNER_SPEND",
+          "WITHDRAW_RESERVE"
+        ]
+      },
+      "intentId": {
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{64}$",
+        "description": "32-byte value, 0x + 64 lowercase hex"
+      },
+      "lineKey": {
+        "anyOf": [
+          {
+            "type": "string",
+            "enum": [
+              "SUPPLIER",
+              "PACKAGING",
+              "LOGISTICS",
+              "ADS",
+              "PLATFORM_FEES",
+              "LICENSING",
+              "CONTINGENCY"
+            ]
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "payeeId": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+        "description": "Payee id (bytes32 on-chain via stringToHex)"
+      },
+      "amountMinor": {
+        "type": "string",
+        "maxLength": 39,
+        "pattern": "^(0|[1-9][0-9]*)$",
+        "description": "Money in minor units (1 BU = 100 minor), digit string"
+      },
+      "invoiceHash": {
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{64}$",
+        "description": "No-invoice lines: the on-chain per-line sequence number as bytes32. WITHDRAW_RESERVE: ZERO_HEX32 (no invoice)."
+      },
+      "planVersion": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 4294967295
+      },
+      "state": {
+        "type": "string",
+        "enum": [
+          "PROPOSED",
+          "POLICY_DENIED",
+          "POLICY_OK",
+          "SIGNED",
+          "BROADCAST",
+          "INCLUDED",
+          "FINALIZED",
+          "SETTLEMENT_REQUESTED",
+          "SETTLED",
+          "SETTLEMENT_FAILED",
+          "REVERTED",
+          "DROPPED",
+          "CANCELLED"
+        ]
+      },
+      "txHash": {
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{64}$",
+        "description": "32-byte value, 0x + 64 lowercase hex"
+      },
+      "block": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991,
+        "description": "Block number"
+      },
+      "revertReason": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "payout": {
+        "type": "object",
+        "properties": {
+          "payoutId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+            "description": "Opaque id"
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "REQUESTED",
+              "SUCCEEDED",
+              "FAILED"
+            ]
+          },
+          "failureCode": {
+            "description": "e.g. INVALID_DESTINATION, SLS_RECIPIENT",
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,31}$"
+          }
+        },
+        "required": [
+          "attempt",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "decisionId": {
+        "anyOf": [
+          {
+            "type": "string",
+            "allOf": [
+              {
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-7[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})$"
+              },
+              {
+                "pattern": "^[0-9a-f-]+$"
+              }
+            ],
+            "description": "Agent decision id (UUIDv7; left-padded to bytes32 on-chain)"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "rationaleHash": {
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^0x[0-9a-f]{64}$",
+            "description": "32-byte value, 0x + 64 lowercase hex"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "traceId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+        "description": "Opaque id"
+      },
+      "updatedAt": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+        "description": "ISO-8601 UTC timestamp ending in Z"
+      }
+    },
+    "required": [
+      "paymentId",
+      "kind",
+      "intentId",
+      "lineKey",
+      "payeeId",
+      "amountMinor",
+      "invoiceHash",
+      "planVersion",
+      "state",
+      "payout",
+      "decisionId",
+      "rationaleHash",
+      "traceId",
+      "updatedAt"
+    ],
+    "additionalProperties": false
+  }
+}

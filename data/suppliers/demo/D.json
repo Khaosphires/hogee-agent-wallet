@@ -1,0 +1,139 @@
+{
+  "supplier": {
+    "supplierId": "supplier-d",
+    "displayName": "Redmaple Homeware Co., Ltd. (demo)",
+    "country": "CN",
+    "ids": {
+      "uscc": "91440100G3GMM67590"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-d",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/d.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "530",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-d#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0xec75950f0322f1d5232c2146c2a112e52779fe846f65c73ffd4147265871e2d3",
+        "evidence": "tier2",
+        "sourceType": "mock"
+      },
+      "moq": 500,
+      "leadTimeDays": 20,
+      "freightPerUnit": "70",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": true,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "FDA 21 CFR food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-D-FDA-2026",
+        "tier": "tier2"
+      }
+    ],
+    "metrics": {
+      "rating": 4.6,
+      "responseRate": 0.95,
+      "yearsOnPlatform": 5
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8878071698",
+      "holderName": "Redmaple Homeware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-d-price",
+      "supplierId": "supplier-d",
+      "criterion": "landed_cost",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-d#price",
+      "snippetHash": "0xec75950f0322f1d5232c2146c2a112e52779fe846f65c73ffd4147265871e2d3",
+      "value": "Price: CNY 5.30 per piece FOB Guangzhou.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-d-lead-time",
+      "supplierId": "supplier-d",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-d#lead",
+      "snippetHash": "0x64c1d5d89910ffc02d370241b250d890fd7f798adf499129a903684923d4b602",
+      "value": "Lead time: 20 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-d-terms",
+      "supplierId": "supplier-d",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-d#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-d-response-rate",
+      "supplierId": "supplier-d",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-d#response-rate",
+      "snippetHash": "0xe43ec45f5b3e82054b4c76b1010a1f270f024605b3d8376a56bd7b080ba4ff61",
+      "value": "Platform response rate (demo metric): 95%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-d-cert-1-quality",
+      "supplierId": "supplier-d",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-d#cert-1",
+      "snippetHash": "0xcd1594ac8bbca12a7d4b7f46cbf2350143ff324baddac791f65ee3b16b6c5585",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-D-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-d-cert-1-compliance",
+      "supplierId": "supplier-d",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-d#cert-1",
+      "snippetHash": "0xcd1594ac8bbca12a7d4b7f46cbf2350143ff324baddac791f65ee3b16b6c5585",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-D-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

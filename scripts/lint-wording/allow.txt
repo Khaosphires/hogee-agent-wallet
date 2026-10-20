@@ -1,0 +1,11 @@
+# Exact phrases allowed by ROLE-P3-data.md task 3.1.
+# Exceptions apply only to the matched phrase, not the whole line.
+issuer
+GitHub issue
+Free Trade
+x-callback-token
+# The plural "tokens" usage-column heading is already outside whole-word "token".
+tokens
+# Narrow factual/disclaimer phrases requested in P1's review; not whole-line exceptions.
+trade name
+not legal or tax advice

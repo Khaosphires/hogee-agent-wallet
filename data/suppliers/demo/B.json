@@ -1,0 +1,139 @@
+{
+  "supplier": {
+    "supplierId": "supplier-b",
+    "displayName": "Harbourline Cups Co., Ltd. (demo)",
+    "country": "CN",
+    "ids": {
+      "uscc": "9144030006PPL9069J"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-b",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/b.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "520",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-b#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0x1017a88bf56dc3d2996b5532eb7d92da6f1a3cf841e0fa9c89064759bd2feb5b",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "moq": 300,
+      "leadTimeDays": 28,
+      "freightPerUnit": "75",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "FDA 21 CFR food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-B-FDA-2026",
+        "tier": "tier3"
+      }
+    ],
+    "metrics": {
+      "rating": 4.5,
+      "responseRate": 0.9,
+      "yearsOnPlatform": 4
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8898992689",
+      "holderName": "Harbourline Cups Co., Ltd. (demo) - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-b-price",
+      "supplierId": "supplier-b",
+      "criterion": "landed_cost",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-b#price",
+      "snippetHash": "0x1017a88bf56dc3d2996b5532eb7d92da6f1a3cf841e0fa9c89064759bd2feb5b",
+      "value": "Price: CNY 5.20 per piece FOB Shenzhen.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-b-lead-time",
+      "supplierId": "supplier-b",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-b#lead",
+      "snippetHash": "0x6a4c9877e96ee7eb8f95ab64b0cc4727a2fcc17e7da545ddddf6d4be20b6b0b1",
+      "value": "Lead time: 28 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-b-terms",
+      "supplierId": "supplier-b",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-b#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-b-response-rate",
+      "supplierId": "supplier-b",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-b#response-rate",
+      "snippetHash": "0xd61837c93cee24dc850cbd2f503b24d70e5fa81cda793ac076dee8592fc52b9b",
+      "value": "Platform response rate (demo metric): 90%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-b-cert-1-quality",
+      "supplierId": "supplier-b",
+      "criterion": "quality_evidence",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-b#cert-1",
+      "snippetHash": "0xc9bba6677c71d36eed99c1c380b3e6c7c93c77b59938f0200aa16e6e38d1a0d1",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-B-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-b-cert-1-compliance",
+      "supplierId": "supplier-b",
+      "criterion": "compliance",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-b#cert-1",
+      "snippetHash": "0xc9bba6677c71d36eed99c1c380b3e6c7c93c77b59938f0200aa16e6e38d1a0d1",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-B-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

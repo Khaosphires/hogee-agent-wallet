@@ -1,0 +1,57 @@
+{
+  "supplierId": "s14-d",
+  "displayName": "Cedarpeak Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91350200F2RQL1UH7G"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-14/s14-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-14/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "590",
+      "sourceUrl": "https://example.invalid/e3/set-14/s14-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xc735fe07a4a3cf217f21a5b627ad32d7019f8ccae265045516bb0e1cd7f3a64b",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 46,
+    "freightPerUnit": "60",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-465067-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-324938-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.86,
+    "yearsOnPlatform": 7
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7977830128",
+    "holderName": "Cedarpeak Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

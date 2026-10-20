@@ -1,0 +1,108 @@
+{
+  "label": "recorded sample",
+  "kind": "listing",
+  "docId": "supplier-wktbk5xmzmfob",
+  "fields": {
+    "sellerName": {
+      "value": "Yongkang Corvane Drinkware Co., Ltd.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wktbk5xmzmfob"
+    },
+    "productTitle": {
+      "value": "20oz double-wall vacuum insulated tumbler",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wktbk5xmzmfob"
+    },
+    "unitPrice": {
+      "value": {
+        "amountMinor": "235",
+        "currency": "USD",
+        "unit": "USD",
+        "sourceUrl": "https://www.alibaba.com/product-detail/20oz-Insulated-Stainless-Steel-Tumbler-Custom_1600482713501.html",
+        "snippetHash": "0x99da0e47127a36fe24327f7150ac66e13861017b2011f0ae2e0432c6b3296fc3",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wktbk5xmzmfob"
+    },
+    "moq": {
+      "value": {
+        "value": "500",
+        "unit": "pieces",
+        "sourceUrl": "https://www.alibaba.com/product-detail/20oz-Insulated-Stainless-Steel-Tumbler-Custom_1600482713501.html",
+        "snippetHash": "0x836c9c696ea00e54ed7c05926102df86d55a182f18cc25293789debe4e66efa7",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wktbk5xmzmfob"
+    },
+    "leadTimeDays": {
+      "value": {
+        "value": "25",
+        "unit": "days",
+        "sourceUrl": "https://www.alibaba.com/product-detail/20oz-Insulated-Stainless-Steel-Tumbler-Custom_1600482713501.html",
+        "snippetHash": "0xd1b7f25a676c593af64c235110d8126f1164c1e95855e0699ec2c0a81846ff0b",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wktbk5xmzmfob"
+    },
+    "certificates": {
+      "value": [
+        "LFGB food contact test report",
+        "FDA food contact test report"
+      ],
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wktbk5xmzmfob"
+    },
+    "claimsEscrow": {
+      "value": true,
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-wktbk5xmzmfob"
+    }
+  },
+  "flags": [],
+  "redFlags": [],
+  "supplierGates": [],
+  "dropped": [],
+  "repaired": false,
+  "llmCallIds": [],
+  "extracted": {
+    "unitPrice": {
+      "value": "235",
+      "unit": "USD",
+      "snippetHash": "0x99da0e47127a36fe24327f7150ac66e13861017b2011f0ae2e0432c6b3296fc3"
+    },
+    "moq": {
+      "value": "500",
+      "unit": "pieces",
+      "snippetHash": "0x836c9c696ea00e54ed7c05926102df86d55a182f18cc25293789debe4e66efa7"
+    },
+    "leadTimeDays": {
+      "value": "25",
+      "unit": "days",
+      "snippetHash": "0xd1b7f25a676c593af64c235110d8126f1164c1e95855e0699ec2c0a81846ff0b"
+    }
+  }
+}

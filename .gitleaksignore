@@ -1,0 +1,4 @@
+# Reviewed false positives only, one exact finding per line (file:rule:line). Never a folder or a rule.
+# 19 Oct 2026: the MockRail payout record of the Sepolia red-team run. "idempotency_key" is
+# payoutIdempotencyKey(settlementId, invoiceHash, attempt), a hash of public ids of a simulated payout, not a credential.
+evidence/rt-20261018t202130z-sepolia/artifacts/S4/payout.json:generic-api-key:2

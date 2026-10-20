@@ -1,0 +1,57 @@
+{
+  "supplierId": "s06-e",
+  "displayName": "Maplewave Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914403008E48058GXF"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-06/s06-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-06/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "700",
+      "sourceUrl": "https://example.invalid/e3/set-06/s06-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x825f729759bfae4e7a0148fb23b848e660728f72178b423480890a517171e877",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 29,
+    "freightPerUnit": "110",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-023183-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-262756-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.74,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7127196476",
+    "holderName": "Maplewave Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s16-b",
+  "displayName": "Jadewave Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91440100J1TRJF0T1R"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-16/s16-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-16/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "880",
+      "sourceUrl": "https://example.invalid/e3/set-16/s16-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xa57f3c2b052cb2f4db480c4a1108bea5692efdbe41de828808139a559d75d60a",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 50,
+    "freightPerUnit": "100",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-679206-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.81,
+    "yearsOnPlatform": 15
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7320479921",
+    "holderName": "Jadewave Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

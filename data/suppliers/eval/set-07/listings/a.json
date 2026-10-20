@@ -1,0 +1,57 @@
+{
+  "supplierId": "s07-a",
+  "displayName": "Fernline Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91441900CB5JKYQT91"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-07/s07-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-07/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "450",
+      "sourceUrl": "https://example.invalid/e3/set-07/s07-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x87d554c9675c89045fce13a40129682db655b65e4726d45fbe5c85f8054bfcde",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 47,
+    "freightPerUnit": "40",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-248054-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-162561-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.7,
+    "responseRate": 0.9,
+    "yearsOnPlatform": 1
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7645602497",
+    "holderName": "Fernline Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

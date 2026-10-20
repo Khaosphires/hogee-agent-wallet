@@ -1,0 +1,51 @@
+{
+  "supplierId": "s13-d",
+  "displayName": "Willowbrook Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91350200A2EDJ6UD5H"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-13/s13-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-13/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "800",
+      "sourceUrl": "https://example.invalid/e3/set-13/s13-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xcb2e9f9ded39fe2ac3706d8e9d5271334ed50dccf8c29f8d6f3eefacb2953ec7",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 17,
+    "freightPerUnit": "40",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "GB-910005-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 5,
+    "responseRate": 0.95,
+    "yearsOnPlatform": 5
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7966411203",
+    "holderName": "Willowbrook Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

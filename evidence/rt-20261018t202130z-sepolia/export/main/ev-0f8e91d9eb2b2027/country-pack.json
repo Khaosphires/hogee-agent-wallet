@@ -1,0 +1,531 @@
+{
+  "countryCode": "MY",
+  "countryPackHash": "0x51bc3e4ea41491536cc21413cb07c8aaff25ab21c782bec4b09c721829a18f98",
+  "pack": {
+    "countryCode": "MY",
+    "version": "test-2026.10.16",
+    "tier": "VERIFIED",
+    "currency": "MYR",
+    "reserveFloorBps": {
+      "value": 300,
+      "sourceUrl": "https://example.invalid/my/reserve-floor",
+      "retrievedAt": "2026-10-16T02:00:00Z",
+      "snippetHash": "0x3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba3e919aba",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "entities": [
+      {
+        "type": "sole_prop",
+        "cost": {
+          "value": "6000",
+          "sourceUrl": "https://example.invalid/my/ssm/sole",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x3914b8ac3914b8ac3914b8ac3914b8ac3914b8ac3914b8ac3914b8ac3914b8ac",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "eligibility": {
+          "value": [
+            "citizen",
+            "pr"
+          ],
+          "sourceUrl": "https://example.invalid/my/ssm/sole-elig",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xcd32acfacd32acfacd32acfacd32acfacd32acfacd32acfacd32acfacd32acfa",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "liability": {
+          "value": "unlimited",
+          "sourceUrl": "https://example.invalid/my/ssm/sole-liab",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x25d95a6f25d95a6f25d95a6f25d95a6f25d95a6f25d95a6f25d95a6f25d95a6f",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "type": "partnership",
+        "cost": {
+          "value": "6000",
+          "sourceUrl": "https://example.invalid/my/ssm/pship",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x3c0a0d553c0a0d553c0a0d553c0a0d553c0a0d553c0a0d553c0a0d553c0a0d55",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "eligibility": {
+          "value": [
+            "citizen",
+            "pr"
+          ],
+          "sourceUrl": "https://example.invalid/my/ssm/pship-elig",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x76092e0d76092e0d76092e0d76092e0d76092e0d76092e0d76092e0d76092e0d",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "liability": {
+          "value": "unlimited",
+          "sourceUrl": "https://example.invalid/my/ssm/pship-liab",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x708acfc8708acfc8708acfc8708acfc8708acfc8708acfc8708acfc8708acfc8",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "type": "sdn_bhd",
+        "cost": {
+          "value": "106000",
+          "sourceUrl": "https://example.invalid/my/ssm/sdn",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x315830d4315830d4315830d4315830d4315830d4315830d4315830d4315830d4",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "eligibility": {
+          "value": [
+            "citizen",
+            "pr",
+            "foreigner"
+          ],
+          "sourceUrl": "https://example.invalid/my/ssm/sdn-elig",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xcf824b82cf824b82cf824b82cf824b82cf824b82cf824b82cf824b82cf824b82",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "liability": {
+          "value": "limited",
+          "sourceUrl": "https://example.invalid/my/ssm/sdn-liab",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x5bc09d775bc09d775bc09d775bc09d775bc09d775bc09d775bc09d775bc09d77",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      }
+    ],
+    "registrations": [
+      {
+        "code": "SSM_SOLE_PROP",
+        "entityTypes": [
+          "sole_prop",
+          "partnership"
+        ],
+        "requirement": {
+          "value": "Register within 30 days",
+          "sourceUrl": "https://example.invalid/my/reg/ssm-sole",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x6cf6508d6cf6508d6cf6508d6cf6508d6cf6508d6cf6508d6cf6508d6cf6508d",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "6000",
+          "sourceUrl": "https://example.invalid/my/reg/ssm-sole-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x95a2621595a2621595a2621595a2621595a2621595a2621595a2621595a26215",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "code": "SSM_SDN_BHD",
+        "entityTypes": [
+          "sdn_bhd"
+        ],
+        "requirement": {
+          "value": "Incorporate before trading",
+          "sourceUrl": "https://example.invalid/my/reg/ssm-sdn",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xad85825bad85825bad85825bad85825bad85825bad85825bad85825bad85825b",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "106000",
+          "sourceUrl": "https://example.invalid/my/reg/ssm-sdn-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x5b8dff835b8dff835b8dff835b8dff835b8dff835b8dff835b8dff835b8dff83",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "code": "LHDN_TIN",
+        "entityTypes": [],
+        "requirement": {
+          "value": "Tax identification number",
+          "sourceUrl": "https://example.invalid/my/reg/tin",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xa8c8012fa8c8012fa8c8012fa8c8012fa8c8012fa8c8012fa8c8012fa8c8012f",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "0",
+          "sourceUrl": "https://example.invalid/my/reg/tin-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x7ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b0177ed9b017",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "code": "SST",
+        "entityTypes": [],
+        "requirement": {
+          "value": "Manufacturers above RM500k",
+          "sourceUrl": "https://example.invalid/my/reg/sst",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x8adb00328adb00328adb00328adb00328adb00328adb00328adb00328adb0032",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "0",
+          "sourceUrl": "https://example.invalid/my/reg/sst-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xe333ce90e333ce90e333ce90e333ce90e333ce90e333ce90e333ce90e333ce90",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "code": "MYINVOIS",
+        "entityTypes": [],
+        "requirement": {
+          "value": "Turnover at or above RM3M",
+          "sourceUrl": "https://example.invalid/my/reg/myinvois",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x143b075a143b075a143b075a143b075a143b075a143b075a143b075a143b075a",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "0",
+          "sourceUrl": "https://example.invalid/my/reg/myinvois-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xe0794b48e0794b48e0794b48e0794b48e0794b48e0794b48e0794b48e0794b48",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      {
+        "code": "PBT_LICENCE",
+        "entityTypes": [],
+        "requirement": {
+          "value": "Physical premises only",
+          "sourceUrl": "https://example.invalid/my/reg/pbt",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x5313d2ca5313d2ca5313d2ca5313d2ca5313d2ca5313d2ca5313d2ca5313d2ca",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "20000",
+          "sourceUrl": "https://example.invalid/my/reg/pbt-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xa5ee8f18a5ee8f18a5ee8f18a5ee8f18a5ee8f18a5ee8f18a5ee8f18a5ee8f18",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      }
+    ],
+    "taxIds": [
+      {
+        "code": "LHDN_TIN",
+        "rule": {
+          "value": "Every taxpayer has a TIN",
+          "sourceUrl": "https://example.invalid/my/taxid",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xd994ef25d994ef25d994ef25d994ef25d994ef25d994ef25d994ef25d994ef25",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      }
+    ],
+    "incomeTax": {
+      "summary": {
+        "value": "Resident individual progressive rates",
+        "sourceUrl": "https://example.invalid/my/income-tax",
+        "retrievedAt": "2026-10-16T02:00:00Z",
+        "snippetHash": "0xb3334f94b3334f94b3334f94b3334f94b3334f94b3334f94b3334f94b3334f94",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      }
+    },
+    "indirectTax": {
+      "rate": {
+        "value": 1000,
+        "sourceUrl": "https://example.invalid/my/sst/rate",
+        "retrievedAt": "2026-10-16T02:00:00Z",
+        "snippetHash": "0x53cc58a653cc58a653cc58a653cc58a653cc58a653cc58a653cc58a653cc58a6",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "registrationThreshold": {
+        "value": "50000000",
+        "sourceUrl": "https://example.invalid/my/sst/threshold",
+        "retrievedAt": "2026-10-16T02:00:00Z",
+        "snippetHash": "0x1bafda071bafda071bafda071bafda071bafda071bafda071bafda071bafda07",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      }
+    },
+    "eInvoicing": {
+      "threshold": {
+        "value": "300000000",
+        "sourceUrl": "https://example.invalid/my/einvoicing",
+        "retrievedAt": "2026-10-16T02:00:00Z",
+        "snippetHash": "0xb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75eb7f2d75e",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      }
+    },
+    "imports": {
+      "taxBase": {
+        "value": "CIF",
+        "sourceUrl": "https://example.invalid/my/imports/base",
+        "retrievedAt": "2026-10-16T02:00:00Z",
+        "snippetHash": "0x452879bd452879bd452879bd452879bd452879bd452879bd452879bd452879bd",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "dutySources": [
+        {
+          "value": "Royal Malaysian Customs tariff finder",
+          "sourceUrl": "https://example.invalid/my/imports/tariff",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x2f3771762f3771762f3771762f3771762f3771762f3771762f3771762f377176",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      ],
+      "ftaCertificates": [
+        {
+          "route": "FORM_E",
+          "partnerCountry": "CN",
+          "name": {
+            "value": "Form E (ACFTA)",
+            "sourceUrl": "https://example.invalid/my/imports/form-e",
+            "retrievedAt": "2026-10-16T02:00:00Z",
+            "snippetHash": "0x070bbfe4070bbfe4070bbfe4070bbfe4070bbfe4070bbfe4070bbfe4070bbfe4",
+            "evidence": "tier3",
+            "sourceType": "mock"
+          },
+          "dutyRateBps": {
+            "value": 0,
+            "sourceUrl": "https://example.invalid/my/imports/form-e-rate",
+            "retrievedAt": "2026-10-16T02:00:00Z",
+            "snippetHash": "0xcd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1cd27bdb1",
+            "evidence": "tier3",
+            "sourceType": "mock"
+          }
+        }
+      ]
+    },
+    "productApprovals": {
+      "drinkware_food_contact": {
+        "agency": {
+          "value": "NONE",
+          "sourceUrl": "https://example.invalid/my/appr/drink",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x71e7a79171e7a79171e7a79171e7a79171e7a79171e7a79171e7a79171e7a791",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "0",
+          "sourceUrl": "https://example.invalid/my/appr/drink-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x7456dde97456dde97456dde97456dde97456dde97456dde97456dde97456dde9",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "time": {
+          "value": 0,
+          "sourceUrl": "https://example.invalid/my/appr/drink-time",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xb5d50295b5d50295b5d50295b5d50295b5d50295b5d50295b5d50295b5d50295",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "cosmetics": {
+        "agency": {
+          "value": "NPRA",
+          "sourceUrl": "https://example.invalid/my/appr/npra",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x498638d6498638d6498638d6498638d6498638d6498638d6498638d6498638d6",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "5000",
+          "sourceUrl": "https://example.invalid/my/appr/npra-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xa71d3e34a71d3e34a71d3e34a71d3e34a71d3e34a71d3e34a71d3e34a71d3e34",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "time": {
+          "value": 30,
+          "sourceUrl": "https://example.invalid/my/appr/npra-time",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x87a3315887a3315887a3315887a3315887a3315887a3315887a3315887a33158",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "electrical": {
+        "agency": {
+          "value": "ST_SIRIM",
+          "sourceUrl": "https://example.invalid/my/appr/sirim",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x3cf454273cf454273cf454273cf454273cf454273cf454273cf454273cf45427",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "50000",
+          "sourceUrl": "https://example.invalid/my/appr/sirim-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x047ce9df047ce9df047ce9df047ce9df047ce9df047ce9df047ce9df047ce9df",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "time": {
+          "value": 45,
+          "sourceUrl": "https://example.invalid/my/appr/sirim-time",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xca88f697ca88f697ca88f697ca88f697ca88f697ca88f697ca88f697ca88f697",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "apparel": {
+        "agency": {
+          "value": "NONE",
+          "sourceUrl": "https://example.invalid/my/appr/apparel",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xf00428c6f00428c6f00428c6f00428c6f00428c6f00428c6f00428c6f00428c6",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "0",
+          "sourceUrl": "https://example.invalid/my/appr/apparel-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xcf639344cf639344cf639344cf639344cf639344cf639344cf639344cf639344",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "time": {
+          "value": 0,
+          "sourceUrl": "https://example.invalid/my/appr/apparel-time",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x52424f0852424f0852424f0852424f0852424f0852424f0852424f0852424f08",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "food": {
+        "agency": {
+          "value": "KKM_FOOD",
+          "sourceUrl": "https://example.invalid/my/appr/kkm",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x7e4e775a7e4e775a7e4e775a7e4e775a7e4e775a7e4e775a7e4e775a7e4e775a",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "3000",
+          "sourceUrl": "https://example.invalid/my/appr/kkm-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x21579b4821579b4821579b4821579b4821579b4821579b4821579b4821579b48",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "time": {
+          "value": 30,
+          "sourceUrl": "https://example.invalid/my/appr/kkm-time",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x8a4de9548a4de9548a4de9548a4de9548a4de9548a4de9548a4de9548a4de954",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "other": {
+        "agency": {
+          "value": "NONE",
+          "sourceUrl": "https://example.invalid/my/appr/other",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x24f0f5f524f0f5f524f0f5f524f0f5f524f0f5f524f0f5f524f0f5f524f0f5f5",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "cost": {
+          "value": "0",
+          "sourceUrl": "https://example.invalid/my/appr/other-cost",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0xf217224df217224df217224df217224df217224df217224df217224df217224d",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        },
+        "time": {
+          "value": 0,
+          "sourceUrl": "https://example.invalid/my/appr/other-time",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x1cbb2bc11cbb2bc11cbb2bc11cbb2bc11cbb2bc11cbb2bc11cbb2bc11cbb2bc1",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      }
+    },
+    "paymentRails": [
+      {
+        "id": "DUITNOW",
+        "feeBps": {
+          "value": 0,
+          "sourceUrl": "https://example.invalid/my/rails/duitnow",
+          "retrievedAt": "2026-10-16T02:00:00Z",
+          "snippetHash": "0x2122a1e52122a1e52122a1e52122a1e52122a1e52122a1e52122a1e52122a1e5",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      }
+    ],
+    "marketplaces": [
+      {
+        "channel": "shopee",
+        "fees": [
+          {
+            "name": "platform support fee",
+            "rateBps": {
+              "value": 500,
+              "sourceUrl": "https://example.invalid/my/shopee/support",
+              "retrievedAt": "2026-10-16T02:00:00Z",
+              "snippetHash": "0x906debad906debad906debad906debad906debad906debad906debad906debad",
+              "evidence": "tier3",
+              "sourceType": "mock"
+            }
+          },
+          {
+            "name": "transaction fee",
+            "rateBps": {
+              "value": 210,
+              "sourceUrl": "https://example.invalid/my/shopee/txn",
+              "retrievedAt": "2026-10-16T02:00:00Z",
+              "snippetHash": "0xc2bda034c2bda034c2bda034c2bda034c2bda034c2bda034c2bda034c2bda034",
+              "evidence": "tier3",
+              "sourceType": "mock"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

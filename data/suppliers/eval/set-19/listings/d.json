@@ -1,0 +1,51 @@
+{
+  "supplierId": "s19-d",
+  "displayName": "Umberstone Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330784NHQ5NNH75W"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-19/s19-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-19/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "870",
+      "sourceUrl": "https://example.invalid/e3/set-19/s19-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xec59e48009f592236f8987aa15450ab84e2a403a880d82c63de718ef537eff2c",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 41,
+    "freightPerUnit": "90",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-261603-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.91,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7812880318",
+    "holderName": "Umberstone Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

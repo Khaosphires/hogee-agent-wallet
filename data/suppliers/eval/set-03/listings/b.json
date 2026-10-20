@@ -1,0 +1,55 @@
+{
+  "supplierId": "s03-b",
+  "displayName": "Opalcrest Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-03/s03-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-03/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "640",
+      "sourceUrl": "https://example.invalid/e3/set-03/s03-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x5d27bac9e1782e8b8196eb0b1b1d001fb9b014a1e6addea99676f103f215cf9a",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 40,
+    "freightPerUnit": "110",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-787968-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-085542-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.8,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7973989661",
+    "holderName": "Opalcrest Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

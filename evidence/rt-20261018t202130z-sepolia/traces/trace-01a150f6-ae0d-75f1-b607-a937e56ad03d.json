@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150f6-ae0d-75f1-b607-a937e56ad03d",
+    "seq": 0,
+    "ts": "2026-10-18T21:41:46.125Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T4 (ADS pacing slot for 30,001 (per-tx cap 30,000)): refused by policy DENY CapExceeded; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "CapExceeded",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xefe65570373cc0d87ab0840fa91ec105f7857219cccb2426898d70c48f7ede9a"
+  }
+]

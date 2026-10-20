@@ -1,0 +1,49 @@
+{
+  "supplierId": "s04-d",
+  "displayName": "Ridgepoint Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-04/s04-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-04/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "560",
+      "sourceUrl": "https://example.invalid/e3/set-04/s04-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x0ea2c6a1cdb1ae2f0904703bc77594b468c6a4d3f0e7672b8579aee6049e7e9a",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 500,
+    "leadTimeDays": 20,
+    "freightPerUnit": "40",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-065432-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.9,
+    "responseRate": 0.94,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7858513609",
+    "holderName": "Ridgepoint Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

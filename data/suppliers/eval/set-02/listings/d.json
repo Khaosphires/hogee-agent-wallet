@@ -1,0 +1,51 @@
+{
+  "supplierId": "s02-d",
+  "displayName": "Sablebay Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330723BW46D5AWXR"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-02/s02-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-02/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "730",
+      "sourceUrl": "https://example.invalid/e3/set-02/s02-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x01c5405a3a01fd2975c2a3017f84dc2820cf9bbe4a2f8c551fa4cac165555bf3",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 25,
+    "freightPerUnit": "80",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-351207-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.91,
+    "yearsOnPlatform": 11
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7919377264",
+    "holderName": "Sablebay Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

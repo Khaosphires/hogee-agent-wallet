@@ -1,0 +1,57 @@
+{
+  "supplierId": "s14-b",
+  "displayName": "Cedarfield Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445200J0022KPY3C"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-14/s14-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-14/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "860",
+      "sourceUrl": "https://example.invalid/e3/set-14/s14-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x5c8149c06090f3bc29dbcd24cae5228afd363ee27ad099ace039b3e2749b0bcf",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 12,
+    "freightPerUnit": "70",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-178266-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-390754-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.7,
+    "responseRate": 0.83,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7831463930",
+    "holderName": "Cedarfield Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

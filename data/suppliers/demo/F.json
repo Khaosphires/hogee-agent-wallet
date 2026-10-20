@@ -1,0 +1,137 @@
+{
+  "supplier": {
+    "supplierId": "supplier-f",
+    "displayName": "KOREA MINING DEVELOPMENT TRADING CORPORATION",
+    "country": "CN",
+    "ids": {},
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-f",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/f.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "500",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-f#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0xd3817298853a98bda82fd235e86ac96ef2c92da615208e4ae5651d78c068aaa3",
+        "evidence": "tier3",
+        "sourceType": "mock"
+      },
+      "moq": 500,
+      "leadTimeDays": 25,
+      "freightPerUnit": "60",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "FDA 21 CFR food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-F-FDA-2026",
+        "tier": "tier3"
+      }
+    ],
+    "metrics": {
+      "rating": 4.2,
+      "responseRate": 0.8,
+      "yearsOnPlatform": 2
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8893462020",
+      "holderName": "SANCTIONS SCREENING TEST ROW - DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-f-price",
+      "supplierId": "supplier-f",
+      "criterion": "landed_cost",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-f#price",
+      "snippetHash": "0xd3817298853a98bda82fd235e86ac96ef2c92da615208e4ae5651d78c068aaa3",
+      "value": "Price: CNY 5.00 per piece FOB Dalian.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-f-lead-time",
+      "supplierId": "supplier-f",
+      "criterion": "lead_time",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-f#lead",
+      "snippetHash": "0xc44ed4ce3d5e6116683d095d959afba327f0edc89da242205b83ad5088d7a7e9",
+      "value": "Lead time: 25 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-f-terms",
+      "supplierId": "supplier-f",
+      "criterion": "terms",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-f#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-f-response-rate",
+      "supplierId": "supplier-f",
+      "criterion": "communication",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-f#response-rate",
+      "snippetHash": "0x1d5a0599577fc5ac9271cf56582149268c898fd01d802fd6360e9e0003f476cf",
+      "value": "Platform response rate (demo metric): 80%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-f-cert-1-quality",
+      "supplierId": "supplier-f",
+      "criterion": "quality_evidence",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-f#cert-1",
+      "snippetHash": "0xcf9a2a0e9f6a8cf2318de41e11f4fe5039e578ce8ef0b9f8f8ec1f16eca48d4b",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-F-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-f-cert-1-compliance",
+      "supplierId": "supplier-f",
+      "criterion": "compliance",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-f#cert-1",
+      "snippetHash": "0xcf9a2a0e9f6a8cf2318de41e11f4fe5039e578ce8ef0b9f8f8ec1f16eca48d4b",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-F-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

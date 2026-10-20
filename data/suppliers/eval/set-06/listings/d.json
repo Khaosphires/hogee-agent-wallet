@@ -1,0 +1,51 @@
+{
+  "supplierId": "s06-d",
+  "displayName": "Opalpeak Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445200H4MK9NEM86"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-06/s06-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-06/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "860",
+      "sourceUrl": "https://example.invalid/e3/set-06/s06-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xf1424649969548bd6cd59a6cbe8855edee59e8d0a464b66344295938aa68acbe",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 26,
+    "freightPerUnit": "90",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-244806-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.72,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7377105017",
+    "holderName": "Opalpeak Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

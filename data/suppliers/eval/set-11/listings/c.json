@@ -1,0 +1,57 @@
+{
+  "supplierId": "s11-c",
+  "displayName": "Harborbay Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91370200X2PG1NCM2T"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-11/s11-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-11/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "630",
+      "sourceUrl": "https://example.invalid/e3/set-11/s11-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x83733918fc69c4e7735b2a4bc677e6439f659b96656654d3a4d4da0897a23149",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 38,
+    "freightPerUnit": "110",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-361793-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-787156-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.3,
+    "responseRate": 0.72,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7561600596",
+    "holderName": "Harborbay Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

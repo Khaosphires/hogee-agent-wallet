@@ -1,0 +1,49 @@
+{
+  "supplierId": "s04-b",
+  "displayName": "Quartzgate Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-04/s04-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-04/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "670",
+      "sourceUrl": "https://example.invalid/e3/set-04/s04-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xb1d73fb36fb5e28ca126b3e8577269ad1c4231a2b6b9120c79d25107bbffee6f",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 39,
+    "freightPerUnit": "100",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-302873-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 3.8,
+    "responseRate": 0.76,
+    "yearsOnPlatform": 13
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7925517724",
+    "holderName": "Quartzgate Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

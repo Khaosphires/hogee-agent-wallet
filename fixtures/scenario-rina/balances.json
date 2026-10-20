@@ -1,0 +1,88 @@
+{
+  "fundedMinor": "1000000",
+  "releasedMinor": "400000",
+  "revenueMinor": "0",
+  "reserveMinor": "0",
+  "escrowMinor": "120000",
+  "pockets": [
+    {
+      "lineKey": "SUPPLIER",
+      "allocated": "500000",
+      "spent": "30000",
+      "available": "350000",
+      "perTxCap": "125000",
+      "windowCap": "250000",
+      "windowSpent": "0",
+      "validUntil": "1797292800",
+      "paused": false,
+      "circuitOpen": false
+    },
+    {
+      "lineKey": "PACKAGING",
+      "allocated": "150000",
+      "spent": "0",
+      "available": "150000",
+      "perTxCap": "37500",
+      "windowCap": "75000",
+      "windowSpent": "0",
+      "validUntil": "1797292800",
+      "paused": false,
+      "circuitOpen": false
+    },
+    {
+      "lineKey": "LOGISTICS",
+      "allocated": "80000",
+      "spent": "0",
+      "available": "80000",
+      "perTxCap": "20000",
+      "windowCap": "40000",
+      "windowSpent": "0",
+      "validUntil": "1797292800",
+      "paused": false,
+      "circuitOpen": false
+    },
+    {
+      "lineKey": "ADS",
+      "allocated": "120000",
+      "spent": "37500",
+      "available": "82500",
+      "perTxCap": "30000",
+      "windowCap": "60000",
+      "windowSpent": "37500",
+      "validUntil": "1797292800",
+      "paused": false,
+      "circuitOpen": false
+    },
+    {
+      "lineKey": "PLATFORM_FEES",
+      "allocated": "50000",
+      "spent": "0",
+      "available": "50000",
+      "perTxCap": "12500",
+      "windowCap": "25000",
+      "windowSpent": "0",
+      "validUntil": "1797292800",
+      "paused": false,
+      "circuitOpen": false
+    },
+    {
+      "lineKey": "CONTINGENCY",
+      "allocated": "100000",
+      "spent": "0",
+      "available": "100000",
+      "perTxCap": "25000",
+      "windowCap": "50000",
+      "windowSpent": "0",
+      "validUntil": "1797292800",
+      "paused": false,
+      "circuitOpen": false
+    }
+  ],
+  "agent": {
+    "address": "0xe6e43aaadd13397f8d14775346316a31759cd4b5",
+    "expiresAt": "1797292800",
+    "revoked": false
+  },
+  "paused": false,
+  "drift": 0
+}

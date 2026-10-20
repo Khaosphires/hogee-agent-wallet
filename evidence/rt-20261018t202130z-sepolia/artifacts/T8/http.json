@@ -1,0 +1,26 @@
+[
+  {
+    "label": "demo attack T8",
+    "method": "POST",
+    "path": "/api/demo/attack",
+    "body": {
+      "attackId": "T8"
+    },
+    "status": 200,
+    "response": {
+      "refusal": {
+        "traceId": "trace-01a150f9-29c4-7ffa-87a7-88b1f9531ff7",
+        "seq": 0,
+        "ts": "2026-10-18T21:44:28.869Z",
+        "actor": "policy",
+        "kind": "DENIAL",
+        "summary": "Red-team T8 (Spend from the tax reserve): refused by policy, ReserveLocked; nothing signed",
+        "verdict": "DENY",
+        "reasonCode": "ReserveLocked",
+        "refs": {},
+        "prevHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "hash": "0x1fa2e50ca877f8427724d87c6dea19fda6f6263502ee84cf98916258a733e758"
+      }
+    }
+  }
+]

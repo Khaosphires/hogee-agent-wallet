@@ -1,0 +1,56 @@
+{
+  "facts": {
+    "txHash": "0x4ec37c0699d128269ae22938cde2330cb916d926c5ece7a733e19ded63863946",
+    "status": "reverted",
+    "block": 11943848,
+    "contract": "Treasury",
+    "function": "executeLoosen",
+    "from": "0x8177ed31e6c83740a09145ec5e2848257cf94dd0",
+    "events": [],
+    "revert": {
+      "name": "TimelockActive",
+      "args": []
+    },
+    "gasUsed": "21627"
+  },
+  "transaction": {
+    "type": "eip1559",
+    "chainId": 11155111,
+    "nonce": 4,
+    "gas": "500000",
+    "maxFeePerGas": "19",
+    "maxPriorityFeePerGas": "1",
+    "to": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+    "value": "0",
+    "accessList": [],
+    "input": "0x6271ea44ac9c415b014f666bcc58cefff5c0f6fde7c24b9f6199dc0402fb3fde086a846f",
+    "r": "0xdc16be6b6a61340135f5495bce40905ea3cdc53c028c90d305f1200a3cde890f",
+    "s": "0x39382afef688e46a645b51a6875d388945dc903e81bea4fe8cab1e825528a21",
+    "yParity": 1,
+    "v": "1",
+    "hash": "0x4ec37c0699d128269ae22938cde2330cb916d926c5ece7a733e19ded63863946",
+    "blockHash": "0x965c693df2b0e71faf28b6149c7be97117b604bad26350692a981b9d2094deae",
+    "blockNumber": "11943848",
+    "transactionIndex": 106,
+    "from": "0x8177ed31e6c83740a09145ec5e2848257cf94dd0",
+    "gasPrice": "16",
+    "blockTimestamp": "1792360200",
+    "typeHex": "0x2"
+  },
+  "receipt": {
+    "type": "eip1559",
+    "status": "reverted",
+    "cumulativeGasUsed": "57233530",
+    "logs": [],
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "transactionHash": "0x4ec37c0699d128269ae22938cde2330cb916d926c5ece7a733e19ded63863946",
+    "transactionIndex": 106,
+    "blockHash": "0x965c693df2b0e71faf28b6149c7be97117b604bad26350692a981b9d2094deae",
+    "blockNumber": "11943848",
+    "gasUsed": "21627",
+    "effectiveGasPrice": "16",
+    "from": "0x8177ed31e6c83740a09145ec5e2848257cf94dd0",
+    "to": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+    "contractAddress": null
+  }
+}

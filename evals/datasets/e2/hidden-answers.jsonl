@@ -1,0 +1,20 @@
+{"promptId":"e2-sg-002","slot":"budgetCeilingMinor","answer":"S$6,000"}
+{"promptId":"e2-sg-003","slot":"residency","answer":"I'm a Singapore PR."}
+{"promptId":"e2-sg-007","slot":"productCategory","answer":"卖保温杯, the insulated tumbler kind."}
+{"promptId":"e2-sg-008","slot":"buyFrom","answer":"Saya ambil stok dari kilang di Guangzhou, China."}
+{"promptId":"e2-sg-011","slot":"residency","answer":"I'm a South Korean citizen living in Singapore, not a PR."}
+{"promptId":"e2-sg-013","slot":"productCategory","answer":"It's one hand cream, a single product to start."}
+{"promptId":"e2-sg-015","slot":"buyFrom","answer":"From a factory in Ningbo, China."}
+{"promptId":"e2-sg-017","slot":"budgetCeilingMinor","answer":"SGD 3,500"}
+{"promptId":"e2-sg-019","slot":"residency","answer":"我是马来西亚人, 在新加坡工作, 不是 PR."}
+{"promptId":"e2-sg-021","slot":"productCategory","answer":"Baju kurung moden untuk wanita."}
+{"promptId":"e2-sg-023","slot":"buyFrom","answer":"From a wholesaler here in Singapore, in Jalan Besar."}
+{"promptId":"e2-sg-024","slot":"budgetCeilingMinor","answer":"S$12,000"}
+{"promptId":"e2-my-002","slot":"residency","answer":"Saya warganegara Malaysia."}
+{"promptId":"e2-my-003","slot":"residency","answer":"I'm Indonesian, working in Malaysia on a work permit."}
+{"promptId":"e2-my-006","slot":"budgetCeilingMinor","answer":"RM3,000"}
+{"promptId":"e2-my-009","slot":"productCategory","answer":"Insulated tumblers."}
+{"promptId":"e2-my-010","slot":"buyFrom","answer":"From China, a factory in Yongkang."}
+{"promptId":"e2-my-012","slot":"productCategory","answer":"Tudung bawal kain kapas."}
+{"promptId":"e2-my-014","slot":"buyFrom","answer":"从 KL Jalan TAR 的批发商拿货, local supplier in Malaysia."}
+{"promptId":"e2-my-015","slot":"residency","answer":"I'm a Malaysian PR, the red IC."}

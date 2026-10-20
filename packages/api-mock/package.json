@@ -1,0 +1,30 @@
+{
+  "name": "@hogee/api-mock",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mock + replay twin of packages/api: every api-contract route from fixtures (P2, task 2.12).",
+  "exports": {
+    ".": "./src/index.ts",
+    "./eip712": "./src/eip712.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@hogee/api": "workspace:*",
+    "@hogee/api-contract": "workspace:*",
+    "@hogee/core": "workspace:*",
+    "ai": "7.0.140",
+    "hono": "4.13.13",
+    "viem": "2.57.6",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@hogee/chain": "workspace:*",
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  }
+}

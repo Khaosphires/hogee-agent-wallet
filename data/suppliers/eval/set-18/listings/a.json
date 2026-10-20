@@ -1,0 +1,51 @@
+{
+  "supplierId": "s18-a",
+  "displayName": "Pinepeak Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445200Y7B7RMKH3G"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-18/s18-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-18/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "860",
+      "sourceUrl": "https://example.invalid/e3/set-18/s18-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x8b3ff5cc5045ef27d4c350f0ad19a8401a2a0458c568eecf44e9d7406ee2417c",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 22,
+    "freightPerUnit": "90",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": true,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-108418-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 5,
+    "responseRate": 0.7,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7198340668",
+    "holderName": "Pinepeak Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

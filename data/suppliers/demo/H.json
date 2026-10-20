@@ -1,0 +1,173 @@
+{
+  "supplier": {
+    "supplierId": "supplier-h",
+    "displayName": "ZHEJIANG DEMO EVERGLOW VACUUM CUP MANUFACTURING CO., LTD.",
+    "country": "CN",
+    "ids": {
+      "uscc": "91330723GF16M2004A"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-h",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/h.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "540",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0xc6e924089a6fcad5b849c674821ef7b4d3361666fbc67e915e981fa7b74285a4",
+        "evidence": "tier2",
+        "sourceType": "mock"
+      },
+      "moq": 1000,
+      "leadTimeDays": 35,
+      "freightPerUnit": "65",
+      "incoterm": "EXW"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "LFGB food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-H-LFGB-2026",
+        "tier": "tier2"
+      },
+      {
+        "type": "FDA 21 CFR food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-H-FDA-2026",
+        "tier": "tier3"
+      }
+    ],
+    "metrics": {
+      "rating": 4.4,
+      "responseRate": 0.85,
+      "yearsOnPlatform": 12
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8533193076",
+      "holderName": "ZHEJIANG DEMO EVERGLOW VACUUM CUP MANUFACTURING CO., LTD. - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-h-price",
+      "supplierId": "supplier-h",
+      "criterion": "landed_cost",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#price",
+      "snippetHash": "0xc6e924089a6fcad5b849c674821ef7b4d3361666fbc67e915e981fa7b74285a4",
+      "value": "Price: CNY 5.40 per piece EXW Wuyi.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-h-lead-time",
+      "supplierId": "supplier-h",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#lead",
+      "snippetHash": "0x25b7e48daee6f26b8bb5b9bfe1ae2b69cf40595ff328c0a1e09ec021e5a3c651",
+      "value": "Lead time: 35 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-h-terms",
+      "supplierId": "supplier-h",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-h-response-rate",
+      "supplierId": "supplier-h",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#response-rate",
+      "snippetHash": "0xe36a57aa5a512758188c47165bebb15be2f48837c7cce42d8c72c34b0c0f5631",
+      "value": "Platform response rate (demo metric): 85%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-h-cert-1-quality",
+      "supplierId": "supplier-h",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#cert-1",
+      "snippetHash": "0x5f405944ca9946fdfb1f362b06d31e151a1f8c981d3665b469b6c607c5615594",
+      "value": "LFGB food contact test report: ref DEMO-H-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-h-cert-1-compliance",
+      "supplierId": "supplier-h",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#cert-1",
+      "snippetHash": "0x5f405944ca9946fdfb1f362b06d31e151a1f8c981d3665b469b6c607c5615594",
+      "value": "LFGB food contact test report: ref DEMO-H-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-h-cert-2-quality",
+      "supplierId": "supplier-h",
+      "criterion": "quality_evidence",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#cert-2",
+      "snippetHash": "0xba589e6cff9398a714bfc208487e16a97b75e2debb382ca04a531273445024e3",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-H-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-h-cert-2-compliance",
+      "supplierId": "supplier-h",
+      "criterion": "compliance",
+      "tier": "tier3",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-h#cert-2",
+      "snippetHash": "0xba589e6cff9398a714bfc208487e16a97b75e2debb382ca04a531273445024e3",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-H-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "supplierId": "s10-e",
+  "displayName": "Maplecrest Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913702007EWNU89N2C"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-10/s10-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-10/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "680",
+      "sourceUrl": "https://example.invalid/e3/set-10/s10-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x439fd3feac82cc156c9bfda46098137dba2c51af8fc777a3f575f2b16af18d07",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 12,
+    "freightPerUnit": "40",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-404576-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "FDA-011231-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.9,
+    "responseRate": 0.8,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7092610978",
+    "holderName": "Maplecrest Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

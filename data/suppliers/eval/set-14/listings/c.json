@@ -1,0 +1,51 @@
+{
+  "supplierId": "s14-c",
+  "displayName": "Lumenbrook Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913307847U3KK2DT9T"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-14/s14-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-14/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "790",
+      "sourceUrl": "https://example.invalid/e3/set-14/s14-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xb3fd0ba7f5782698fc3d31174f77e46e92066244949bdfb79a36aec362d3c5c0",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 37,
+    "freightPerUnit": "110",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "GB-925009-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.91,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7153243087",
+    "holderName": "Lumenbrook Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

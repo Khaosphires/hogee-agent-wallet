@@ -1,0 +1,35 @@
+{
+  "name": "@hogee/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The only signer (D19): autonomous-tick, reconcile and settle-spend jobs on pg-boss (P1, task 1.6).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "node --import tsx src/main.ts",
+    "ops": "node --import tsx src/ops/cli.ts",
+    "loop:anvil": "node --import tsx src/harness/loop-anvil.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:live": "vitest run test/live"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@hogee/chain": "workspace:*",
+    "@hogee/core": "workspace:*",
+    "@hogee/db": "workspace:*",
+    "drizzle-orm": "0.45.4",
+    "pg": "8.23.1",
+    "pg-boss": "12.38.0",
+    "tsx": "4.23.15",
+    "viem": "2.57.6",
+    "zod": "4.6.7"
+  }
+}

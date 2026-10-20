@@ -1,0 +1,51 @@
+{
+  "supplierId": "s10-d",
+  "displayName": "Birchbrook Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91440300NPUQ5U815L"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-10/s10-d",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-10/raw/d.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "460",
+      "sourceUrl": "https://example.invalid/e3/set-10/s10-d#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x6d47d3df40a53bc5f65c7650ab3a5367b6ac158bb4769965da7b5e65b8aaab35",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 49,
+    "freightPerUnit": "100",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-074993-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4,
+    "responseRate": 0.89,
+    "yearsOnPlatform": 13
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7562200972",
+    "holderName": "Birchbrook Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

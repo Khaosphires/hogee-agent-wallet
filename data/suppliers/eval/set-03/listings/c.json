@@ -1,0 +1,57 @@
+{
+  "supplierId": "s03-c",
+  "displayName": "Sablebay Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913205004DND123Q35"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-03/s03-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-03/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "820",
+      "sourceUrl": "https://example.invalid/e3/set-03/s03-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x6e3f93191d5c556cfb723352830c7d658db199dc8886ebe18b106e4c505b7aab",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 48,
+    "freightPerUnit": "90",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-587374-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-926634-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.2,
+    "responseRate": 0.96,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7569497835",
+    "holderName": "Sablebay Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

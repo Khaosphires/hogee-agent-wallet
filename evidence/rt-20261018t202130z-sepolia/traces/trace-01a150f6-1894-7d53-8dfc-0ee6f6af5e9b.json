@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150f6-1894-7d53-8dfc-0ee6f6af5e9b",
+    "seq": 0,
+    "ts": "2026-10-18T21:41:07.863Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Spend proposal LOGISTICS: 5000 minor to lhdn-tax (invoice inv-rt-t1-1-mveco1ga) → DENY (PayeeNotBound)",
+    "policy_verdict": "DENY",
+    "reason_code": "PayeeNotBound",
+    "plan_version": 1,
+    "payment_id": null,
+    "invoice_hash": "0x7f13be8608b159183bcb1b862cbc51c18b7ebbaad1734ad12ea6d99852ffdf06",
+    "decision_id": "01a150f6-1894-7dd3-85fb-e81e27834d6a",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe5a8580749f90f1a4fd0d9a0109f84b7e255b07731714436e13bc6cad842d513"
+  }
+]

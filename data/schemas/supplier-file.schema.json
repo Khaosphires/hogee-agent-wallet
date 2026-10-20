@@ -1,0 +1,744 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SupplierFile",
+  "description": "Applies to: data/suppliers/demo/*.json ({supplier, evidence[]} or a plain Supplier)",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "supplier": {
+          "type": "object",
+          "properties": {
+            "supplierId": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+              "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+            },
+            "displayName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "country": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$",
+              "description": "ISO 3166-1 alpha-2"
+            },
+            "ids": {
+              "type": "object",
+              "properties": {
+                "uscc": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "ssm": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "lei": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "uen": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                }
+              },
+              "additionalProperties": false
+            },
+            "listing": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "rawTextRef": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300,
+                  "description": "Repo-relative path of the raw listing text, e.g. data/suppliers/eval/set-01/raw/a.txt"
+                }
+              },
+              "required": [
+                "url",
+                "sourceType",
+                "rawTextRef"
+              ],
+              "additionalProperties": false
+            },
+            "offer": {
+              "type": "object",
+              "properties": {
+                "currency": {
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$",
+                  "description": "ISO 4217 currency code"
+                },
+                "fobUnit": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "maxLength": 39,
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "description": "Money in minor units (1 BU = 100 minor), digit string"
+                    },
+                    "sourceUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "http(s) URL"
+                    },
+                    "retrievedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                      "description": "ISO-8601 UTC timestamp ending in Z"
+                    },
+                    "snippetHash": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-f]{64}$",
+                      "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                    },
+                    "evidence": {
+                      "type": "string",
+                      "enum": [
+                        "tier1",
+                        "tier2",
+                        "tier3"
+                      ]
+                    },
+                    "sourceType": {
+                      "type": "string",
+                      "enum": [
+                        "live",
+                        "mock"
+                      ]
+                    },
+                    "verifiedBy": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64
+                    },
+                    "verifiedOn": {
+                      "type": "string",
+                      "format": "date",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                      "description": "Calendar date YYYY-MM-DD"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceUrl",
+                    "retrievedAt",
+                    "snippetHash",
+                    "evidence",
+                    "sourceType"
+                  ],
+                  "additionalProperties": false
+                },
+                "moq": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                },
+                "leadTimeDays": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "freightPerUnit": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "incoterm": {
+                  "type": "string",
+                  "enum": [
+                    "EXW",
+                    "FCA",
+                    "FAS",
+                    "FOB",
+                    "CFR",
+                    "CIF",
+                    "CPT",
+                    "CIP",
+                    "DAP",
+                    "DPU",
+                    "DDP"
+                  ]
+                }
+              },
+              "required": [
+                "currency",
+                "fobUnit",
+                "moq",
+                "leadTimeDays",
+                "freightPerUnit",
+                "incoterm"
+              ],
+              "additionalProperties": false
+            },
+            "terms": {
+              "type": "object",
+              "properties": {
+                "escrow": {
+                  "type": "boolean"
+                },
+                "offPlatformDiscount": {
+                  "type": "boolean"
+                },
+                "payeeType": {
+                  "type": "string",
+                  "enum": [
+                    "company",
+                    "personal"
+                  ]
+                }
+              },
+              "required": [
+                "escrow",
+                "offPlatformDiscount",
+                "payeeType"
+              ],
+              "additionalProperties": false
+            },
+            "certificates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "issuer": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "tier": {
+                    "type": "string",
+                    "enum": [
+                      "tier1",
+                      "tier2",
+                      "tier3"
+                    ]
+                  }
+                },
+                "required": [
+                  "type",
+                  "issuer",
+                  "ref",
+                  "tier"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "metrics": {
+              "type": "object",
+              "properties": {
+                "rating": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 5
+                },
+                "responseRate": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "yearsOnPlatform": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "rating",
+                "responseRate",
+                "yearsOnPlatform"
+              ],
+              "additionalProperties": false
+            },
+            "xenditTest": {
+              "type": "object",
+              "properties": {
+                "channel": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "accountNumber": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4,34}$"
+                },
+                "holderName": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                }
+              },
+              "required": [
+                "channel",
+                "accountNumber",
+                "holderName"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "supplierId",
+            "displayName",
+            "country",
+            "ids",
+            "listing",
+            "offer",
+            "terms",
+            "certificates",
+            "metrics",
+            "xenditTest"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "evidenceId": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+                "description": "Opaque id"
+              },
+              "supplierId": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+                "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+              },
+              "criterion": {
+                "type": "string",
+                "enum": [
+                  "landed_cost",
+                  "quality_evidence",
+                  "trust_verification",
+                  "lead_time",
+                  "compliance",
+                  "terms",
+                  "communication"
+                ]
+              },
+              "tier": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "32-byte value, 0x + 64 lowercase hex"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              },
+              "taint": {
+                "type": "object",
+                "properties": {
+                  "trust": {
+                    "type": "string",
+                    "enum": [
+                      "trusted",
+                      "untrusted"
+                    ]
+                  },
+                  "sensitivity": {
+                    "type": "string",
+                    "enum": [
+                      "public",
+                      "private"
+                    ]
+                  }
+                },
+                "required": [
+                  "trust",
+                  "sensitivity"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "evidenceId",
+              "supplierId",
+              "criterion",
+              "tier",
+              "sourceType",
+              "sourceUrl",
+              "snippetHash",
+              "value",
+              "taint"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "supplier",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "supplierId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+          "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "ISO 3166-1 alpha-2"
+        },
+        "ids": {
+          "type": "object",
+          "properties": {
+            "uscc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "ssm": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "lei": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "uen": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "listing": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "rawTextRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300,
+              "description": "Repo-relative path of the raw listing text, e.g. data/suppliers/eval/set-01/raw/a.txt"
+            }
+          },
+          "required": [
+            "url",
+            "sourceType",
+            "rawTextRef"
+          ],
+          "additionalProperties": false
+        },
+        "offer": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$",
+              "description": "ISO 4217 currency code"
+            },
+            "fobUnit": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "moq": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "leadTimeDays": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "freightPerUnit": {
+              "type": "string",
+              "maxLength": 39,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "description": "Money in minor units (1 BU = 100 minor), digit string"
+            },
+            "incoterm": {
+              "type": "string",
+              "enum": [
+                "EXW",
+                "FCA",
+                "FAS",
+                "FOB",
+                "CFR",
+                "CIF",
+                "CPT",
+                "CIP",
+                "DAP",
+                "DPU",
+                "DDP"
+              ]
+            }
+          },
+          "required": [
+            "currency",
+            "fobUnit",
+            "moq",
+            "leadTimeDays",
+            "freightPerUnit",
+            "incoterm"
+          ],
+          "additionalProperties": false
+        },
+        "terms": {
+          "type": "object",
+          "properties": {
+            "escrow": {
+              "type": "boolean"
+            },
+            "offPlatformDiscount": {
+              "type": "boolean"
+            },
+            "payeeType": {
+              "type": "string",
+              "enum": [
+                "company",
+                "personal"
+              ]
+            }
+          },
+          "required": [
+            "escrow",
+            "offPlatformDiscount",
+            "payeeType"
+          ],
+          "additionalProperties": false
+        },
+        "certificates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "issuer": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "tier": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "issuer",
+              "ref",
+              "tier"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "rating": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 5
+            },
+            "responseRate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "yearsOnPlatform": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "rating",
+            "responseRate",
+            "yearsOnPlatform"
+          ],
+          "additionalProperties": false
+        },
+        "xenditTest": {
+          "type": "object",
+          "properties": {
+            "channel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "accountNumber": {
+              "type": "string",
+              "pattern": "^[0-9]{4,34}$"
+            },
+            "holderName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "channel",
+            "accountNumber",
+            "holderName"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "supplierId",
+        "displayName",
+        "country",
+        "ids",
+        "listing",
+        "offer",
+        "terms",
+        "certificates",
+        "metrics",
+        "xenditTest"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

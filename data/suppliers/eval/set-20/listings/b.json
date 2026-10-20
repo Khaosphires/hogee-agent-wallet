@@ -1,0 +1,51 @@
+{
+  "supplierId": "s20-b",
+  "displayName": "Birchbay Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91441900D60BGWLJ0G"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-20/s20-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-20/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "650",
+      "sourceUrl": "https://example.invalid/e3/set-20/s20-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xbef5ae7f4e0bc002eec9b2ea13240fd97046b9001777adb567ee77781cc2bdb0",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 35,
+    "freightPerUnit": "40",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-769871-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.9,
+    "yearsOnPlatform": 8
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7934400163",
+    "holderName": "Birchbay Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

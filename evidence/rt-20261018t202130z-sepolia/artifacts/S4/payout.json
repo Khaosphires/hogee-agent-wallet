@@ -1,0 +1,11 @@
+{
+  "idempotency_key": "0x05e3768f7e87196e101bc73302fec09526f4eaa08839a547c1baa8650a512907",
+  "payout_id": "mock-05e3768f7e87196e101bc733",
+  "reference_id": "0x17b916258ae4dc4696ad6afd609bac2eb6623eaff5fe6c524b65c07e5403a5e5:1",
+  "amount_minor": "30000",
+  "currency": "MYR",
+  "destination": "{\"accountNumber\":\"2000000001\",\"channel\":\"MY_DUITNOW\",\"holderName\":\"Supplier A Co Ltd\"}",
+  "status": "SUCCEEDED",
+  "failure_code": null,
+  "created_at": "2026-10-18T20:43:35.560Z"
+}

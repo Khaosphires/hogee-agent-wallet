@@ -1,0 +1,51 @@
+{
+  "supplierId": "s03-e",
+  "displayName": "Emberstone Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445200EGFXK76JX3"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-03/s03-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-03/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "670",
+      "sourceUrl": "https://example.invalid/e3/set-03/s03-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xe6261e0a267cb4fc40d6f5649902f11b5686ababe4ac7e679e555da8200ea8c9",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 1000,
+    "leadTimeDays": 30,
+    "freightPerUnit": "80",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-374984-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4,
+    "responseRate": 0.73,
+    "yearsOnPlatform": 11
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7749190568",
+    "holderName": "Emberstone Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

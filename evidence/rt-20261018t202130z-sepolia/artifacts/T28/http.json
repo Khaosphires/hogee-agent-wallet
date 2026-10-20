@@ -1,0 +1,175 @@
+[
+  {
+    "label": "exception EXTEND_EXPIRY",
+    "method": "POST",
+    "path": "/api/exceptions",
+    "body": {
+      "kind": "EXTEND_EXPIRY",
+      "payload": {
+        "target": "agent",
+        "newExpiresAt": "1797546156"
+      },
+      "reason": "T28 replay probe"
+    },
+    "status": 200,
+    "response": {
+      "exceptionId": "exc-01a15101-7429-7f4e-a9b8-d3a703878e20",
+      "title": "Extend the agent's authority",
+      "requestedBy": "founder",
+      "requires": {
+        "founder": true,
+        "lender": true
+      },
+      "status": "OPEN",
+      "timelock": null,
+      "txs": {},
+      "blastRadiusMinor": "236500",
+      "traceId": "trace-01a15101-7429-79be-a1a4-ff583e2f36f2",
+      "kind": "EXTEND_EXPIRY",
+      "payload": {
+        "target": "agent",
+        "newExpiresAt": "1797546156"
+      }
+    }
+  },
+  {
+    "label": "request LoosenRequest (eip712)",
+    "method": "POST",
+    "path": "/api/signatures/request",
+    "body": {
+      "kind": "LoosenRequest",
+      "refId": "exc-01a15101-7429-7f4e-a9b8-d3a703878e20",
+      "method": "eip712"
+    },
+    "status": 200,
+    "response": {
+      "requestId": "sig-01a15101-7e84-76f3-8850-a6bec03b7c48",
+      "typedData": {
+        "domain": {
+          "name": "Hogee",
+          "version": "1",
+          "verifyingContract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+          "salt": "0xad2cf874712553c65a450322ecd5a8d900f5996d2fa7624cb6e05668b21a793c"
+        },
+        "types": {
+          "LoosenRequest": [
+            {
+              "name": "kind",
+              "type": "uint8"
+            },
+            {
+              "name": "target",
+              "type": "bytes32"
+            },
+            {
+              "name": "aux",
+              "type": "bytes32"
+            },
+            {
+              "name": "newValue",
+              "type": "uint256"
+            },
+            {
+              "name": "deploymentId",
+              "type": "bytes32"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256"
+            },
+            {
+              "name": "expiry",
+              "type": "uint64"
+            }
+          ]
+        },
+        "primaryType": "LoosenRequest",
+        "message": {
+          "kind": "4",
+          "target": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "aux": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "newValue": "1797546156",
+          "deploymentId": "0x66696e616c2d3100000000000000000000000000000000000000000000000000",
+          "nonce": "99827978884288185471172918503511984922786147941531593163210701657402684275830",
+          "expiry": "1792361304"
+        }
+      },
+      "digest": "0xfc6178c63d8c81cbef7f950e620773365ccd83072bdcfdeff927a7032a02c5ae",
+      "challengeB64url": "_GF4xj2Mgcvvf5UOYgdzNlzNgwcr3P3v-SenAyoCxa4",
+      "displayModel": {
+        "title": "Request a loosening",
+        "kind": "LoosenRequest",
+        "rows": [
+          {
+            "label": "Change",
+            "value": "Extend the agent's authority",
+            "effect": "loosen"
+          },
+          {
+            "label": "Most money this change can move",
+            "value": "2,365 BU BU",
+            "effect": "loosen"
+          },
+          {
+            "label": "What happens next",
+            "value": "The loan officer must co-sign; then a waiting period runs during which either of you can veto it",
+            "effect": "neutral"
+          }
+        ],
+        "digest": "0xfc6178c63d8c81cbef7f950e620773365ccd83072bdcfdeff927a7032a02c5ae",
+        "chainId": 11155111,
+        "contract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+        "deploymentId": "final-1"
+      },
+      "expiresAt": "1792361304"
+    }
+  },
+  {
+    "label": "submit the FISCO-domain signature",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a15101-7e84-76f3-8850-a6bec03b7c48/submit",
+    "body": {
+      "ecdsa": {
+        "signature": "0x495b9feb267d041e648830166339734cb6f2b94090c0ee542a724abf38fac2d330df56c626052a12177f2259bb146ae72625a531692db230bab03787c16ea7991c"
+      }
+    },
+    "status": 409,
+    "response": {
+      "error": {
+        "code": "InvalidSignature",
+        "message": "The signature does not verify against your registered key",
+        "contractError": {
+          "name": "InvalidSignature"
+        }
+      }
+    }
+  },
+  {
+    "label": "deny the probe",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a15101-7429-7f4e-a9b8-d3a703878e20/deny",
+    "body": {
+      "reason": "red-team probe"
+    },
+    "status": 200,
+    "response": {
+      "exceptionId": "exc-01a15101-7429-7f4e-a9b8-d3a703878e20",
+      "title": "Extend the agent's authority",
+      "requestedBy": "founder",
+      "requires": {
+        "founder": true,
+        "lender": true
+      },
+      "status": "DENIED",
+      "timelock": null,
+      "txs": {},
+      "blastRadiusMinor": "236500",
+      "traceId": "trace-01a15101-7429-79be-a1a4-ff583e2f36f2",
+      "kind": "EXTEND_EXPIRY",
+      "payload": {
+        "target": "agent",
+        "newExpiresAt": "1797546156"
+      }
+    }
+  }
+]

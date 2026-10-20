@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/escrow.json",
+  "description": "Applies to: fixtures/scenario-rina/escrow.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "propertyNames": {
+    "type": "string",
+    "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+    "description": "Escrow order id (bytes32 on-chain via stringToHex)"
+  },
+  "additionalProperties": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "idx": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "amountMinor": {
+          "type": "string",
+          "maxLength": 39,
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "description": "Money in minor units (1 BU = 100 minor), digit string"
+        },
+        "funded": {
+          "type": "string",
+          "maxLength": 39,
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "description": "Money in minor units (1 BU = 100 minor), digit string"
+        },
+        "released": {
+          "type": "boolean"
+        },
+        "autoRelease": {
+          "type": "boolean"
+        },
+        "evidenceHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "32-byte value, 0x + 64 lowercase hex"
+        }
+      },
+      "required": [
+        "idx",
+        "amountMinor",
+        "funded",
+        "released",
+        "autoRelease"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@hogee/agent",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LLM layer (P1 task 1.11): model registry, Planner, quarantined Reader, templated Explainer, memory provenance, redaction gate and LLM call log.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "@hogee/db": "workspace:*",
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "4.0.79",
+    "@ai-sdk/openai-compatible": "3.0.68",
+    "@hogee/core": "workspace:*",
+    "@hogee/privacy": "workspace:*",
+    "@noble/hashes": "2.4.0",
+    "ai": "7.0.140",
+    "zod": "4.6.7"
+  }
+}

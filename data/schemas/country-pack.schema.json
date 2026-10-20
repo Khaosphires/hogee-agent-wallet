@@ -1,0 +1,3309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CountryPack",
+  "description": "Applies to: data/country-packs/<CC>.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "countryCode": {
+      "type": "string",
+      "enum": [
+        "MY",
+        "ID",
+        "SG"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "VERIFIED",
+        "RESEARCHED",
+        "UNKNOWN"
+      ]
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 currency code"
+    },
+    "reserveFloorBps": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Basis points (integer 0..10000)"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "http(s) URL"
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+          "description": "ISO-8601 UTC timestamp ending in Z"
+        },
+        "snippetHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$",
+          "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+        },
+        "evidence": {
+          "type": "string",
+          "enum": [
+            "tier1",
+            "tier2",
+            "tier3"
+          ]
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "live",
+            "mock"
+          ]
+        },
+        "verifiedBy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "verifiedOn": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+          "description": "Calendar date YYYY-MM-DD"
+        }
+      },
+      "required": [
+        "value",
+        "sourceUrl",
+        "retrievedAt",
+        "snippetHash",
+        "evidence",
+        "sourceType"
+      ],
+      "additionalProperties": false
+    },
+    "entities": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "sole_prop",
+              "partnership",
+              "sdn_bhd",
+              "perorangan",
+              "pt_perorangan",
+              "cv",
+              "pt",
+              "sg_sole_prop",
+              "sg_partnership",
+              "pte_ltd"
+            ]
+          },
+          "cost": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false,
+            "description": "Registration cost, pack-currency minor units"
+          },
+          "eligibility": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "citizen",
+                    "pr",
+                    "foreigner"
+                  ]
+                }
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false,
+            "description": "Residencies allowed to use this entity type"
+          },
+          "liability": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "limited",
+                  "unlimited"
+                ]
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "type",
+          "cost",
+          "eligibility",
+          "liability"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "registrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "SSM_SOLE_PROP",
+              "SSM_SDN_BHD",
+              "LHDN_TIN",
+              "SST",
+              "MYINVOIS",
+              "PBT_LICENCE",
+              "NIB_OSS",
+              "NPWP_NIK",
+              "PKP",
+              "ACRA_BUSINESS",
+              "ACRA_PTE_LTD",
+              "IRAS_GST"
+            ]
+          },
+          "entityTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "sole_prop",
+                "partnership",
+                "sdn_bhd",
+                "perorangan",
+                "pt_perorangan",
+                "cv",
+                "pt",
+                "sg_sole_prop",
+                "sg_partnership",
+                "pte_ltd"
+              ]
+            },
+            "description": "Entity types this applies to; empty = all"
+          },
+          "requirement": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false,
+            "description": "When it is required, e.g. 'register within 30 days'"
+          },
+          "cost": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "maxLength": 39,
+                "pattern": "^(0|[1-9][0-9]*)$",
+                "description": "Money in minor units (1 BU = 100 minor), digit string"
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "code",
+          "entityTypes",
+          "requirement",
+          "cost"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "taxIds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "SSM_SOLE_PROP",
+              "SSM_SDN_BHD",
+              "LHDN_TIN",
+              "SST",
+              "MYINVOIS",
+              "PBT_LICENCE",
+              "NIB_OSS",
+              "NPWP_NIK",
+              "PKP",
+              "ACRA_BUSINESS",
+              "ACRA_PTE_LTD",
+              "IRAS_GST"
+            ],
+            "description": "Registration code that assigns the tax id, e.g. LHDN_TIN, NPWP_NIK"
+          },
+          "rule": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "code",
+          "rule"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "incomeTax": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        },
+        "finalRateBps": {
+          "description": "Final/presumptive turnover tax rate, e.g. ID 0.5% = 50",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000,
+              "description": "Basis points (integer 0..10000)"
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        },
+        "finalRateEntityTypes": {
+          "description": "Entity types eligible for finalRateBps",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "sole_prop",
+              "partnership",
+              "sdn_bhd",
+              "perorangan",
+              "pt_perorangan",
+              "cv",
+              "pt",
+              "sg_sole_prop",
+              "sg_partnership",
+              "pte_ltd"
+            ]
+          }
+        },
+        "exemptTurnover": {
+          "description": "Turnover below which income tax is exempt",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 39,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "description": "Money in minor units (1 BU = 100 minor), digit string"
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "indirectTax": {
+      "type": "object",
+      "properties": {
+        "rate": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000,
+              "description": "Basis points (integer 0..10000)"
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        },
+        "registrationThreshold": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 39,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "description": "Money in minor units (1 BU = 100 minor), digit string"
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "eInvoicing": {
+      "type": "object",
+      "properties": {
+        "threshold": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "maxLength": 39,
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "description": "Money in minor units (1 BU = 100 minor), digit string"
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false,
+          "description": "Turnover threshold, pack-currency minor units"
+        }
+      },
+      "required": [
+        "threshold"
+      ],
+      "additionalProperties": false
+    },
+    "imports": {
+      "type": "object",
+      "properties": {
+        "taxBase": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": [
+                "CIF",
+                "FOB"
+              ]
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        },
+        "dutySources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Where duty rates come from (tariff finder, gazette)"
+        },
+        "ftaCertificates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "route": {
+                "type": "string",
+                "enum": [
+                  "MFN",
+                  "FORM_E",
+                  "EXEMPT"
+                ]
+              },
+              "partnerCountry": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$",
+                "description": "ISO 3166-1 alpha-2"
+              },
+              "name": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  },
+                  "sourceUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "http(s) URL"
+                  },
+                  "retrievedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                    "description": "ISO-8601 UTC timestamp ending in Z"
+                  },
+                  "snippetHash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$",
+                    "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "enum": [
+                      "tier1",
+                      "tier2",
+                      "tier3"
+                    ]
+                  },
+                  "sourceType": {
+                    "type": "string",
+                    "enum": [
+                      "live",
+                      "mock"
+                    ]
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "verifiedOn": {
+                    "type": "string",
+                    "format": "date",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                    "description": "Calendar date YYYY-MM-DD"
+                  }
+                },
+                "required": [
+                  "value",
+                  "sourceUrl",
+                  "retrievedAt",
+                  "snippetHash",
+                  "evidence",
+                  "sourceType"
+                ],
+                "additionalProperties": false,
+                "description": "Certificate name, e.g. Form E (ACFTA)"
+              },
+              "dutyRateBps": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000,
+                    "description": "Basis points (integer 0..10000)"
+                  },
+                  "sourceUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "http(s) URL"
+                  },
+                  "retrievedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                    "description": "ISO-8601 UTC timestamp ending in Z"
+                  },
+                  "snippetHash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$",
+                    "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                  },
+                  "evidence": {
+                    "type": "string",
+                    "enum": [
+                      "tier1",
+                      "tier2",
+                      "tier3"
+                    ]
+                  },
+                  "sourceType": {
+                    "type": "string",
+                    "enum": [
+                      "live",
+                      "mock"
+                    ]
+                  },
+                  "verifiedBy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "verifiedOn": {
+                    "type": "string",
+                    "format": "date",
+                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                    "description": "Calendar date YYYY-MM-DD"
+                  }
+                },
+                "required": [
+                  "value",
+                  "sourceUrl",
+                  "retrievedAt",
+                  "snippetHash",
+                  "evidence",
+                  "sourceType"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "route",
+              "partnerCountry",
+              "name",
+              "dutyRateBps"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "mfnDutyRateBps": {
+          "description": "MFN ad valorem duty per product category (only where one rate covers the category)",
+          "type": "object",
+          "properties": {
+            "drinkware_food_contact": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 10000,
+                  "description": "Basis points (integer 0..10000)"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "cosmetics": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 10000,
+                  "description": "Basis points (integer 0..10000)"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "electrical": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 10000,
+                  "description": "Basis points (integer 0..10000)"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "apparel": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 10000,
+                  "description": "Basis points (integer 0..10000)"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "food": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 10000,
+                  "description": "Basis points (integer 0..10000)"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "other": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 10000,
+                  "description": "Basis points (integer 0..10000)"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "taxBase",
+        "dutySources",
+        "ftaCertificates"
+      ],
+      "additionalProperties": false
+    },
+    "productApprovals": {
+      "type": "object",
+      "properties": {
+        "drinkware_food_contact": {
+          "type": "object",
+          "properties": {
+            "agency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "NONE",
+                    "NPRA",
+                    "ST_SIRIM",
+                    "JAKIM_HALAL",
+                    "BPOM",
+                    "BPJPH_HALAL",
+                    "KKM_FOOD",
+                    "SFA",
+                    "HSA",
+                    "CPSO_SAFETY_MARK"
+                  ]
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "cost": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "time": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Duration in days"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false,
+              "description": "Typical approval time in days"
+            }
+          },
+          "required": [
+            "agency",
+            "cost",
+            "time"
+          ],
+          "additionalProperties": false
+        },
+        "cosmetics": {
+          "type": "object",
+          "properties": {
+            "agency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "NONE",
+                    "NPRA",
+                    "ST_SIRIM",
+                    "JAKIM_HALAL",
+                    "BPOM",
+                    "BPJPH_HALAL",
+                    "KKM_FOOD",
+                    "SFA",
+                    "HSA",
+                    "CPSO_SAFETY_MARK"
+                  ]
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "cost": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "time": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Duration in days"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false,
+              "description": "Typical approval time in days"
+            }
+          },
+          "required": [
+            "agency",
+            "cost",
+            "time"
+          ],
+          "additionalProperties": false
+        },
+        "electrical": {
+          "type": "object",
+          "properties": {
+            "agency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "NONE",
+                    "NPRA",
+                    "ST_SIRIM",
+                    "JAKIM_HALAL",
+                    "BPOM",
+                    "BPJPH_HALAL",
+                    "KKM_FOOD",
+                    "SFA",
+                    "HSA",
+                    "CPSO_SAFETY_MARK"
+                  ]
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "cost": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "time": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Duration in days"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false,
+              "description": "Typical approval time in days"
+            }
+          },
+          "required": [
+            "agency",
+            "cost",
+            "time"
+          ],
+          "additionalProperties": false
+        },
+        "apparel": {
+          "type": "object",
+          "properties": {
+            "agency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "NONE",
+                    "NPRA",
+                    "ST_SIRIM",
+                    "JAKIM_HALAL",
+                    "BPOM",
+                    "BPJPH_HALAL",
+                    "KKM_FOOD",
+                    "SFA",
+                    "HSA",
+                    "CPSO_SAFETY_MARK"
+                  ]
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "cost": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "time": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Duration in days"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false,
+              "description": "Typical approval time in days"
+            }
+          },
+          "required": [
+            "agency",
+            "cost",
+            "time"
+          ],
+          "additionalProperties": false
+        },
+        "food": {
+          "type": "object",
+          "properties": {
+            "agency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "NONE",
+                    "NPRA",
+                    "ST_SIRIM",
+                    "JAKIM_HALAL",
+                    "BPOM",
+                    "BPJPH_HALAL",
+                    "KKM_FOOD",
+                    "SFA",
+                    "HSA",
+                    "CPSO_SAFETY_MARK"
+                  ]
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "cost": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "time": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Duration in days"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false,
+              "description": "Typical approval time in days"
+            }
+          },
+          "required": [
+            "agency",
+            "cost",
+            "time"
+          ],
+          "additionalProperties": false
+        },
+        "other": {
+          "type": "object",
+          "properties": {
+            "agency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "NONE",
+                    "NPRA",
+                    "ST_SIRIM",
+                    "JAKIM_HALAL",
+                    "BPOM",
+                    "BPJPH_HALAL",
+                    "KKM_FOOD",
+                    "SFA",
+                    "HSA",
+                    "CPSO_SAFETY_MARK"
+                  ]
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "cost": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "maxLength": 39,
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "Money in minor units (1 BU = 100 minor), digit string"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false
+            },
+            "time": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Duration in days"
+                },
+                "sourceUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "http(s) URL"
+                },
+                "retrievedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                  "description": "ISO-8601 UTC timestamp ending in Z"
+                },
+                "snippetHash": {
+                  "type": "string",
+                  "pattern": "^0x[0-9a-f]{64}$",
+                  "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                },
+                "evidence": {
+                  "type": "string",
+                  "enum": [
+                    "tier1",
+                    "tier2",
+                    "tier3"
+                  ]
+                },
+                "sourceType": {
+                  "type": "string",
+                  "enum": [
+                    "live",
+                    "mock"
+                  ]
+                },
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "verifiedOn": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                  "description": "Calendar date YYYY-MM-DD"
+                }
+              },
+              "required": [
+                "value",
+                "sourceUrl",
+                "retrievedAt",
+                "snippetHash",
+                "evidence",
+                "sourceType"
+              ],
+              "additionalProperties": false,
+              "description": "Typical approval time in days"
+            }
+          },
+          "required": [
+            "agency",
+            "cost",
+            "time"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "paymentRails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{0,31}$",
+            "description": "Rail id, e.g. DUITNOW, QRIS"
+          },
+          "feeBps": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000,
+                "description": "Basis points (integer 0..10000)"
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false
+          },
+          "feeCondition": {
+            "description": "e.g. '0% up to Rp500k per transaction'",
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "sourceUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "http(s) URL"
+              },
+              "retrievedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                "description": "ISO-8601 UTC timestamp ending in Z"
+              },
+              "snippetHash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$",
+                "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+              },
+              "evidence": {
+                "type": "string",
+                "enum": [
+                  "tier1",
+                  "tier2",
+                  "tier3"
+                ]
+              },
+              "sourceType": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "mock"
+                ]
+              },
+              "verifiedBy": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "verifiedOn": {
+                "type": "string",
+                "format": "date",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                "description": "Calendar date YYYY-MM-DD"
+              }
+            },
+            "required": [
+              "value",
+              "sourceUrl",
+              "retrievedAt",
+              "snippetHash",
+              "evidence",
+              "sourceType"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "feeBps"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "marketplaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "shopee",
+              "tiktok_shop",
+              "lazada",
+              "own_site"
+            ]
+          },
+          "fees": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80,
+                  "description": "e.g. platform support fee, transaction fee"
+                },
+                "rateBps": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 10000,
+                      "description": "Basis points (integer 0..10000)"
+                    },
+                    "sourceUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "http(s) URL"
+                    },
+                    "retrievedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+                      "description": "ISO-8601 UTC timestamp ending in Z"
+                    },
+                    "snippetHash": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-f]{64}$",
+                      "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+                    },
+                    "evidence": {
+                      "type": "string",
+                      "enum": [
+                        "tier1",
+                        "tier2",
+                        "tier3"
+                      ]
+                    },
+                    "sourceType": {
+                      "type": "string",
+                      "enum": [
+                        "live",
+                        "mock"
+                      ]
+                    },
+                    "verifiedBy": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64
+                    },
+                    "verifiedOn": {
+                      "type": "string",
+                      "format": "date",
+                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+                      "description": "Calendar date YYYY-MM-DD"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "sourceUrl",
+                    "retrievedAt",
+                    "snippetHash",
+                    "evidence",
+                    "sourceType"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "name",
+                "rateBps"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "channel",
+          "fees"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "dataProtection": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        },
+        "breachNotificationHours": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "sourceUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "http(s) URL"
+            },
+            "retrievedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$",
+              "description": "ISO-8601 UTC timestamp ending in Z"
+            },
+            "snippetHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$",
+              "description": "0x + sha256 of the trimmed, whitespace-collapsed sentence (scripts/snippet-hash.py)"
+            },
+            "evidence": {
+              "type": "string",
+              "enum": [
+                "tier1",
+                "tier2",
+                "tier3"
+              ]
+            },
+            "sourceType": {
+              "type": "string",
+              "enum": [
+                "live",
+                "mock"
+              ]
+            },
+            "verifiedBy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "verifiedOn": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$",
+              "description": "Calendar date YYYY-MM-DD"
+            }
+          },
+          "required": [
+            "value",
+            "sourceUrl",
+            "retrievedAt",
+            "snippetHash",
+            "evidence",
+            "sourceType"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "summary"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "countryCode",
+    "version",
+    "tier",
+    "currency",
+    "reserveFloorBps"
+  ],
+  "additionalProperties": false
+}

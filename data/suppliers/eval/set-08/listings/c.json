@@ -1,0 +1,57 @@
+{
+  "supplierId": "s08-c",
+  "displayName": "Amberpeak Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "9144190000HJ5JY71Y"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-08/s08-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-08/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "480",
+      "sourceUrl": "https://example.invalid/e3/set-08/s08-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x51eff642b1e42797912cfa0d183e0bfabb4953671ca2d3831f4cc1d9fd5b7cdb",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 27,
+    "freightPerUnit": "70",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-130767-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-674820-2",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.7,
+    "responseRate": 0.95,
+    "yearsOnPlatform": 7
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7056378033",
+    "holderName": "Amberpeak Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

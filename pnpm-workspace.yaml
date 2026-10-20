@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+  - packages/*
+  - tools/*
+  - e2e
+  - scripts/*
+
+# Dependencies allowed to run install scripts (pnpm 12 blocks all others).
+# unrs-resolver (via eslint-config-next) ships its native binary as an optional dependency;
+# its postinstall is only a download fallback, so it stays denied.
+allowBuilds:
+  esbuild: true
+  unrs-resolver: false

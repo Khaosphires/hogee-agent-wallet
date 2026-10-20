@@ -1,0 +1,51 @@
+{
+  "supplierId": "s18-b",
+  "displayName": "Sablefield Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "9133078407F2U0DE6A"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-18/s18-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-18/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "660",
+      "sourceUrl": "https://example.invalid/e3/set-18/s18-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xb51c55a923669da7b588884ce023c6d88fc9f630012d3c554e91d2b90af55656",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 16,
+    "freightPerUnit": "80",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-578256-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 3.9,
+    "responseRate": 0.8,
+    "yearsOnPlatform": 8
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7522383554",
+    "holderName": "Sablefield Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

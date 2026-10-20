@@ -1,0 +1,57 @@
+{
+  "supplierId": "s02-a",
+  "displayName": "Valepoint Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913205008EMWXHAL0L"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-02/s02-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-02/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "840",
+      "sourceUrl": "https://example.invalid/e3/set-02/s02-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xef9fb53f4df0a320964f2f1d7f26bb27e00377f31e9ed406994e588b34394bf3",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 16,
+    "freightPerUnit": "60",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "FDA-800891-1",
+      "tier": "tier2"
+    },
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "LFGB-788176-2",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.7,
+    "responseRate": 0.94,
+    "yearsOnPlatform": 5
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7526737961",
+    "holderName": "Valepoint Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

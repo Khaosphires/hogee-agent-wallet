@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E2LabelRow",
+  "description": "Applies to: each line of evals/datasets/e2/labels.jsonl",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "promptId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "entityType": {
+          "type": "string",
+          "enum": [
+            "sole_prop",
+            "partnership",
+            "sdn_bhd",
+            "perorangan",
+            "pt_perorangan",
+            "cv",
+            "pt",
+            "sg_sole_prop",
+            "sg_partnership",
+            "pte_ltd"
+          ]
+        },
+        "registrations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "SSM_SOLE_PROP",
+              "SSM_SDN_BHD",
+              "LHDN_TIN",
+              "SST",
+              "MYINVOIS",
+              "PBT_LICENCE",
+              "NIB_OSS",
+              "NPWP_NIK",
+              "PKP",
+              "ACRA_BUSINESS",
+              "ACRA_PTE_LTD",
+              "IRAS_GST"
+            ]
+          }
+        },
+        "indirectTaxRegistered": {
+          "type": "boolean"
+        },
+        "eInvoicing": {
+          "type": "boolean"
+        },
+        "dutyRoute": {
+          "type": "string",
+          "enum": [
+            "MFN",
+            "FORM_E",
+            "EXEMPT"
+          ]
+        },
+        "productApproval": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "NPRA",
+            "ST_SIRIM",
+            "JAKIM_HALAL",
+            "BPOM",
+            "BPJPH_HALAL",
+            "KKM_FOOD",
+            "SFA",
+            "HSA",
+            "CPSO_SAFETY_MARK"
+          ]
+        },
+        "reserveBps": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Basis points (integer 0..10000)"
+        },
+        "licenceCostMinor": {
+          "type": "string",
+          "maxLength": 39,
+          "pattern": "^(0|[1-9][0-9]*)$",
+          "description": "Money in minor units (1 BU = 100 minor), digit string"
+        }
+      },
+      "required": [
+        "entityType",
+        "registrations",
+        "indirectTaxRegistered",
+        "eInvoicing",
+        "dutyRoute",
+        "productApproval",
+        "reserveBps",
+        "licenceCostMinor"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "promptId",
+    "fields"
+  ],
+  "additionalProperties": false
+}

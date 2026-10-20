@@ -1,0 +1,321 @@
+{
+  "reviewedOn": "2026-10-18",
+  "reviewer": "AI-assisted page inspection (P3 on 17 Oct; agent my-pack re-opened every page on 18 Oct); human sign-off pending",
+  "records": [
+    {
+      "id": "demo-reserve",
+      "paths": [
+        "reserveFloorBps"
+      ],
+      "value": 300,
+      "quote": "**reserveFloorBps 300** (demo assumption, labelled; MY income-tax set-aside, [VERIFY])",
+      "sourceUrl": "https://github.com/Khaosphires/hogee/blob/a8221a40bd833a25251324442087cee523104663/project.md?plain=1#L1340",
+      "locator": "project.md §26.2 Rina demo numbers, Facility list, line 1340 (raw Markdown; quote omits the list bullet). Commit a8221a4 is on origin/main.",
+      "retrievedAt": "2026-10-18T14:18:52Z",
+      "evidence": "tier3",
+      "sourceType": "mock",
+      "note": "Project-defined demo policy, not a Malaysian tax rate. A commit permalink survives branch deletion; it opens for anyone once the repository is public (it is private today). LABELING.md D7 (commit cbda06c) states the same 300."
+    },
+    {
+      "id": "ssm-registration-deadline",
+      "paths": [
+        "registrations.0.requirement"
+      ],
+      "value": "Register the business within 30 days of commencement.",
+      "quote": "Register the business not later than thirty (30) days from the date of commencement of business.",
+      "sourceUrl": "https://www.ssm.com.my/Documents/guidelines_for_registration_of_new_business_05062018_0.pdf",
+      "locator": "Page 3, GENERAL GUIDE item 1",
+      "retrievedAt": "2026-10-18T14:16:20Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "note": "Applies to sole proprietorships and partnerships registered under the ROB route. The surrounding requirements limit owners/partners to Malaysian citizens or permanent residents aged at least 18; this is not a foreign-founder route."
+    },
+    {
+      "id": "ssm-trade-name-fee",
+      "paths": [
+        "registrations.0.cost"
+      ],
+      "value": "6000",
+      "quote": "Trade Name – RM60 per year",
+      "sourceUrl": "https://www.ssm.com.my/Pages/Services/Registration-of-Business-(ROB)/table-of-fees/Table-of-Fees.aspx",
+      "locator": "Table Registration Fees of Business, row New Registration, first line of the Fees cell (the page wraps headings in zero-width spaces; the quote is the visible text)",
+      "retrievedAt": "2026-10-18T13:59:23Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "note": "RM60 x 100 = 6000 MYR minor units, one year, business registered under a trade name (LABELING D8). Own-name registration is RM30; branches RM5 each. The same fee covers sole proprietorships and partnerships.",
+      "corroboration": [
+        {
+          "sourceUrl": "https://www.ssm.com.my/Documents/guidelines_for_registration_of_new_business_05062018_0.pdf",
+          "locator": "Page 3, fees item 2",
+          "quote": "Sole proprietorship or partnership using trade name - RM60.00"
+        }
+      ]
+    },
+    {
+      "id": "ssm-sdn-bhd-requirement",
+      "paths": [
+        "registrations.1.requirement"
+      ],
+      "value": "Incorporate through SSM's company registration portal; reserving the company name first costs a separate RM50.",
+      "quote": "d. The system will show the availability of the company name. Select the Name Reservation button, then complete the application information. e. Make a payment transaction with a fee of RM50.",
+      "sourceUrl": "https://www.ssm.com.my/Pages/Legal_Framework/GUIDELINES/Guidelines-For-Incorporation-of-A-Local-Company.pdf",
+      "locator": "Page 3, §2.1 Name Reservation, steps d-e (PDF created 13 Jul 2026)",
+      "retrievedAt": "2026-10-18T13:59:40Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "note": "Name reservation is one of three routes (§2.1 Name Reservation, §2.2 Direct Registration, §2.3 Guaranteed Incorporation); the RM50 is not part of the RM1,010. A private company needs at least one director ordinarily residing in Malaysia (page 1)."
+    },
+    {
+      "id": "ssm-sdn-bhd-fee",
+      "paths": [
+        "registrations.1.cost"
+      ],
+      "value": "101000",
+      "quote": "f. Make a payment transaction: • Fee for company incorporation: RM1,000 • Company data shares to relevant agencies: RM10",
+      "sourceUrl": "https://www.ssm.com.my/Pages/Legal_Framework/GUIDELINES/Guidelines-For-Incorporation-of-A-Local-Company.pdf",
+      "locator": "Page 4, §2.2 Direct Registration, step f (the same two lines appear in §2.1 j and §2.3 f)",
+      "retrievedAt": "2026-10-18T13:59:40Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "note": "RM1,000 incorporation + RM10 data sharing = RM1,010 = 101000 MYR minor units. Excludes the optional RM50 name reservation and professional fees."
+    },
+    {
+      "id": "lhdn-tin-requirement",
+      "paths": [
+        "registrations.2.requirement"
+      ],
+      "value": "TIN registration is automatic for citizens and permanent residents aged 18 and above, using National Registration Department data.",
+      "quote": "Registration of tax identification numbers (TIN) for individual citizens and permanent residents aged 18 and above is automatic through data obtained from National Registration Department (JPN - Jabatan Pendaftaran Negara).",
+      "sourceUrl": "https://www.hasil.gov.my/en/individu/pendaftaran/",
+      "locator": "Registration page, heading Automatic, 'Automatic TIN Registration'",
+      "retrievedAt": "2026-10-18T14:00:51Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "Individuals only, so the pack scopes LHDN_TIN to sole_prop and partnership (both taxed as individuals). Company TIN is not filled: LHDN's company page says companies apply through e-Daftar, with automatic TIN only for companies registered via MyCoID; no fee text was found. A Sdn Bhd compile therefore fails closed on registrations.LHDN_TIN[sdn_bhd].cost."
+    },
+    {
+      "id": "lhdn-tin-cost",
+      "paths": [
+        "registrations.2.cost"
+      ],
+      "value": "0",
+      "quote": "Registration of tax identification numbers (TIN) for individual citizens and permanent residents aged 18 and above is automatic through data obtained from National Registration Department (JPN - Jabatan Pendaftaran Negara).",
+      "sourceUrl": "https://www.hasil.gov.my/en/individu/pendaftaran/",
+      "locator": "Registration page, heading Automatic, 'Automatic TIN Registration'",
+      "retrievedAt": "2026-10-18T14:00:51Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "0 = automatic, no application and no fee stated. The page states no fee either way; 0 is the agreed reading of 'automatic' (P1 review 18 Oct, approved by the user)."
+    },
+    {
+      "id": "myinvois-threshold",
+      "paths": [
+        "eInvoicing.threshold"
+      ],
+      "value": "300000000",
+      "quote": "Taxpayers with an annual turnover or revenue of less than RM3,000,000 are exempted from e-Invoice implementation",
+      "sourceUrl": "https://www.hasil.gov.my/en/e-invois/pelaksanaan-e-invois-di-malaysia/garis-masa-pelaksanaan-e-invois/",
+      "locator": "e-Invoice Implementation Timeline; 'Last updated on: 30/08/2026'",
+      "retrievedAt": "2026-10-18T14:16:21Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "Strictly less than, not less than or equal. RM3,000,000 x 100 = 300000000 minor units. The LHDN e-Invoice General FAQ (https://www.hasil.gov.my/media/0xqitc2t/lhdnm-e-invoice-general-faqs.pdf, 'UPDATED ON 04 SEPTEMBER 2026') uses RM3 million throughout and mentions RM1 million only as the old threshold ('increase of the e-Invoice exemption threshold from RM1 million to RM3 million'). Group-company and year-of-assessment conditions in that FAQ are not encoded; this scalar is not a complete eligibility decision."
+    },
+    {
+      "id": "sst-registration-threshold",
+      "paths": [
+        "indirectTax.registrationThreshold"
+      ],
+      "value": "50000000",
+      "quote": "Taxable person is a person who manufactures taxable goods and is liable to be registered if the annual turnover has exceeded RM500,000.00 threshold.",
+      "sourceUrl": "https://mysst.customs.gov.my/faq-sales-tax/",
+      "locator": "FAQ Sales Tax, answer to 'Who is the taxable person?'",
+      "retrievedAt": "2026-10-18T14:02:16Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "RM500,000 x 100 = 50000000 minor units. Rule: manufacturers register; a reseller does not register but pays sales tax on import (Sales Tax Act 2018 s.8(1)(b): sales tax is levied on taxable goods 'imported into Malaysia by any person'). The registering-business page (https://mysst.customs.gov.my/registering-business/) states the same RM500,000 for 12 months.",
+      "corroboration": [
+        {
+          "sourceUrl": "https://mysst.customs.gov.my/faq-sales-tax/",
+          "locator": "FAQ Sales Tax, answer to 'What is sales tax?'",
+          "quote": "Sales tax is a single-stage tax charged and levied: i. on taxable goods manufactured in Malaysia by a taxable person and sold by him (including used or disposed off) ; and ii. on taxable goods imported into Malaysia."
+        }
+      ]
+    },
+    {
+      "id": "sales-tax-rate-tumbler",
+      "paths": [
+        "indirectTax.rate"
+      ],
+      "value": 1000,
+      "quote": "The rate of sales tax which shall be charged and levied is fixed at ten per cent on all taxable goods except—",
+      "sourceUrl": "https://mysst.customs.gov.my/wp-content/uploads/2025/07/1-PUA-170_2025.pdf",
+      "locator": "Sales Tax (Rate of Sales Tax) Order 2025 [P.U. (A) 170/2025], paragraph 2(1), page 5; in operation 1 July 2025",
+      "retrievedAt": "2026-10-18T14:04:08Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "10% = 1000 bps, scoped to Rina's product: a stainless-steel vacuum-insulated tumbler, HS 9617.00.10 00 ('Vacuum flask and other vacuum vessels, complete'); fallback if it is not vacuum-insulated: 7323.93.90 00 (stainless-steel household articles, other). Neither heading appears in the First Schedule (5%) or Second Schedule (specific rates) of P.U. (A) 170/2025, in its amendments P.U. (A) 199/2025, 399/2025 and 281/2026, or in the Sales Tax (Goods Exempted From Sales Tax) Order 2025 [P.U. (A) 171/2025] and its amendments P.U. (A) 200/2025 and 400/2025 (all listed on https://mysst.customs.gov.my/sst-orders/). The schema has one rate per country, so other product categories need their own check. The HS classification is the researcher's reading of the heading texts, not a customs ruling."
+    },
+    {
+      "id": "imports-tax-base",
+      "paths": [
+        "imports.taxBase"
+      ],
+      "value": "CIF",
+      "quote": "In the case of taxable goods imported into Malaysia, the sale value of the taxable goods shall be the sum of the following amounts: (a) the value of such taxable goods for the purpose of customs duty as determined in accordance with the Customs Act 1967; (b) the amount of customs duty, if any, paid or to be paid on such taxable goods;",
+      "sourceUrl": "https://mysst.customs.gov.my/wp-content/uploads/2025/03/Sales-Tax-Act-2018.pdf",
+      "locator": "Sales Tax Act 2018 [Act 806], s.9(2)(a)-(b), page 17 (as enacted; the Sales Tax (Amendment) Act 2019 s.4 replaced 'sale value' with 'value' in s.9(2); (c) adds excise duty, nil for tumblers)",
+      "retrievedAt": "2026-10-18T14:14:34Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "Sales tax on imports = customs value + customs duty. The schema enum is CIF|FOB and the compiler applies import sales tax on (CIF + duty), so the faithful value is CIF: Malaysia's customs value adds the cost of transport and insurance up to the country of importation (Customs (Rules of Valuation) Regulations 1999 reg 5(1)(a)(vii), corroboration below). FOB would understate both duty and sales tax.",
+      "corroboration": [
+        {
+          "sourceUrl": "https://www.customs.gov.my/en/procedure/technical-services",
+          "locator": "Valuation page, Customs (Rules of Valuation) Regulations 1999, reg 5(1)(a)(vii)",
+          "quote": "(vii) the costs of transportation and insurance of, and the loading, unloading and handling charges and other charges and expenses associated with the transportation of, the goods have arrived in the country of importation;"
+        }
+      ]
+    },
+    {
+      "id": "duty-source-full-rate",
+      "paths": [
+        "imports.dutySources.0"
+      ],
+      "value": "Customs Duties Order 2025 [P.U. (A) 384/2025], First Schedule column (5): full import duty rates (MFN route).",
+      "quote": "(1A) Notwithstanding subparagraph (1), in the case of goods specified in the Third Schedule, import duty shall be levied on the goods at the full rate as specified in column (5) of the First Schedule to the Customs Duties Order 2025 [P.U. (A) 384/2025].",
+      "sourceUrl": "https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/3300431/PUA%2015%20(2026).pdf",
+      "locator": "P.U. (A) 15/2026 paragraph 2(b), inserting paragraph 3(1A) into P.U. (A) 454/2024, page 21; in operation 15 January 2026",
+      "retrievedAt": "2026-10-18T14:14:06Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "Listed first because the compiler cites dutySources[0] for the MFN route. The Customs Duties Order 2025 itself was not opened; no MFN rate is encoded (landed cost takes it as an input)."
+    },
+    {
+      "id": "duty-source-acfta",
+      "paths": [
+        "imports.dutySources.1"
+      ],
+      "value": "Customs Duties (Goods under the Framework Agreement on Comprehensive Economic Co-Operation between ASEAN and China) Order 2024 [P.U. (A) 454/2024], Second Schedule column (5), as amended by P.U. (A) 15/2026.",
+      "quote": "Subject to the provisions of the First Schedule and the Third Schedule, an import duty shall be levied on, and paid by the importer in respect of, goods specified in the Second Schedule, originating from China or ASEAN Member States, at the rate of import duty specified in column (5) of the Second Schedule, imported into Malaysia.",
+      "sourceUrl": "https://www.customs.gov.my/images/06-prosedur/perintah-kastam/perjanjian/PUA454_2024.pdf",
+      "locator": "P.U. (A) 454/2024 paragraph 3(1), page 6; in operation 1 January 2025",
+      "retrievedAt": "2026-10-18T14:12:58Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "Quote is the 2024 text as gazetted. P.U. (A) 15/2026 deleted 'and the Third Schedule' from paragraph 3(1) and moved the exclusion list to a new 3(1A); the Second Schedule rates used here are unchanged for headings 73.23 and 96.17."
+    },
+    {
+      "id": "form-e-name",
+      "paths": [
+        "imports.ftaCertificates.0.name"
+      ],
+      "value": "Form E (ACFTA)",
+      "quote": "The two most important requirements under the ROO are the origin criteria and the Operational Certification of Procedures (OCP) for issuance and verification of the Certificate of Origin, Form E.",
+      "sourceUrl": "https://fta.miti.gov.my/index.php/pages/view/asean-china",
+      "locator": "MITI FTA, ASEAN-China, section RULES OF ORIGIN",
+      "retrievedAt": "2026-10-18T14:05:27Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "Origin rule for the preference: 40% regional value content or a product-specific rule (corroboration below). The supplier must supply a Form E for the 0% rate; without one the full (MFN) rate applies.",
+      "corroboration": [
+        {
+          "sourceUrl": "https://fta.miti.gov.my/index.php/pages/view/asean-china",
+          "locator": "MITI FTA, ASEAN-China, section RULES OF ORIGIN",
+          "quote": "According to Article 5 of the Trade in Goods Agreement, the current origin criteria imposed under the ACFTA is General ROO 40% Regional Value Content (RVC) and limited application of Product Specific Rules (PSR)."
+        }
+      ]
+    },
+    {
+      "id": "form-e-duty-tumbler",
+      "paths": [
+        "imports.ftaCertificates.0.dutyRateBps"
+      ],
+      "value": 0,
+      "quote": "9617.00.10 00 - Vacuum flask and other vacuum vessels, complete kg 0",
+      "sourceUrl": "https://www.customs.gov.my/images/06-prosedur/perintah-kastam/perjanjian/PUA454_2024.pdf",
+      "locator": "P.U. (A) 454/2024 Second Schedule, heading 96.17, page 803; cells joined in column order: subheading, description, unit, 'Rate of Import Duty by % under ACFTA 2025 and subsequent years'",
+      "retrievedAt": "2026-10-18T14:12:58Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "0% for Rina's tumbler line (see sales-tax-rate-tumbler for the classification). The fallback line 7323.93.90 00 is also 0 (page 533, corroboration below). Neither heading is in the exclusion list replaced by P.U. (A) 15/2026 (in operation 15 January 2026). The schema has one Form E rate per partner country, so this 0 is scoped to the demo product, not to every CN import.",
+      "corroboration": [
+        {
+          "sourceUrl": "https://www.customs.gov.my/images/06-prosedur/perintah-kastam/perjanjian/PUA454_2024.pdf",
+          "locator": "P.U. (A) 454/2024 Second Schedule, subheading 7323.93 'Of stainless steel', page 533",
+          "quote": "7323.93.90 00 - - - Other kg 0"
+        }
+      ]
+    },
+    {
+      "id": "food-contact-agency",
+      "paths": [
+        "productApprovals.drinkware_food_contact.agency"
+      ],
+      "value": "NONE",
+      "quote": "Except as otherwise provided in these Regulations, no person shall import, manufacture, advertise for sale or sell, or use or cause or permit to be used in the preparation, packaging, storage, delivery or exposure of food for sale, any package, appliance, container or vessel which yields or could yield to its contents, any toxic, injurious or tainting substance, or which contributes to the deterioration of the food.",
+      "sourceUrl": "https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Regulation+1985+Updated+August+2026+PU+A+48-2026_1.pdf",
+      "locator": "Food Regulations 1985 (consolidated, 'Updated until August 2026', P.U. (A) 48/2026), Part VI Packages for Food, regulation 27, page 39. Listed on https://hq.moh.gov.my/fsq/peraturanperaturan-makanan-1985",
+      "retrievedAt": "2026-10-18T14:08:39Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "Rule text: food-contact rules apply; no pre-market approval. Regulation 27 is a standard (the article must not yield harmful substances), not an approval. The rest of Part VI regulates ceramic ware (reg 28: testing and labelling, also no approval), BPA feeding bottles (27A) and PVC (29-30); none covers stainless steel or sets an approval, registration or permit. The Food Act 1983 (https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Act+1983.pdf) lets the Minister make regulations, including registration and licensing (s.34), but sets no approval for appliances itself. NONE is therefore a reading of the whole Part, not a sentence that says 'no approval'. Other regimes (e.g. consumer-product safety) were not checked."
+    },
+    {
+      "id": "food-contact-cost",
+      "paths": [
+        "productApprovals.drinkware_food_contact.cost"
+      ],
+      "value": "0",
+      "quote": "Except as otherwise provided in these Regulations, no person shall import, manufacture, advertise for sale or sell, or use or cause or permit to be used in the preparation, packaging, storage, delivery or exposure of food for sale, any package, appliance, container or vessel which yields or could yield to its contents, any toxic, injurious or tainting substance, or which contributes to the deterioration of the food.",
+      "sourceUrl": "https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Regulation+1985+Updated+August+2026+PU+A+48-2026_1.pdf",
+      "locator": "Food Regulations 1985, regulation 27, page 39",
+      "retrievedAt": "2026-10-18T14:08:39Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "No approval, so no approval fee. The compiler reads the cost only when the agency is not NONE."
+    },
+    {
+      "id": "food-contact-time",
+      "paths": [
+        "productApprovals.drinkware_food_contact.time"
+      ],
+      "value": 0,
+      "quote": "Except as otherwise provided in these Regulations, no person shall import, manufacture, advertise for sale or sell, or use or cause or permit to be used in the preparation, packaging, storage, delivery or exposure of food for sale, any package, appliance, container or vessel which yields or could yield to its contents, any toxic, injurious or tainting substance, or which contributes to the deterioration of the food.",
+      "sourceUrl": "https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Regulation+1985+Updated+August+2026+PU+A+48-2026_1.pdf",
+      "locator": "Food Regulations 1985, regulation 27, page 39",
+      "retrievedAt": "2026-10-18T14:08:39Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "No approval, so no approval wait (0 days)."
+    },
+    {
+      "id": "pdp-affected-subjects",
+      "paths": [
+        "dataProtection.summary"
+      ],
+      "value": "After a notifiable personal data breach, tell affected data subjects without unnecessary delay and no later than 7 days after notifying the Personal Data Protection Commissioner.",
+      "quote": "The notification to the affected data subjects, as referenced in paragraph 8.1, must be made without unnecessary delay, not later than seven (7) days after the initial data breach notification is made to the Commissioner under paragraph 7.1.",
+      "sourceUrl": "https://www.pdp.gov.my/ppdpv1/wp-content/uploads/2025/08/GP_DBN_ENG.pdf",
+      "locator": "Personal Data Protection Guideline: Data Breach Notification, Version 1.0 (issued 25 February 2025), §9.1, page 15",
+      "retrievedAt": "2026-10-18T14:04:01Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "The 7 days run from the notification to the Commissioner, not from the breach. Only breaches meeting the §5.2 criteria are notifiable. The 31.8 MB PDF is slow to load."
+    },
+    {
+      "id": "pdp-breach-hours",
+      "paths": [
+        "dataProtection.breachNotificationHours"
+      ],
+      "value": 72,
+      "quote": "The notification shall be made as soon as practicable and no later than seventy-two (72) hours from the occurrence of the personal data breach.",
+      "sourceUrl": "https://www.pdp.gov.my/ppdpv1/wp-content/uploads/2025/08/GP_DBN_ENG.pdf",
+      "locator": "Data Breach Notification guideline v1.0, §6.1 Timeframes for Notification to the Commissioner, page 9",
+      "retrievedAt": "2026-10-18T14:04:01Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "note": "72 hours from the occurrence of the breach (§6.2 explains how the clock is computed)."
+    }
+  ]
+}

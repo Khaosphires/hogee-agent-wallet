@@ -1,0 +1,56 @@
+; node.sb: macOS sandbox profile for one fisco-bcos node (scripts/fisco/chain-up.sh starts every node under it).
+; Tested by P1 on 20 Oct 2026 with FISCO BCOS 3.17.1 under these rules: the run-11 narrowing, the 8546 bind for
+; node4's Web3 and the run-12 XPC-service and process-info denies (fresh chain4: five nodes ran the full replay;
+; the selftest's trustd, other-process, read, listen and hard-link probes were denied).
+; Deny by default; the node may read and write only D/nodes (the node folders, its HOME and TMPDIR), read and execute
+; only its own binary, listen only on the chain's loopback ports and connect only to the five loopback p2p ports.
+; Nothing else in the chain dir D is readable or writable: not keys/, deploy/, logs/, run/, facts/, cwd/, tools/,
+; bin/ (beyond the binary) or D itself. bsd.sb still allows file-read-metadata (stat) everywhere.
+; Params: NODES_DIR (D/nodes, D resolved with pwd -P; chain-check.sh checks every start used exactly this), BIN
+; (D/bin/fisco-bcos), SELFTEST ("1" only for chain-check.sh --selftest and test/profiles.sh, which run /usr/bin/nc,
+; /usr/bin/touch, /bin/cat, /bin/ln, /usr/bin/perl and /usr/bin/security under this profile instead of the node; the
+; recorded node start never passes it).
+; Never widen the network rules. Harmless denials seen in testing: system-info vfs.disk-space and a file-read of
+; /private/etc/ssl/openssl.cnf.
+(version 1)
+(deny default)
+(import "bsd.sb")
+; Mach services that system.sb lets every process look up and that act or fetch for their caller outside this sandbox
+; (keep this list equal to build.sb's; test/profiles.sh checks): trustd (certificate checks may fetch CRLs, OCSP
+; answers and missing CA certificates from the network), analyticsd, nsurlsessiond (background URL downloads) and
+; unmanaged XPC activities. After the import: in SBPL the last matching rule wins.
+(deny mach-lookup (global-name "com.apple.trustd" "com.apple.trustd.agent" "com.apple.analyticsd"
+  "com.apple.analyticsd.messagetracer" "com.apple.nsurlsessiond" "com.apple.xpc.activity.unmanaged"))
+; ...and every XPC service: system.sb allows looking up any of them for a (version 1) profile, and an XPC service runs
+; in its own process, outside this sandbox.
+(deny mach-lookup (xpc-service-name-prefix ""))
+(define nodes (param "NODES_DIR"))
+(define bin (param "BIN"))
+(allow process-exec (literal bin))
+(allow file-read* file-map-executable (literal bin))
+(allow file-read* file-write* (subpath nodes))
+(allow file-read* (literal "/dev/random") (literal "/dev/urandom"))
+(allow file-read* file-write-data (literal "/dev/null"))
+(allow sysctl-read)
+; ...except other processes' arguments, environment and details (same uid): kern.procargs, kern.procargs2 and the
+; kern.proc.* table. Prefixes, because a numeric MIB may be named with its trailing pid (kern.procargs2.<pid>). This
+; must come after the allow above and after the one bsd.sb imports: in SBPL the last matching rule wins.
+(deny sysctl-read (sysctl-name "kern.proc") (sysctl-name-prefix "kern.procargs") (sysctl-name-prefix "kern.proc."))
+; The sysctl names above do not catch those reads asked for by number, as ps asks (kern.procargs2.<pid>,
+; kern.proc.pid.<pid>): on macOS 27 the kernel checks them as process-info-pidinfo (fix12-chain's probe, 20 Oct). So
+; no process-info operation on any process but the node itself.
+(deny process-info*)
+(allow process-info* (target self))
+; Listen only on the chain's own loopback ports (p2p 30300-30304, rpc 20200-20204, Web3 8545 on node0 and 8546 on
+; node4, the regulator's observer), so a node cannot take any other local port (Postgres, the API).
+(allow network-bind network-inbound (local tcp "localhost:30300") (local tcp "localhost:30301")
+  (local tcp "localhost:30302") (local tcp "localhost:30303") (local tcp "localhost:30304")
+  (local tcp "localhost:20200") (local tcp "localhost:20201") (local tcp "localhost:20202")
+  (local tcp "localhost:20203") (local tcp "localhost:20204") (local tcp "localhost:8545")
+  (local tcp "localhost:8546"))
+(allow network-outbound (remote tcp "localhost:30300") (remote tcp "localhost:30301") (remote tcp "localhost:30302")
+  (remote tcp "localhost:30303") (remote tcp "localhost:30304"))
+(when (equal? (param "SELFTEST") "1")
+  (allow process-exec file-read* file-map-executable (literal "/usr/bin/nc") (literal "/usr/bin/touch")
+    (literal "/bin/cat") (literal "/bin/ln") (literal "/usr/bin/perl")
+    (literal "/usr/bin/security")))

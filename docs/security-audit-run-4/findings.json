@@ -1,0 +1,1057 @@
+[
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "apps/worker/src/jobs/settle-decide.ts:decideSettlement:onchain-confirmed-without-rail-payout-closes-settled",
+    "title": "An oracle-key confirm sent outside the worker closes a payment SETTLED with no payout, and nothing halts",
+    "description": "The worker process loads the hot ORACLE key in the same environment as the agent, lender and relayer keys (apps/worker/src/config/keys.ts:81). Treasury opens a settlement record in state NONE at every Spent (TreasuryState.sol:304). confirmSettlement accepts any payoutRefHash, and its only checks are msg.sender == oracle and state NONE (Treasury.sol:246-248, 433-436). Suppose someone holds the oracle key outside the backend, for example from a copied worker environment, and calls confirmSettlement(spendId, anyHash) soon after the worker's spend is mined. The attack works when that confirm is at or below `finalized` by the first settle-spend pass that sees the payment FINALIZED. On an epoch-finality chain, a confirm in the same epoch as the Spent finalizes together with it. Reconcile and settle-spend both run every minute by default (env.ts:71-72). gather then reads Treasury.settlementState at `finalized` as CONFIRMED (settle.ts:111). decideSettlement returns close SETTLED as its first rule (settle-decide.ts:105), before it looks at the rail history, the binding or the worker's own settle-confirm action. execute writes state SETTLED (settle.ts:199), and close is allowed even while halted (settle.ts:252). No payout is requested, no trace is written and no halt is raised. Result: the payee is never paid. The line's spentMinor, the binding's paidMinor and the invoice stay consumed: only failSettlement returns them (Treasury.sol:263), and the settlement can no longer be failed (Treasury.sol:436). Both the chain (SettlementConfirmed) and the DB (SETTLED) report a payout that never happened. If the confirm finalizes only after the worker's first pass, the payout was already requested. A payout that succeeded makes the later close benign. One still PENDING at close is never polled again, because loadRows reads only FINALIZED and SETTLEMENT_REQUESTED rows. Detection is at most one EXTERNAL_KEY_USE warn log per use (halt-rules.ts:109, reconcile.ts:179). There is none at all while the oracle key has no nonces row yet: inspectNonces reports externalUse only when dbNext is not null (nonces.ts:169), and the allocator later seeds the row from the chain's pending count, absorbing the outside nonce (nonces.ts:67). The FAILED branch is guarded: a FAILED state whose payout succeeded halts with SETTLEMENT_CONTRADICTION (settle-decide.ts:106). No rule covers CONFIRMED without a succeeded payout. The documented alert-only rationale for the oracle key (halt-rules.ts:14-18: a use that moved money is caught by the orphan watch) does not reach attestations. The orphan watch judges only Spent, OwnerSpent and MilestoneFunded (orphans.ts:33), and nothing in the worker watches SettlementConfirmed. Out of scope for this record: an outside failSettlement before a payout is the designed oracle veto (the row closes SETTLEMENT_FAILED and the amount returns to the pocket), and one after a payout halts as a contradiction. An outside SalesOracle.recordSale that inflates the on-chain revenue read by the StageRelease re-check (relay-calls.ts:227-232) has a different sink and root cause and needs its own record. Fix direction: in decideSettlement, close a CONFIRMED settlement to SETTLED only when the rail history for the chain-derived idempotency keys has a SUCCEEDED attempt. Preferably also require the SettlementConfirmed log's payoutRefHash to equal keccak256Utf8(payoutId) of that attempt. Otherwise return blocked('SETTLEMENT_CONTRADICTION'), which halts with an ALERT trace (settle.ts:179-191). gather must then fetch that history for a CONFIRMED row even when the binding no longer reads OK, or a legitimately confirmed row whose payee re-bound would halt. Separately, seed a nonces row for every worker key at start-up, and record outside oracle and lender use as a persisted halt event, not a log line. Regression: decideSettlement(facts({ chainState: 'CONFIRMED' })) must return { kind: 'blocked', reason: 'SETTLEMENT_CONTRADICTION' }.",
+    "claimed_root_cause": "settle-decide.ts:105 treats any on-chain CONFIRMED settlement state read at finalized as proof that the worker's own payout happened. It never checks the rail history or the worker's own settle-confirm, so an oracle attestation sent outside the worker closes the row SETTLED with no payout. The worker also treats outside use of its hot oracle key as alert-only, and as nothing at all before the key's first allocator use.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "contracts/src/Treasury.sol",
+        "line": 246,
+        "scope": "Treasury.confirmSettlement",
+        "description": "An outside holder of the worker's ORACLE key calls confirmSettlement(spendId, anyHash) for the settlement opened at the worker's Spent (TreasuryState.sol:304). _openSettlement (lines 433-436) checks only msg.sender == oracle and state NONE. The state becomes CONFIRMED with an arbitrary payoutRefHash."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/settle.ts",
+        "line": 111,
+        "scope": "gather",
+        "description": "On the first settle-spend pass over the FINALIZED row, Treasury.settlementState(settlementId) is read at the finalized block and maps to 'CONFIRMED' (CHAIN_STATE, line 129)."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/settle-decide.ts",
+        "line": 105,
+        "scope": "decideSettlement",
+        "description": "The first rule returns { kind: 'close', to: 'SETTLED' } for CONFIRMED. The empty rail history, the binding verdict and the missing settle-confirm action are never consulted. Contrast line 106, which halts on FAILED plus a succeeded payout."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/chain/src/nonces.ts",
+        "line": 169,
+        "scope": "inspectNonces",
+        "description": "[second path] Detection of the outside oracle transaction: externalUse is true only when a nonces row exists (dbNext !== null). Before the worker's first oracle transaction there is none, and allocateFromStore (line 67) later seeds the row from the chain's pending count, which silently absorbs the outside nonce."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/halt-rules.ts",
+        "line": 109,
+        "scope": "judgeNoncePass",
+        "description": "[second path] When the oracle does have a nonces row, outside use yields only an EXTERNAL_KEY_USE alert, not a halt. reconcileNonce raises next_nonce (nonces.ts:277), and reconcile.ts:179 writes a single warn log."
+      },
+      {
+        "kind": "sink",
+        "file": "apps/worker/src/jobs/settle.ts",
+        "line": 199,
+        "scope": "execute (case 'close')",
+        "description": "The payments row moves to SETTLED, with no payout, no trace and no halt. The halt gate at line 252 exempts close, so this also runs while the worker is halted. Afterwards loadRows no longer selects the row, so no payout is ever requested or polled."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "apps/worker/src/jobs/settle-decide.ts",
+        "line": 16,
+        "description": "The module doc closes rows from the chain's settlementState, with one exception: a FAILED settlement whose payout succeeded halts. No rule covers CONFIRMED without a payout."
+      },
+      {
+        "file": "apps/worker/test/unit/settle-decide.test.ts",
+        "line": 100,
+        "description": "CONFIRMED is tested only on a paid row (history [ok(1)]). No test covers CONFIRMED with an empty rail history."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 436,
+        "description": "One attestation per settlement: once an outside confirm moves the state from NONE, the worker's own confirmSettlement or failSettlement reverts SettlementClosed."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 263,
+        "description": "Only failSettlement returns the amount (spentMinor, _spentMinor, binding paidMinor). A confirm leaves the line pocket and the payee binding consumed with no payout made."
+      },
+      {
+        "file": "apps/worker/src/jobs/halt-rules.ts",
+        "line": 16,
+        "description": "Alert-only handling of oracle and lender use is justified because a money-moving use is caught by the orphan watch. That watch judges only Spent, OwnerSpent and MilestoneFunded (orphans.ts:33), not oracle attestations."
+      },
+      {
+        "file": "apps/worker/src/jobs/agent-key.ts",
+        "line": 5,
+        "description": "Only agent-key use outside the allocator halts and pauses. The oracle, lender and relayer keys stay alert-only."
+      },
+      {
+        "file": "apps/worker/README.md",
+        "line": 79,
+        "description": "Operator docs state that the nonce check on the oracle, lender and relayer keys only alerts (EXTERNAL_KEY_USE)."
+      },
+      {
+        "file": "apps/worker/src/config/keys.ts",
+        "line": 81,
+        "description": "The worker loads the agent, oracle, lender and relayer private keys into one process. A copied worker environment yields the oracle key without the backend's allocator."
+      },
+      {
+        "file": "apps/worker/src/config/env.ts",
+        "line": 71,
+        "description": "Reconcile and settle-spend both default to every minute (lines 71-72). The first settle pass over a FINALIZED row is the only window the worker has to request its payout before a finalized outside confirm closes the row."
+      }
+    ],
+    "blockers": [
+      "Run-4 forbids target-controlled execution: macOS cannot enforce the required sandbox limits, and no reviewed promotion code exists. Neither the pure decideSettlement(facts({ chainState: 'CONFIRMED' })) case nor the Anvil + Postgres sequence (worker spend, outside oracle confirm, finalize, reconcile, settle) could be observed, and a confirmed verdict needs that observed result.",
+      "Owner threat-model decision: apps/worker/README.md:79, halt-rules.ts:14-18 and agent-key.ts:5 document outside use of the oracle, lender and relayer keys as alert-only. The stated rationale (orphan watch) does not cover attestations. Source cannot settle whether the worker is expected to contain an outside oracle attestation, or whether a hot-oracle-key compromise is accepted as out of scope (run-3 critic gap on hot oracle/lender keys). The owner must decide."
+    ],
+    "validation_plan": {
+      "local": "Run only in a later run with an approved OS-enforced sandbox; nothing was executed in run-4. Pure check: in apps/worker/test/unit/settle-decide.test.ts, add expect(decideSettlement(facts({ chainState: 'CONFIRMED' }))) and the same call with binding 'PAYEE_COOLING'. Per settle-decide.ts:105, both return { kind: 'close', to: 'SETTLED' } today. After the fix they must return { kind: 'blocked', reason: 'SETTLEMENT_CONTRADICTION' }, while paid({ chainState: 'CONFIRMED' }) still closes SETTLED. Live check: use the existing isolated Anvil + throwaway Postgres fixture of apps/worker/test/live/settle.live.test.ts (MockRail, generated LOOP dummy keys from the test env, no external network). (1) Run w = await newWorld(live), then tick = await runTick(w.deps(), w.facilityId) and await mined(w.live, tick), so the worker's agent spend lands. Do not run runSettle. (2) From the test process, build a viem wallet client for w.signers.oracle, as leakedSpend in test/support/live.ts does for the agent key. Send Treasury.confirmSettlement(spendId, 0x0101...01), where spendId comes from the Spent log (spentLogs(w)). (3) Run await finalizeAll(w.live), which mines 70 blocks so both txs are at or below finalized. Then run runReconcile(w.deps(), [w.facilityId]) and runSettle(w.deps(), [w.facilityId]). Expected today: (a) the payments row has state 'SETTLED', payout_status 'NONE' and payout_attempt 0; (b) select count(*) from hogee_worker.mock_payouts returns 0; (c) activeHalt is null and hogee_worker.halts has no active row; (d) no chain_actions row 'settle-confirm:<paymentId>' exists; (e) the reconcile report has no oracle EXTERNAL_KEY_USE alert, because the oracle has no nonces row. Variant: first let the worker fully settle one earlier spend, so the oracle gets a nonces row, then repeat steps 1-3 on the next ADS slot. Expected: the same SETTLED result with exactly one EXTERNAL_KEY_USE alert and no halt. Control: the same run without step 2 produces one mock_payouts row and the worker's own settle-confirm.",
+      "deployment": "Owner-observed and read-only; never audit traffic. On the owner's loop-1 and final-1 deployments, list Treasury SettlementConfirmed logs at the finalized tag from the manifest's blockNumber. Match each log's transaction hash against the tx_hash of a chain_actions row with id 'settle-confirm:<paymentId>'. For every SETTLED payments row, confirm that the rail (hogee_worker.mock_payouts, or the Xendit test-mode dashboard) holds a SUCCEEDED payout for that settlement's idempotency key. Any unmatched SettlementConfirmed is an outside oracle attestation. Separately, the owner confirms where the oracle private key is held: only the worker environment, or also deploy scripts, wallets or CI secrets. The owner also decides whether outside oracle or lender key use must halt the worker (a persisted halt event) rather than produce a warn log line."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "apps/worker/src/jobs/settle.ts:loadRows:third-party-executed-founder-signed-settlement-never-adopted",
+    "title": "A copied founder-signed OwnerSpend or MilestoneRelease opens a settlement the worker never pays or fails",
+    "description": "The worker relays founder-signed Treasury.ownerSpend and MilestoneEscrow.releaseMilestone calls with the relayer key (agent-actions-founder.ts:143). Neither contract function checks who submits the call. Treasury.ownerSpend (Treasury.sol:325) passes any caller to TreasuryGovernance.ownerSpend by delegatecall. Its onlyDelegated guard only checks address(this) != _SELF (TreasuryGovernance.sol:204-206), and the founder signature covers only the struct and the domain (line 55). releaseMilestone refuses only the agent as sender (MilestoneEscrow.sol:94).\n\nAttack: a party that can see the relayer's pending tx (a public Sepolia mempool, or anyone with access to the node's pool) resubmits the identical calldata from its own EOA with a higher priority fee. The copy is mined first. It uses up the founder's envelope nonce (TreasuryGovernance.sol:54), marks the invoice paid, adds the amount to the line's spentMinor and the payee's paidMinor, and opens settlement spendId (TreasuryState.sol:297-310). OwnerSpent is emitted in the copy's tx. For a milestone, escrowRelease adds the amount to paidMinor and opens the milestone settlement (TreasuryModuleHooks.sol:57-66), with MilestoneReleased in the copy's tx. The relayer's tx was already signed, so it is mined next and reverts InvalidSignature because the nonce is used (HogeeDomain.sol:67). Recovery records it as INCLUDED from its own receipt (recovery.ts:161), and finality marks the payments row REVERTED (finality.ts:130). A second path: if the same signed struct runs before the relayer signs (for example, submitted outside Hogee), the relay simulation refuses it. The row then becomes POLICY_DENIED with an ALERT trace that reports a signature refusal (agent-actions-founder.ts:122, 151-161).\n\nWhy nothing recovers it: settle-spend only loads FINALIZED or SETTLEMENT_REQUESTED rows that have a tx_hash (settle.ts:71-72). The bindings only read the logs of row.tx_hash (settle-verify.ts:37, settle-verify-escrow.ts:68). The worker adopts a third-party execution only for WITHDRAW_RESERVE (settle-adopt.ts:82, called at settle.ts:246), even though that module gives the same reason itself: anyone may execute, so the tx may not be the worker's (settle-adopt.ts:4-5). On the mempool-copy path nothing raises an alert. The orphan watch returns early for an OwnerSpent whenever any OWNER_SPEND row has that intent, including a REVERTED one (orphans.ts:147). It never judges MilestoneReleased (orphans.ts:117). A reverted finality outcome raises neither a halt nor an alert (halt-rules.ts:73-76).\n\nResult: the settlement stays open (isIntentUsed is true and settlementState is NONE). Only the oracle can close it (Treasury.sol:433-437), and the only worker code that calls confirmSettlement or failSettlement needs a loaded row (settle.ts:214, 220). The rail never pays the payee or supplier. Meanwhile the line pocket's spentMinor (or escrowedMinor) and the payee's paidMinor stay used up, so the budget stays locked until someone uses the oracle key by hand. The founder cannot retry the same invoice: the same amount reverts DuplicateIntent (TreasuryGovernance.sol:64) and another amount reverts DuplicateInvoice (TreasuryState.sol:281). The founder cannot retry the same milestone either (MilestoneLocked, MilestoneEscrow.sol:100). Each retry with a new invoice can be copied again for the cost of gas.\n\nConditions: an anonymous chain user with gas. That user must be able to see the relayer's pending tx before it is mined: possible on a public network such as Sepolia; the localhost Anvil demo exposes its pool only to local processes, and automine leaves no gap to exploit. The founder must sign an OwnerSpend or MilestoneRelease through Hogee. No value is redirected. The impact is a lasting denial of an authorised payment, with its budget and the payee's lifetime cap locked.\n\nFix: extend settle-adopt.ts to OWNER_SPEND and RELEASE_MILESTONE. For each backend row of those kinds that ended REVERTED or POLICY_DENIED (or is still DROPPED or unresolved), check at finalized whether its intent is used: isIntentUsed of the spendId or the milestone settlement id. If it is, read the finalized OwnerSpent or MilestoneReleased log for that id and insert a worker-owned row under its own id prefix, with that tx hash and its rebuilt signed bytes, as adoptReserveWithdrawals does. The existing binding (settle-verify*.ts) and the rail flow then pay it exactly once. Also alert on an OwnerSpent or MilestoneReleased whose only rows are REVERTED or POLICY_DENIED. Regression test: a fixture where a foreign EOA executes the founder-signed call first; settle must pay exactly once and confirmSettlement must land.",
+    "claimed_root_cause": "Settlement starts only from the worker's own successful tx for every kind except WITHDRAW_RESERVE. The contracts let any party submit founder-signed ownerSpend and releaseMilestone calls. When someone else lands the call first, the relayer's row ends REVERTED (or POLICY_DENIED), the open on-chain settlement has no row to settle from, and nothing adopts it from the chain.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "contracts/src/Treasury.sol",
+        "line": 325,
+        "scope": "Treasury.ownerSpend",
+        "description": "External, with no caller check. Passes any submitter to the governance module by delegatecall (_delegate, line 472). A third-party EOA submits calldata copied from the relayer's pending tx: the founder's OwnerSpend plus its Sig."
+      },
+      {
+        "kind": "propagation",
+        "file": "contracts/src/TreasuryGovernance.sol",
+        "line": 49,
+        "scope": "TreasuryGovernance.ownerSpend",
+        "description": "onlyDelegated (lines 204-206) only requires the delegatecall. The founder signature is checked over the struct and domain (line 55), with no binding to the sender."
+      },
+      {
+        "kind": "propagation",
+        "file": "contracts/src/TreasuryGovernance.sol",
+        "line": 54,
+        "scope": "TreasuryGovernance.ownerSpend",
+        "description": "_useEnvelope marks the founder's envelope nonce used (HogeeDomain.sol:67-68) in the copy's tx."
+      },
+      {
+        "kind": "propagation",
+        "file": "contracts/src/TreasuryState.sol",
+        "line": 304,
+        "scope": "_recordOutflow",
+        "description": "The copy marks the invoice paid, adds the amount to the line's spentMinor and the payee's paidMinor (lines 297-301), and opens settlement spendId with state NONE. OwnerSpent is emitted in the copy's tx (TreasuryGovernance.sol:70)."
+      },
+      {
+        "kind": "propagation",
+        "file": "contracts/src/MilestoneEscrow.sol",
+        "line": 91,
+        "scope": "MilestoneEscrow.releaseMilestone",
+        "description": "[second path] Refuses only the agent as sender (line 94), then uses up the envelope nonce (line 95) and checks the founder signature (line 96), so a copied MilestoneRelease from any other EOA goes through."
+      },
+      {
+        "kind": "propagation",
+        "file": "contracts/src/TreasuryModuleHooks.sol",
+        "line": 60,
+        "scope": "escrowRelease",
+        "description": "[second path] Adds the amount to the payee's paidMinor (line 57) and opens the milestone settlement (kind MILESTONE, state NONE). MilestoneReleased is emitted in the copy's tx (MilestoneEscrow.sol:165)."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/agent-actions-founder.ts",
+        "line": 143,
+        "scope": "relayOne",
+        "description": "The relayer's tx was signed and broadcast earlier with identical calldata. It is mined after the copy and reverts InvalidSignature because the envelope nonce is used. Recovery lands it INCLUDED from its own receipt (recovery.ts:161)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/chain/src/finality.ts",
+        "line": 130,
+        "scope": "settleIncluded",
+        "description": "At finalized, the relayer's payments row moves to REVERTED. halt-rules.ts:73-76 raises nothing for a reverted outcome."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/agent-actions-founder.ts",
+        "line": 122,
+        "scope": "simulate",
+        "description": "[second path] If the same signed struct ran before the relayer signed, the simulation reverts and the row becomes POLICY_DENIED with an ALERT trace that reports a signature refusal (lines 151-161). The settlement is still never settled."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/settle-adopt.ts",
+        "line": 82,
+        "scope": "candidates",
+        "description": "Chain-side adoption of third-party executions selects only exceptions of kind WITHDRAW_RESERVE. No sibling path exists for OWNER_SPEND or RELEASE_MILESTONE."
+      },
+      {
+        "kind": "sink",
+        "file": "apps/worker/src/jobs/settle.ts",
+        "line": 72,
+        "scope": "loadRows",
+        "description": "Only FINALIZED or SETTLEMENT_REQUESTED rows with a tx_hash are settled. The REVERTED or POLICY_DENIED row is excluded, so the open settlement is never paid, confirmed or failed."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 325,
+        "description": "Treasury.ownerSpend is external with no caller check and passes any submitter to the governance module."
+      },
+      {
+        "file": "contracts/src/TreasuryGovernance.sol",
+        "line": 204,
+        "description": "_onlyDelegated only checks address(this) != _SELF. Nothing in ownerSpend restricts msg.sender."
+      },
+      {
+        "file": "contracts/src/MilestoneEscrow.sol",
+        "line": 94,
+        "description": "releaseMilestone refuses only the agent as sender."
+      },
+      {
+        "file": "contracts/src/HogeeDomain.sol",
+        "line": 67,
+        "description": "A used envelope nonce reverts InvalidSignature, so the relayer's later tx (or its simulation) fails once the copy lands."
+      },
+      {
+        "file": "packages/chain/src/recovery.ts",
+        "line": 161,
+        "description": "The relayer's own reverted receipt lands the row INCLUDED. It then reaches finality's silent REVERTED, not recovery's unresolved alert for an intent executed by another tx (lines 180-181)."
+      },
+      {
+        "file": "apps/worker/src/jobs/agent-actions-sign.ts",
+        "line": 114,
+        "description": "denyPayment applies only to unsigned rows, so a row whose tx the relayer already broadcast ends REVERTED, not POLICY_DENIED."
+      },
+      {
+        "file": "contracts/src/TreasuryGovernance.sol",
+        "line": 64,
+        "description": "DuplicateIntent: the founder cannot re-sign the same invoice and amount to reopen the payment."
+      },
+      {
+        "file": "contracts/src/TreasuryState.sol",
+        "line": 281,
+        "description": "DuplicateInvoice: re-signing the same invoice with another amount also reverts, because the copy marked the invoice paid."
+      },
+      {
+        "file": "contracts/src/MilestoneEscrow.sol",
+        "line": 100,
+        "description": "A released milestone reverts MilestoneLocked, so it cannot be released again."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 434,
+        "description": "_openSettlement: only the oracle can confirm or fail. The worker's only confirm and fail calls (settle.ts:214, 220) run for a loaded settle row."
+      },
+      {
+        "file": "apps/worker/src/jobs/settle-verify.ts",
+        "line": 37,
+        "description": "The OWNER_SPEND binding reads only the logs of row.tx_hash."
+      },
+      {
+        "file": "apps/worker/src/jobs/settle-verify-escrow.ts",
+        "line": 68,
+        "description": "The RELEASE_MILESTONE binding reads only the logs of row.tx_hash."
+      },
+      {
+        "file": "apps/worker/src/jobs/settle-adopt.ts",
+        "line": 4,
+        "description": "The sibling control says third-party execution must be adopted from the chain because anyone may execute, but it covers only reserve withdrawals."
+      },
+      {
+        "file": "apps/worker/src/jobs/orphans.ts",
+        "line": 147,
+        "description": "An OwnerSpent whose intent has any OWNER_SPEND row, even a REVERTED one, raises no alert."
+      },
+      {
+        "file": "apps/worker/src/jobs/orphans.ts",
+        "line": 117,
+        "description": "factsOf ignores MilestoneReleased, so a copied milestone release is never judged."
+      },
+      {
+        "file": "apps/worker/src/jobs/halt-rules.ts",
+        "line": 73,
+        "description": "Finality outcomes halt only on error and alert only on unresolved. A reverted outcome raises neither."
+      }
+    ],
+    "blockers": [
+      "This run forbids target-controlled execution (macOS cannot enforce the sandbox limits, and no reviewed promotion code exists), so the race could not be reproduced on a local Anvil: copy mined first, relayer row REVERTED, Treasury.settlementState(spendId) staying 0 across settle passes, no payout row.",
+      "Whether a third party can see the relayer's pending tx before it is mined is a deployment fact outside source: the configured RPC broadcasting into a public Sepolia mempool, versus the localhost-only Anvil RPC or a private-submission endpoint."
+    ],
+    "validation_plan": {
+      "local": "Sandboxed, no external network, fixture keys only. Start Anvil (chain 31337) with mining disabled and mine with evm_mine. Deploy the contracts and run the API and worker against it. Commit a plan, bind a payee on a non-escrow line past its cooling time, release stage 0 and fund it. (1) Have the founder sign an OwnerSpend for invoice I through POST /api/signatures/request and POST /api/signatures/:id/submit. Run one agent-actions pass so the relayer signs and broadcasts (row owner:<signatureRequestId> BROADCAST with raw_signed_tx). (2) Read the pending tx (eth_getTransactionByHash of payments.tx_hash). From a second funded Anvil account, send a tx with the same to and input and a higher maxPriorityFeePerGas. Call evm_mine once, then mine past the finalized depth. (3) Run reconcile twice and settle-spend three times. Expect: the copy's receipt succeeds with OwnerSpent(spendId) and the relayer's receipt reverts InvalidSignature. The row is REVERTED. Treasury.isIntentUsed(spendId) is true and settlementState(spendId) is 0 after every settle pass. There is no hogee_worker.mock_payouts row, no settle-confirm: or settle-fail: chain_actions row, no hogee_worker.halts row and no ALERT trace. A fresh founder signature for invoice I with a new nonce is refused by the relay simulation with DuplicateIntent. (4) Repeat with a funded milestone that is not autoRelease and MilestoneEscrow.releaseMilestone. Expect: row REVERTED, settlementState(milestoneSettlementId) 0, and a re-signed release refused with MilestoneLocked. (5) Control: submit the stored signed struct from the second account before running agent-actions. Expect: the row becomes POLICY_DENIED with an ALERT trace reporting that the simulation reverts InvalidSignature, and settlementState still stays 0. After the fix: the adopted row is paid exactly once and confirmSettlement lands.",
+      "deployment": "Owner-observed on Sepolia, sending no copy and no audit traffic. For the next founder-signed OwnerSpend or MilestoneRelease the worker relays, record payments.tx_hash at broadcast. Before it is mined, query an independent public Sepolia RPC (eth_getTransactionByHash, or the pending block) to confirm that the tx and its input are visible to third parties. Confirm the relayer does not broadcast through a private-submission endpoint. Confirm the deployed Treasury.ownerSpend and MilestoneEscrow.releaseMilestone bytecode matches the audited source (no sender restriction). Read-only check of existing state: list OWNER_SPEND and RELEASE_MILESTONE rows that are REVERTED or POLICY_DENIED and whose intent reads isIntentUsed true with settlementState 0 at finalized."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "packages/api/src/http/register.ts:readBody:size-cap-trusts-content-length",
+    "title": "Body size caps trust Content-Length, so a chunked request body is buffered in full before any limit applies",
+    "description": "register.ts declares MAX_JSON_BYTES (256 KiB) and MAX_UPLOAD_BYTES (10 MiB) and says JSON bodies above the cap are refused before parsing. The only check made before the read is tooLarge(), and tooLarge() reads only the Content-Length header. A request sent with Transfer-Encoding: chunked has no Content-Length, which counts as 0, so the check passes. For multipart routes, readBody then calls c.req.parseBody(), which reads the whole body through Request.formData(). For JSON and raw routes it calls c.req.text() and compares text.length only after the full body is in memory. uploadInspection copies the file again with file.arrayBuffer() and runs a JS keccak256 over every byte. Its only checks are size 0 and the client-declared part type, and both come before any database or escrow lookup, so no escrow order needs to exist. Reaching these paths takes no credential. The persona gate passes requests without a cookie because they read as founder:rina, which satisfies uploadInspection's FOUNDER list. The Stripe webhook has no persona list, and its header schema needs only a non-empty stripe-signature, because the HMAC is checked in the handler after the full read. Other JSON routes with no persona list (exception approve and veto, control pause) reach the same text() read. No front layer limits size. rejectUntrustedRequest checks only Host and Origin/Sec-Fetch-Site, there is no proxy.ts or middleware, next.config.ts sets only headers, and createApiApp adds no body-limit middleware. The Host allow-list (default localhost:3000 and 127.0.0.1:3000), the Origin guard and the start script's loopback bind mean the attacker is a local non-browser client, unless the deployment exposes the port another way. Such a client can make the shared Next/API process hold request bodies of any size it chooses, held only while each request lasts. Memory grows with the size of concurrent bodies, up to about twice the body on the upload path, plus hashing CPU. Enough concurrent large bodies could exhaust process memory. That would stop the founder and officer UI and Stripe webhook intake until a restart. The worker, its keys and on-chain state are not affected. Whether Next.js 16.4 or undici adds a byte limit could not be checked: no dependency source is installed, and execution is forbidden in this run. Fix: enforce a streamed byte limit before parseBody() and text(), for example hono/body-limit bodyLimit({ maxSize }) on these routes or a counting stream that aborts at max+1 bytes. Also reject file.size > MAX_UPLOAD_BYTES in uploadInspection. Regression test: a streamed body with no Content-Length at twice the cap must be refused as 'too large' (422 for uploads, 400 for the webhook) after at most cap+1 bytes are read, without reaching the handler.",
+    "claimed_root_cause": "tooLarge() trusts the client's Content-Length header, and an absent header counts as 0. readBody then fully buffers the body through c.req.parseBody() or c.req.text() with no streamed byte limit, so the declared caps never bound a chunked body.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "apps/web/app/api/[...route]/route.ts",
+        "line": 46,
+        "scope": "guarded",
+        "description": "Next.js route handler for every /api request. rejectUntrustedRequest checks only Host and Origin/Sec-Fetch-Site before handing the Request to Hono, and nothing in front of it limits size."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/register.ts",
+        "line": 123,
+        "scope": "register route handler",
+        "description": "personaOf runs before parseRequest. A request without a cookie reads as founder:rina, so FOUNDER routes such as uploadInspection pass, and stripeWebhook has no persona list."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/register.ts",
+        "line": 67,
+        "scope": "tooLarge",
+        "description": "Only the content-length header is read (line 68). When it is absent, Number('0') is 0, so the check passes for a chunked body of any size."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/register.ts",
+        "line": 78,
+        "scope": "readBody (JSON/raw)",
+        "description": "[second path] c.req.text() reads the entire body, for example on /api/webhooks/stripe before its HMAC is checked. The 256 KiB length check on line 79 runs only after all bytes are in memory."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/register.ts",
+        "line": 75,
+        "scope": "readBody (multipart)",
+        "description": "c.req.parseBody() reads and holds the whole multipart body through Request.formData(), with no byte count."
+      },
+      {
+        "kind": "sink",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 90,
+        "scope": "uploadInspection",
+        "description": "Copies the whole uploaded file with file.arrayBuffer() and runs keccak256 over every byte. Lines 88-89 check only size 0 and the client-declared MIME type, and both run before any escrow or database lookup."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api/src/http/register.ts",
+        "line": 40,
+        "description": "MAX_JSON_BYTES = 256 KiB, described as refused before parsing. MAX_UPLOAD_BYTES = 10 MiB (line 42). These are the only body caps in the API."
+      },
+      {
+        "file": "packages/api/src/http/register.ts",
+        "line": 68,
+        "description": "Content-Length is read with a default of '0'. This header check is the only test made before the body is read."
+      },
+      {
+        "file": "packages/api/src/http/register.ts",
+        "line": 92,
+        "description": "parseRequest reads the body after the params, query and headers checks, inside the generic register path, before any handler logic runs."
+      },
+      {
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 154,
+        "description": "uploadInspection is multipart with personas FOUNDER, which a request without a cookie satisfies."
+      },
+      {
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 244,
+        "description": "stripeWebhook is rawBody and has no persona list."
+      },
+      {
+        "file": "packages/api-contract/src/schemas.ts",
+        "line": 86,
+        "description": "The webhook header schema requires only a non-empty stripe-signature string, so any value reaches the body read."
+      },
+      {
+        "file": "packages/api/src/routes/webhooks.ts",
+        "line": 87,
+        "description": "The Stripe HMAC is verified only in the handler, after readBody has read the whole raw body."
+      },
+      {
+        "file": "packages/api/src/http/persona.ts",
+        "line": 17,
+        "description": "Persona comes only from verifyPersonaCookie. A missing, bad or unsigned cookie, or an unset secret (line 16), reads as founder:rina."
+      },
+      {
+        "file": "packages/api/src/request-guard.ts",
+        "line": 54,
+        "description": "The front guard checks only Host and Origin/Sec-Fetch-Site and performs no size check. POSTs with neither header pass (lines 58-62)."
+      },
+      {
+        "file": "packages/api/src/app.ts",
+        "line": 31,
+        "description": "createApiApp builds a bare Hono app and registers routes with no bodyLimit or other middleware. No proxy.ts or middleware exists in apps/web, and next.config.ts sets only security headers."
+      },
+      {
+        "file": "apps/web/package.json",
+        "line": 9,
+        "description": "next start binds to localhost:3000. With the default Host allow-list and the Origin guard, the attacker must be a local non-browser client unless the deployment exposes the port another way."
+      }
+    ],
+    "blockers": [
+      "Run-4 forbids target execution (macOS cannot enforce the sandbox memory, disk and file-size limits, and no reviewed promotion code exists), so the number of bytes the Hono app reads for a chunked body could not be observed.",
+      "No dependency source is installed in the worktree (no node_modules). Whether Next.js 16.4.0 route handlers under next start, with no proxy.ts or middleware, or undici's Request.formData()/text() impose any byte limit on a chunked request body cannot be answered from repository source.",
+      "Whether the judged deployment keeps the loopback bind and the default HOGEE_ALLOWED_HOSTS, or exposes port 3000 through another interface, tunnel or reverse proxy that has its own request-body limit, is a deployment fact outside the repository."
+    ],
+    "validation_plan": {
+      "local": "Only in an approved OS-enforced sandbox: no network, empty allowlisted environment, read-only target and tools, scratch-only writes, about a 512 MiB memory cap and a 120 s wall clock. Build createApiApp(stubProvider, { uploadInspection: ({ req }) => { record req.body.file.size; return { evidenceHash: '0x' + '00'.repeat(32) }; } }). stubProvider returns flags with demoMode false and no cookieSecret, a fixed clock, config with a dummy facilityId and founderId, and a no-op log; no database is touched. (1) Call app.fetch(new Request('http://localhost:3000/api/escrow/order-a-001/inspection', { method: 'POST', duplex: 'half', headers: { 'content-type': 'multipart/form-data; boundary=hogeeb' }, body: a ReadableStream that yields one part named file with Content-Type application/pdf and 20,971,521 payload bytes and counts the bytes pulled })). The Request then has no content-length header. Expected at dd824df: every byte is pulled and the override handler records file.size 20,971,521. The response is not 422 'The request body is too large'. (2) POST /api/webhooks/stripe with stripe-signature 't=1,v1=00' and a 262,145-byte streamed body. Expected: all bytes are pulled before the 400 'The request body is too large'. (3) For the framework blocker, run next start on loopback inside the same sandbox, then send the request from (1) with curl -H 'Transfer-Encoding: chunked' --data-binary @-. Check whether the override counter is reached, which shows whether Next 16.4 imposes any route-handler body limit. After the fix: at most cap+1 bytes are pulled, the response is 422 (upload) or 400 (webhook) 'too large', and the handler is not reached.",
+      "deployment": "The owner checks without sending audit traffic: (a) the exact command and bind address used for the judged demo (next start --hostname localhost or something else); (b) the HOGEE_ALLOWED_HOSTS value; (c) whether a tunnel or reverse proxy sits in front of port 3000 and what request-body size limit it enforces for chunked bodies; (d) whether a supervisor restarts the web/API process after an out-of-memory exit."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "packages/api/src/routes/exceptions.ts:veto:cancelled-before-onchain-cancel-never-reconciled",
+    "title": "A veto marks a loosening CANCELLED before cancelLoosen lands. A cancel that runs before the in-flight queueLoosen is refused for good and never reconciled, so the vetoed loosening can still be queued and executed",
+    "description": "POST /api/exceptions/:id/veto has no persona list, so any caller can veto a timelocked exception that is FOUNDER_SIGNED, APPROVED, QUEUED or EXECUTABLE. A request with no cookie reads as the founder. In one API transaction veto() sets the terminal status CANCELLED. If the read taken before the UPDATE was not FOUNDER_SIGNED, it also parks an unsigned Treasury.cancelLoosen row. Nothing waits for the chain. An exception stays APPROVED from the officer's approval until sync sees the loosen QUEUED on-chain. A veto at APPROVED can therefore arrive while the lender-co-signed queueLoosen is signed and broadcast but not yet included. The next relay pass runs the cancelLoosen builder, which checks only the DB status and loosen_id. signAndStore then estimates gas at the node's default block. If that state does not contain the queueLoosen, TreasuryGovernance.cancelLoosen reverts TimelockActive. relay send() turns the decoded revert into a permanent refusal: revert_reason is set and the row is never selected again. Only an ALERT trace records it. The queueLoosen can then be included in two ways: the in-flight tx mines, or, after a failed or dropped broadcast, reconcile's recovery re-sends the stored bytes before the 900 s envelope expires, without re-reading the exception. Either way the loosening is QUEUED on-chain while the console shows CANCELLED. syncLoosens and the timelock executor skip CANCELLED rows, and nothing in the worker or API reads LoosenQueued events. A second veto returns 409, so the officer has no API path left to cancel. After executableAt any EOA can call Treasury.executeLoosen, and the change applies within the _checkLoosen bounds (raised cap, added payee, moved pockets, extended expiry, unpause or reserve withdrawal). The founder who requested the loosening is one such caller. Because anonymous callers read as founder, the founder can also send the veto on purpose during the window to suppress the lender's own veto. The owner EOA or the observer can still cancel on-chain, and a pause cancels every queued loosening, but nothing surfaces the divergence to prompt them. Variants with the same root cause: (a) A veto of an EXECUTABLE row while the relayer's executeLoosen is unmined lets the execution land first. The DB stays CANCELLED while the chain says EXECUTED, and for WITHDRAW_RESERVE settle-adopt never adopts the opened settlement. (b) The cancel decision uses the status read at line 109. An officer approval that commits between that read and the UPDATE leaves CANCELLED with no cancelLoosen row. Meanwhile a relay pass that read APPROVED in that interval co-signs and broadcasts queueLoosen. Timing: on Anvil with automine the main window is near zero, because the tx is mined inside sendRawTransaction. On Sepolia it is about one block. The rebroadcast path does not depend on block time. DEMO_MODE is not required.",
+    "claimed_root_cause": "The veto commits a terminal CANCELLED status that is not bound to the on-chain cancellation. CANCELLED is written before cancelLoosen is confirmed. The relay maps a simulated TimelockActive revert to a permanent refusal even while the exception's own lender-co-signed queueLoosen is signed but not yet included (and recovery may still re-send it). No job compares CANCELLED exceptions with Treasury.queuedLoosen(loosenId) or with LoosenQueued events. The decision to emit a cancel is also taken from the read before the UPDATE, not from the row the UPDATE moved.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/routes/exceptions.ts",
+        "line": 143,
+        "scope": "exceptionRoutes.vetoException",
+        "description": "The POST /api/exceptions/:id/veto route has no persona list (packages/api-contract/src/routes.ts:202), so any caller reaches veto(). A missing cookie reads as founder."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/exceptions.ts",
+        "line": 111,
+        "scope": "veto",
+        "description": "Accepts FOUNDER_SIGNED, APPROVED, QUEUED and EXECUTABLE from the row read at line 109. APPROVED covers a queueLoosen that the relay has already co-signed and broadcast but that is not yet included."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/exceptions.ts",
+        "line": 115,
+        "scope": "veto",
+        "description": "Sets the terminal status CANCELLED in the transaction opened at line 113, before any chain effect."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/exceptions.ts",
+        "line": 120,
+        "scope": "veto",
+        "description": "Inserts Treasury.cancelLoosen (line 121) when loosen_id is set and the stale pre-UPDATE status is not FOUNDER_SIGNED. loosen_id is already set at the founder's signature."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/relay-calls.ts",
+        "line": 242,
+        "scope": "cancelLoosen builder",
+        "description": "Checks only DB status CANCELLED and a matching loosen_id. It never reads queuedLoosen and never defers while the exception's queueLoosen action is signed but not landed. Lender role, no fallback."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/chain/src/sender.ts",
+        "line": 145,
+        "scope": "signAndStoreUnredacted",
+        "description": "estimateGas is called with no block parameter, so the node's default block applies. That state may not contain the relayer's unmined queueLoosen."
+      },
+      {
+        "kind": "propagation",
+        "file": "contracts/src/TreasuryGovernance.sol",
+        "line": 150,
+        "scope": "cancelLoosen",
+        "description": "Reverts TimelockActive when the loosen is not QUEUED in the simulated state (NONE before queueLoosen lands)."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/relay.ts",
+        "line": 78,
+        "scope": "send",
+        "description": "A decoded Hogee revert with no fallback role becomes refuse(), and refuse() writes revert_reason (line 47)."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/relay.ts",
+        "line": 90,
+        "scope": "relayFacility",
+        "description": "Pending selection requires revert_reason to be null, so the refused cancel is never retried."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/chain/src/recovery.ts",
+        "line": 153,
+        "scope": "resend",
+        "description": "queueLoosen lands after the refusal. Either the in-flight tx is included, or, after a failed or dropped broadcast, recovery re-sends the stored bytes here without reading the exception status."
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/sync.ts",
+        "line": 104,
+        "scope": "syncLoosens",
+        "description": "Only APPROVED, QUEUED and EXECUTABLE exceptions are compared with queuedLoosen. A CANCELLED exception whose loosen is QUEUED on-chain is never corrected, re-cancelled or alerted on."
+      },
+      {
+        "kind": "sink",
+        "file": "contracts/src/TreasuryGovernance.sol",
+        "line": 129,
+        "scope": "executeLoosen",
+        "description": "Reached through the unrestricted Treasury.executeLoosen (Treasury.sol:335). Any EOA can apply the loosening the console shows as vetoed: line 132 checks only status QUEUED and executableAt."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api/src/routes/exceptions.ts",
+        "line": 113,
+        "description": "The CANCELLED UPDATE and the cancelLoosen insert run in one API transaction that does not depend on the chain outcome."
+      },
+      {
+        "file": "packages/api/src/services/signing/loosen-request.ts",
+        "line": 54,
+        "description": "loosen_id is written when the founder signs, so a veto at APPROVED always parks a cancelLoosen row even if queueLoosen has not landed."
+      },
+      {
+        "file": "apps/worker/src/jobs/relay-calls.ts",
+        "line": 207,
+        "description": "queueLoosen is refused only if the status is not APPROVED at build time. A veto committed after the build does not stop the broadcast."
+      },
+      {
+        "file": "apps/worker/src/jobs/relay.ts",
+        "line": 76,
+        "description": "if (decoded && !plan.fallback): any decoded Hogee simulation revert is terminal, including a TimelockActive that becomes valid one block later."
+      },
+      {
+        "file": "apps/worker/src/jobs/relay.ts",
+        "line": 47,
+        "description": "refuse() sets revert_reason 'REFUSED: ...' on the unsigned row. The only other record is an ALERT trace; the exception status is untouched."
+      },
+      {
+        "file": "apps/worker/src/jobs/timelock-executor.ts",
+        "line": 29,
+        "description": "The worker executes only QUEUED or EXECUTABLE exceptions. It skips the divergent row but cannot stop other accounts from executing."
+      },
+      {
+        "file": "apps/worker/src/jobs/settle-adopt.ts",
+        "line": 82,
+        "description": "Adoption covers only QUEUED, EXECUTABLE or EXECUTED WITHDRAW_RESERVE exceptions, so a reserve withdrawal executed for a CANCELLED exception is never adopted."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 335,
+        "description": "executeLoosen forwards by delegatecall with no caller restriction."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 200,
+        "description": "pause() cancels every queued loosening, and the owner EOA and observer may cancelLoosen. These on-chain mitigations exist, but nothing in the worker or API detects the divergence that would trigger them."
+      },
+      {
+        "file": "packages/api/test/live/exceptions.live.test.ts",
+        "line": 120,
+        "description": "The veto test vetoes only after a pump, when queueLoosen is already mined and synced to QUEUED. The in-flight and rebroadcast windows are untested."
+      }
+    ],
+    "blockers": [
+      "Run-4 forbids target-controlled execution. The decisive effect is a two-transaction ordering: queueLoosen is broadcast or stored but not included while the relay simulates cancelLoosen. It is observable only on a sandboxed chain with automine off (or a dropped broadcast) running the API plus the relay, reconcile and sync jobs.",
+      "Node fact, not source-visible: which block eth_estimateGas uses when no block parameter is sent (sender.ts:145 passes none; viem is not vendored in the worktree). At latest, the cancel reverts TimelockActive and is refused. At a pending state that includes the relayer's mempool tx, the cancel is signed instead, and the outcome then depends on the in-block order of the two txs. Anvil and the Sepolia RPC provider may differ.",
+      "Library fact, not source-visible in the worktree: whether the error from viem estimateGas, after redactError, carries revert data on its cause chain where revertDataFromError (packages/chain/src/revert.ts:47) finds it. If it does not, relay records 'error' and retries the cancel on every pass, which would succeed once queueLoosen lands and defeat the path.",
+      "Deployment fact: whether the demo runs on Anvil with automine (main window near zero) or on Sepolia (about one block). How often stored queueLoosen txs are re-sent by recovery there is also unknown."
+    ],
+    "validation_plan": {
+      "local": "Bounded fixture inside the approved OS sandbox (no network, scratch-only writes, low CPU, memory and wall-clock limits). Setup: Postgres 16 with the drizzle schema; Anvil started with --no-mining and the run-4 contracts deployed; a committed plan; dummy facility and founder:rina; the API app and the worker relay, reconcile, sync and timelock-executor jobs driven one pass at a time. (1) As founder, create EXTEND_EXPIRY(agent, +86400 s), then request and submit the LoosenRequest signature. POST /api/exceptions/:id/approve with the officer cookie. (2) Run one relay pass. Expect the Treasury.queueLoosen row to have raw_signed_tx set and no receipt. (3) POST /api/exceptions/:id/veto with no cookie. Expect 200 with status CANCELLED and one Treasury.cancelLoosen row. (4) Run one relay pass while logging eth_estimateGas params at the RPC. Expect the cancel row to have revert_reason 'REFUSED: simulation reverts TimelockActive' and raw_signed_tx null. If the cancel was signed instead (pending-state estimate), record that and check the on-chain order of the two txs after step 5. (5) evm_mine, then run relay and sync. Expect Treasury.queuedLoosen(loosenId).status == 1 (QUEUED), exceptions.status == 'CANCELLED', the cancel row never re-selected, and a second veto returning 409. (6) evm_increaseTime past executableAt, evm_mine, and call Treasury.executeLoosen(loosenId) from an unrelated Anvil account. Expect success and a raised agentExpiry. Rebroadcast variant (independent of the estimateGas block default): after step 2, call anvil_dropTransaction(queueLoosen hash), veto, and run a relay pass (expect the same refusal). Then run reconcile (expect the stored queueLoosen re-sent), evm_mine, and repeat steps 5-6. Stale-read variant: call veto() with requireException stubbed to return the FOUNDER_SIGNED row while the stored row is APPROVED; expect CANCELLED and no cancelLoosen row. Regression: keep the veto non-terminal (for example VETO_PENDING) until LoosenCancelled is observed. Have the cancelLoosen builder throw RelayDeferral while queuedLoosen is NONE and the exception's queueLoosen action is signed but neither landed nor past its envelope expiry. Lock the exception row (select ... for update) and take the cancel decision from the locked status. Have syncLoosens also read CANCELLED and VETO_PENDING rows, and re-queue a cancel or raise a halt plus pause when the chain shows QUEUED.",
+      "deployment": "Owner-observed and read-only on the Sepolia demo deployment. (1) For every exception with status CANCELLED and a non-null loosen_id, read Treasury.queuedLoosen(loosen_id).status at latest. Status 1 (QUEUED) or 2 (EXECUTED) is the divergence. (2) List Treasury.cancelLoosen chain_actions whose revert_reason starts with 'REFUSED: simulation reverts TimelockActive', plus any Treasury.queueLoosen rows for the same exceptions that recovery re-sent. (3) Confirm from the RPC provider's documentation which block eth_estimateGas uses when no block parameter is given. Do not create or veto loosenings on the shared deployment to test this."
+    }
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "packages/api/src/routes/passkey.ts:verify:first-registration-not-bound-to-founder-session",
+    "title": "Any client that can reach the API can take the founder passkey slot with a synthetic attestation-none registration, so the founder's own registration is refused and only the Anvil demo reset can clear it through the API",
+    "description": "POST /api/passkey/register/options and /verify are founder-persona routes. A request with no cookie, or a bad one, reads as founder:rina (persona.ts:17, persona-cookie.ts:64), so an anonymous caller passes the persona gate (register.ts:123-125). The request guard checks only that Host is on the allow-list, and a non-browser client sets Host itself. A POST with neither Sec-Fetch-Site nor Origin then passes (request-guard.ts:56-62). The registration challenge is an HMAC over the per-process constant facilityId|founderId (passkey.ts:31, 48), so it is valid for whoever asks for it. The clientDataJSON origin, the rpIdHash and the UP/UV flags are bytes the client supplies, and the server accepts only attestation 'none', so nothing proves an authenticator exists (webauthn.ts:102, 136-140, 157). The repo's own test SoftAuthenticator builds exactly this kind of registration from a software P-256 key generated at runtime. The window opens when the API inserts the founder row during POST /api/facility/open (facility.ts:63). After that, any client that reaches the API can store its own {credentialId, qx, qy} as the founder's PENDING_LENDER key (passkey.ts:73-74). Every later registration, including the founder's real Touch ID, is then refused with FounderKeyAlreadySet (passkey.ts:61-62, 87). No API route rejects or clears a pending key. The worker only promotes a pending key to REGISTERED (sync.ts:31). The only API removal is the DEMO_MODE officer reset, which refuses unless the chain is local Anvil 31337 (demo.ts:50). On Sepolia the operator would have to edit the database directly. Takeover is not shown. The officer must approve the exact stored tuple (passkey.ts:94), the worker checks the relayed key against the same row (relay-calls.ts:156), and no API GET returns the pending qx/qy. So the result that can be shown is limited: a non-founder principal fills the one-time founder key slot without any founder key, which blocks founder bootstrap, and an attacker key then needs only one officer approval to gain founder authority. Reach is loopback-only by default (next binds to localhost). It extends to any internet client if the operator adds a tunnel or hosted hostname to HOGEE_ALLOWED_HOSTS, as project.md:944 tells them to. Suggested fix: bind registration to a server-side, single-use enrolment secret that the officer issues for this founder (for example a one-time code stored with the founder row and consumed on verify), and add an officer route that rejects or clears a PENDING_LENDER key. Regression tests: an anonymous verify without the enrolment secret is refused, and an officer reject clears the slot so the founder can register.",
+    "claimed_root_cause": "Nothing in founder key enrolment proves the registrant is the founder. An anonymous caller satisfies the persona gate. The registration challenge is bound to a constant facility|founder string, not to a session or an enrolment secret. Attestation 'none' leaves every authenticator property asserted by the client. The first stored registration is final, and outside the Anvil demo reset no API path rejects it.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 92,
+        "scope": "passkeyRegisterVerify route",
+        "description": "POST /api/passkey/register/verify with personas FOUNDER (line 95). The options route at line 88 is also FOUNDER-only."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/persona.ts",
+        "line": 17,
+        "scope": "personaOf",
+        "description": "verifyPersonaCookie returns founder:rina for a missing, unsigned or tampered cookie (persona-cookie.ts:64-74), so an anonymous caller passes the FOUNDER persona check at register.ts:123-125"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/request-guard.ts",
+        "line": 62,
+        "scope": "rejectUntrustedRequest",
+        "description": "the only checks are a Host allow-list (line 56), whose header a non-browser client sets itself, and Sec-Fetch-Site/Origin only when present (58-61). A POST with neither header passes."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/passkey.ts",
+        "line": 48,
+        "scope": "options",
+        "description": "any caller gets a challenge. Its HMAC binding is bindingOf(scope) = facilityId|founderId (line 31), a per-process constant tied to no caller session."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/signing/webauthn.ts",
+        "line": 102,
+        "scope": "checkClientData",
+        "description": "the challenge HMAC (line 101) verifies for any caller. The origin is a string from client-supplied clientDataJSON, compared against WEBAUTHN_ORIGINS."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/signing/webauthn.ts",
+        "line": 136,
+        "scope": "parseAuthData",
+        "description": "rpIdHash and the UP/UV/AT/BS/BE flags (137-140) are bytes in client-supplied authenticatorData, and nothing attests them"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/signing/webauthn.ts",
+        "line": 157,
+        "scope": "parseRegistration",
+        "description": "only fmt 'none' with an empty attStmt is accepted, so a self-generated on-curve P-256 key passes and the server never sees authenticator provenance"
+      },
+      {
+        "kind": "sink",
+        "file": "packages/api/src/routes/passkey.ts",
+        "line": 73,
+        "scope": "verify",
+        "description": "UPDATE founders stores the caller's credentialId/qx/qy as PENDING_LENDER while the slot is empty. Later registrations are refused with FounderKeyAlreadySet at lines 61-62 and 87."
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api/src/routes/passkey.ts",
+        "line": 61,
+        "description": "verify refuses with FounderKeyAlreadySet ('it can never be replaced') once a credential is stored, the status is REGISTERED or a key is on-chain"
+      },
+      {
+        "file": "packages/api/src/routes/passkey.ts",
+        "line": 74,
+        "description": "the UPDATE predicate 'passkey_credential_id is null and key_status = PENDING_LENDER' makes the first registrant's key final"
+      },
+      {
+        "file": "packages/api/src/routes/facility.ts",
+        "line": 63,
+        "description": "POST /api/facility/open inserts the founder row (key_status defaults to PENDING_LENDER) in the API transaction. This opens the window before openFacility lands on-chain, and requireFounder (passkey.ts:33-37) is then satisfied."
+      },
+      {
+        "file": "apps/worker/src/jobs/sync.ts",
+        "line": 31,
+        "description": "the only other writer of founder key state moves PENDING_LENDER to REGISTERED when the chain matches. Nothing rejects or clears a pending key."
+      },
+      {
+        "file": "packages/api/src/routes/demo.ts",
+        "line": 50,
+        "description": "the only API removal path, the DEMO_MODE officer reset, refuses unless the chain is local and chainId is 31337"
+      },
+      {
+        "file": "packages/api/src/routes/demo.ts",
+        "line": 39,
+        "description": "the reset recovers the slot only by deleting every facility-scoped row, the founders row included"
+      },
+      {
+        "file": "packages/api/src/routes/passkey.ts",
+        "line": 94,
+        "description": "strongest control: officer approval must match the exact stored {credentialId, qx, qy}. This stops a silent takeover but not the preemption."
+      },
+      {
+        "file": "apps/worker/src/jobs/relay-calls.ts",
+        "line": 156,
+        "description": "the worker checks that the relayed registerFounderKey matches the stored founder row. It binds the key to the row but not to whoever wrote the row."
+      },
+      {
+        "file": "packages/api/src/persona-cookie.ts",
+        "line": 64,
+        "description": "a missing cookie value verifies as the default persona founder:rina. This is a documented G0 decision (project.md:1511), so founder key enrolment is the root of the founder-key boundary and sits behind no founder proof."
+      },
+      {
+        "file": "apps/web/package.json",
+        "line": 7,
+        "description": "next dev and start bind to localhost:3000, so by default the lower-trust principal is a local process or another local user on the demo host"
+      },
+      {
+        "file": "project.md",
+        "line": 944,
+        "description": "operators are told to add any tunnel or hosted hostname to HOGEE_ALLOWED_HOSTS. That makes the API, and this enrolment, reachable by internet clients."
+      },
+      {
+        "file": "packages/api/test/support/authenticator.ts",
+        "line": 84,
+        "description": "the repo's SoftAuthenticator builds a fmt 'none' registration from a runtime software P-256 key with a client-chosen origin (line 85), and steps.ts:20 sends it to verify. This is the request shape the server is built to accept. It was not executed in this run."
+      }
+    ],
+    "blockers": [
+      "Run-4 forbids executing target code (macOS cannot enforce the required sandbox limits, and no reviewed promotion code exists). So the bounded request test was not run: an anonymous attestation-none verify stored as PENDING_LENDER, then the founder's verify refused with FounderKeyAlreadySet.",
+      "Deployment fact not in source: whether any principal other than the founder can send requests with an allowed Host header to the API between POST /api/facility/open and the founder's registration. That includes other OS users or processes on the demo host's loopback, and internet clients if a tunnel or hosted hostname is in HOGEE_ALLOWED_HOSTS (project.md:944).",
+      "Product-intent fact not in source or docs/G0-DECISIONS.md: whether the owner accepts first-come founder enrolment as a demo trade-off, given that on Sepolia a squatted PENDING_LENDER slot can be recovered only by a direct database edit."
+    ],
+    "validation_plan": {
+      "local": "Use an OS-enforced sandbox: no network, an empty allowlisted environment, a read-only target, scratch-only writes, and low CPU, memory and time limits. Run the live test world (packages/api/test/support/world.ts) against a disposable Postgres and a local Anvil with DEMO_MODE=1 and fresh random secrets. (1) With the officer cookie, POST /api/facility/open {capMinor:'1000000', reserveFloorBps:300}, then pump the worker. (2) With no cookie, no Origin, no Sec-Fetch-Site and Host: localhost:3000, POST /api/passkey/register/options and read challenge. (3) Build registration A with a new SoftAuthenticator (authenticator.ts register(challenge): fmt 'none', empty attStmt, authData = sha256('localhost') || 0x45 || counter || 16 zero AAGUID bytes || 16-byte id || COSE EC2 key, clientDataJSON {type:'webauthn.create', challenge, origin:'http://localhost:3000', crossOrigin:false}). POST it to /api/passkey/register/verify with the same anonymous headers. Expect 200 with onchain PENDING_LENDER, and expect the founders row to hold A's credentialId/qx/qy. (4) With the founder cookie and a second SoftAuthenticator B, run options then verify. Expect FounderKeyAlreadySet. (5) With the officer cookie, POST /api/officer/founder-key/approve with B's tuple. Expect CONFLICT. (6) Enumerate ROUTE_NAMES and confirm that no route other than demoReset changes passkey_credential_id/qx/qy. With chain set to a non-31337 id, confirm demoReset returns FORBIDDEN. (7) Control check: the step-3 verify sent with Origin: http://evil.example, or with Sec-Fetch-Site: cross-site, returns 403. Use only dummy keys and the dummy facility, and stop after step 7.",
+      "deployment": "The owner checks, without audit traffic: (a) the HOGEE_ALLOWED_HOSTS value and whether any tunnel, reverse proxy or hosted hostname forwards to the API during step 0 of the Sepolia demo; (b) whether other OS users or untrusted processes run on the demo host while the facility is open and the founder has not registered; (c) whether first-come enrolment, with recovery from a squatted PENDING_LENDER slot only by a manual database edit, is an accepted demo trade-off or needs an officer-issued enrolment secret and a reject route."
+    }
+  },
+  {
+    "verdict": "rejected",
+    "fingerprint": "packages/api/src/routes/proposals.ts:propose:recordDenied-for-state-and-duplicate-denials",
+    "title": "proposeSpend records treasury-state and retried-proposal denials as agent denials, so a pause or three retries trip a line's circuit",
+    "description": "With DEMO_MODE=1, POST /api/proposals/spend has no persona list. It records every DENY of an invoice proposal whose reason is a contract error name: it writes a denials row and an agent-signed Treasury.recordDenied on the line the caller chose. That includes Paused (from agentGate during a treasury pause, or a line pause), LineExpired, and DuplicateIntent for a resent identical proposal whose intent is already in flight or mined. Each call gets a fresh decisionId. Treasury.recordDenied does not check pause. The third denial on an active line within its window sets circuitOpen. A treasury-wide UNPAUSE does not clear that, so only an UNPAUSE(lineId) loosening reopens the line. The source path is real, and it contradicts the core rule in pacing.ts:12-16 for Paused, CircuitOpen, LineExpired and PACING_SLOT_AHEAD. However, the only effect is a tighten-only, fail-closed line circuit. The same principal (any DEMO_MODE caller, anonymous included) can already cause that effect, or a larger one, through intended paths.",
+    "claimed_root_cause": "proposals.ts:55 gates recordDenied only on invoiceId, mirrorsRevert and the reason format. It lacks the exclusion list the core rule requires (Paused, CircuitOpen, LineExpired, AgentExpired, NotAgent, PACING_SLOT_AHEAD), and it has no idempotency key, so a re-delivered proposal for an intent this facility already holds is anchored on-chain again as a new agent denial.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/routes/proposals.ts",
+        "line": 76,
+        "scope": "proposalRoutes.proposeSpend",
+        "description": "DEMO_MODE route (routes.ts:210 demoOnly) with no persona list; the body names lineKey and invoiceId"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/policy-context.ts",
+        "line": 75,
+        "scope": "inFlightAt",
+        "description": "An in-flight payment's intent is added to usedIntents, so a resent identical proposal evaluates to DuplicateIntent"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/core/src/policy/state.ts",
+        "line": 31,
+        "scope": "agentGate",
+        "description": "A treasury pause gives DENY Paused; deny() (state.ts:17) sets mirrorsRevert for every contract error name"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/core/src/policy/spend.ts",
+        "line": 102,
+        "scope": "evaluateSpend",
+        "description": "DuplicateIntent, also LineExpired (line 94) and line Paused (line 97), all with mirrorsRevert set"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/proposals.ts",
+        "line": 55,
+        "scope": "propose",
+        "description": "Records any mirrored DENY of an invoice proposal; there is no exclusion for state or duplicate denials"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/proposals.ts",
+        "line": 62,
+        "scope": "propose",
+        "description": "Inserts Treasury.recordDenied with a fresh decisionId and proposalHash on the caller's lineId"
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/relay-calls.ts",
+        "line": 265,
+        "scope": "recordDenied builder",
+        "description": "Checks only that the denial row exists and the proposalHash matches; signs with the agent key"
+      },
+      {
+        "kind": "sink",
+        "file": "contracts/src/Treasury.sol",
+        "line": 235,
+        "scope": "recordDenied",
+        "description": "The third denial within the line window sets l.circuitOpen = true"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/core/src/policy/pacing.ts",
+        "line": 13,
+        "description": "Core rule: never recordDenied any proposal denied Paused, CircuitOpen, LineExpired or PACING_SLOT_AHEAD. The code really does diverge from it (a correctness defect). DuplicateIntent is not on this list."
+      },
+      {
+        "file": "packages/api/src/routes/proposals.ts",
+        "line": 6,
+        "description": "Intended design: an invoice the chain would refuse is recorded so the circuit breaker counts it. The caller picks any lineKey for any invoice."
+      },
+      {
+        "file": "packages/api/test/live/proposals.live.test.ts",
+        "line": 65,
+        "description": "An anonymous caller gets PayeeNotBound for an invoice on a line its payee is not bound to. That reason is in CONTRACT_ERROR_NAMES (enums.ts:254), so proposals.ts:55 records it by design. Three such calls trip any active line's circuit without any of the excluded reasons."
+      },
+      {
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 214,
+        "description": "POST /api/control/pause has no persona list (control.ts:2: any persona may ask). Any caller can already pause the whole treasury, which needs the same founder+lender UNPAUSE loosening to undo."
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 224,
+        "description": "recordDenied reverts CircuitOpen once the line circuit is open, and _requireAgent (TreasuryState.sol:208) reverts NotAgent/AgentExpired. Recording CircuitOpen, NotAgent or AgentExpired denials therefore has no on-chain effect."
+      },
+      {
+        "file": "contracts/src/TreasuryLoosenRules.sol",
+        "line": 131,
+        "description": "UNPAUSE(lineId) clears the line pause, circuitOpen and the denial count together, so a circuit tripped by line-Paused denials is cleared by the same loosening that reopens the line. Only UNPAUSE(0) leaves line circuits open."
+      },
+      {
+        "file": "packages/api/test/live/proposals.live.test.ts",
+        "line": 72,
+        "description": "Recording a denial projected from in-flight payments (CapExceeded) is tested on purpose; DuplicateIntent on an in-flight intent is the same kind of projection"
+      },
+      {
+        "file": "apps/worker/src/jobs/agent-actions-spend.ts",
+        "line": 16,
+        "description": "The non-demo worker paths never call recordDenied, and proposeSpend returns 404 without DEMO_MODE (register.ts:122), so production has no path to this behavior"
+      },
+      {
+        "file": "contracts/src/Treasury.sol",
+        "line": 218,
+        "description": "recordDenied checks only _requireAgent, not pause, so denials during a treasury pause do count"
+      }
+    ],
+    "reason": "The trace is accurate (every file:line was checked against dd824df), and proposals.ts:55 does contradict the core rule in pacing.ts:12-16. But this does not cross a security boundary. The only effect is a tighten-only, fail-closed line circuit. The same principal, any DEMO_MODE caller including an anonymous one, can already cause it through intended paths: three invoice proposals on a line the payee is not bound to give PayeeNotBound, which is recorded by design, and that trips any active line's circuit. POST /api/control/pause, open to any persona, pauses the whole treasury, which is a larger effect needing the same founder+lender timelocked loosening. So an attacker gains nothing (AI-AND-LLM rule 2: the caller can do the same action normally). Several cases have no chain effect at all: recordDenied reverts on CircuitOpen, NotAgent and AgentExpired; a line-Paused trip is cleared by the same UNPAUSE(lineId) that reopens the line; and LineExpired only hits a line that cannot spend anyway. The route exists only under DEMO_MODE, and the worker paths never record denials. DuplicateIntent is not on the core exclusion list and matches the deliberately tested in-flight CapExceeded recording. The retry scenario depends on an out-of-repo MCP wrapper. Execution would only confirm what the source already shows, so neither blocker is decisive. What remains is a non-security robustness defect in demo-only code. A benign agent that proposes during a treasury pause can leave lines needing separate UNPAUSE(lineId) loosenings after UNPAUSE(0). The owner may fix it by skipping recordDenied for Paused, CircuitOpen, LineExpired, AgentExpired and NotAgent, and for duplicates of this facility's own in-flight intent."
+  },
+  {
+    "verdict": "rejected",
+    "fingerprint": "packages/api/src/routes/suppliers.ts:uploadInspection:evidence-hash-overwritable-while-release-pending",
+    "title": "A founder-persona inspection upload can overwrite the evidence hash of a pending MilestoneRelease, but at dd824df no escrow milestone can exist, so the path is unreachable",
+    "description": "Claim: POST /api/escrow/:orderId/inspection needs only the founder persona, and a request with no cookie or a bad cookie gets that persona. The handler rewrites escrow_milestones.evidence_hash on the first non-auto, unreleased milestone without checking for a pending MilestoneRelease. The signed release is checked against that mutable column twice: by the API finalize (CONFLICT) and by the worker releaseCall (FounderRelayRefusal, then POLICY_DENIED). A local non-browser client could therefore void founder-signed releases again and again, or plant its own file's hash before the founder signs. The code reads as described, but the precondition cannot be produced at the audited commit. The only production insert into escrow_milestones is SupplierApproval finalize. That needs a candidate on a READY shortlist. Every fixture candidate calls the @hogee/checks functions, all of which are throwing P3 stubs, so the shortlist is always FAILED. The mock and replay modes answer 503. As a result uploadInspection always answers NOT_FOUND and writes nothing, releasable answers NOT_FOUND, and no RELEASE_MILESTONE payment can reach the worker. Even once reachable, the founder-key boundary holds. The chain releases only a struct that carries the founder's signature over the exact evidenceHash, and it stores that signed hash. The worker's refusal of a release whose stored evidence changed is the documented intent.",
+    "claimed_root_cause": "The inspection-evidence write is authorized only by the founder persona (anonymous by design) and has no state guard. Yet the evidence hash is a field of the founder-signed MilestoneRelease, which the API finalize (founder-payments.ts:75-76) and the worker relay (agent-actions-founder.ts:98-107) both re-derive from the mutable escrow_milestones row, rather than from the payments.invoice_hash written atomically with the verified signature (founder-payments.ts:93).",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 151,
+        "scope": "uploadInspection route",
+        "description": "POST /api/escrow/:orderId/inspection, multipart file, personas FOUNDER (line 154)"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/http/persona.ts",
+        "line": 16,
+        "scope": "personaOf",
+        "description": "With no cookie secret every request is founder:rina; otherwise verifyPersonaCookie maps a missing or bad cookie to founder:rina (line 17). No founder key is involved."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/suppliers.ts",
+        "line": 93,
+        "scope": "uploadInspection",
+        "description": "UPDATE escrow_milestones SET evidence_hash for min(idx) where not auto_release and released_minor = 0. Only the size and MIME checks run first (lines 88-89). There is no check of an existing hash or a pending release, and with no matching row the handler answers NOT_FOUND (line 103)."
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/signing/founder-payments.ts",
+        "line": 47,
+        "scope": "releasable",
+        "description": "The MilestoneRelease the founder is asked to sign takes evidenceHash from the current escrow_milestones row (read at lines 39-44)"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/signing/founder-payments.ts",
+        "line": 76,
+        "scope": "milestoneRelease.finalize",
+        "description": "[second path] An overwrite before submit makes the re-derived release differ from the signed struct, so the API answers CONFLICT and the founder must request and sign again"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/signing/founder-payments.ts",
+        "line": 93,
+        "scope": "milestoneRelease.finalize commit",
+        "description": "Writes the POLICY_OK RELEASE_MILESTONE payment with invoice_hash = the signed evidenceHash, in the same transaction that marks the request SUBMITTED"
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/agent-actions-founder.ts",
+        "line": 98,
+        "scope": "releaseCall",
+        "description": "Re-reads escrow_milestones.evidence_hash at relay time (zero if absent, line 105) and compares it to the signed struct with milestoneReleaseMismatch (line 106). A mismatch throws FounderRelayRefusal (line 107)."
+      },
+      {
+        "kind": "sink",
+        "file": "apps/worker/src/jobs/agent-actions-founder.ts",
+        "line": 151,
+        "scope": "relayOne",
+        "description": "denyPayment sets the founder-signed release to POLICY_DENIED (agent-actions-sign.ts:114) and an ALERT trace is appended"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 150,
+        "description": "The only production insert into escrow_milestones, in SupplierApproval finalize commit. No route, job, seed or migration writes escrow orders or milestones; only worker test support inserts them directly (apps/worker/test/support/agent-actions.ts:80)."
+      },
+      {
+        "file": "packages/api/src/services/signing/supplier-approval.ts",
+        "line": 67,
+        "description": "planOrder, used by both prepare and finalize, refuses with NOT_FOUND unless the supplier is a candidate on the newest READY shortlist (latestReadyShortlist, line 64)"
+      },
+      {
+        "file": "packages/api/src/services/shortlist.ts",
+        "line": 76,
+        "description": "Every fixture candidate runs candidateOf, which calls deps.checks.fx (line 26) and screenSanctions (line 35). Any throw is caught (lines 78-80) and the shortlist is written FAILED (suppliers.ts:34). An empty fixture list gives no candidate, so planOrder still finds nothing to choose."
+      },
+      {
+        "file": "packages/api/src/runtime/ports.ts",
+        "line": 13,
+        "description": "liveChecks binds the checks port directly to @hogee/checks, and createLiveDeps uses it (runtime/deps.ts:55)"
+      },
+      {
+        "file": "packages/checks/src/index.ts",
+        "line": 63,
+        "description": "getFx throws NotImplementedError, as do screenSanctions (line 50), validateUSCC, validateSSM and lookupLEI: P3 task 3.11 stubs that fail closed"
+      },
+      {
+        "file": "apps/web/app/api/[...route]/route.ts",
+        "line": 42,
+        "description": "Only live mode serves @hogee/api. Mock and replay modes answer 503 for every /api route (lines 36-40)."
+      },
+      {
+        "file": "apps/worker/src/jobs/agent-actions-founder-sig.ts",
+        "line": 92,
+        "description": "ReleaseExpect documents that the expected evidenceHash is the stored escrow_milestones value. The module doc (line 5) gives the intent: a row edited after the founder signed is never relayed."
+      },
+      {
+        "file": "contracts/src/MilestoneEscrow.sol",
+        "line": 96,
+        "description": "releaseMilestone requires the founder signature over the full MilestoneRelease digest, including evidenceHash. It refuses a zero hash when inspection is required (line 102) and stores the signed hash (line 161), so the on-chain evidence is always a value the founder key approved."
+      },
+      {
+        "file": "packages/api/src/request-guard.ts",
+        "line": 56,
+        "description": "Host allow-list, plus Sec-Fetch-Site and Origin checks on POST (lines 58-61). Next binds to localhost (apps/web/package.json:9), so even a reachable path needs a local non-browser client."
+      }
+    ],
+    "reason": "Source refutes the trace at the audited commit. The sink needs an escrow_milestones row. The only production writer of that row is SupplierApproval finalize (supplier-approval.ts:150), which requires a candidate on a READY shortlist (supplier-approval.ts:64-67). computeShortlist calls the @hogee/checks functions for every fixture candidate, and those functions all throw (packages/checks/src/index.ts). So the shortlist is always FAILED (shortlist.ts:76-80, suppliers.ts:34), and mock or replay mode answers 503. With no milestone row, uploadInspection updates nothing and answers NOT_FOUND (suppliers.ts:103), releasable answers NOT_FOUND, and no RELEASE_MILESTONE payment can reach releaseCall. The candidate's first blocker concedes this, and it is a source-answerable fact, not an execution blocker. Its local plan inserts escrow rows directly, which tests a database state the application cannot produce at dd824df. The other two blockers are not decisive. Even when the path becomes live, the effect is bounded. The writer is the founder persona, which by documented design is every local caller. The founder-key boundary holds: the chain releases only a struct the founder key signed, including that exact evidenceHash (MilestoneEscrow.sol:96, 102, 161). No value moves without the key, and the settlement intent prevents a second release. The worker refusing a release whose stored evidence changed is the documented intent (agent-actions-founder-sig.ts:5, 92). The remaining effect is that a local client can force repeated re-signing. Re-audit this fingerprint when @hogee/checks is implemented and SupplierApproval can create orders. The suggested hardening is still sound defense in depth: refuse an upload while a MilestoneRelease is PENDING or SUBMITTED or a live RELEASE_MILESTONE payment exists for that milestone, or have the worker compare the signed evidenceHash with payments.invoice_hash."
+  },
+  {
+    "verdict": "needs_validation",
+    "fingerprint": "packages/api/src/services/spend-proposal.ts:evaluatePacingSpend:no-pacing-period-check",
+    "title": "proposeSpend pays consecutive pacing slots back to back; only the worker tick enforces the plan's one-slot-per-day pacing",
+    "description": "Requires DEMO_MODE=1. The proposeSpend route is demoOnly and has no persona list, so any caller (including an anonymous one) or the MCP wrapper can POST /api/proposals/spend {lineKey, pacingSlot, reason}. evaluatePacingSpend takes the amount and payee from the manifest. It then runs core evaluateSpend on the context projected past in-flight rows. The API counts POLICY_OK rows as in flight. So once slot N is a POLICY_OK row, slot N+1 equals the projected nextSequence and the verdict is AUTO. Each AUTO verdict inserts a SPEND row with a fresh newId('pay') id. agent-actions signs API rows oldest first. It rebuilds the projection after each signature and re-evaluates with the same rules, so the agent key signs every row. If slot N+1 runs ahead of an unmined slot N on a chain that does not auto-mine, its gas estimate reverts before signing. The row then stays POLICY_OK and a later pass signs it. Neither evaluateSpend nor Treasury._requireInvoice has a time or period rule: Treasury checks only slot == seq + 1 and amount <= pacingMinor. The one-slot-per-line-per-chain-day rule exists only in the autonomous tick (payment id pacing:<LINE>:<day>). Yet the founder-signed manifest fixes pacing.period = 'day', and project.md section 12.4 says a pacing line gets at most one slot per day. The burst stays within every signed money cap: perTx, the 7-day window cap, the line allocation, releasedMinor/fundedMinor and the payee lifetime cap if any. It pays only the plan's payee. With the Rina ADS numbers, 8 slots (60,000 minor, the window cap) can be paid in one chain day instead of over about 8 days, and the 120,000 allocation can be used up in two windows. The effect is spending ahead of the signed schedule, not diverting funds. Pacing refusals are only traced, never recordDenied, so the burst cannot trip the line circuit.",
+    "claimed_root_cause": "Only the autonomous tick's per-day payment id (decide.ts pacingPaymentId) enforces the plan's per-day pacing cadence. The API proposal path and the worker's re-check of API rows apply core evaluateSpend. Its pacing rule checks only slot order against the in-flight projection and has no due-slot or period rule, and Treasury has none either. A direct path therefore skips a gate that the scheduled path applies.",
+    "trace": [
+      {
+        "kind": "entrypoint",
+        "file": "packages/api/src/routes/proposals.ts",
+        "line": 76,
+        "scope": "proposalRoutes.proposeSpend",
+        "description": "Handler for POST /api/proposals/spend (route contract: demoOnly, no persona list). It passes the zod-validated {lineKey, pacingSlot, reason} body to propose"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/proposals.ts",
+        "line": 25,
+        "scope": "propose",
+        "description": "A pacing body goes to evaluatePacingSpend on the policyWorld context"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/policy-context.ts",
+        "line": 82,
+        "scope": "inFlightAt",
+        "description": "Every POLICY_OK, SIGNED, BROADCAST or DROPPED SPEND row (IN_FLIGHT, line 27) adds one in-flight slot on its line"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/services/spend-proposal.ts",
+        "line": 79,
+        "scope": "evaluatePacingSpend",
+        "description": "Takes the caller's slot with the manifest amount and payee and evaluates on projected(); no day or due check"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/core/src/policy/pacing.ts",
+        "line": 112,
+        "scope": "projectInFlight",
+        "description": "nextSequence = chain lineSequence + in-flight slots, so the slot after a POLICY_OK row is the expected one"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/core/src/policy/spend.ts",
+        "line": 79,
+        "scope": "pacingCheck",
+        "description": "Only slot == nextSequence is checked (DuplicateInvoice below it, PACING_SLOT_AHEAD above it). evaluateSpend has no time or period row, so the next slot is AUTO at once"
+      },
+      {
+        "kind": "propagation",
+        "file": "packages/api/src/routes/proposals.ts",
+        "line": 31,
+        "scope": "propose",
+        "description": "AUTO gives payment id newId('pay') and a POLICY_OK SPEND row (lines 44-47); nothing keys one row per line per day"
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/agent-actions-spend.ts",
+        "line": 218,
+        "scope": "signProposal",
+        "description": "The worker re-evaluates the row with the same day-free policy, on a projection rebuilt after each signature (agent-actions-world.ts:149), so consecutive rows are AUTO in one pass"
+      },
+      {
+        "kind": "propagation",
+        "file": "apps/worker/src/jobs/agent-actions-spend.ts",
+        "line": 221,
+        "scope": "signProposal",
+        "description": "sendPayment signs Treasury.spend with the agent key and broadcasts it"
+      },
+      {
+        "kind": "sink",
+        "file": "contracts/src/TreasuryState.sol",
+        "line": 287,
+        "scope": "_requireInvoice",
+        "description": "Treasury accepts slot == seq + 1 with amount <= pacingMinor and has no time or period check, so each signed slot is paid"
+      }
+    ],
+    "evidence": [
+      {
+        "file": "packages/api-contract/src/routes.ts",
+        "line": 210,
+        "description": "proposeSpend is demoOnly: true and lists no persona, so any caller reaches it when DEMO_MODE=1"
+      },
+      {
+        "file": "packages/core/src/schemas/plan.ts",
+        "line": 119,
+        "description": "The signed manifest's pacing is {period: 'day', amountMinor}"
+      },
+      {
+        "file": "packages/core/src/policy/pacing.ts",
+        "line": 10,
+        "description": "Core leaves it to the caller to decide that a slot is due (at most one per line per day)"
+      },
+      {
+        "file": "apps/worker/src/jobs/decide.ts",
+        "line": 8,
+        "description": "Tick rule: at most one slot per line per chain day, claimed by payment id pacing:<LINE>:<day> (pacingPaymentId, line 40)"
+      },
+      {
+        "file": "apps/worker/src/jobs/tick.ts",
+        "line": 11,
+        "description": "The per-day payment id plus the intent unique index rule out a second same-day slot, on the tick path only"
+      },
+      {
+        "file": "apps/worker/src/jobs/agent-actions-ids.ts",
+        "line": 37,
+        "description": "isApiSpendProposalId: any SPEND row without a reserved prefix, such as a newId('pay') id, is signed as an API proposal"
+      },
+      {
+        "file": "project.md",
+        "line": 661,
+        "description": "Design: a pacing line gets at most one slot per day"
+      },
+      {
+        "file": "project.md",
+        "line": 1350,
+        "description": "Rina ADS: allocation 120,000, window cap 60,000 = 8 x 7,500 pacing, so a burst is bounded at 8 slots per 7-day window"
+      },
+      {
+        "file": "packages/chain/src/sender.ts",
+        "line": 145,
+        "description": "A reverting gas estimate throws before a nonce is allocated or the tx signed, so a slot ahead of an unmined one stays POLICY_OK and is retried, not refused"
+      },
+      {
+        "file": "packages/core/src/schemas/payment.ts",
+        "line": 66,
+        "description": "The pacing body is the strict object {lineKey, pacingSlot, reason}; reason is required"
+      }
+    ],
+    "blockers": [
+      "Run policy forbids target execution. Observing consecutive AUTO verdicts, the worker signing each row in one agent-actions pass, and Treasury mining them within one chain day needs the DEMO_MODE=1 API, Postgres, the worker and a local Anvil deployment",
+      "Owner design fact: does manifest pacing.period 'day' bind every agent-key spend, as project.md section 12.4 and core pacing.ts state for the tick? Or is the founder-signed 7-day window cap, sized at 8 x pacing in project.md section 26.2, the only intended bound? If it is the window cap, the burst stays within signed caps and the candidate has no meaningful impact"
+    ],
+    "validation_plan": {
+      "local": "Bounded fixture: a throwaway Postgres and a local Anvil (chain 31337) with dummy keys. Set DEMO_MODE=1 and commit Rina plan v1 (ADS: allocation 120,000, perTx 30,000, window 60,000, pacing 7,500/day). The ADS payee must be bound and past cooling, and the autonomous-tick schedule disabled. Read Treasury.lineSequence(ADS) = s and the block timestamp T. Do not advance chain time. POST /api/proposals/spend with body {\"lineKey\":\"ADS\",\"pacingSlot\":s,\"reason\":\"probe\"}, then repeat with pacingSlot s+1 through s+8. Expected today: AUTO with a paymentId for every slot until the first cap refuses, which should be slot s+8 refused CapExceeded at the 60,000 window cap, or earlier if releasedMinor is lower. Run one agent-actions pass. Expected today: every AUTO row is signed and mined, Treasury.lineSequence(ADS) advances by the number of AUTO rows, and the ADS window spent equals that count x 7,500. floor(block.timestamp / 86400) is unchanged from floor(T / 86400). Control: run autonomous-tick twice on the same chain day. Expect at most one pacing:ADS:<day> row. After the fix, two checks must hold. First, a second API pacing proposal for ADS on the same chain day returns DENY and inserts no payments row. Second, an API POLICY_OK pacing row whose line already has a SPEND row signed or mined in that chain day is refused, not signed, by agent-actions.",
+      "deployment": "Owner-observed only, never audit traffic. The owner checks whether any running demo instance sets DEMO_MODE=1 while agent-actions signs on Sepolia. The owner also queries their own payments table for pacing lines with more than one SPEND row per chain day whose id lacks the pacing: prefix."
+    }
+  }
+]

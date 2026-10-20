@@ -1,0 +1,51 @@
+{
+  "supplierId": "s03-a",
+  "displayName": "Maplewave Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "913702002FHN1R764D"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-03/s03-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-03/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "770",
+      "sourceUrl": "https://example.invalid/e3/set-03/s03-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xc2a31d881d78c36ec4a5d83531c91f6d35d21cf19baa8ecdb0dc93595c91f942",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 18,
+    "freightPerUnit": "90",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-479058-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.5,
+    "responseRate": 0.94,
+    "yearsOnPlatform": 9
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7836018564",
+    "holderName": "Maplewave Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

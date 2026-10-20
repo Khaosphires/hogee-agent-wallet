@@ -1,0 +1,6 @@
+{
+  "taskId": "T22",
+  "title": "Full cap at window end −1 s and +1 s",
+  "reason": "proven on Anvil only (project.md §13.2 T22): Sepolia's 12 s slots cannot place blocks at window end ±1 s",
+  "target": "sepolia"
+}

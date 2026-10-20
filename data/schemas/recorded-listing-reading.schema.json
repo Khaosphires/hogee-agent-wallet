@@ -1,0 +1,612 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RecordedListingReading",
+  "description": "Applies to: data/suppliers/search/reader/<supplierId>.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "const": "recorded sample"
+    },
+    "kind": {
+      "type": "string",
+      "const": "listing"
+    },
+    "docId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+      "description": "Supplier id (bytes32 on-chain via stringToHex), e.g. supplier-a"
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "sellerName": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "taint": {
+                  "type": "object",
+                  "properties": {
+                    "trust": {
+                      "type": "string",
+                      "const": "untrusted"
+                    },
+                    "sensitivity": {
+                      "type": "string",
+                      "const": "public"
+                    }
+                  },
+                  "required": [
+                    "trust",
+                    "sensitivity"
+                  ],
+                  "additionalProperties": false
+                },
+                "source": {
+                  "type": "string",
+                  "pattern": "^reader:listing:supplier-w[a-z2-7]{12}$"
+                }
+              },
+              "required": [
+                "value",
+                "taint",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "productTitle": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300
+                },
+                "taint": {
+                  "type": "object",
+                  "properties": {
+                    "trust": {
+                      "type": "string",
+                      "const": "untrusted"
+                    },
+                    "sensitivity": {
+                      "type": "string",
+                      "const": "public"
+                    }
+                  },
+                  "required": [
+                    "trust",
+                    "sensitivity"
+                  ],
+                  "additionalProperties": false
+                },
+                "source": {
+                  "type": "string",
+                  "pattern": "^reader:listing:supplier-w[a-z2-7]{12}$"
+                }
+              },
+              "required": [
+                "value",
+                "taint",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unitPrice": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "properties": {
+                    "amountMinor": {
+                      "type": "string",
+                      "maxLength": 39,
+                      "pattern": "^(0|[1-9][0-9]*)$",
+                      "description": "Money in minor units (1 BU = 100 minor), digit string"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "pattern": "^[A-Z]{3}$",
+                      "description": "ISO 4217 currency code"
+                    },
+                    "unit": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 32
+                    },
+                    "sourceUrl": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "http(s) URL"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "snippetHash": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-f]{64}$",
+                      "description": "32-byte value, 0x + 64 lowercase hex"
+                    },
+                    "method": {
+                      "type": "string",
+                      "enum": [
+                        "regex",
+                        "llm"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "amountMinor",
+                    "currency",
+                    "unit",
+                    "sourceUrl",
+                    "snippetHash",
+                    "method"
+                  ],
+                  "additionalProperties": false
+                },
+                "taint": {
+                  "type": "object",
+                  "properties": {
+                    "trust": {
+                      "type": "string",
+                      "const": "untrusted"
+                    },
+                    "sensitivity": {
+                      "type": "string",
+                      "const": "public"
+                    }
+                  },
+                  "required": [
+                    "trust",
+                    "sensitivity"
+                  ],
+                  "additionalProperties": false
+                },
+                "source": {
+                  "type": "string",
+                  "pattern": "^reader:listing:supplier-w[a-z2-7]{12}$"
+                }
+              },
+              "required": [
+                "value",
+                "taint",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "moq": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "pattern": "^[0-9]{1,12}$"
+                    },
+                    "unit": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 32
+                    },
+                    "sourceUrl": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "http(s) URL"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "snippetHash": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-f]{64}$",
+                      "description": "32-byte value, 0x + 64 lowercase hex"
+                    },
+                    "method": {
+                      "type": "string",
+                      "const": "llm"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "unit",
+                    "sourceUrl",
+                    "snippetHash",
+                    "method"
+                  ],
+                  "additionalProperties": false
+                },
+                "taint": {
+                  "type": "object",
+                  "properties": {
+                    "trust": {
+                      "type": "string",
+                      "const": "untrusted"
+                    },
+                    "sensitivity": {
+                      "type": "string",
+                      "const": "public"
+                    }
+                  },
+                  "required": [
+                    "trust",
+                    "sensitivity"
+                  ],
+                  "additionalProperties": false
+                },
+                "source": {
+                  "type": "string",
+                  "pattern": "^reader:listing:supplier-w[a-z2-7]{12}$"
+                }
+              },
+              "required": [
+                "value",
+                "taint",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "leadTimeDays": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "pattern": "^[0-9]{1,12}$"
+                    },
+                    "unit": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 32
+                    },
+                    "sourceUrl": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "http(s) URL"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "snippetHash": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-f]{64}$",
+                      "description": "32-byte value, 0x + 64 lowercase hex"
+                    },
+                    "method": {
+                      "type": "string",
+                      "const": "llm"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "unit",
+                    "sourceUrl",
+                    "snippetHash",
+                    "method"
+                  ],
+                  "additionalProperties": false
+                },
+                "taint": {
+                  "type": "object",
+                  "properties": {
+                    "trust": {
+                      "type": "string",
+                      "const": "untrusted"
+                    },
+                    "sensitivity": {
+                      "type": "string",
+                      "const": "public"
+                    }
+                  },
+                  "required": [
+                    "trust",
+                    "sensitivity"
+                  ],
+                  "additionalProperties": false
+                },
+                "source": {
+                  "type": "string",
+                  "pattern": "^reader:listing:supplier-w[a-z2-7]{12}$"
+                }
+              },
+              "required": [
+                "value",
+                "taint",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "certificates": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "maxItems": 20,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            },
+            "taint": {
+              "type": "object",
+              "properties": {
+                "trust": {
+                  "type": "string",
+                  "const": "untrusted"
+                },
+                "sensitivity": {
+                  "type": "string",
+                  "const": "public"
+                }
+              },
+              "required": [
+                "trust",
+                "sensitivity"
+              ],
+              "additionalProperties": false
+            },
+            "source": {
+              "type": "string",
+              "pattern": "^reader:listing:supplier-w[a-z2-7]{12}$"
+            }
+          },
+          "required": [
+            "value",
+            "taint",
+            "source"
+          ],
+          "additionalProperties": false
+        },
+        "claimsEscrow": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "taint": {
+              "type": "object",
+              "properties": {
+                "trust": {
+                  "type": "string",
+                  "const": "untrusted"
+                },
+                "sensitivity": {
+                  "type": "string",
+                  "const": "public"
+                }
+              },
+              "required": [
+                "trust",
+                "sensitivity"
+              ],
+              "additionalProperties": false
+            },
+            "source": {
+              "type": "string",
+              "pattern": "^reader:listing:supplier-w[a-z2-7]{12}$"
+            }
+          },
+          "required": [
+            "value",
+            "taint",
+            "source"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "sellerName",
+        "productTitle",
+        "unitPrice",
+        "moq",
+        "leadTimeDays",
+        "certificates",
+        "claimsEscrow"
+      ],
+      "additionalProperties": false
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "flag": {
+            "type": "string",
+            "enum": [
+              "IGNORE_INSTRUCTIONS",
+              "AI_DIRECTED",
+              "RANK_MANIPULATION",
+              "ROLE_OVERRIDE",
+              "SECRET_REQUEST",
+              "PII_REQUEST",
+              "PAYMENT_REDIRECT",
+              "OFF_PLATFORM_PAYMENT",
+              "ENCODED_PAYLOAD",
+              "HIDDEN_CHARACTERS"
+            ]
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "excerpt": {
+            "type": "string",
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "flag",
+          "index",
+          "excerpt"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "redFlags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "Where it came from, e.g. listing:supplier-c or a URL"
+          }
+        },
+        "required": [
+          "text",
+          "source"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "supplierGates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "NO_ESCROW",
+          "PERSONAL_PAYEE",
+          "MISSING_CERT",
+          "OFF_PLATFORM_DISCOUNT",
+          "AI_INJECTION",
+          "OVER_MOQ",
+          "SANCTIONS"
+        ]
+      }
+    },
+    "dropped": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+      }
+    },
+    "repaired": {
+      "type": "boolean"
+    },
+    "llmCallIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+        "description": "Opaque id"
+      }
+    },
+    "extracted": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[A-Za-z][A-Za-z0-9]{0,31}$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": [
+              "string",
+              "number"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32
+          },
+          "snippetHash": {
+            "type": "string",
+            "pattern": "^0x[0-9a-f]{64}$",
+            "description": "32-byte value, 0x + 64 lowercase hex"
+          }
+        },
+        "required": [
+          "value",
+          "unit",
+          "snippetHash"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "label",
+    "kind",
+    "docId",
+    "fields",
+    "flags",
+    "redFlags",
+    "supplierGates",
+    "dropped",
+    "repaired",
+    "llmCallIds",
+    "extracted"
+  ],
+  "additionalProperties": false
+}

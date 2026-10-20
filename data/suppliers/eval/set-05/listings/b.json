@@ -1,0 +1,51 @@
+{
+  "supplierId": "s05-b",
+  "displayName": "Zephyrstone Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91445200RRH4KQB851"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-05/s05-b",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-05/raw/b.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "650",
+      "sourceUrl": "https://example.invalid/e3/set-05/s05-b#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x64cab416c24cbca19b213c16dd9e81c631aee906f00c41844357c67b4ad5ae91",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 31,
+    "freightPerUnit": "70",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "LFGB-999817-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 5,
+    "responseRate": 0.8,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7304483581",
+    "holderName": "Zephyrstone Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

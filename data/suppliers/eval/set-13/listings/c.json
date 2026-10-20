@@ -1,0 +1,51 @@
+{
+  "supplierId": "s13-c",
+  "displayName": "Jadepeak Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914419007JFEAKQC34"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-13/s13-c",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-13/raw/c.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "610",
+      "sourceUrl": "https://example.invalid/e3/set-13/s13-c#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x7ec49d2dd90c185dcb7a176f9d97d866488b1bcbcf35644575f69ae3daa84ec6",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 35,
+    "freightPerUnit": "60",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-169011-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.7,
+    "responseRate": 0.99,
+    "yearsOnPlatform": 12
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7290071630",
+    "holderName": "Jadepeak Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

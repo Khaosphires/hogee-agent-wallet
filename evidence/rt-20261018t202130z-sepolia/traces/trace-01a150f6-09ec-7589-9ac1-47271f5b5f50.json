@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150f6-09ec-7589-9ac1-47271f5b5f50",
+    "seq": 0,
+    "ts": "2026-10-18T21:41:06.008Z",
+    "actor": "policy",
+    "kind": "TOOL_CALL",
+    "summary": "[eval E1 rt-t1-email] policy NEEDS_OFFICER (FLAGGED_INVOICE) for 5000 minor to spx-logistics on LOGISTICS (flags PAYEE_DETAILS_CHANGED); nothing signed",
+    "policy_verdict": null,
+    "reason_code": "FLAGGED_INVOICE",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xc877985c9f5b7ec7f07199233dd4207c84942e0cf094dee2081da0777a4863ee"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150f8-6ef6-7b29-9b9a-eca3ddeebd60",
+    "seq": 0,
+    "ts": "2026-10-18T21:43:41.046Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team T17 (Paid invoice inv-rt-t14-legit-3-mvecppp2 with amount 6001 (a fresh intentId)): refused by policy DENY DuplicateInvoice; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "DuplicateInvoice",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x32ab20dd4714fd02c1f4caaa1a90029d9432be7515c4d043da8f0b09804b4da8"
+  }
+]

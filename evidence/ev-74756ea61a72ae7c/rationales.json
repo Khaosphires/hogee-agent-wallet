@@ -1,0 +1,59 @@
+[
+  {
+    "status": "available",
+    "rationaleHash": "0xaacd91ac3a23d02db3c8c2163af15ed031caaf2a9a223124d764188be78a916f",
+    "decisionId": "01a15293-3d60-74b9-89b3-5ed0217484b8",
+    "rationale": {
+      "idx": 1,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-wavk4gkewt3zc-001",
+      "payeeId": "supplier-wavk4gkewt3zc",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "175000",
+      "autoRelease": false,
+      "planVersion": 1,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "175000"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0xae566499a2a382d26c80d011f761ecaf5d3e62d6cbfe7682037a397ab59a693b",
+    "decisionId": "01a15293-39cb-7780-8bb7-7bfb9f1754fb",
+    "rationale": {
+      "idx": 0,
+      "kind": "MILESTONE_FUNDING",
+      "lineKey": "SUPPLIER",
+      "orderId": "order-wavk4gkewt3zc-001",
+      "payeeId": "supplier-wavk4gkewt3zc",
+      "verdict": "AUTO",
+      "invoiceId": null,
+      "reasonCode": "WITHIN_PLAN",
+      "amountMinor": "75000",
+      "autoRelease": true,
+      "planVersion": 1,
+      "invoiceFlags": [],
+      "cumulativeAfterMinor": "75000"
+    },
+    "salt": null
+  },
+  {
+    "status": "available",
+    "rationaleHash": "0xeb379921af9effb61d4890a36d0b8857f1481109b15f8ccb2b33cf36ee8b452f",
+    "decisionId": "01a15294-fd0a-778a-99a0-0e0bc6bd924c",
+    "rationale": {
+      "idx": 1,
+      "kind": "FOUNDER_MILESTONE_RELEASE",
+      "orderId": "order-wavk4gkewt3zc-001",
+      "decisionId": "01a15294-fd0a-778a-99a0-0e0bc6bd924c",
+      "amountMinor": "175000",
+      "evidenceHash": "0x220ac61aa6616361b910e715edbb0d90999ec400209b86e37692d2c5a3c21e1a",
+      "signatureRequestId": "sig-01a15294-bf54-7315-84e6-dfb11e8361df"
+    },
+    "salt": null
+  }
+]

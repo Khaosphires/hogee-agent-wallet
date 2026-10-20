@@ -1,0 +1,51 @@
+{
+  "supplierId": "s08-e",
+  "displayName": "Lumenfield Vacuum Flask Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330784LE8LJJBE86"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-08/s08-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-08/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "760",
+      "sourceUrl": "https://example.invalid/e3/set-08/s08-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x23fe05e109edfa700801134c3db8d7ace03f8c8c715629331bf9001405ee3bb6",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 35,
+    "freightPerUnit": "80",
+    "incoterm": "FCA"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-696963-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.3,
+    "responseRate": 0.91,
+    "yearsOnPlatform": 3
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7142655777",
+    "holderName": "Lumenfield Vacuum Flask Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

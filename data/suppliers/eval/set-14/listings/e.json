@@ -1,0 +1,49 @@
+{
+  "supplierId": "s14-e",
+  "displayName": "Pineline Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {},
+  "listing": {
+    "url": "https://example.invalid/e3/set-14/s14-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-14/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "590",
+      "sourceUrl": "https://example.invalid/e3/set-14/s14-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x96582f59fef9d4b6f4a1371c2d0a75c2fc5350502d2110b4b5e51d541f469689",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 30,
+    "freightPerUnit": "70",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "FDA 21 CFR food contact test report",
+      "issuer": "Eastline Quality Lab (fictional)",
+      "ref": "FDA-606593-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.1,
+    "responseRate": 0.88,
+    "yearsOnPlatform": 13
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7608150463",
+    "holderName": "Pineline Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15119-89c7-7567-bd17-1cf91263b1b4",
+    "seq": 0,
+    "ts": "2026-10-18T22:19:50.600Z",
+    "actor": "policy",
+    "kind": "DENIAL",
+    "summary": "Red-team D-plug (Retry of the paid fees invoice with a fresh intentId (amount 5,001)): refused by policy DENY DuplicateInvoice; nothing signed",
+    "policy_verdict": "DENY",
+    "reason_code": "DuplicateInvoice",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x64814eb113cc15f63ba119d248edd433cb09bca84e8af39466ec734fbc120b34"
+  }
+]

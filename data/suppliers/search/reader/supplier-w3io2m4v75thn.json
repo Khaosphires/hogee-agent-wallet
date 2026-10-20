@@ -1,0 +1,107 @@
+{
+  "label": "recorded sample",
+  "kind": "listing",
+  "docId": "supplier-w3io2m4v75thn",
+  "fields": {
+    "sellerName": {
+      "value": "Jinhua Pellora Vacuum Flask Co., Ltd.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w3io2m4v75thn"
+    },
+    "productTitle": {
+      "value": "20oz 304 stainless steel insulated tumbler",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w3io2m4v75thn"
+    },
+    "unitPrice": {
+      "value": {
+        "amountMinor": "1680",
+        "currency": "CNY",
+        "unit": "CNY",
+        "sourceUrl": "https://detail.1688.com/offer/718304629551.html",
+        "snippetHash": "0xcd9cb8acae32e7df596e0f645ec4c45a10993828310002b8e116aa15d102f866",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w3io2m4v75thn"
+    },
+    "moq": {
+      "value": {
+        "value": "200",
+        "unit": "pieces",
+        "sourceUrl": "https://detail.1688.com/offer/718304629551.html",
+        "snippetHash": "0x5dfca639b929d923a80e199832fbf1b099b28aa6696f08898b99dc0344d9d6a2",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w3io2m4v75thn"
+    },
+    "leadTimeDays": {
+      "value": {
+        "value": "15",
+        "unit": "days",
+        "sourceUrl": "https://detail.1688.com/offer/718304629551.html",
+        "snippetHash": "0xea98a4078efc4abb2920b205c64fc4cccfd5a79cc8f0a67392741f266f70c4c6",
+        "method": "llm"
+      },
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w3io2m4v75thn"
+    },
+    "certificates": {
+      "value": [
+        "GB 4806.9 food contact test report"
+      ],
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w3io2m4v75thn"
+    },
+    "claimsEscrow": {
+      "value": true,
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      },
+      "source": "reader:listing:supplier-w3io2m4v75thn"
+    }
+  },
+  "flags": [],
+  "redFlags": [],
+  "supplierGates": [],
+  "dropped": [],
+  "repaired": false,
+  "llmCallIds": [],
+  "extracted": {
+    "unitPrice": {
+      "value": "1680",
+      "unit": "CNY",
+      "snippetHash": "0xcd9cb8acae32e7df596e0f645ec4c45a10993828310002b8e116aa15d102f866"
+    },
+    "moq": {
+      "value": "200",
+      "unit": "pieces",
+      "snippetHash": "0x5dfca639b929d923a80e199832fbf1b099b28aa6696f08898b99dc0344d9d6a2"
+    },
+    "leadTimeDays": {
+      "value": "15",
+      "unit": "days",
+      "snippetHash": "0xea98a4078efc4abb2920b205c64fc4cccfd5a79cc8f0a67392741f266f70c4c6"
+    }
+  }
+}

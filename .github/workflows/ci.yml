@@ -1,0 +1,154 @@
+# Fast CI (project.md §25.4): path-filtered, ubuntu, target under 5 minutes.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read # dorny/paths-filter lists PR files through the API
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      contracts: ${{ steps.filter.outputs.contracts }}
+      ts: ${{ steps.filter.outputs.ts }}
+      python: ${{ steps.filter.outputs.python }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            contracts:
+              - 'contracts/**'
+              - 'scripts/check-storage-layout.ts'
+              # contracts/test/PasskeyVectors.t.sol reads P2's passkey vectors in place (G2).
+              - 'e2e/vectors/**'
+            ts:
+              - 'apps/**'
+              - 'packages/**'
+              - 'tools/**'
+              - 'scripts/**'
+              - 'data/**'
+              # packages/chain/test/passkey.test.ts reads the same vectors.
+              - 'e2e/vectors/**'
+              - 'fixtures/**'
+              - 'package.json'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'tsconfig.base.json'
+            python:
+              - 'evals/**'
+              - 'services/**'
+              - 'data/**/*.py'
+              - 'data/country-packs/**'
+              - 'scripts/**/*.py'
+              - 'docs/compliance/MY-*'
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        env:
+          GITLEAKS_VERSION: 8.30.1
+        run: |
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar -xz gitleaks
+          ./gitleaks git --redact --no-banner -v
+
+  ts:
+    needs: changes
+    if: needs.changes.outputs.ts == 'true'
+    runs-on: ubuntu-latest
+    # G0-AUDIT (v-4): a throwaway Postgres so the live DB tests (intent uniqueness, tenancy) run on every PR.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: hogee_ci
+          POSTGRES_PASSWORD: hogee_ci
+          POSTGRES_DB: hogee_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U hogee_ci -d hogee_ci"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+        env:
+          TEST_DATABASE_URL: postgres://hogee_ci:hogee_ci@localhost:5432/hogee_ci
+      - name: wording lint (P3 task 3.1)
+        if: hashFiles('scripts/lint-wording/index.mjs') != ''
+        run: node scripts/lint-wording/index.mjs
+      - name: validate data files against the frozen schemas
+        run: pnpm validate:data
+      - name: api-contract tests (mock routes once packages/api-mock exists)
+        run: pnpm test:contract
+      - name: generated JSON Schemas are up to date
+        run: pnpm gen:schemas:check
+
+  contracts:
+    needs: changes
+    if: needs.changes.outputs.contracts == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v7
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: forge soldeer install
+      - run: forge build --sizes
+      # Treasury runs TreasuryGovernance by delegatecall in its own storage: both layouts must stay identical.
+      - name: storage layout (Treasury == TreasuryGovernance)
+        working-directory: .
+        run: node scripts/check-storage-layout.ts
+      - run: FOUNDRY_PROFILE=ci forge test -vvv
+      - name: ABI drift (generated.ts must match the contracts)
+        working-directory: .
+        run: pnpm install --frozen-lockfile && pnpm abi:check
+
+  python:
+    needs: changes
+    if: needs.changes.outputs.python == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.0
+        if: hashFiles('evals/pyproject.toml') != ''
+      - name: ruff + pytest (evals/)
+        if: hashFiles('evals/pyproject.toml') != ''
+        working-directory: evals
+        run: uv run ruff check . && uv run pytest
+      # P3's stdlib-only data scripts (no installs): the country-pack and snippet-hash tests and the pack rebuild check.
+      # data/golden's Python needs PyPI packages; core's hash.test.ts already checks those vectors.
+      - name: P3 data scripts (unittest + country-pack rebuild check)
+        run: |
+          set -euo pipefail
+          for t in data/country-packs/test_my.py scripts/test_snippet_hash.py; do
+            if [ -f "$t" ]; then (cd "$(dirname "$t")" && python3 "$(basename "$t")"); fi
+          done
+          if [ -f data/country-packs/build_my.py ]; then (cd data/country-packs && python3 build_my.py --check); fi

@@ -1,0 +1,51 @@
+{
+  "supplierId": "s13-a",
+  "displayName": "Granitepoint Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330784TDGEUJ9W5R"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-13/s13-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-13/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "860",
+      "sourceUrl": "https://example.invalid/e3/set-13/s13-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x0503b246fc68cc013eb388a60c7ffb13954ce83ddcc59c3b19bfdb6a4774011f",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 800,
+    "leadTimeDays": 10,
+    "freightPerUnit": "40",
+    "incoterm": "EXW"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Supertest Lab Online (no public register)",
+      "ref": "5555-5567",
+      "tier": "tier3"
+    }
+  ],
+  "metrics": {
+    "rating": 4.8,
+    "responseRate": 0.84,
+    "yearsOnPlatform": 10
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7864638157",
+    "holderName": "Granitepoint Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "alert:orphan:0x5059eeb15e4e1fc6e51e6a196733e213243a57c6f8577ccf6afac2385fe3b7cf:468",
+    "seq": 0,
+    "ts": "2026-10-18T23:55:30.547Z",
+    "actor": "reconciler",
+    "kind": "ALERT",
+    "summary": "Spent 0x376fc16f051450d378ff0748d60ed40bc61aefcee727a7453a3189c6603d6bde (1000 minor, tx 0x5059eeb15e4e1fc6e51e6a196733e213243a57c6f8577ccf6afac2385fe3b7cf) matches no payment row (NO_ROW); worker halted, treasury pause queued",
+    "policy_verdict": null,
+    "reason_code": "ORPHAN_SPEND",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": "0x5059eeb15e4e1fc6e51e6a196733e213243a57c6f8577ccf6afac2385fe3b7cf",
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0x264dad4c29ef3423a291bb59b2503cccd05c546930c4313b0aa24cef8ea9bf2d"
+  }
+]

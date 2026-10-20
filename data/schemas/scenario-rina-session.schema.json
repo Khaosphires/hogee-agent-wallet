@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixtures/scenario-rina/session.json",
+  "description": "Applies to: fixtures/scenario-rina/session.json",
+  "$comment": "Generated from packages/core/src/schemas (schemaVersion 2.0.0) by packages/core/scripts/gen-json-schemas.ts. Do not edit; run `pnpm --filter @hogee/core gen:schemas`. Cross-field rules (zod refinements) are only enforced by `pnpm --filter @hogee/core validate:data`.",
+  "type": "object",
+  "properties": {
+    "persona": {
+      "type": "string",
+      "enum": [
+        "founder:rina",
+        "officer",
+        "founder:mei"
+      ]
+    },
+    "founderId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "facilityId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$",
+      "description": "Opaque id"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "live",
+        "mock",
+        "replay"
+      ]
+    },
+    "chainId": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991,
+      "description": "EVM chain id (11155111 Sepolia, 31337 Anvil)"
+    },
+    "deploymentId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,31}$",
+      "description": "Deployment id, e.g. loop-1, final-1"
+    }
+  },
+  "required": [
+    "persona",
+    "founderId",
+    "facilityId",
+    "mode",
+    "chainId",
+    "deploymentId"
+  ],
+  "additionalProperties": false
+}

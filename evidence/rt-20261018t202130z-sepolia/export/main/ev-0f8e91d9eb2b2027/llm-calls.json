@@ -1,0 +1,158 @@
+[
+  {
+    "llmCallId": "90d8ef55-2e9f-4f89-af5d-b253a04baf86",
+    "traceId": "trace-01a150ae-55e4-7e27-b6f5-bfe2c91c72cc",
+    "role": "planner",
+    "provider": "anthropic",
+    "modelId": "claude-sonnet-5-5",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096,
+      "providerOptions": {
+        "anthropic": {
+          "effort": "medium",
+          "thinking": {
+            "type": "between_tools"
+          }
+        }
+      }
+    },
+    "promptHash": "0xbcbf5638236135074ebd5985955e3f87bdd4d7c9eef979ba09f4e70207e983fa",
+    "responseHash": "0x668588635be67c48e6960c3067be330bf381fe11c5f725d3ff7f8242e6ea5942",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 1,
+    "tokens": {
+      "input": 12,
+      "output": 7
+    },
+    "createdAt": "2026-10-18T20:22:45.196Z"
+  },
+  {
+    "llmCallId": "6063824b-af62-4b53-b133-95327deb6d01",
+    "traceId": "trace-01a150ae-56dc-7ae5-8e11-afa673235475",
+    "role": "planner",
+    "provider": "anthropic",
+    "modelId": "claude-sonnet-5-5",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096,
+      "providerOptions": {
+        "anthropic": {
+          "effort": "medium",
+          "thinking": {
+            "type": "between_tools"
+          }
+        }
+      }
+    },
+    "promptHash": "0x26bc67fd3ae1866168f4505b72b82b37ddb53af7d141d06c6be4d70fbe0d7746",
+    "responseHash": "0xcc554e31fe6e96c969ea9b9abb8e402ca73060811c4f7e62fb817afbb8e1c32f",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 0,
+    "tokens": {
+      "input": 12,
+      "output": 7
+    },
+    "createdAt": "2026-10-18T20:22:45.428Z"
+  },
+  {
+    "llmCallId": "efd6ae43-d51b-45f3-8a35-e5c5183dd09d",
+    "traceId": "trace-01a15100-45b2-7bc9-9350-928d8113a025",
+    "role": "planner",
+    "provider": "anthropic",
+    "modelId": "claude-sonnet-5-5",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096,
+      "providerOptions": {
+        "anthropic": {
+          "effort": "medium",
+          "thinking": {
+            "type": "between_tools"
+          }
+        }
+      }
+    },
+    "promptHash": "0xe5ddd57cef915929e626a23a08d3ca54307c1b9a87315940216de2badccf7157",
+    "responseHash": "0x8f79f7e4373529df23560fcec0dd3bda366e32ef1ea93a8891867ac917e35710",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 0,
+    "tokens": {
+      "input": 12,
+      "output": 7
+    },
+    "createdAt": "2026-10-18T21:52:16.912Z"
+  },
+  {
+    "llmCallId": "ef0fa02b-b389-4cf7-b863-e351407c99cd",
+    "traceId": "trace-01a15174-010a-7100-971f-d4eaec534586",
+    "role": "planner",
+    "provider": "anthropic",
+    "modelId": "claude-sonnet-5-5",
+    "params": {
+      "toolNames": [
+        "getCountryPack",
+        "askClarifyingQuestions",
+        "proposePlanIntent"
+      ],
+      "toolChoice": {
+        "type": "auto"
+      },
+      "responseFormat": "text",
+      "maxOutputTokens": 4096,
+      "providerOptions": {
+        "anthropic": {
+          "effort": "medium",
+          "thinking": {
+            "type": "between_tools"
+          }
+        }
+      }
+    },
+    "promptHash": "0x8b3cc77d613f92fbf38a0764084af395d10a9dfb954fa61e3ec0a8636700746e",
+    "responseHash": "0xd380593088d0ca4741a8ec61ba1c8f81c4953a706b931aec9d794f01ba5fa86e",
+    "redactionReport": {
+      "count": 0,
+      "entities": []
+    },
+    "latencyMs": 0,
+    "tokens": {
+      "input": 12,
+      "output": 7
+    },
+    "createdAt": "2026-10-18T23:58:41.457Z"
+  }
+]

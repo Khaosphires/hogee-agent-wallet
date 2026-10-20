@@ -1,0 +1,1458 @@
+{
+  "reviewedOn": "2026-10-18",
+  "reviewer": "AI-assisted copy by agent sg-pack of the sg-research-a and sg-research-b facts; human sign-off pending",
+  "research": {
+    "sg-research-a": "2026-10-18T14:18:31Z",
+    "sg-research-b": "2026-10-18T14:18:55Z"
+  },
+  "tierConvention": "project.md §26.3: tier1 = exact sentence on a .gov.sg page; tier2 = official non-government source; tier3 = demo assumption. research.evidence keeps the research's own grade.",
+  "records": [
+    {
+      "id": "demo-reserve",
+      "paths": [
+        "reserveFloorBps"
+      ],
+      "value": 300,
+      "quote": "Hogee uses a 300 basis-point reserve floor as a demo policy assumption, not a Singapore tax rate.",
+      "sourceUrl": "https://github.com/Khaosphires/hogee/blob/a6bbf8f292cf679fc05f71414287f488df0f899d/data/country-packs/README.md#sg-demo-reserve-assumption",
+      "locator": "data/country-packs/README.md, section 'SG demo reserve assumption', first sentence (commit a6bbf8f)",
+      "retrievedAt": "2026-10-18T14:28:48Z",
+      "evidence": "tier3",
+      "sourceType": "mock",
+      "note": "Project-defined demo policy, not a Singapore tax rate. Mirrors MY.json's reserve leaf (300, tier3, mock), per P1's answer Q2 of 18 Oct. The compiler's SG reserve policy (500 bps) is separate.",
+      "snippetHash": "0x00aeea60040a0ad32b50ffef80f2b24a08d85a34fc93c6a88008825ce0802d65"
+    },
+    {
+      "id": "acra-sp-fee-table",
+      "paths": [
+        "entities.0.cost",
+        "entities.1.cost",
+        "registrations.0.cost"
+      ],
+      "value": "11500",
+      "quote": "Apply for new business entity name $15 Register new business entity $100",
+      "snippetHash": "0xb4a2e6b9e38f88c8110ab27258ed53f5c8836d0bc9ec010183d1abc5bee7b16a",
+      "sourceUrl": "https://www.acra.gov.sg/manage/sole-proprietorship-partnerships/service-transaction-fees/",
+      "locator": "'Registering a business' > 'Setup cost' table (page last updated 6 Feb 2026)",
+      "retrievedAt": "2026-10-18T13:56:55Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "acra-sp-fee-table",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "S$15 name application + S$100 registration (1 year) = S$115 = 11500 cents. Same table covers sole proprietorships and partnerships. The 3-year option is S$15 + S$160 = S$175 (17500), only if CPF Board conditions are met. The same table lists a S$30 renewal fee (period not stated there). Excludes the optional S$40 alternate address and any CSP fee.",
+      "corroboration": [
+        {
+          "research": "sg-research-a acra-sp-setup-fee-115",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "One-year registration: $115 ($15 name application fee and $100 registration fee)",
+          "snippetHash": "0x16d4799aa2d4a0a53cd5cf5f87d06da8a2c533a4137bfc7f4a99633ffc4b6e16",
+          "locator": "Sole proprietorship (and Partnership) > Set-up fee"
+        },
+        {
+          "research": "sg-research-a acra-sp-3yr-fee",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/registering-different-business-structures/sole-proprietorship-or-partnership/",
+          "retrievedAt": "2026-10-18T13:56:55Z",
+          "quote": "$160 (three years) - Only available if the conditions set by the CPF Board are met.",
+          "snippetHash": "0xece30e4244b39a5c08b07c277316d9a3bef71635ddaed6f2cbdd3e72c5b3ea32",
+          "locator": "Fees and processing time > Fees"
+        }
+      ]
+    },
+    {
+      "id": "acra-sp-foreigners",
+      "paths": [
+        "entities.0.eligibility",
+        "entities.1.eligibility"
+      ],
+      "value": [
+        "citizen",
+        "pr",
+        "foreigner"
+      ],
+      "quote": "Foreigners who live overseas must meet these requirements: Age: 18 years or above Engage a corporate service provider to register on their behalf Appoint at least one authorised representative, who meets the local residency requirements",
+      "snippetHash": "0x79c8ca5c5c2e5e813ff392251b8eac4b8cfc7a24e1f4fc1e664df00865a123a5",
+      "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+      "locator": "Sole proprietorship > Registration requirements (foreigners); identical text under Partnership",
+      "retrievedAt": "2026-10-18T13:57:49Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "acra-sp-foreigners",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Citizens and PRs register directly (see acra-sp-locals). Foreigners living overseas may own one through a CSP plus a locally resident authorised representative; a foreigner who moves to Singapore to run it needs MOM approval, and FIN holders must check with MOM/ICA. The statutory basis (BNRA 2014 s 11) could not be fetched: SSO returned HTTP 202 with an empty body twice. If the compiler should steer foreigners to pte_ltd (FOREIGNER_ENTITY.SG), that is a policy choice; the law does not bar foreigners from sole props.",
+      "corroboration": [
+        {
+          "research": "sg-research-a acra-sp-locals",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "Residency requirement: Singapore citizen, Singapore permanent resident, or an eligible FIN holder.",
+          "snippetHash": "0xb8d31615a78083ed0227863cd66849cc38226964bcfa270c38fa1b18ea5126ec",
+          "locator": "Sole proprietorship > Registration requirements (locals)"
+        },
+        {
+          "research": "sg-research-a acra-foreigners-csp",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/requirements-eligibility/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "Foreigners must engage a Corporate Service Provider (CSP) to reserve a name and register a business structure.",
+          "snippetHash": "0xefa3775b6f7f0f9bfff0c24440588e719a2f54953b6bde7469727f27ddc339ce",
+          "locator": "Rules for foreigners"
+        }
+      ]
+    },
+    {
+      "id": "acra-sp-liability",
+      "paths": [
+        "entities.0.liability"
+      ],
+      "value": "unlimited",
+      "quote": "You have unlimited liability. This means you are personally responsible for all business debts and losses.",
+      "snippetHash": "0x8077f65901dd18f603d8b6712eb8718a83c2b087faeb7a5316f20a8be32e7b66",
+      "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+      "locator": "Sole proprietorship > Liability",
+      "retrievedAt": "2026-10-18T13:57:49Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "acra-sp-liability",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": ""
+    },
+    {
+      "id": "acra-partnership-liability",
+      "paths": [
+        "entities.1.liability"
+      ],
+      "value": "unlimited",
+      "quote": "All owners have unlimited liability. This means they are personally responsible for the partnership's debts, including those caused by other owners.",
+      "snippetHash": "0xacd00e58f09a68a419d4c70a7b35df06cc5718773913e4e7f36b99f0a4b3a884",
+      "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+      "locator": "Partnership > Liability",
+      "retrievedAt": "2026-10-18T13:57:49Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "acra-partnership-liability",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "General partnership. LPs/LLPs differ and are out of scope."
+    },
+    {
+      "id": "acra-co-fee-table",
+      "paths": [
+        "entities.2.cost",
+        "registrations.1.cost"
+      ],
+      "value": "31500",
+      "quote": "Apply for new business entity name $15 Register new business entity $300",
+      "snippetHash": "0xd2e44d2655a52cca874385ffdb7afcb58453aa8b17d154521e50c1f6558248bc",
+      "sourceUrl": "https://www.acra.gov.sg/manage/companies/service-transaction-fees/",
+      "locator": "'Registering a company' > 'Setup cost for companies' table (last updated 29 Jan 2026)",
+      "retrievedAt": "2026-10-18T13:56:55Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "acra-co-fee-table",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "S$15 + S$300 = S$315 = 31500 cents. Excludes CSP/company secretary fees and the optional S$40 alternate address.",
+      "corroboration": [
+        {
+          "research": "sg-research-a acra-co-setup-fee-315",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "$315 ($15 name application fee and $300 incorporation fee).",
+          "snippetHash": "0xfd0b9b0cbad22f6ec7be69425d049ccbe87481dc0ec6be5dfb1c24035496849c",
+          "locator": "Company > Set-up fee"
+        }
+      ]
+    },
+    {
+      "id": "coa-s145-resident-director",
+      "paths": [
+        "entities.2.eligibility"
+      ],
+      "value": [
+        "citizen",
+        "pr",
+        "foreigner"
+      ],
+      "quote": "145.—(1) Every company must have at least one director who is ordinarily resident in Singapore and, where the company only has one member, that sole director may also be the sole member of the company.",
+      "snippetHash": "0x69b606ba06671d78467b37e5bb1019717df12af394bb25486e3f5e35f885662b",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/CoA1967?ProvIds=pr145-",
+      "locator": "Companies Act 1967 s 145(1)",
+      "retrievedAt": "2026-10-18T13:58:33Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "coa-s145-resident-director",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "Any residency may own shares; a foreign founder needs a locally resident director (and a CSP to file).",
+      "corroboration": [
+        {
+          "research": "sg-research-a acra-foreigners-csp",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/requirements-eligibility/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "Foreigners must engage a Corporate Service Provider (CSP) to reserve a name and register a business structure.",
+          "snippetHash": "0xefa3775b6f7f0f9bfff0c24440588e719a2f54953b6bde7469727f27ddc339ce",
+          "locator": "Rules for foreigners"
+        }
+      ]
+    },
+    {
+      "id": "acra-company-liability",
+      "paths": [
+        "entities.2.liability"
+      ],
+      "value": "limited",
+      "quote": "Shareholders have limited liability. This means they are not personally responsible for the company's debts and losses.",
+      "snippetHash": "0x6f9262e2681252a26c5b45f262c0cb9eb665a90816f5ae906875576ac5507946",
+      "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+      "locator": "Company > Liability",
+      "retrievedAt": "2026-10-18T13:57:49Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "acra-company-liability",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": ""
+    },
+    {
+      "id": "bnra-s5-before-business",
+      "paths": [
+        "registrations.0.requirement"
+      ],
+      "value": "Register the business and its business name with ACRA through BizFile+ before carrying on business in Singapore (Business Names Registration Act 2014 s 5(1)): a business name application, then registration for 1 or 3 years, renewed before expiry. Exempt only when trading under the owner's own full NRIC name (or all partners' full names); an online shop under any other name must register. Self-employed owners must be up to date with MediSave before applying. A UEN is also needed to import goods (Customs account) and to register with SFA as an importer of food contact articles.",
+      "quote": "5.—(1) Subject to the provisions of this Act, before a person carries on business in Singapore, the person and the person’s business name must be registered.",
+      "snippetHash": "0x49d28389cb5dc0bdbe864a730deccac9362c8878ca6cb839e7eb9a4ced3b915b",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/BNRA2014?ProvIds=pr5-",
+      "locator": "Business Names Registration Act 2014 s 5(1)",
+      "retrievedAt": "2026-10-18T13:58:25Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "bnra-s5-before-business",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "Requirement text also draws on bnra-s4-own-name, acra-online-store, acra-medisave, cus-uen-customs-account, sfa-uen-prereq.",
+      "corroboration": [
+        {
+          "research": "sg-research-a bnra-s4-own-name",
+          "sourceUrl": "https://sso.agc.gov.sg/Act/BNRA2014",
+          "retrievedAt": "2026-10-18T13:57:50Z",
+          "quote": "any individual proprietor carrying on business under only the individual proprietor’s full name;",
+          "snippetHash": "0x656dbb5e23c6ef5dde6ca44ee0bfd61004333190994f4d0baefb93f4ff361a6e",
+          "locator": "BNRA 2014 s 4(1)(a)"
+        },
+        {
+          "research": "sg-research-a acra-online-store",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/requirements-eligibility/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "Operating an online store, drop shipping or selling through social media.",
+          "snippetHash": "0x748c60661a4bf901549725498f1cb34de38e1e32043498c1bf252a74c7bc514c",
+          "locator": "Who needs to register > examples of activities that need registration"
+        },
+        {
+          "research": "sg-research-a acra-medisave",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/choosing-business-structure/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "Medisave requirements: Self-employed persons must be up-to-date with their Medisave contributions before they reserve a business name or become a new owner of an existing business.",
+          "snippetHash": "0x4c15f414a9dafe2865bcf8314c7db33dc0d9a94513dc7c3b5b8b1478d2ebf83d",
+          "locator": "Sole proprietorship > Registration requirements (locals)"
+        },
+        {
+          "research": "sg-research-a cus-uen-customs-account",
+          "sourceUrl": "https://www.customs.gov.sg/doing-business/import-operations/import-procedures/obtain-a-customs-import-permit/",
+          "retrievedAt": "2026-10-18T14:03:20Z",
+          "quote": "After receiving your UEN, activate your Customs Account with Singapore Customs. This is required before any import permit application can be submitted.",
+          "snippetHash": "0xdaae20760714e2c96dad2908537df7e8de138a1b748b5232d378bd7b3fd96412",
+          "locator": "Before You Apply, step 2"
+        },
+        {
+          "research": "sg-research-a sfa-uen-prereq",
+          "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/what-you-need-to-know-for-import-of-food",
+          "retrievedAt": "2026-10-18T14:08:35Z",
+          "quote": "be registered with the Accounting and Corporate Regulatory Authority (ACRA) with a valid UEN",
+          "snippetHash": "0x070e35b7b97912203ee176cda0a64711081ef5faf5f9509dfff49886d0368274",
+          "locator": "Step 2: eligibility to register with SFA"
+        }
+      ]
+    },
+    {
+      "id": "coa-s145-for-incorporation",
+      "paths": [
+        "registrations.1.requirement"
+      ],
+      "value": "Incorporate the company with ACRA through BizFile+ before it trades: a company name application, then incorporation. The company must have at least one director who is ordinarily resident in Singapore (Companies Act 1967 s 145(1)); foreigners must act through a corporate service provider. The company receives its UEN on incorporation.",
+      "quote": "145.—(1) Every company must have at least one director who is ordinarily resident in Singapore and, where the company only has one member, that sole director may also be the sole member of the company.",
+      "snippetHash": "0x69b606ba06671d78467b37e5bb1019717df12af394bb25486e3f5e35f885662b",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/CoA1967?ProvIds=pr145-",
+      "locator": "Companies Act 1967 s 145(1)",
+      "retrievedAt": "2026-10-18T13:58:33Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "coa-s145-for-incorporation",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "ACRA incorporation fee is in acra-co-fee-table.",
+      "corroboration": [
+        {
+          "research": "sg-research-a acra-foreigners-csp",
+          "sourceUrl": "https://www.acra.gov.sg/register/business/requirements-eligibility/",
+          "retrievedAt": "2026-10-18T13:57:49Z",
+          "quote": "Foreigners must engage a Corporate Service Provider (CSP) to reserve a name and register a business structure.",
+          "snippetHash": "0xefa3775b6f7f0f9bfff0c24440588e719a2f54953b6bde7469727f27ddc339ce",
+          "locator": "Rules for foreigners"
+        }
+      ]
+    },
+    {
+      "id": "uen-gov-identifier",
+      "paths": [
+        "taxIds.0.rule"
+      ],
+      "value": "The UEN issued on ACRA registration identifies the business in its dealings with government agencies, including IRAS for GST and Singapore Customs for import permits. A sole proprietor's or partner's business income is taxed under the individual's own NRIC or FIN, not the UEN. A GST registration number may be the UEN or a separate M-prefixed number.",
+      "quote": "The UEN is your business’ unique identification number that will be used in all transactions with government agencies.",
+      "snippetHash": "0x25e035b185dc9c79b83671de7c175a837136b1e95c90ea925501748b5bddf342",
+      "sourceUrl": "https://www.gobusiness.gov.sg/resources/start-up-guide/register-your-business",
+      "locator": "Unique Entity Number (UEN) and Business Profile",
+      "retrievedAt": "2026-10-18T13:56:56Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "uen-gov-identifier",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Sole-prop income tax uses the owner's NRIC: see iras-sp-taxref-nric and iras-sp-personal-rates.",
+      "corroboration": [
+        {
+          "research": "sg-research-a iras-sp-taxref-nric",
+          "sourceUrl": "https://www.iras.gov.sg/contact-us/goods-services-tax-(gst)",
+          "retrievedAt": "2026-10-18T14:01:10Z",
+          "quote": "Sole proprietor with Singapore NRIC beginning with S — 7-digit Singapore NRIC number",
+          "snippetHash": "0x7b4746d0da930465f9a95f8719dd4d136bd08bac57fa8e617e720a2829651603",
+          "locator": "'Entity type / Tax reference number' table"
+        },
+        {
+          "research": "sg-research-a iras-uen-gst-number",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/invoicing-price-display-and-record-keeping/invoicing-customers",
+          "retrievedAt": "2026-10-18T14:01:10Z",
+          "quote": "If your Unique Entity Number (UEN) and GST registration number is the same",
+          "snippetHash": "0x9dff4cb46f58966bafc7f0067f21893222724b28dd0640a7a97d91c5a8c8dc82",
+          "locator": "Commonly used formats for displaying your GST registration number"
+        },
+        {
+          "research": "sg-research-a mof-uen-single-id",
+          "sourceUrl": "https://www.mof.gov.sg/news-resources/newsroom/unique-entity-number-brings-convenience-to-entities/",
+          "retrievedAt": "2026-10-18T14:07:31Z",
+          "quote": "Entities will enjoy the convenience of having a single identification number for interaction with the Government, such as filing of corporate tax returns, applying for import and export permits or submitting their employees' CPF contributions.",
+          "snippetHash": "0x5d419301078b20b8cbb274155fa45d2e9df3f863309edee0fdd7cd21227713ae",
+          "locator": "MOF press release on UEN (2008)"
+        }
+      ]
+    },
+    {
+      "id": "iras-company-taxref-uen",
+      "paths": [
+        "taxIds.1.rule"
+      ],
+      "value": "The company's UEN, issued on incorporation, is its IRAS tax reference number (Corporate Income Tax and GST) and its identifier with Singapore Customs.",
+      "quote": "Local company registered with ACRA — 9-digit Unique Entity Number (UEN)",
+      "snippetHash": "0x60ba6a1d54fb9307cd4c2778f21b9b705a29e0d9e424f7499cd0f7e8ebe756ec",
+      "sourceUrl": "https://www.iras.gov.sg/contact-us/goods-services-tax-(gst)",
+      "locator": "'Entity type / Tax reference number' table",
+      "retrievedAt": "2026-10-18T14:01:10Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "iras-company-taxref-uen",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "",
+      "corroboration": [
+        {
+          "research": "sg-research-a mof-uen-single-id",
+          "sourceUrl": "https://www.mof.gov.sg/news-resources/newsroom/unique-entity-number-brings-convenience-to-entities/",
+          "retrievedAt": "2026-10-18T14:07:31Z",
+          "quote": "Entities will enjoy the convenience of having a single identification number for interaction with the Government, such as filing of corporate tax returns, applying for import and export permits or submitting their employees' CPF contributions.",
+          "snippetHash": "0x5d419301078b20b8cbb274155fa45d2e9df3f863309edee0fdd7cd21227713ae",
+          "locator": "MOF press release on UEN (2008)"
+        }
+      ]
+    },
+    {
+      "id": "iras-sp-personal-rates",
+      "paths": [
+        "incomeTax.summary"
+      ],
+      "value": "Sole proprietors and partners: business profit is added to the individual's other income and taxed at resident progressive rates (0% on the first S$20,000 of chargeable income, top rate 24% from YA 2024); there is no separate business tax and no turnover-based exemption. Private limited companies: flat 17% on chargeable income. Qualifying new companies get the start-up tax exemption for their first 3 Years of Assessment (75% of the first S$100,000 and 50% of the next S$100,000 of normal chargeable income exempt); other companies get the partial tax exemption (75% of the first S$10,000 and 50% of the next S$190,000). YA 2026: CIT Rebate of 50% of tax payable, capped at S$40,000 (less a S$2,000 cash grant where applicable).",
+      "quote": "Business income is taxable in the hands of the SEI/ sole proprietor at the Individual Income Tax rates.",
+      "snippetHash": "0xc8da9907c9417dcea12a8ebba55b8aa0c3cfe7e9b3872ef029ad63bcd3e6ad01",
+      "sourceUrl": "https://www.iras.gov.sg/taxes/individual-income-tax/self-employed-and-partnerships/calculating-my-business-income/calculating-business-income",
+      "locator": "How business income is taxed",
+      "retrievedAt": "2026-10-18T14:00:47Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "iras-sp-personal-rates",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "The summary has several sources; this leaf carries the sole-proprietor one because the demo founder is a sole proprietor. Company figures: iras-cit-17, iras-cit-sute, iras-cit-pte, iras-cit-rebate-2026. Rates: iras-pit-progressive. No finalRateBps and no exemptTurnover for SG (no turnover-based regime).",
+      "corroboration": [
+        {
+          "research": "sg-research-a iras-pit-progressive",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates",
+          "retrievedAt": "2026-10-18T14:00:18Z",
+          "quote": "Singapore's personal income tax rates for tax resident individuals are progressive, meaning individuals with higher income are taxed at a higher rate. The current highest personal income tax rate is at 24%.",
+          "snippetHash": "0xbf2b721ab9b158d4f2557f19adf3f968b2f62692aa5b454c4b0450ebf5878d18",
+          "locator": "Resident tax rates"
+        },
+        {
+          "research": "sg-research-a iras-pit-first-20k",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/tax-residency-and-tax-rates/individual-income-tax-rates",
+          "retrievedAt": "2026-10-18T14:00:18Z",
+          "quote": "From YA 2024 onwards Chargeable Income Income Tax Rate (%) Gross Tax Payable ($) First $20,000 Next $10,000 0 2 0 200",
+          "snippetHash": "0xfe31d8d6e9c57c8b898ffd36d81b55d5df731627bc54285263d9a648f7750db0",
+          "locator": "Resident tax rates table, first rows (cells joined in DOM order)"
+        },
+        {
+          "research": "sg-research-a iras-cit-17",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/corporate-income-tax/basics-of-corporate-income-tax/corporate-income-tax-rate-rebates-and-tax-exemption-schemes",
+          "retrievedAt": "2026-10-18T14:00:17Z",
+          "quote": "Your company is taxed at a flat rate of 17% of its chargeable income. This applies to both local and foreign companies.",
+          "snippetHash": "0xe63626a004810613c0283690bc2b78b4d9257ead716f6636a634c9c8cfba97ef",
+          "locator": "Corporate Income Tax (CIT) Rate"
+        },
+        {
+          "research": "sg-research-a iras-cit-sute",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/corporate-income-tax/basics-of-corporate-income-tax/corporate-income-tax-rate-rebates-and-tax-exemption-schemes",
+          "retrievedAt": "2026-10-18T14:00:17Z",
+          "quote": "75% exemption on the first $100,000 of normal chargeable income*; and A further 50% exemption on the next $100,000 of normal chargeable income*.",
+          "snippetHash": "0xa6d55ba2723c20ce8db5fba0ea1a9d419379836ea695f249ca418bd31892e822",
+          "locator": "Tax Exemption Scheme for New Start-Up Companies, YA 2020 onwards"
+        },
+        {
+          "research": "sg-research-a iras-cit-sute-3ya",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/corporate-income-tax/basics-of-corporate-income-tax/corporate-income-tax-rate-rebates-and-tax-exemption-schemes",
+          "retrievedAt": "2026-10-18T14:00:17Z",
+          "quote": "This exemption scheme applies to qualifying companies only for their first 3 consecutive YAs. From the fourth YA onwards, companies can enjoy the partial tax exemption.",
+          "snippetHash": "0xe9bb6181b06f554ab6f634d36830d4777a85a5e5805f6fef389d88e14e8bc99b",
+          "locator": "Tax Exemption Scheme for New Start-Up Companies"
+        },
+        {
+          "research": "sg-research-a iras-cit-pte",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/corporate-income-tax/basics-of-corporate-income-tax/corporate-income-tax-rate-rebates-and-tax-exemption-schemes",
+          "retrievedAt": "2026-10-18T14:00:17Z",
+          "quote": "75% exemption on the first $10,000 of normal chargeable income*; and A further 50% exemption on the next $190,000 of normal chargeable income*.",
+          "snippetHash": "0xf7454957dbbeac4924b265fab16e72f57284d7e20c6ca4cae4dec33553219454",
+          "locator": "Partial Tax Exemption Scheme for Companies, YA 2020 onwards"
+        },
+        {
+          "research": "sg-research-a iras-cit-rebate-2026",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/corporate-income-tax/basics-of-corporate-income-tax/corporate-income-tax-rate-rebates-and-tax-exemption-schemes",
+          "retrievedAt": "2026-10-18T14:00:17Z",
+          "quote": "the enhanced CIT Rebate will be 50% of the corporate tax payable; and the enhanced CIT Rebate Cash Grant will be $2,000.",
+          "snippetHash": "0x7c501cfab95c6493b19bd3b741a58b49d457365a14e279df4e6cd884d0d7bebc",
+          "locator": "CIT Rebate for YA 2026 [UPDATED!]"
+        }
+      ]
+    },
+    {
+      "id": "iras-gst-rate-9",
+      "paths": [
+        "indirectTax.rate"
+      ],
+      "value": 900,
+      "quote": "The current GST rate in Singapore is 9%. GST-registered businesses are required to charge and account for GST at 9% on all sales of goods and services in Singapore unless the sale can be zero-rated or exempted under the GST law.",
+      "snippetHash": "0xf1b6aa26136026e4e0a5e4519af85afa6eaea612dff2780028d7dfc9a4faac52",
+      "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/current-gst-rates",
+      "locator": "Prevailing GST rate",
+      "retrievedAt": "2026-10-18T13:59:10Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "iras-gst-rate-9",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "",
+      "corroboration": [
+        {
+          "research": "sg-research-a gsta-s16-9pct",
+          "sourceUrl": "https://sso.agc.gov.sg/Act/GSTA1993?ProvIds=pr16-",
+          "retrievedAt": "2026-10-18T14:06:30Z",
+          "quote": "9% from and including 1 January 2024,",
+          "snippetHash": "0x0d4ce07c81ce6ad7d68195ad8ca549efcbb0d738b783f44923b9139e68f5b43b",
+          "locator": "GST Act 1993 s 16(cb)"
+        }
+      ]
+    },
+    {
+      "id": "iras-gst-threshold",
+      "paths": [
+        "indirectTax.registrationThreshold"
+      ],
+      "value": "100000000",
+      "quote": "You must register for GST if your taxable turnover is: Under the retrospective view, more than $1 million at the end of the calendar year, or Under the prospective view, expected to be more than $1 million in the next 12 months",
+      "snippetHash": "0x8c91741bf348475081b1cf0922732fa145b4b02d6d94d5956a955b945464f1d5",
+      "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-registration-deregistration/do-i-need-to-register-for-gst",
+      "locator": "Compulsory registration",
+      "retrievedAt": "2026-10-18T13:59:37Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "iras-gst-threshold",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "S$1,000,000 = 100000000 cents. 'More than' (strictly greater). Statute: gsta-sc1-retrospective/-prospective.",
+      "corroboration": [
+        {
+          "research": "sg-research-a gsta-sc1-retrospective",
+          "sourceUrl": "https://sso.agc.gov.sg/Act/GSTA1993?ProvIds=Sc1-",
+          "retrievedAt": "2026-10-18T14:06:49Z",
+          "quote": "at the end of the year 2019 or a subsequent calendar year, if the total value of all of the following in that calendar year has exceeded $1 million:",
+          "snippetHash": "0x9e559c73527d54b408a669545bec2d00b14fa21a6c014f1a3aa465162635d85e",
+          "locator": "GST Act 1993 First Schedule para 1(1)(a)(ii)"
+        },
+        {
+          "research": "sg-research-a gsta-sc1-prospective",
+          "sourceUrl": "https://sso.agc.gov.sg/Act/GSTA1993?ProvIds=Sc1-",
+          "retrievedAt": "2026-10-18T14:06:49Z",
+          "quote": "at any time, if there are reasonable grounds for believing that the total value of all of the following in the period of 12 months then beginning will exceed $1 million:",
+          "snippetHash": "0xa7cc4d105a4e0dc743a5d2aefb16095b21ed2c42f076cd078205759ff88ff484",
+          "locator": "GST Act 1993 First Schedule para 1(1)(b)"
+        },
+        {
+          "research": "sg-research-a iras-gst-compulsory",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-registration-deregistration/do-i-need-to-register-for-gst",
+          "retrievedAt": "2026-10-18T13:59:37Z",
+          "quote": "You must register for GST if your taxable turnover is: Under the retrospective view, more than $1 million at the end of the calendar year, or Under the prospective view, expected to be more than $1 million in the next 12 months",
+          "snippetHash": "0x8c91741bf348475081b1cf0922732fa145b4b02d6d94d5956a955b945464f1d5",
+          "locator": "Compulsory registration"
+        }
+      ]
+    },
+    {
+      "id": "cus-gst-cif-base",
+      "paths": [
+        "imports.taxBase"
+      ],
+      "value": "CIF",
+      "quote": "All other goods are non-dutiable and incur GST only. Prevailing GST is levied on the Cost,Insurance, Freight (CIF) value, which includes duties (if dutiable) and all costs incidental to the sale and delivery of the goods into Singapore.",
+      "snippetHash": "0xebeaa529207ae3ffdd8fe364bf2ea00835ae70b8b8dfff552644c6e29ae2d5cc",
+      "sourceUrl": "https://www.customs.gov.sg/doing-business/import-operations/import-procedures/import-procedures-overview/",
+      "locator": "Import Procedures Overview, intro",
+      "retrievedAt": "2026-10-18T14:02:32Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "cus-gst-cif-base",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "Page text really has no space after 'Cost,'. Duty base and import-GST base are both the CIF customs value.",
+      "corroboration": [
+        {
+          "research": "sg-research-a cus-customs-value-cif",
+          "sourceUrl": "https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/establishing-customs-value/establishing-customs-value-and-methods/",
+          "retrievedAt": "2026-10-18T14:02:59Z",
+          "quote": "The transaction value method is the primary method used to establish customs value. It is based on the Cost, Insurance and Freight (CIF) value^ under international commercial terms (Incoterms).",
+          "snippetHash": "0xe93d048eca024db034746652ebdf1e78e6577bff22e4cb6251e5893e87ce06c6",
+          "locator": "Transaction Value Method"
+        },
+        {
+          "research": "sg-research-a gsta-s18-import-value",
+          "sourceUrl": "https://sso.agc.gov.sg/Act/GSTA1993?ProvIds=pr18-",
+          "retrievedAt": "2026-10-18T14:06:58Z",
+          "quote": "so far as not already included in the value referred to in sub‑paragraph (i), all taxes, duties and other charges levied either outside or, by reason of importation, within Singapore (except goods and services tax);",
+          "snippetHash": "0x3466145dbb44f8571adba1495523515f8e9f9d12961e800ec88b0e8a4fa6478f",
+          "locator": "GST Act 1993 s 18(1)(a)(ii)"
+        },
+        {
+          "research": "sg-research-a iras-import-gst-base",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/claiming-gst-(input-tax)/importing-of-goods",
+          "retrievedAt": "2026-10-18T13:59:53Z",
+          "quote": "GST is charged at 9% on the total of: CIF value (Cost + Insurance + Freight) All duties payable (as assessed by Singapore Customs) Commission and other incidental charges",
+          "snippetHash": "0x2021f9eb39dc3a92b6adb9fc7abfaefc1bd4e4465788ed47e428172242101ec4",
+          "locator": "How import GST is calculated and collected"
+        },
+        {
+          "research": "sg-research-a iras-import-gst-everyone",
+          "sourceUrl": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/claiming-gst-(input-tax)/importing-of-goods",
+          "retrievedAt": "2026-10-18T13:59:53Z",
+          "quote": "You must pay GST when you import goods into Singapore, regardless of whether you are GST-registered, unless an exemption, relief, or GST suspension arrangement applies.",
+          "snippetHash": "0x2d1629aec94544dc587e2ca9bf104d8ded8d4f63c62ce670ca9a34badcf72bd1",
+          "locator": "Importing of goods, intro"
+        }
+      ]
+    },
+    {
+      "id": "cus-dutiable-categories",
+      "paths": [
+        "imports.dutySources.0"
+      ],
+      "value": "Singapore Customs: only intoxicating liquors, tobacco products, motor vehicles, and petroleum products and biodiesel blends are dutiable; all other goods are non-dutiable and pay GST only. Insulated stainless steel tumblers are non-dutiable (customs duty 0%).",
+      "quote": "There are four categories: Intoxicating liquors Tobacco products Motor vehicles Petroleum products and biodiesel blends",
+      "snippetHash": "0x4dfe1a36b83e583e1b6ebfaa1fcf554c14f44712801d4e52f7972f36c3fe5b93",
+      "sourceUrl": "https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/duties-and-dutiable-goods/duties-and-dutiable-goods-overview/",
+      "locator": "Categories of Dutiable Goods",
+      "retrievedAt": "2026-10-18T14:02:32Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "cus-dutiable-categories",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "",
+      "corroboration": [
+        {
+          "research": "sg-research-a cus-non-dutiable",
+          "sourceUrl": "https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/duties-and-dutiable-goods/duties-and-dutiable-goods-overview/",
+          "retrievedAt": "2026-10-18T14:02:32Z",
+          "quote": "Goods not subject to customs or excise duty are non-dutiable, although GST may still apply unless exempted.",
+          "snippetHash": "0x726d3e18c6cca8db1b83d5d59d1979fe0aa992b7540e9b2532111e3e7338274c",
+          "locator": "Intro"
+        }
+      ]
+    },
+    {
+      "id": "stcced-9617",
+      "paths": [
+        "imports.dutySources.1"
+      ],
+      "value": "STCCED 2022 (Singapore's AHTN 2022 tariff schedule): 9617.00.10 vacuum flasks and other vacuum vessels, complete (vacuum-insulated tumblers); 7323.93 household articles of stainless steel (non-vacuum tumblers). Neither line lists a customs or excise duty.",
+      "quote": "9617.00.10 - Vacuum flasks and other vacuum vessels, complete NMB",
+      "snippetHash": "0xf7d49973906e02785354c849d6f1ec43619d6b3f447f98ad8fa0fd70475ddf8f",
+      "sourceUrl": "https://file.go.gov.sg/stcced2022.pdf",
+      "locator": "STCCED 2022 p. 632, heading 96.17",
+      "retrievedAt": "2026-10-18T14:04:44Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "stcced-9617",
+        "status": "CONFIRMED",
+        "evidence": "tier1",
+        "confidence": "medium"
+      },
+      "note": "Customs-duty and excise columns are blank for 9617.00.10 and 7323.93.xx. The 8-digit code depends on the product: vacuum double-wall -> 9617.00.10; non-vacuum stainless -> 7323.93.90 (or .10 if 'kitchenware'). Duty is 0 either way. The PDF is linked from customs.gov.sg (go.gov.sg/stcced2022). A binding answer needs a Customs classification ruling; the Customs Ruling Database was not searched (app, not fetched).",
+      "corroboration": [
+        {
+          "research": "sg-research-a stcced-7323",
+          "sourceUrl": "https://file.go.gov.sg/stcced2022.pdf",
+          "retrievedAt": "2026-10-18T14:04:44Z",
+          "quote": "7323.93.90 - - - Other KGM",
+          "snippetHash": "0xcdee25e05a05f8e6dfd952141504cc23519ec1193b5b329d5bba3170ad968ec6",
+          "locator": "STCCED 2022, heading 73.23"
+        }
+      ]
+    },
+    {
+      "id": "cus-hs-checker",
+      "paths": [
+        "imports.dutySources.2"
+      ],
+      "value": "Singapore Customs HS/CA Product Code Checker for the 8-digit AHTN code and whether a Competent Authority controls the product.",
+      "quote": "Singapore uses 8-digit Harmonised System (HS) codes under the ASEAN Harmonised Tariff Nomenclature (AHTN)",
+      "snippetHash": "0xfaba1e65e45df2fd48725696c7e9645b81c5af8cb43f39c9035b2ccf29e7529d",
+      "sourceUrl": "https://www.customs.gov.sg/doing-business/business-resources/hs-classification-of-goods/find-my-harmonised-system-code/",
+      "locator": "Find my Harmonised System Code",
+      "retrievedAt": "2026-10-18T14:04:23Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "cus-hs-checker",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "The checker itself (tradenet.gov.sg -> GoBusiness) is a script app; not queried."
+    },
+    {
+      "id": "cus-non-dutiable",
+      "paths": [
+        "imports.mfnDutyRateBps.drinkware_food_contact"
+      ],
+      "value": 0,
+      "quote": "Goods not subject to customs or excise duty are non-dutiable, although GST may still apply unless exempted.",
+      "snippetHash": "0x726d3e18c6cca8db1b83d5d59d1979fe0aa992b7540e9b2532111e3e7338274c",
+      "sourceUrl": "https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/duties-and-dutiable-goods/duties-and-dutiable-goods-overview/",
+      "locator": "Intro",
+      "retrievedAt": "2026-10-18T14:02:32Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-a",
+        "ref": "cus-non-dutiable",
+        "status": "INFO",
+        "evidence": "tier1",
+        "confidence": "high"
+      },
+      "note": "Customs duty for tumblers = 0 bps.",
+      "corroboration": [
+        {
+          "research": "sg-research-a cus-dutiable-categories",
+          "sourceUrl": "https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/duties-and-dutiable-goods/duties-and-dutiable-goods-overview/",
+          "retrievedAt": "2026-10-18T14:02:32Z",
+          "quote": "There are four categories: Intoxicating liquors Tobacco products Motor vehicles Petroleum products and biodiesel blends",
+          "snippetHash": "0x4dfe1a36b83e583e1b6ebfaa1fcf554c14f44712801d4e52f7972f36c3fe5b93",
+          "locator": "Categories of Dutiable Goods"
+        },
+        {
+          "research": "sg-research-a stcced-9617",
+          "sourceUrl": "https://file.go.gov.sg/stcced2022.pdf",
+          "retrievedAt": "2026-10-18T14:04:44Z",
+          "quote": "9617.00.10 - Vacuum flasks and other vacuum vessels, complete NMB",
+          "snippetHash": "0xf7d49973906e02785354c849d6f1ec43619d6b3f447f98ad8fa0fd70475ddf8f",
+          "locator": "STCCED 2022 p. 632, heading 96.17"
+        },
+        {
+          "research": "sg-research-a cus-pref-tariff",
+          "sourceUrl": "https://www.customs.gov.sg/doing-business/import-operations/import-procedures/claiming-preferential-tariff-treatment-for-dutiable-imports/",
+          "retrievedAt": "2026-10-18T14:03:28Z",
+          "quote": "Preferential Tariff Treatment: Reduced or zero customs duty granted under an FTA",
+          "snippetHash": "0xaeec55d56594ab9201adccaf980591892f771a04a038237ce3dcb3dc5501dd37",
+          "locator": "Claiming Preferential Tariff Treatment for Dutiable Imports > definitions"
+        }
+      ]
+    },
+    {
+      "id": "approval-drinkware-agency",
+      "paths": [
+        "productApprovals.drinkware_food_contact.agency"
+      ],
+      "value": "SFA",
+      "quote": "Registration is required when you are: • importing processed food and food contact articles (e.g. plates, bowls, cups, straws, pots and utensils such as chopsticks and spoons)",
+      "snippetHash": "0x7a1db63234b3d3f4a269d25b8e9e821827c0fd84cd093ff75e32e8ffab6377fc",
+      "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/what-you-need-to-know-for-import-of-food",
+      "locator": "see sg-research-b pack.productApprovals.drinkware_food_contact.agency",
+      "retrievedAt": "2026-10-18T13:57:24Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.drinkware_food_contact.agency",
+        "status": "CONFIRMED (contradicts the expected NONE)",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Applies to the IMPORTER (Mei imports from China). An insulated stainless tumbler is a food contact article: no electricity, contacts beverages (see supporting: cups / water bottles).",
+      "corroboration": [
+        {
+          "research": "sg-research-b productApprovals.drinkware_food_contact.supporting.1",
+          "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/import-requirements-for-food-food-products",
+          "retrievedAt": "2026-10-18T13:57:55Z",
+          "quote": "A Food Contact Article refers to an item that is designed for use in, or in connection with the handling of food or beverages that comes into contact with food or beverages and does not require electricity to function.",
+          "snippetHash": "0x30f9340e55a457e41d1e402bff969bfe0d0bb4822d2cbbef41792f8ebcadc693"
+        },
+        {
+          "research": "sg-research-b productApprovals.drinkware_food_contact.supporting.2",
+          "sourceUrl": "https://www.sfa.gov.sg/food-import-export/general-classification-of-food-food-products/classification-of-general-food-food-products",
+          "retrievedAt": "2026-10-18T13:57:55Z",
+          "quote": "Food ware such as: bowls cups plates pans pots water bottles",
+          "snippetHash": "0x8dfe3321770237bc7954d5c1930669cf3fce791fcb6132c4ed87745041c03567"
+        },
+        {
+          "research": "sg-research-b productApprovals.drinkware_food_contact.supporting.3",
+          "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/import-requirements-for-food-food-products",
+          "retrievedAt": "2026-10-18T13:57:55Z",
+          "quote": "All imported Processed Food and Food Contact Articles need to be accompanied by a valid permit under Regulation of Imports and Exports Regulations Section 3.",
+          "snippetHash": "0x317b82fe8448818ae7ce146df5f5dd3751e861ce0faae7a6bd0752cbe00096fb"
+        },
+        {
+          "research": "sg-research-b productApprovals.drinkware_food_contact.supporting.4",
+          "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/what-you-need-to-know-for-import-of-food",
+          "retrievedAt": "2026-10-18T13:57:24Z",
+          "quote": "be registered with the Accounting and Corporate Regulatory Authority (ACRA) with a valid UEN have activated your UEN with Singapore Customs to import/export food or food products",
+          "snippetHash": "0xf5c1e21ac1b659019b7f6964f5e1ddf21a99fad3c62011f364da22e9411bb609"
+        },
+        {
+          "research": "sg-research-b productApprovals.drinkware_food_contact.supporting.5",
+          "sourceUrl": "https://sso.agc.gov.sg/Act/SFA1973?WholeDoc=1",
+          "retrievedAt": "2026-10-18T13:58:23Z",
+          "quote": "“food contact article” means the whole or any part of any utensil, machinery, instrument, device, apparatus, container, appliance or article that is used, or that is designed or intended for use, in or in connection with the handling of food",
+          "snippetHash": "0x15863d7ef54632a1caed4e46890cf37bc48ee2a99f7bc997c9ef30aa6f97124b"
+        },
+        {
+          "research": "sg-research-b productApprovals.drinkware_food_contact.supporting.6",
+          "sourceUrl": "https://sso.agc.gov.sg/Act/SFA1973?WholeDoc=1",
+          "retrievedAt": "2026-10-18T13:58:23Z",
+          "quote": "2E.—(1) In this Act, “sell” includes carrying on any of the following activities, or a combination of those activities, in relation to food for human consumption or to a food contact article:",
+          "snippetHash": "0x32beec187ff3e8c2b641251fcf869f6420cb05c767360752348d4c7eae9b683c"
+        }
+      ]
+    },
+    {
+      "id": "approval-drinkware-cost",
+      "paths": [
+        "productApprovals.drinkware_food_contact.cost"
+      ],
+      "value": "0",
+      "quote": "Registration to Import Processed Food Products and Food Appliances Free",
+      "snippetHash": "0x2b07e37846b466330e1d714536a3cd805f35993cd6e4d58537890f2a41d73f2e",
+      "sourceUrl": "https://www.sfa.gov.sg/food-import-export/licence-permit-registration/application-process-fees-for-licence-permit-registration-for-import-export",
+      "locator": "see sg-research-b pack.productApprovals.drinkware_food_contact.cost",
+      "retrievedAt": "2026-10-18T13:57:53Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.drinkware_food_contact.cost",
+        "status": "CONFIRMED (contradicts the expected NONE)",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Fee column of SFA's Step 7 table ('Licence/Registration | Fees | Processing time for complete submissions'). One-off registration; GIRO with SFA must be set up (no fee stated)."
+    },
+    {
+      "id": "approval-drinkware-time",
+      "paths": [
+        "productApprovals.drinkware_food_contact.time"
+      ],
+      "value": 1,
+      "quote": "Registration to Import Processed Food Products and Food Appliances Free 1 working day",
+      "snippetHash": "0x968b35fbd6fa3aa4f44245563a87f33518e7851718a3819758314c7996db9cf1",
+      "sourceUrl": "https://www.sfa.gov.sg/food-import-export/licence-permit-registration/application-process-fees-for-licence-permit-registration-for-import-export",
+      "locator": "see sg-research-b pack.productApprovals.drinkware_food_contact.time",
+      "retrievedAt": "2026-10-18T13:57:53Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.drinkware_food_contact.time",
+        "status": "CONFIRMED (contradicts the expected NONE)",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Full row of SFA's Step 7 table; third column is 'Processing time for complete submissions'. Value is WORKING days; pack unit is days (no business-day unit) - 1 working day can be up to 3 calendar days over a weekend.",
+      "corroboration": [
+        {
+          "research": "sg-research-b productApprovals.drinkware_food_contact.supporting.0",
+          "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/what-you-need-to-know-for-import-of-food",
+          "retrievedAt": "2026-10-18T13:57:24Z",
+          "quote": "You are now ready to apply for a licence/registration. SFA takes at least 1 working day to review complete applications.",
+          "snippetHash": "0x06fdfa7686d5e2aa8132906dc851b7d98f148fa0834e42c46ec656923bd980fa"
+        }
+      ]
+    },
+    {
+      "id": "approval-cosmetics-agency",
+      "paths": [
+        "productApprovals.cosmetics.agency"
+      ],
+      "value": "HSA",
+      "quote": "Manufacturers and importers of cosmetic products need to notify their products before supplying them in Singapore.",
+      "snippetHash": "0x606e540f5f73f32155e9b2c06baaa9a0c4eb7d81774a87a8399a9343470a96fd",
+      "sourceUrl": "https://www.hsa.gov.sg/cosmetic-products/cosmetic-product-notification/submit/",
+      "locator": "see sg-research-b pack.productApprovals.cosmetics.agency",
+      "retrievedAt": "2026-10-18T13:59:34Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.cosmetics.agency",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Notification via PRISM; needs ACRA entity + Corppass + CRIS account."
+    },
+    {
+      "id": "approval-cosmetics-cost",
+      "paths": [
+        "productApprovals.cosmetics.cost"
+      ],
+      "value": "1300",
+      "quote": "Other cosmetic products not mentioned above Single product or each of the first 3 variants of a product $ 13",
+      "snippetHash": "0xd225cfafae2582a6160dc60a9e33df553862ec104fd89b67c19eb3a256ee43d6",
+      "sourceUrl": "https://www.hsa.gov.sg/cosmetic-products/fees/",
+      "locator": "see sg-research-b pack.productApprovals.cosmetics.cost",
+      "retrievedAt": "2026-10-18T13:59:33Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.cosmetics.cost",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "SGD 13 per product (or each of first 3 variants); SGD 8 each further variant. Eye/lip/oral/dental/diamine hair dye products: SGD 28 (2800). Valid one year; re-notification yearly at the same fee.",
+      "corroboration": [
+        {
+          "research": "sg-research-b productApprovals.cosmetics.supporting.0",
+          "sourceUrl": "https://www.hsa.gov.sg/cosmetic-products/fees/",
+          "retrievedAt": "2026-10-18T13:59:33Z",
+          "quote": "Products applied around the eyes or on the lips, oral or dental care products, or hair dyes containing diamine compounds Single product or each of the first 3 variants of a product $ 28",
+          "snippetHash": "0xdad6f1928d35d6fdaf1f2b431d6fbf87c8d7f094a041bbc1b0e285e09b656f10"
+        }
+      ]
+    },
+    {
+      "id": "approval-cosmetics-time",
+      "paths": [
+        "productApprovals.cosmetics.time"
+      ],
+      "value": 0,
+      "quote": "An acknowledgement of notification will be auto-generated if the notification has been submitted successfully. You may start selling your cosmetic product upon receipt of the acknowledgement of notification.",
+      "snippetHash": "0x203d3721557d3578964509dbe7ecfa7e9960cd9768fbfb8ac6da1bdd0e4aa820",
+      "sourceUrl": "https://www.hsa.gov.sg/cosmetic-products/cosmetic-product-notification/submit/",
+      "locator": "see sg-research-b pack.productApprovals.cosmetics.time",
+      "retrievedAt": "2026-10-18T13:59:34Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.cosmetics.time",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Same-day (auto-generated acknowledgement)."
+    },
+    {
+      "id": "approval-electrical-agency",
+      "paths": [
+        "productApprovals.electrical.agency"
+      ],
+      "value": "CPSO_SAFETY_MARK",
+      "quote": "requires 33 categories of household electrical, electronic and gas appliances & accessories also known as Controlled Goods, to be tested to specified safety standards, registered with the Consumer Product Safety Office, and affixed with the SAFETY Mark before they can be sold in Singapore.",
+      "snippetHash": "0x262ba458d4f6413ff2dc10a8fe803f0e07bb17e09ed3be847caff509809575d2",
+      "sourceUrl": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/overview-of-cpsr/",
+      "locator": "see sg-research-b pack.productApprovals.electrical.agency",
+      "retrievedAt": "2026-10-18T13:59:59Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.electrical.agency",
+        "status": "CONFIRMED for the CPSO registration fee; testing/certification cost UNCERTAIN",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Only the 33 Controlled Goods categories; other electrical items are general consumer goods (no Safety Mark). Site now brands the office 'CCS CPSO'."
+    },
+    {
+      "id": "approval-electrical-cost",
+      "paths": [
+        "productApprovals.electrical.cost"
+      ],
+      "value": "18000",
+      "quote": "The registration fee for each new product registration will be $180, payable to the CPSO.",
+      "snippetHash": "0xed6d64030fee446f2ceb5355ae6a308cf770866096bb0afb289bc7ba3eca9e8f",
+      "sourceUrl": "https://isomer-user-content.by.gov.sg/498/d3a57a14-70d7-41fb-b395-683970d06c80/cps-info-booklet.pdf",
+      "locator": "see sg-research-b pack.productApprovals.electrical.cost",
+      "retrievedAt": "2026-10-18T14:00:23Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.electrical.cost",
+        "status": "CONFIRMED for the CPSO registration fee; testing/certification cost UNCERTAIN",
+        "evidence": "tier2",
+        "confidence": "medium"
+      },
+      "note": "CPSR Information Booklet (updated 24 June 2026), ch 5.3 (low-risk SDoC); the CoC route also carries a $180 fee submitted by the CAB. EXCLUDES test-lab and CAB certification charges (set by private CABs, not published by CPSO - UNCERTAIN). CoC valid 3 years; renewal $50. Registered Supplier status itself is free.",
+      "corroboration": [
+        {
+          "research": "sg-research-b productApprovals.electrical.supporting.0",
+          "sourceUrl": "https://isomer-user-content.by.gov.sg/498/d3a57a14-70d7-41fb-b395-683970d06c80/cps-info-booklet.pdf",
+          "retrievedAt": "2026-10-18T14:00:23Z",
+          "quote": "Registration to be a “Registered Supplier” is free-of-charge.",
+          "snippetHash": "0xe658ac0debccb3183daa517e12b5b0cee9f9551574d886a30395718c672c2a74"
+        }
+      ]
+    },
+    {
+      "id": "approval-electrical-time",
+      "paths": [
+        "productApprovals.electrical.time"
+      ],
+      "value": 1,
+      "quote": "If the submitted documents are in order, a Letter of Approval (LOA) will be issued to the RS within 1 working day.",
+      "snippetHash": "0xd9813e388bf0561bf7bc92a33ab371ea875ad994a0f958cfa2819d2f5fa1c020",
+      "sourceUrl": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/register-your-controlled-goods/",
+      "locator": "see sg-research-b pack.productApprovals.electrical.time",
+      "retrievedAt": "2026-10-18T14:00:06Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.electrical.time",
+        "status": "CONFIRMED for the CPSO registration fee; testing/certification cost UNCERTAIN",
+        "evidence": "tier2",
+        "confidence": "low"
+      },
+      "note": "Registration step only, in working days; excludes testing and third-party certification time, which can take weeks (no official figure found)."
+    },
+    {
+      "id": "approval-apparel-agency",
+      "paths": [
+        "productApprovals.apparel.agency"
+      ],
+      "value": "NONE",
+      "quote": "General consumer goods include toys, children’s products, apparel, furniture and beddings, recreation and exercise equipment, DIY tools, and electrical and electronic products.",
+      "snippetHash": "0x58e6ea2d96829bcc8da0888d37e435b49b8d90c52b25bcaf91b59e4ffcb0a6f2",
+      "sourceUrl": "https://www.consumerproductsafety.gov.sg/about/faqs/for-suppliers/",
+      "locator": "see sg-research-b pack.productApprovals.apparel.agency",
+      "retrievedAt": "2026-10-18T13:59:58Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.apparel.agency",
+        "status": "CONFIRMED NONE (general safety duty under CGSR applies)",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Listed under the FAQ heading 'Sale of General Consumer Goods (No SAFETY Mark required)'. No registration with any agency; must still meet a listed safety standard (see supporting).",
+      "corroboration": [
+        {
+          "research": "sg-research-b productApprovals.apparel.supporting.0",
+          "sourceUrl": "https://www.consumerproductsafety.gov.sg/about/faqs/for-suppliers/",
+          "retrievedAt": "2026-10-18T13:59:58Z",
+          "quote": "Under the Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011 (CGSR), general consumer goods must comply with at least one of the applicable safety standards by any of the following organisations, where available:",
+          "snippetHash": "0xd2ee48db35e1cab13865f2ebbdf62d354f1013b60b4c7bbc30c2862d37e16f85"
+        }
+      ]
+    },
+    {
+      "id": "approval-apparel-cost",
+      "paths": [
+        "productApprovals.apparel.cost"
+      ],
+      "value": "0",
+      "quote": "Sale of General Consumer Goods (No SAFETY Mark required)",
+      "snippetHash": "0x93838ddc8e2ba0f0abb0ef05025afbe8ebc81e76ee9c65b36c42232f243f5772",
+      "sourceUrl": "https://www.consumerproductsafety.gov.sg/about/faqs/for-suppliers/",
+      "locator": "see sg-research-b pack.productApprovals.apparel.cost",
+      "retrievedAt": "2026-10-18T13:59:58Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.apparel.cost",
+        "status": "CONFIRMED NONE (general safety duty under CGSR applies)",
+        "evidence": "tier2",
+        "confidence": "medium"
+      },
+      "note": "No registration step, so no fee."
+    },
+    {
+      "id": "approval-apparel-time",
+      "paths": [
+        "productApprovals.apparel.time"
+      ],
+      "value": 0,
+      "quote": "Sale of General Consumer Goods (No SAFETY Mark required)",
+      "snippetHash": "0x93838ddc8e2ba0f0abb0ef05025afbe8ebc81e76ee9c65b36c42232f243f5772",
+      "sourceUrl": "https://www.consumerproductsafety.gov.sg/about/faqs/for-suppliers/",
+      "locator": "see sg-research-b pack.productApprovals.apparel.time",
+      "retrievedAt": "2026-10-18T13:59:58Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.apparel.time",
+        "status": "CONFIRMED NONE (general safety duty under CGSR applies)",
+        "evidence": "tier2",
+        "confidence": "medium"
+      },
+      "note": "No registration step, so no waiting time."
+    },
+    {
+      "id": "approval-food-agency",
+      "paths": [
+        "productApprovals.food.agency"
+      ],
+      "value": "SFA",
+      "quote": "You will need to apply for the relevant licences or register with SFA to import food into Singapore for sale, in order to ensure food safety and protect consumers in Singapore.",
+      "snippetHash": "0x8c401065cd1f66c8a272e50b402acaf8910ed41e31bb29f076dbeac14bd3132e",
+      "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/what-you-need-to-know-for-import-of-food",
+      "locator": "see sg-research-b pack.productApprovals.food.agency",
+      "retrievedAt": "2026-10-18T13:57:24Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.food.agency",
+        "status": "CONFIRMED for processed food; meat/fish/fresh produce/eggs/rice differ",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": ""
+    },
+    {
+      "id": "approval-food-cost",
+      "paths": [
+        "productApprovals.food.cost"
+      ],
+      "value": "0",
+      "quote": "Registration to Import Processed Food Products and Food Appliances Free",
+      "snippetHash": "0x2b07e37846b466330e1d714536a3cd805f35993cd6e4d58537890f2a41d73f2e",
+      "sourceUrl": "https://www.sfa.gov.sg/food-import-export/licence-permit-registration/application-process-fees-for-licence-permit-registration-for-import-export",
+      "locator": "see sg-research-b pack.productApprovals.food.cost",
+      "retrievedAt": "2026-10-18T13:57:53Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.food.cost",
+        "status": "CONFIRMED for processed food; meat/fish/fresh produce/eggs/rice differ",
+        "evidence": "tier2",
+        "confidence": "medium"
+      },
+      "note": "Processed food only. Meat & fish licence $84/year (8400); fresh fruit & veg $378/year (37800); meat import permits $300/consignment. Selling prepared food may need separate SFA retail/manufacturing licences (not researched).",
+      "corroboration": [
+        {
+          "research": "sg-research-b productApprovals.food.supporting.0",
+          "sourceUrl": "https://www.sfa.gov.sg/food-import-export/commercial-imports/what-you-need-to-know-for-import-of-food",
+          "retrievedAt": "2026-10-18T13:57:24Z",
+          "quote": "Processed food No fees required Food appliances No fees required",
+          "snippetHash": "0x4d665ef3c002dfb83c630355f3f98229255bbc1377644076c2436184780ab838"
+        }
+      ]
+    },
+    {
+      "id": "approval-food-time",
+      "paths": [
+        "productApprovals.food.time"
+      ],
+      "value": 1,
+      "quote": "Registration to Import Processed Food Products and Food Appliances Free 1 working day",
+      "snippetHash": "0x968b35fbd6fa3aa4f44245563a87f33518e7851718a3819758314c7996db9cf1",
+      "sourceUrl": "https://www.sfa.gov.sg/food-import-export/licence-permit-registration/application-process-fees-for-licence-permit-registration-for-import-export",
+      "locator": "see sg-research-b pack.productApprovals.food.time",
+      "retrievedAt": "2026-10-18T13:57:53Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "productApprovals.food.time",
+        "status": "CONFIRMED for processed food; meat/fish/fresh produce/eggs/rice differ",
+        "evidence": "tier2",
+        "confidence": "medium"
+      },
+      "note": "Working days."
+    },
+    {
+      "id": "paynow-fee-bps",
+      "paths": [
+        "paymentRails.0.feeBps"
+      ],
+      "value": 0,
+      "quote": "FAST (Payment and Collection) S$0.50 per transaction",
+      "snippetHash": "0xf3d484c59f099803ca8bcd9147156693555af967dd025945a129f7c8e94a577b",
+      "sourceUrl": "https://www.ocbc.com/business-banking/help-and-support/accounts-and-services/corporate-institutional-banking-pricing-guide",
+      "locator": "see sg-research-b pack.paymentRails.0.feeBps",
+      "retrievedAt": "2026-10-18T14:03:49Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "paymentRails.0.feeBps",
+        "status": "VALUE GIVEN WITH CONDITION - flat fees, bank-dependent; schema cannot express a flat fee",
+        "evidence": "tier2",
+        "confidence": "low"
+      },
+      "note": "No percentage fee on business PayNow/FAST: banks charge FLAT per-transaction fees. 0 bps is the percentage component only and would under-reserve SGD 0.50 per payout (OCBC). Alternative if modelling QR merchant collection: OCBC OneCollect PayNow 0.25% = 25 bps (see supporting). Consider a schema field feeFlatMinor ('50').",
+      "corroboration": [
+        {
+          "research": "sg-research-b paymentRails.0.supporting.2",
+          "sourceUrl": "https://www.abs.org.sg/e-payments/pay-now",
+          "retrievedAt": "2026-10-18T14:03:12Z",
+          "quote": "PayNow, launched on 10 July 2017 for participating banks and on 8 February 2021 for participating MPIs, is provided free to retail customers and is available 24/7, 365days.",
+          "snippetHash": "0xff23fce3632d77f747fd1e67e503bde59ea6b19f87e2f5ff852acc794d4ea9b0"
+        }
+      ]
+    },
+    {
+      "id": "paynow-fee-condition",
+      "paths": [
+        "paymentRails.0.feeCondition"
+      ],
+      "value": "Flat per-payment bank fees, not a percentage; they vary by bank and were checked at OCBC only. OCBC business accounts: a PayNow payment pays the FAST fee of SGD 0.50, and the SGD 0.20 PayNow lookup fee is waived until 31 Dec 2028. 0 bps is the percentage part only.",
+      "quote": "To make payment through PayNow Per transaction: Applicable GIRO or FAST transaction fee S$0.20 lookup fee* (Promotion extended: Free till 31 December 2028)",
+      "snippetHash": "0x35e9302ec9d59fca19926edefcd31793ebe7096e9f0d222f4c8ec59956e66a66",
+      "sourceUrl": "https://www.ocbc.com/business-banking/help-and-support/accounts-and-services/corporate-institutional-banking-pricing-guide",
+      "locator": "see sg-research-b pack.paymentRails.0.feeCondition",
+      "retrievedAt": "2026-10-18T14:03:49Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "paymentRails.0.feeCondition",
+        "status": "VALUE GIVEN WITH CONDITION - flat fees, bank-dependent; schema cannot express a flat fee",
+        "evidence": "tier2",
+        "confidence": "medium"
+      },
+      "note": "OCBC only; DBS/UOB not verified (DBS page found was stale: 'free until end of 2025').",
+      "researchValue": "No percentage fee; bank-dependent flat fees. OCBC business: SGD 0.50 per FAST/PayNow payment, inward PayNow SGD 0.20 waived until 31 Dec 2028.",
+      "valueEdit": "P1 (18 Oct): low confidence, keep the text honest. Says OCBC was the only bank checked (research notes) and that 0 bps is the percentage part only (research notes on feeBps).",
+      "corroboration": [
+        {
+          "research": "sg-research-b paymentRails.0.feeBps",
+          "sourceUrl": "https://www.ocbc.com/business-banking/help-and-support/accounts-and-services/corporate-institutional-banking-pricing-guide",
+          "retrievedAt": "2026-10-18T14:03:49Z",
+          "quote": "FAST (Payment and Collection) S$0.50 per transaction",
+          "snippetHash": "0xf3d484c59f099803ca8bcd9147156693555af967dd025945a129f7c8e94a577b"
+        },
+        {
+          "research": "sg-research-b paymentRails.0.supporting.0",
+          "sourceUrl": "https://www.ocbc.com/business-banking/help-and-support/accounts-and-services/corporate-institutional-banking-pricing-guide",
+          "retrievedAt": "2026-10-18T14:03:49Z",
+          "quote": "To receive money through PayNow Per transaction: S$0.20 (Promotion extended: Free till 31 December 2028)",
+          "snippetHash": "0x73eca73368d6ef0d2251cf337ea9ba53e06e30ff4e1e0239979f395133272aa1"
+        }
+      ]
+    },
+    {
+      "id": "shopee-commission",
+      "paths": [
+        "marketplaces.0.fees.0.rateBps"
+      ],
+      "value": 1417,
+      "quote": "All Other Non-Electronics Sub-Categories 10.90% no cap 14.17% no cap",
+      "snippetHash": "0xf0d98f2f01d5e0a9e715bb8fcde0284ac9b41249276e45c502561d01fef75a2f",
+      "sourceUrl": "https://seller.shopee.sg/edu/article/13107/seller-fees",
+      "locator": "see sg-research-b pack.marketplaces.0.fees.0.rateBps",
+      "retrievedAt": "2026-10-18T14:05:30Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "marketplaces.0.fees.0.rateBps",
+        "status": "CONFIRMED (Shopee Seller Education Hub article dated 15-10-2026)",
+        "evidence": "tier2",
+        "confidence": "medium"
+      },
+      "note": "Non-Mall table, 'From 28 Aug 2026' columns: On PXP 10.90% / Non-PXP 14.17% (DOM read: the 'Before 28 Aug' cells for this row are row-spanned 7.63%/11.99%). Mei not on PXP -> 1417. NEW SELLER: 0% for the first 120 days (see supporting). Category assignment is by Shopee at listing (medium).",
+      "corroboration": [
+        {
+          "research": "sg-research-b marketplaces.0.supporting.0",
+          "sourceUrl": "https://seller.shopee.sg/edu/article/13107/seller-fees",
+          "retrievedAt": "2026-10-18T14:05:30Z",
+          "quote": "All eligible new Shopee sellers — Mall and non-Mall — enjoy a 120-day commission fee waiver starting from the start of your seller activity on Shopee.",
+          "snippetHash": "0x408f7dc503ddb207bc1b5e70977fb3d6584716f93abd8dbe6c475069cb73f02a"
+        },
+        {
+          "research": "sg-research-b marketplaces.0.supporting.1",
+          "sourceUrl": "https://seller.shopee.sg/edu/article/13107/seller-fees",
+          "retrievedAt": "2026-10-18T14:05:30Z",
+          "quote": "These GST-inclusive fees are calculated as a percentage of the product price, after applying any seller-sponsored promotions (e.g., seller vouchers or discount promotions).",
+          "snippetHash": "0xafea05b656b6eb6aafabcaf39151ffbe2c202f11362bcbeb25b654fb71af2670"
+        }
+      ]
+    },
+    {
+      "id": "shopee-transaction",
+      "paths": [
+        "marketplaces.0.fees.1.rateBps"
+      ],
+      "value": 327,
+      "quote": "The standard transaction fee is 3.27% (GST-inclusive) of the final payment amount, which includes:",
+      "snippetHash": "0x505a4c02ba7374bb8b6cc2d49893177388fbb86c232c322e8215e5662dea7b79",
+      "sourceUrl": "https://seller.shopee.sg/edu/article/13107/seller-fees",
+      "locator": "see sg-research-b pack.marketplaces.0.fees.1.rateBps",
+      "retrievedAt": "2026-10-18T14:05:30Z",
+      "evidence": "tier2",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "marketplaces.0.fees.1.rateBps",
+        "status": "CONFIRMED (Shopee Seller Education Hub article dated 15-10-2026)",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "Every successful order, all payment methods incl. PayNow; base includes buyer-paid shipping and Shopee vouchers and loyalty cashback. SPayLater 3.27%-6.54%. Applies to new sellers from day 1.",
+      "noteEdit": "P1 (18 Oct): reworded the research note's name for Shopee's loyalty cashback; the research file keeps the original."
+    },
+    {
+      "id": "pdpa-obligations",
+      "paths": [
+        "dataProtection.summary"
+      ],
+      "value": "PDPA 2012: organisations must meet consent, notification, purpose limitation, accuracy, protection, retention, transfer limitation, access/correction and data breach notification obligations. A breach that is likely to cause significant harm or is of significant scale must be notified to the PDPC and affected individuals. Notify the PDPC no later than 3 calendar days after determining that a breach is notifiable, and affected individuals at the same time or after.",
+      "quote": "In the event of a data breach, organisations must take steps to assess if it is notifiable. If the data breach likely results in significant harm to individuals, and/or are of significant scale, organisations are required to notify the PDPC and the affected individuals as soon as practicable.",
+      "snippetHash": "0x27887150c475af4218075748a48ed8b74e1cbd6df0a5d30774644c0e830f2a6e",
+      "sourceUrl": "https://www.pdpc.gov.sg/data-protection-obligations",
+      "locator": "see sg-research-b pack.dataProtection.summary",
+      "retrievedAt": "2026-10-18T14:02:16Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "dataProtection.summary",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "PDPC 'Data protection obligations' page (11 obligations; data portability not yet in force).",
+      "researchValue": "PDPA 2012: organisations must meet consent, notification, purpose limitation, accuracy, protection, retention, transfer limitation, access/correction and data breach notification obligations. A breach that is likely to cause significant harm or is of significant scale must be notified to the PDPC and affected individuals.",
+      "valueEdit": "Appended the last sentence from breachNotificationHours and supporting 0 and 1 (P1, 18 Oct: the 72 hours count from the determination that a breach is notifiable; notify individuals too), because the hours leaf has no condition field.",
+      "corroboration": [
+        {
+          "research": "sg-research-b dataProtection.supporting.0",
+          "sourceUrl": "https://www.pdpc.gov.sg/required-to-notify-the-pdpc",
+          "retrievedAt": "2026-10-18T14:01:53Z",
+          "quote": "Organisations must notify affected individuals as soon as practicable, at the same time or after notifying the PDPC.",
+          "snippetHash": "0xaf712b906f604c6bf253a6cde991fa1c0777959ce054089f7c7c069b1ab94619"
+        },
+        {
+          "research": "sg-research-b dataProtection.supporting.2",
+          "sourceUrl": "https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Other-Guides/Guide-on-Managing-and-Notifying-Data-Breaches-under-the-PDPA-15-Mar-2021.pdf",
+          "retrievedAt": "2026-10-18T14:02:48Z",
+          "quote": "the data breach is notifiable under the PDPA within 30 calendar days.",
+          "snippetHash": "0x2ac32c8292734003e854383926bf12752ae8818b7376a3725003e422b792398b"
+        }
+      ]
+    },
+    {
+      "id": "pdpa-breach-72h",
+      "paths": [
+        "dataProtection.breachNotificationHours"
+      ],
+      "value": 72,
+      "quote": "Your organisation’s data breach should be notifiable to the PDPC as soon as practicable, but in any case, no later than three (3) calendar days.",
+      "snippetHash": "0xfc45aaa77c1b3c780ed15fa0ac99d6d19a940e7fa4b39e4f85870c534534ceda",
+      "sourceUrl": "https://www.pdpc.gov.sg/required-to-notify-the-pdpc",
+      "locator": "see sg-research-b pack.dataProtection.breachNotificationHours",
+      "retrievedAt": "2026-10-18T14:01:53Z",
+      "evidence": "tier1",
+      "sourceType": "live",
+      "research": {
+        "agent": "sg-research-b",
+        "ref": "dataProtection.breachNotificationHours",
+        "status": "CONFIRMED",
+        "evidence": "tier2",
+        "confidence": "high"
+      },
+      "note": "72 = 3 calendar days x 24h, counted from the organisation's DETERMINATION that the breach is notifiable (not from discovery). Conservative: the legal deadline is the end of the 3rd calendar day after the determination day (PDPC: determine 1 Jan -> notify by 4 Jan), i.e. up to ~96h, so 72h is always compliant (fail-closed). Statute s 26D(1) text not retrieved (SSO WAF).",
+      "corroboration": [
+        {
+          "research": "sg-research-b dataProtection.supporting.1",
+          "sourceUrl": "https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Other-Guides/Guide-on-Managing-and-Notifying-Data-Breaches-under-the-PDPA-15-Mar-2021.pdf",
+          "retrievedAt": "2026-10-18T14:02:48Z",
+          "quote": "The first day of the three days starts on the day after the organisation makes the determination that there is a notifiable breach. To illustrate, if an organisation determines on 1st January that a data breach is notifiable, it must notify the Commission by 4th January.",
+          "snippetHash": "0xc25391683a4fa6196f7fc2b21ec43dd6b597217975d229382c7c0a2a0cfe7e51"
+        }
+      ]
+    }
+  ],
+  "notCarried": [
+    {
+      "leaf": "registrations.IRAS_GST",
+      "research": "sg-research-a iras-gst-cost (UNCERTAIN), iras-gst-compulsory (CONFIRMED)",
+      "reason": "The requirement is confirmed, but no IRAS page states the registration fee ('0' was inferred from the e-service listing). A registration entry needs a sourced cost, so it is left out. Launch-scale plans are not GST-registered and never need it; a GST-registered plan fails closed on registrations.IRAS_GST.cost."
+    },
+    {
+      "leaf": "productApprovals.other",
+      "research": "sg-research-b productApprovals.other (UNCERTAIN)",
+      "reason": "A catch-all category that can hold HSA, CPSO or SFA goods, so NONE would fail open. Missing means unknown; the compiler fails closed."
+    },
+    {
+      "leaf": "marketplaces.shopee Promo Xtra Programme (PXP) fee",
+      "research": "sg-research-b marketplaces.0.fees.2.rateBps and marketplaces.0.supporting.2 (CONFIRMED, optional)",
+      "reason": "Optional: it applies only to a seller who joins the Promo Xtra Programme (545 bps, capped at SGD 60 per item), and Mei does not. Left out on P1's instruction (18 Oct) together with its source page, whose address uses a word the project bans; the address stays in the research file only."
+    },
+    {
+      "leaf": "marketplaces.lazada",
+      "research": "sg-research-b marketplaces.1 (UNCERTAIN)",
+      "reason": "No official fee page was captured; only third-party blogs."
+    },
+    {
+      "leaf": "marketplaces.tiktok_shop",
+      "research": "sg-research-b marketplaces.2 (UNCERTAIN)",
+      "reason": "No official fee page was captured; only third-party blogs."
+    },
+    {
+      "leaf": "eInvoicing",
+      "research": "sg-research-a iras-invoicenow-all (CONFIRMED)",
+      "reason": "InvoiceNow follows GST registration and has no turnover threshold; the schema refuses an eInvoicing section for SG (PACK_SECTIONS_NOT_APPLICABLE)."
+    },
+    {
+      "leaf": "incomeTax.finalRateBps, incomeTax.exemptTurnover",
+      "research": "sg-research-a structural",
+      "reason": "SG has no final turnover tax and no turnover-based income-tax exemption."
+    },
+    {
+      "leaf": "imports.mfnDutyRateBps.<cosmetics|electrical|apparel|food|other>",
+      "research": "sg-research-a cus-dutiable-categories",
+      "reason": "Only the tumbler tariff lines were researched. Customs lists four dutiable categories, so most goods pay no duty, but no per-category check was made (food can include intoxicating liquors). Missing means the caller passes the rate (MFN_RATE_REQUIRED)."
+    },
+    {
+      "leaf": "imports.ftaCertificates entries",
+      "research": "sg-research-a cus-pref-tariff",
+      "reason": "Carried as [] (structural): an FTA certificate only lowers customs duty, tumblers already pay none, and no FTA lowers import GST. CN goods therefore take the MFN route at 0."
+    },
+    {
+      "leaf": "TradeNet permit fee per consignment",
+      "research": "sg-research-a cus-permit-fee, sg-research-b nonPack.importPermitPerConsignment",
+      "reason": "No pack field. About SGD 3.19 ('319') per permit when the importer files it; SFA charges nothing for a food-contact permit. Plan copy and the LOGISTICS line only."
+    },
+    {
+      "leaf": "tumbler HS code",
+      "research": "sg-research-a (UNCERTAIN)",
+      "reason": "9617.00.10 (vacuum-insulated) or 7323.93.90 (non-vacuum stainless); duty 0 either way. Not a pack field; only a Customs ruling is binding."
+    },
+    {
+      "leaf": "premises registration",
+      "research": "sg-research-a gb-hbb-no-approval (UNCERTAIN emphasis)",
+      "reason": "No SG equivalent of PBT_LICENCE for an online-only home business, and no registration code exists for one."
+    }
+  ]
+}

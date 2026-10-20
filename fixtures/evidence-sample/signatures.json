@@ -1,0 +1,39 @@
+{
+  "sourceType": "mock",
+  "warning": "MOCK UI SAMPLE ONLY: no real transactions, valid signatures, verified rules or measured test results.",
+  "status": "UNSIGNED",
+  "description": "Display-only SupplierApproval input. Full EIP-712 types, domain salt and signatures await P1; never submit this object.",
+  "payloads": [
+    {
+      "taskId": "S5",
+      "kind": "SupplierApproval",
+      "domain": {
+        "name": "Hogee",
+        "version": "1",
+        "verifyingContract": "0x47e61994c68e7f179ead117b0ee0eefb5cf00371",
+        "salt": null
+      },
+      "types": null,
+      "message": {
+        "orderId": "order-a-001",
+        "payeeId": "supplier-a",
+        "milestones": [
+          {
+            "idx": 0,
+            "amountMinor": "30000"
+          },
+          {
+            "idx": 1,
+            "amountMinor": "120000"
+          },
+          {
+            "idx": 2,
+            "amountMinor": "280000"
+          }
+        ]
+      },
+      "digest": null,
+      "signature": null
+    }
+  ]
+}

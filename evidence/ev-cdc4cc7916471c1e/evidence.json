@@ -1,0 +1,299 @@
+[
+  {
+    "taskId": "T21",
+    "title": "Founder signs an AI-drafted plan that breaks the constitution",
+    "expected": "revert",
+    "expectedError": "PlanInvariantViolated",
+    "layer": "onchain_revert",
+    "outcome": "pass",
+    "txHash": "0xf3adc3784e15652d90251b62fca4a382952d9f65654847981e88d143193ef9f7",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 7,
+    "contract": "PlanRegistry",
+    "function": "commitPlan",
+    "revertReason": "PlanInvariantViolated",
+    "artifacts": [
+      "receipts/0xf3adc3784e15652d90251b62fca4a382952d9f65654847981e88d143193ef9f7.json",
+      "plans.json",
+      "signatures.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S2",
+    "title": "Founder signs the plan; the relayer submits commitPlan",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x99035a75518e285074ce58b1b761d89b1d8e4884e5532a254fc53a1e741e17a4",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 8,
+    "contract": "PlanRegistry",
+    "function": "commitPlan",
+    "decodedEvent": "PayeeBound, PayeeBound, PayeeBound, PlanCommitted",
+    "artifacts": [
+      "receipts/0x99035a75518e285074ce58b1b761d89b1d8e4884e5532a254fc53a1e741e17a4.json",
+      "plans.json",
+      "signatures.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S1",
+    "title": "Lender funds the facility (capped at the plan total)",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x5221530b73de0b1f40a2875972df90e4b541aa68f8823617dc3fdedef84226e9",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 9,
+    "contract": "Treasury",
+    "function": "fund",
+    "decodedEvent": "Funded",
+    "artifacts": [
+      "receipts/0x5221530b73de0b1f40a2875972df90e4b541aa68f8823617dc3fdedef84226e9.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "T4",
+    "title": "Spend over the cap",
+    "expected": "revert",
+    "expectedError": "CapExceeded",
+    "layer": "onchain_revert",
+    "outcome": "pass",
+    "txHash": "0x976714cfa6d0627c819f306f858fe052f451ac33fb8e1f4a91e2013cbd251fe3",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 10,
+    "contract": "Treasury",
+    "function": "fund",
+    "revertReason": "CapExceeded",
+    "artifacts": [
+      "receipts/0x976714cfa6d0627c819f306f858fe052f451ac33fb8e1f4a91e2013cbd251fe3.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S3",
+    "title": "Founder approves the supplier; bindPayee starts its cooling",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x7b8fb63019900265db4d3c25c2e97ad8adbc3915bf64192c41edceb4b820f8d0",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 11,
+    "contract": "Treasury",
+    "function": "bindPayee",
+    "decodedEvent": "PayeeBound",
+    "artifacts": [
+      "receipts/0x7b8fb63019900265db4d3c25c2e97ad8adbc3915bf64192c41edceb4b820f8d0.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "T1",
+    "title": "Changed bank details: pay an unbound payee",
+    "expected": "revert",
+    "expectedError": "PayeeNotBound",
+    "layer": "onchain_revert",
+    "outcome": "pass",
+    "txHash": "0x0cf65f890a8ac6863a3ad9069b7d71b4bd837b83b0d21904b26a8fe13e3bf023",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 300,
+    "contract": "Treasury",
+    "function": "spend",
+    "revertReason": "PayeeNotBound",
+    "artifacts": [
+      "receipts/0x0cf65f890a8ac6863a3ad9069b7d71b4bd837b83b0d21904b26a8fe13e3bf023.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "T4",
+    "title": "Spend over the cap",
+    "expected": "revert",
+    "expectedError": "CapExceeded",
+    "layer": "onchain_revert",
+    "outcome": "pass",
+    "txHash": "0x41bc7b2dd3eae8d1c613ef32d0657488eedc5c071f2349c630c57cfb5a8f9b14",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 302,
+    "contract": "Treasury",
+    "function": "spend",
+    "revertReason": "CapExceeded",
+    "artifacts": [
+      "receipts/0x41bc7b2dd3eae8d1c613ef32d0657488eedc5c071f2349c630c57cfb5a8f9b14.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S11",
+    "title": "Stripe test sale recorded; reserve skimmed",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x935c60ef7e1ef5fbbb77e5df6582e9fef1bacc8868433b4d181fa5d777a94c82",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 303,
+    "contract": "SalesOracle",
+    "function": "recordSale",
+    "decodedEvent": "SaleRecorded, RevenueRecorded, ReserveSkimmed",
+    "artifacts": [
+      "receipts/0x935c60ef7e1ef5fbbb77e5df6582e9fef1bacc8868433b4d181fa5d777a94c82.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "T24",
+    "title": "Agent calls recordSale",
+    "expected": "revert",
+    "expectedError": "NotOracle",
+    "layer": "onchain_revert",
+    "outcome": "pass",
+    "txHash": "0x54f4d453d502fe42e40500dc7b91d5738dea7e90b929528d858c0a64d7c2f11b",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 304,
+    "contract": "SalesOracle",
+    "function": "recordSale",
+    "revertReason": "NotOracle",
+    "artifacts": [
+      "receipts/0x54f4d453d502fe42e40500dc7b91d5738dea7e90b929528d858c0a64d7c2f11b.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "T8",
+    "title": "Agent spends the reserve",
+    "expected": "revert",
+    "expectedError": "ReserveLocked",
+    "layer": "onchain_revert",
+    "outcome": "pass",
+    "txHash": "0xb1d50b2e693e7edc947b17aceee30d741447c7518b7ed106edcffd5f6097c781",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 305,
+    "contract": "Treasury",
+    "function": "spend",
+    "revertReason": "ReserveLocked",
+    "artifacts": [
+      "receipts/0xb1d50b2e693e7edc947b17aceee30d741447c7518b7ed106edcffd5f6097c781.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "T17",
+    "title": "Same invoice, new intentId",
+    "expected": "revert",
+    "expectedError": "DuplicateInvoice",
+    "layer": "onchain_revert",
+    "outcome": "pass",
+    "txHash": "0x509b443f22d3c9398ab90a0584e4cedcba93b2e8c0a09fda3cf30f47bb5c4828",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 377,
+    "contract": "Treasury",
+    "function": "spend",
+    "revertReason": "DuplicateInvoice",
+    "artifacts": [
+      "receipts/0x509b443f22d3c9398ab90a0584e4cedcba93b2e8c0a09fda3cf30f47bb5c4828.json",
+      "chain-actions.json"
+    ]
+  },
+  {
+    "taskId": "S4",
+    "title": "Agent funds the sample milestone (payout references the tx)",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0x0bcb4195cbc80c69977c48f61d5adea4714354af635decf4d625950c1863d9a5",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 13,
+    "contract": "MilestoneEscrow",
+    "function": "fundMilestone",
+    "decodedEvent": "MilestoneFunded, MilestoneReleased",
+    "decisionId": "01a14faf-cbc2-7005-9c61-9fba49c74845",
+    "traceId": "trace:fund:order-a-001:0",
+    "payoutId": "mock-f7cfa4c1c4f76d15e71511c8",
+    "artifacts": [
+      "receipts/0x0bcb4195cbc80c69977c48f61d5adea4714354af635decf4d625950c1863d9a5.json",
+      "payments.json",
+      "rationales.json",
+      "traces.json"
+    ]
+  },
+  {
+    "taskId": "S5",
+    "title": "Agent funds the 30% deposit exactly as pre-signed",
+    "expected": "success",
+    "layer": "onchain_success",
+    "outcome": "pass",
+    "txHash": "0xdf4f06cf1452ccfe5f292dc5bdc23ceb783b5d4520c80a8f08d88f014218c134",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 14,
+    "contract": "MilestoneEscrow",
+    "function": "fundMilestone",
+    "decodedEvent": "MilestoneFunded, MilestoneReleased",
+    "decisionId": "01a14faf-cbcb-7ad9-9d1f-62262396b19e",
+    "traceId": "trace:fund:order-a-001:1",
+    "payoutId": "mock-fe71baa77a772f94c9d33fc9",
+    "artifacts": [
+      "receipts/0xdf4f06cf1452ccfe5f292dc5bdc23ceb783b5d4520c80a8f08d88f014218c134.json",
+      "payments.json",
+      "rationales.json",
+      "traces.json"
+    ]
+  },
+  {
+    "taskId": "T1",
+    "title": "Changed bank details: pay an unbound payee: refused by policy (PayeeNotBound)",
+    "expected": "refused",
+    "layer": "agent_refusal",
+    "outcome": "pass",
+    "txHash": "0xfe06b5d914f86d3ab83236dcb219768b173f956d6324fb6aac7af507f18526cd",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 299,
+    "contract": "Treasury",
+    "function": "recordDenied",
+    "decodedEvent": "Denied",
+    "decisionId": "01a14faf-ccea-7a5e-8d6b-3c7257e922f4",
+    "traceId": "trace-01a14faf-ccea-7705-9464-f3c7a26f8253",
+    "artifacts": [
+      "traces.json",
+      "rationales.json",
+      "receipts/0xfe06b5d914f86d3ab83236dcb219768b173f956d6324fb6aac7af507f18526cd.json"
+    ]
+  },
+  {
+    "taskId": "T4",
+    "title": "Spend over the cap: refused by policy (CapExceeded)",
+    "expected": "refused",
+    "layer": "agent_refusal",
+    "outcome": "pass",
+    "txHash": "0xacade02d96d133510b841215e7093b5b4f63161c479d24c6955b41b0b6b3cef0",
+    "chainId": 31337,
+    "deploymentId": "final-meie4ba8c",
+    "block": 301,
+    "contract": "Treasury",
+    "function": "recordDenied",
+    "decodedEvent": "Denied",
+    "decisionId": "01a14faf-cd52-76b7-a0cc-95ed26ecc746",
+    "traceId": "trace-01a14faf-cd52-7cb4-aa6d-2fa2d39a071f",
+    "artifacts": [
+      "traces.json",
+      "rationales.json",
+      "receipts/0xacade02d96d133510b841215e7093b5b4f63161c479d24c6955b41b0b6b3cef0.json"
+    ]
+  }
+]

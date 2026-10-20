@@ -1,0 +1,18 @@
+[
+  {
+    "label": "The paid invoice proposed again (same payee, amount, invoice: same intentId)",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "LOGISTICS",
+      "invoiceId": "inv-rt-t14-legit-3-mvecppp2",
+      "reason": "retry"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "DuplicateIntent",
+      "traceId": "trace-01a150f7-a649-752c-83c8-7aa165c83ce7"
+    }
+  }
+]

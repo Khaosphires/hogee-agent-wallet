@@ -1,0 +1,7 @@
+# FISCO BCOS v3.17.1 (GitHub release v3.17.1, pre-release, assets uploaded by github-actions[bot]). The first two are
+# the GitHub asset digests, checked by P1 on 20 Oct 2026; fisco-bcos is the single file inside the tarball. Sizes are
+# in lib.sh. Format: <sha256>  <name>; lines starting with # are ignored. verify-release.sh and chain-up.sh fail
+# closed on any other value.
+ed667e1e346acbe2fea7b667856ddf05af9e4892ac0424ff9f703f0ea601dbe7  build_chain.sh
+9c7a7524b43f2f2354b0aacd32b921caeafc3472837d16b3bccd164a5bd1a4f4  fisco-bcos-macOS-arm.tar.gz
+61ca196b30872d1d0070381b05fedb718ac038303690bb319b8f15aaa7223495  fisco-bcos

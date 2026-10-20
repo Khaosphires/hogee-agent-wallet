@@ -1,0 +1,307 @@
+[
+  {
+    "label": "exception ADD_PAYEE",
+    "method": "POST",
+    "path": "/api/exceptions",
+    "body": {
+      "kind": "ADD_PAYEE",
+      "payload": {
+        "payeeId": "printer-kl",
+        "lineKey": "PACKAGING"
+      },
+      "reason": "New packaging printer"
+    },
+    "status": 200,
+    "response": {
+      "exceptionId": "exc-01a150fb-1d65-7eba-97a4-fe03c9d9849b",
+      "title": "Allow payee printer-kl on the Packaging pocket",
+      "requestedBy": "founder",
+      "requires": {
+        "founder": true,
+        "lender": true
+      },
+      "status": "OPEN",
+      "timelock": null,
+      "txs": {},
+      "blastRadiusMinor": "150000",
+      "traceId": "trace-01a150fb-1d65-70ba-ad21-22d40570d375",
+      "kind": "ADD_PAYEE",
+      "payload": {
+        "payeeId": "printer-kl",
+        "lineKey": "PACKAGING"
+      }
+    }
+  },
+  {
+    "label": "founder approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a150fb-1d65-7eba-97a4-fe03c9d9849b/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "SIGNATURE_REQUIRED",
+      "signature": {
+        "requestId": "sig-01a150fb-256d-73bf-902a-f3fad0090a4c",
+        "typedData": {
+          "domain": {
+            "name": "Hogee",
+            "version": "1",
+            "verifyingContract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+            "salt": "0xad2cf874712553c65a450322ecd5a8d900f5996d2fa7624cb6e05668b21a793c"
+          },
+          "types": {
+            "LoosenRequest": [
+              {
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "name": "target",
+                "type": "bytes32"
+              },
+              {
+                "name": "aux",
+                "type": "bytes32"
+              },
+              {
+                "name": "newValue",
+                "type": "uint256"
+              },
+              {
+                "name": "deploymentId",
+                "type": "bytes32"
+              },
+              {
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "name": "expiry",
+                "type": "uint64"
+              }
+            ]
+          },
+          "primaryType": "LoosenRequest",
+          "message": {
+            "kind": "3",
+            "target": "0x7072696e7465722d6b6c00000000000000000000000000000000000000000000",
+            "aux": "0x5041434b4147494e470000000000000000000000000000000000000000000000",
+            "newValue": "64203518785602488661861447640361908920803425989409986404111592463919398550893",
+            "deploymentId": "0x66696e616c2d3100000000000000000000000000000000000000000000000000",
+            "nonce": "42858140973425606294651354232127496725019909691767641016171181579671660848345",
+            "expiry": "1792360896"
+          }
+        },
+        "digest": "0x86ba5a9b2c467a18c155b86dab1acd38b122471682246c69b91c6f564e447bc1",
+        "challengeB64url": "hrpamyxGehjBVbhtqxrNOLEiRxaCJGxpuRxvVk5Ee8E",
+        "displayModel": {
+          "title": "Request a loosening",
+          "kind": "LoosenRequest",
+          "rows": [
+            {
+              "label": "Change",
+              "value": "Allow payee printer-kl on the Packaging pocket",
+              "effect": "loosen"
+            },
+            {
+              "label": "Most money this change can move",
+              "value": "1,500 BU BU",
+              "effect": "loosen"
+            },
+            {
+              "label": "What happens next",
+              "value": "The loan officer must co-sign; then a waiting period runs during which either of you can veto it",
+              "effect": "neutral"
+            }
+          ],
+          "digest": "0x86ba5a9b2c467a18c155b86dab1acd38b122471682246c69b91c6f564e447bc1",
+          "chainId": 11155111,
+          "contract": "0x8cef590ec00d02a33e8ac0ff56e67f20c53c6b22",
+          "deploymentId": "final-1"
+        },
+        "expiresAt": "1792360896"
+      }
+    }
+  },
+  {
+    "label": "submit LoosenRequest",
+    "method": "POST",
+    "path": "/api/signatures/sig-01a150fb-256d-73bf-902a-f3fad0090a4c/submit",
+    "body": {
+      "passkey": {
+        "credentialId": "DRgLcm7TCkQ--zz3joCUtQ",
+        "r": "0x7cbb428576a48ea5287a7d71280ec36e744722a22ac1c250c8a5712e7a398c81",
+        "s": "0x5a72693a5a462dc17d2c2ff7ba8712c065d4ca5cade068678644ee4102cdbc33",
+        "challengeIndex": 23,
+        "typeIndex": 1,
+        "authenticatorData": "0x49960de5880e8c687434170f6476605b8fe4aeb9a28632c7995cf3ba831d97630500000004",
+        "clientDataJSON": "{\"type\":\"webauthn.get\",\"challenge\":\"hrpamyxGehjBVbhtqxrNOLEiRxaCJGxpuRxvVk5Ee8E\",\"origin\":\"http://localhost:3000\",\"crossOrigin\":false}"
+      }
+    },
+    "status": 200,
+    "response": {
+      "actionId": "act-01a150fb-26f0-750e-95ee-cb1b55659baf",
+      "state": "PENDING"
+    }
+  },
+  {
+    "label": "officer approves",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a150fb-1d65-7eba-97a4-fe03c9d9849b/approve",
+    "body": {},
+    "status": 200,
+    "response": {
+      "outcome": "APPROVED",
+      "exception": {
+        "exceptionId": "exc-01a150fb-1d65-7eba-97a4-fe03c9d9849b",
+        "title": "Allow payee printer-kl on the Packaging pocket",
+        "requestedBy": "founder",
+        "requires": {
+          "founder": true,
+          "lender": true
+        },
+        "status": "APPROVED",
+        "timelock": null,
+        "txs": {},
+        "blastRadiusMinor": "150000",
+        "traceId": "trace-01a150fb-1d65-70ba-ad21-22d40570d375",
+        "kind": "ADD_PAYEE",
+        "payload": {
+          "payeeId": "printer-kl",
+          "lineKey": "PACKAGING"
+        }
+      },
+      "action": {
+        "actionId": "act-01a150fb-26f0-750e-95ee-cb1b55659baf",
+        "state": "PENDING"
+      }
+    }
+  },
+  {
+    "label": "veto",
+    "method": "POST",
+    "path": "/api/exceptions/exc-01a150fb-1d65-7eba-97a4-fe03c9d9849b/veto",
+    "body": {
+      "reason": "Wrong account: the printer never asked for this"
+    },
+    "status": 200,
+    "response": {
+      "exceptionId": "exc-01a150fb-1d65-7eba-97a4-fe03c9d9849b",
+      "title": "Allow payee printer-kl on the Packaging pocket",
+      "requestedBy": "founder",
+      "requires": {
+        "founder": true,
+        "lender": true
+      },
+      "status": "CANCELLED",
+      "timelock": {
+        "queuedAt": "1792360023",
+        "executableAt": "1792360128"
+      },
+      "txs": {
+        "queue": "0x7856d8d2153e09c7d8ee6e6c074c764eb4a5058409a45dce7f979c90e0c44133"
+      },
+      "blastRadiusMinor": "150000",
+      "traceId": "trace-01a150fb-1d65-70ba-ad21-22d40570d375",
+      "kind": "ADD_PAYEE",
+      "payload": {
+        "payeeId": "printer-kl",
+        "lineKey": "PACKAGING"
+      }
+    }
+  },
+  {
+    "label": "balances",
+    "method": "GET",
+    "path": "/api/balances",
+    "status": 200,
+    "response": {
+      "fundedMinor": "1000000",
+      "releasedMinor": "400000",
+      "revenueMinor": "0",
+      "reserveMinor": "0",
+      "escrowMinor": "150000",
+      "pockets": [
+        {
+          "lineKey": "SUPPLIER",
+          "allocated": "500000",
+          "spent": "0",
+          "available": "350000",
+          "perTxCap": "125000",
+          "windowCap": "250000",
+          "windowSpent": "0",
+          "validUntil": "1797538956",
+          "paused": false,
+          "circuitOpen": false
+        },
+        {
+          "lineKey": "PACKAGING",
+          "allocated": "150000",
+          "spent": "0",
+          "available": "150000",
+          "perTxCap": "37500",
+          "windowCap": "75000",
+          "windowSpent": "0",
+          "validUntil": "1797538956",
+          "paused": false,
+          "circuitOpen": false
+        },
+        {
+          "lineKey": "LOGISTICS",
+          "allocated": "80000",
+          "spent": "6000",
+          "available": "74000",
+          "perTxCap": "20000",
+          "windowCap": "40000",
+          "windowSpent": "6000",
+          "validUntil": "1797538956",
+          "paused": false,
+          "circuitOpen": false
+        },
+        {
+          "lineKey": "ADS",
+          "allocated": "120000",
+          "spent": "7500",
+          "available": "112500",
+          "perTxCap": "30000",
+          "windowCap": "60000",
+          "windowSpent": "7500",
+          "validUntil": "1797538956",
+          "paused": false,
+          "circuitOpen": false
+        },
+        {
+          "lineKey": "PLATFORM_FEES",
+          "allocated": "50000",
+          "spent": "0",
+          "available": "50000",
+          "perTxCap": "12500",
+          "windowCap": "25000",
+          "windowSpent": "0",
+          "validUntil": "1797538956",
+          "paused": false,
+          "circuitOpen": false
+        },
+        {
+          "lineKey": "CONTINGENCY",
+          "allocated": "100000",
+          "spent": "0",
+          "available": "100000",
+          "perTxCap": "25000",
+          "windowCap": "50000",
+          "windowSpent": "0",
+          "validUntil": "1797538956",
+          "paused": false,
+          "circuitOpen": false
+        }
+      ],
+      "agent": {
+        "address": "0x6fa9497be1b6c38653ba261e00c7c0dd7e24e96a",
+        "expiresAt": "1797538956",
+        "revoked": false
+      },
+      "paused": false,
+      "drift": 0
+    }
+  }
+]

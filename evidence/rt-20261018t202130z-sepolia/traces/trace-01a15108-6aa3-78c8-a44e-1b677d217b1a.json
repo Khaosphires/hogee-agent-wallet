@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a15108-6aa3-78c8-a44e-1b677d217b1a",
+    "seq": 0,
+    "ts": "2026-10-18T22:01:08.516Z",
+    "actor": "policy",
+    "kind": "POLICY_VERDICT",
+    "summary": "Spend proposal PLATFORM_FEES: 5000 minor to shopee-fees (invoice inv-rt-plug-54-mveddrxe) → AUTO (WITHIN_PLAN)",
+    "policy_verdict": "AUTO",
+    "reason_code": "WITHIN_PLAN",
+    "plan_version": 1,
+    "payment_id": "pay-01a15108-6aa3-7124-9b86-0e16d7ad9bd4",
+    "invoice_hash": "0x353f766d8217d94c00f2c7adbc3836cea276de0b2d550eba36e155ae0fd5fca8",
+    "decision_id": "01a15108-6aa3-7894-ad19-01d8811ced7e",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xa220dda370dc2c10a9f201e000e55048d89c91fbd3f49ea201bfd3634c5ce19e"
+  }
+]

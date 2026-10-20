@@ -1,0 +1,439 @@
+{
+  "requestId": "shortlist-rina-mock",
+  "status": "READY",
+  "candidates": [
+    {
+      "supplierId": "supplier-a",
+      "displayName": "Brightwave Drinkware Co., Ltd.",
+      "payoutAccountHash": "0x298663f38e5eaf0525f2304b961664d205342cd334bb29fb5d14145c2472b557",
+      "rank": 1,
+      "score": 90,
+      "criteria": [
+        {
+          "criterion": "landed_cost",
+          "weight": 25,
+          "score": 90,
+          "evidenceIds": [
+            "evidence-A-landed_cost"
+          ]
+        },
+        {
+          "criterion": "quality_evidence",
+          "weight": 20,
+          "score": 90,
+          "evidenceIds": [
+            "evidence-A-quality_evidence"
+          ]
+        },
+        {
+          "criterion": "trust_verification",
+          "weight": 20,
+          "score": 90,
+          "evidenceIds": [
+            "evidence-A-trust_verification"
+          ]
+        },
+        {
+          "criterion": "lead_time",
+          "weight": 10,
+          "score": 90,
+          "evidenceIds": [
+            "evidence-A-lead_time"
+          ]
+        },
+        {
+          "criterion": "compliance",
+          "weight": 10,
+          "score": 90,
+          "evidenceIds": [
+            "evidence-A-compliance"
+          ]
+        },
+        {
+          "criterion": "terms",
+          "weight": 10,
+          "score": 90,
+          "evidenceIds": [
+            "evidence-A-terms"
+          ]
+        },
+        {
+          "criterion": "communication",
+          "weight": 5,
+          "score": 90,
+          "evidenceIds": [
+            "evidence-A-communication"
+          ]
+        }
+      ],
+      "landedCost": {
+        "cifMinor": "360000",
+        "dutyMinor": "0",
+        "sstMinor": "36000",
+        "feesMinor": "4000",
+        "totalMinor": "400000",
+        "fx": {
+          "value": 1,
+          "sourceUrl": "https://example.invalid/rina/MYR-MYR",
+          "retrievedAt": "2026-10-20T12:00:00Z",
+          "snippetHash": "0xee47844e7c4f5dfc56b4760e801724e2004bf4fc08a5d6e33a78de14555a6359",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "evidenceCoverageBps": 0,
+      "gates": [
+        {
+          "gate": "NO_ESCROW",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-A-terms"
+          ]
+        },
+        {
+          "gate": "PERSONAL_PAYEE",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-A-terms"
+          ]
+        },
+        {
+          "gate": "OFF_PLATFORM_DISCOUNT",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-A-terms"
+          ]
+        },
+        {
+          "gate": "AI_INJECTION",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-A-terms"
+          ]
+        },
+        {
+          "gate": "OVER_MOQ",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-A-terms"
+          ]
+        }
+      ],
+      "redFlags": [
+        {
+          "text": "All evidence is synthetic. Product-approval and sanctions checks are pending; ranking is a UI placeholder.",
+          "source": "mock-fixture"
+        }
+      ],
+      "pros": [
+        {
+          "text": "Illustrative first choice with staged payments.",
+          "evidenceIds": [
+            "evidence-A-terms"
+          ]
+        }
+      ],
+      "cons": [
+        {
+          "text": "No live supplier verification has been performed.",
+          "evidenceIds": []
+        }
+      ],
+      "whyNotNext": "Mock ranking for screen development; no measured ranking claim.",
+      "whatWouldChange": "Verified costs, certificates and checks may change or exclude this candidate."
+    },
+    {
+      "supplierId": "supplier-d",
+      "displayName": "Redmaple Homeware Co., Ltd.",
+      "payoutAccountHash": "0xae4fc0e4fb587ed006f818652067cbbd951969d6351aa6c165a865e666b9d03f",
+      "rank": 2,
+      "score": 80,
+      "criteria": [
+        {
+          "criterion": "landed_cost",
+          "weight": 25,
+          "score": 80,
+          "evidenceIds": [
+            "evidence-D-landed_cost"
+          ]
+        },
+        {
+          "criterion": "quality_evidence",
+          "weight": 20,
+          "score": 80,
+          "evidenceIds": [
+            "evidence-D-quality_evidence"
+          ]
+        },
+        {
+          "criterion": "trust_verification",
+          "weight": 20,
+          "score": 80,
+          "evidenceIds": [
+            "evidence-D-trust_verification"
+          ]
+        },
+        {
+          "criterion": "lead_time",
+          "weight": 10,
+          "score": 80,
+          "evidenceIds": [
+            "evidence-D-lead_time"
+          ]
+        },
+        {
+          "criterion": "compliance",
+          "weight": 10,
+          "score": 80,
+          "evidenceIds": [
+            "evidence-D-compliance"
+          ]
+        },
+        {
+          "criterion": "terms",
+          "weight": 10,
+          "score": 80,
+          "evidenceIds": [
+            "evidence-D-terms"
+          ]
+        },
+        {
+          "criterion": "communication",
+          "weight": 5,
+          "score": 80,
+          "evidenceIds": [
+            "evidence-D-communication"
+          ]
+        }
+      ],
+      "landedCost": {
+        "cifMinor": "400000",
+        "dutyMinor": "0",
+        "sstMinor": "40000",
+        "feesMinor": "4000",
+        "totalMinor": "444000",
+        "fx": {
+          "value": 1,
+          "sourceUrl": "https://example.invalid/rina/MYR-MYR",
+          "retrievedAt": "2026-10-20T12:00:00Z",
+          "snippetHash": "0xee47844e7c4f5dfc56b4760e801724e2004bf4fc08a5d6e33a78de14555a6359",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "evidenceCoverageBps": 0,
+      "gates": [
+        {
+          "gate": "NO_ESCROW",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-D-terms"
+          ]
+        },
+        {
+          "gate": "PERSONAL_PAYEE",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-D-terms"
+          ]
+        },
+        {
+          "gate": "OFF_PLATFORM_DISCOUNT",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-D-terms"
+          ]
+        },
+        {
+          "gate": "AI_INJECTION",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-D-terms"
+          ]
+        },
+        {
+          "gate": "OVER_MOQ",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-D-terms"
+          ]
+        }
+      ],
+      "redFlags": [
+        {
+          "text": "All evidence is synthetic. Product-approval and sanctions checks are pending; ranking is a UI placeholder.",
+          "source": "mock-fixture"
+        }
+      ],
+      "pros": [
+        {
+          "text": "Alternative for comparison.",
+          "evidenceIds": [
+            "evidence-D-terms"
+          ]
+        }
+      ],
+      "cons": [
+        {
+          "text": "No live supplier verification has been performed.",
+          "evidenceIds": []
+        }
+      ],
+      "whyNotNext": "Mock ranking for screen development; no measured ranking claim.",
+      "whatWouldChange": "Verified costs, certificates and checks may change or exclude this candidate."
+    },
+    {
+      "supplierId": "supplier-b",
+      "displayName": "Harbourline Cups Co., Ltd.",
+      "payoutAccountHash": "0x2a820d7da769079ee32768deca488cc9fc4bedb0399cd20c3094ed3344a8b4e8",
+      "rank": 3,
+      "score": 70,
+      "criteria": [
+        {
+          "criterion": "landed_cost",
+          "weight": 25,
+          "score": 70,
+          "evidenceIds": [
+            "evidence-B-landed_cost"
+          ]
+        },
+        {
+          "criterion": "quality_evidence",
+          "weight": 20,
+          "score": 70,
+          "evidenceIds": [
+            "evidence-B-quality_evidence"
+          ]
+        },
+        {
+          "criterion": "trust_verification",
+          "weight": 20,
+          "score": 70,
+          "evidenceIds": [
+            "evidence-B-trust_verification"
+          ]
+        },
+        {
+          "criterion": "lead_time",
+          "weight": 10,
+          "score": 70,
+          "evidenceIds": [
+            "evidence-B-lead_time"
+          ]
+        },
+        {
+          "criterion": "compliance",
+          "weight": 10,
+          "score": 70,
+          "evidenceIds": [
+            "evidence-B-compliance"
+          ]
+        },
+        {
+          "criterion": "terms",
+          "weight": 10,
+          "score": 70,
+          "evidenceIds": [
+            "evidence-B-terms"
+          ]
+        },
+        {
+          "criterion": "communication",
+          "weight": 5,
+          "score": 70,
+          "evidenceIds": [
+            "evidence-B-communication"
+          ]
+        }
+      ],
+      "landedCost": {
+        "cifMinor": "340000",
+        "dutyMinor": "0",
+        "sstMinor": "34000",
+        "feesMinor": "4000",
+        "totalMinor": "378000",
+        "fx": {
+          "value": 1,
+          "sourceUrl": "https://example.invalid/rina/MYR-MYR",
+          "retrievedAt": "2026-10-20T12:00:00Z",
+          "snippetHash": "0xee47844e7c4f5dfc56b4760e801724e2004bf4fc08a5d6e33a78de14555a6359",
+          "evidence": "tier3",
+          "sourceType": "mock"
+        }
+      },
+      "evidenceCoverageBps": 0,
+      "gates": [
+        {
+          "gate": "NO_ESCROW",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-B-terms"
+          ]
+        },
+        {
+          "gate": "PERSONAL_PAYEE",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-B-terms"
+          ]
+        },
+        {
+          "gate": "OFF_PLATFORM_DISCOUNT",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-B-terms"
+          ]
+        },
+        {
+          "gate": "AI_INJECTION",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-B-terms"
+          ]
+        },
+        {
+          "gate": "OVER_MOQ",
+          "passed": true,
+          "evidenceIds": [
+            "evidence-B-terms"
+          ]
+        }
+      ],
+      "redFlags": [
+        {
+          "text": "All evidence is synthetic. Product-approval and sanctions checks are pending; ranking is a UI placeholder.",
+          "source": "mock-fixture"
+        }
+      ],
+      "pros": [
+        {
+          "text": "Alternative for comparison.",
+          "evidenceIds": [
+            "evidence-B-terms"
+          ]
+        }
+      ],
+      "cons": [
+        {
+          "text": "No live supplier verification has been performed.",
+          "evidenceIds": []
+        }
+      ],
+      "whyNotNext": null,
+      "whatWouldChange": "Verified costs, certificates and checks may change or exclude this candidate."
+    }
+  ],
+  "excluded": [
+    {
+      "supplierId": "supplier-c",
+      "gate": "AI_INJECTION"
+    },
+    {
+      "supplierId": "supplier-e",
+      "gate": "OVER_MOQ"
+    }
+  ],
+  "rankStabilityPct": 0,
+  "shortlistHash": "0xfe798cc21d4f55aca261d6760486ed7a1a3065806150a415b5a9173a66f2f904",
+  "weightsVersion": "mock-placeholder-not-measured"
+}

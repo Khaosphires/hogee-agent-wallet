@@ -1,0 +1,38 @@
+[
+  {
+    "trace_id": "trace-01a150ae-55e4-7e27-b6f5-bfe2c91c72cc",
+    "seq": 0,
+    "ts": "2026-10-18T20:22:45.205Z",
+    "actor": "planner",
+    "kind": "LLM_CALL",
+    "summary": "Planner model call (redacted prompt; hashes in llm_calls)",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xe1af704df9219cece844bb1151a408a16150bebe3da143b72cff41cbe05bfc5d"
+  },
+  {
+    "trace_id": "trace-01a150ae-55e4-7e27-b6f5-bfe2c91c72cc",
+    "seq": 1,
+    "ts": "2026-10-18T20:22:45.206Z",
+    "actor": "planner",
+    "kind": "PROPOSAL",
+    "summary": "Planner asked 1 templated question(s): budgetCeilingMinor",
+    "policy_verdict": null,
+    "reason_code": "BUDGET_NOT_STATED",
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": "01a150ae-56bd-7151-8ade-742d190c915f",
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0xe1af704df9219cece844bb1151a408a16150bebe3da143b72cff41cbe05bfc5d",
+    "hash": "0xecfeb846dc18cafec573b50a0f2a647dafab7522a07f10cf4a0294c964b39b57"
+  }
+]

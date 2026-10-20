@@ -1,0 +1,5 @@
+{
+  "country + topic (trusted, public)": "allowed",
+  "text from the research page (untrusted)": "TAINTED_OUTBOUND: a value from web-page cannot reach the outbound sink",
+  "founder IC (trusted, private)": "PRIVATE_OUTBOUND: a value from founder cannot reach the outbound sink"
+}

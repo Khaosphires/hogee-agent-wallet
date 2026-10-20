@@ -1,0 +1,51 @@
+{
+  "supplierId": "s06-a",
+  "displayName": "Quartzstone Houseware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "9133078490W5LJTF2L"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-06/s06-a",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-06/raw/a.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "850",
+      "sourceUrl": "https://example.invalid/e3/set-06/s06-a#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x644a33452f56433617b8cef4587f125d5d6375c5658e72a8044567c00b039e05",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 3000,
+    "leadTimeDays": 29,
+    "freightPerUnit": "80",
+    "incoterm": "FOB"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-412331-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.4,
+    "responseRate": 0.95,
+    "yearsOnPlatform": 6
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7776413846",
+    "holderName": "Quartzstone Houseware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

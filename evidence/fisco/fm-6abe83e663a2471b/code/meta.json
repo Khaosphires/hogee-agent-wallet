@@ -1,0 +1,13 @@
+{
+  "chainId": 20200,
+  "blockNumber": 39,
+  "blockHash": "0x1c4aad98c2ae32015ec8856dcfdaffcd247d6bb85d86266d2ad4efbd4fc637c4",
+  "capturedAt": "2026-10-20T00:32:48.848Z",
+  "addresses": {
+    "PlanRegistry": "0xd6f22c5f56c66c2477ffad9f0e058db01cb9c0c4",
+    "Treasury": "0x57c6ad72217c66f447790fd5462f19441919250a",
+    "TreasuryGovernance": "0x7c4d006b049a5262e78047d6e543cc99dbf88aac",
+    "MilestoneEscrow": "0xe2753360b05951726727df7ad912a8357393a286",
+    "SalesOracle": "0x49771ec015f3ba94cb5a288a8cd33cebb7a7b23c"
+  }
+}

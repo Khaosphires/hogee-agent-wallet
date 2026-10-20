@@ -1,0 +1,139 @@
+{
+  "supplier": {
+    "supplierId": "supplier-g",
+    "displayName": "Silverbay Steelware Co., Ltd. (demo)",
+    "country": "CN",
+    "ids": {
+      "uscc": "91445200QAN055YL7B"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-g",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/g.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "495",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-g#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0x5cd08da7e5b220ac9e6ddf5b7383f788a74e03246453d2b8ee7dbe1c07125121",
+        "evidence": "tier2",
+        "sourceType": "mock"
+      },
+      "moq": 500,
+      "leadTimeDays": 21,
+      "freightPerUnit": "70",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "GB 4806 food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-G-GB4806-2026",
+        "tier": "tier2"
+      }
+    ],
+    "metrics": {
+      "rating": 4.6,
+      "responseRate": 0.93,
+      "yearsOnPlatform": 6
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8472917533",
+      "holderName": "Silverbay Steelware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-g-price",
+      "supplierId": "supplier-g",
+      "criterion": "landed_cost",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-g#price",
+      "snippetHash": "0x5cd08da7e5b220ac9e6ddf5b7383f788a74e03246453d2b8ee7dbe1c07125121",
+      "value": "Price: CNY 4.95 per piece FOB Shantou.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-g-lead-time",
+      "supplierId": "supplier-g",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-g#lead",
+      "snippetHash": "0xe805c6b831487c9b160ff2cd4696546736d4c2f7516d7b39ab543517ef14a62e",
+      "value": "Lead time: 21 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-g-terms",
+      "supplierId": "supplier-g",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-g#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-g-response-rate",
+      "supplierId": "supplier-g",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-g#response-rate",
+      "snippetHash": "0x999aa435456258dede5286c9c41296af95e8148d3bd1a453163cfd42f707154a",
+      "value": "Platform response rate (demo metric): 93%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-g-cert-1-quality",
+      "supplierId": "supplier-g",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-g#cert-1",
+      "snippetHash": "0xedbc17ae904ac2c51140e68e6dbaa6af329861c5f84748a167fa6acd57e1ae8a",
+      "value": "GB 4806 food contact test report: ref DEMO-G-GB4806-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-g-cert-1-compliance",
+      "supplierId": "supplier-g",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-g#cert-1",
+      "snippetHash": "0xedbc17ae904ac2c51140e68e6dbaa6af329861c5f84748a167fa6acd57e1ae8a",
+      "value": "GB 4806 food contact test report: ref DEMO-G-GB4806-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

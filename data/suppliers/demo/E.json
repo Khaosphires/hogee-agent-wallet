@@ -1,0 +1,173 @@
+{
+  "supplier": {
+    "supplierId": "supplier-e",
+    "displayName": "Grandriver Housewares Manufacturing Co., Ltd. (demo)",
+    "country": "CN",
+    "ids": {
+      "uscc": "91441900RL5Q5MF09B"
+    },
+    "listing": {
+      "url": "https://example.invalid/demo/suppliers/supplier-e",
+      "sourceType": "mock",
+      "rawTextRef": "data/suppliers/demo/raw/e.txt"
+    },
+    "offer": {
+      "currency": "CNY",
+      "fobUnit": {
+        "value": "470",
+        "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#price",
+        "retrievedAt": "2026-10-18T00:00:00Z",
+        "snippetHash": "0x3f861831bcbd47aa97647305c1ea4c75555351f84d2bf9081fe7bcf48ab21cfc",
+        "evidence": "tier2",
+        "sourceType": "mock"
+      },
+      "moq": 3000,
+      "leadTimeDays": 30,
+      "freightPerUnit": "55",
+      "incoterm": "FOB"
+    },
+    "terms": {
+      "escrow": true,
+      "offPlatformDiscount": false,
+      "payeeType": "company"
+    },
+    "certificates": [
+      {
+        "type": "LFGB food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-E-LFGB-2026",
+        "tier": "tier2"
+      },
+      {
+        "type": "FDA 21 CFR food contact test report",
+        "issuer": "Demo Test Lab (fictional)",
+        "ref": "DEMO-E-FDA-2026",
+        "tier": "tier2"
+      }
+    ],
+    "metrics": {
+      "rating": 4.7,
+      "responseRate": 0.92,
+      "yearsOnPlatform": 11
+    },
+    "xenditTest": {
+      "channel": "MOCK_ONLY",
+      "accountNumber": "8940829887",
+      "holderName": "Grandriver Housewares Manufacturing Co., Ltd. (demo) - DEMO, DO NOT PAY"
+    }
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-supplier-e-price",
+      "supplierId": "supplier-e",
+      "criterion": "landed_cost",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#price",
+      "snippetHash": "0x3f861831bcbd47aa97647305c1ea4c75555351f84d2bf9081fe7bcf48ab21cfc",
+      "value": "Price: CNY 4.70 per piece FOB Shenzhen.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-e-lead-time",
+      "supplierId": "supplier-e",
+      "criterion": "lead_time",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#lead",
+      "snippetHash": "0x0119deb5c64dd1243eaf0b953f579328e3f335d16aef671f11d36f09bf524f2e",
+      "value": "Lead time: 30 days after the sample is approved.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-e-terms",
+      "supplierId": "supplier-e",
+      "criterion": "terms",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#payment",
+      "snippetHash": "0x09f76a30bbab3006162c409a1778bc3beb530fcc6b63db20254e5d3b3c3f26a7",
+      "value": "Payment: platform escrow, invoiced by our company.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-e-response-rate",
+      "supplierId": "supplier-e",
+      "criterion": "communication",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#response-rate",
+      "snippetHash": "0x171acc1bca19d397deb9ffef84ad3b7014fcefdc88d76e897b0b4357c93c5b79",
+      "value": "Platform response rate (demo metric): 92%.",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-e-cert-1-quality",
+      "supplierId": "supplier-e",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#cert-1",
+      "snippetHash": "0x6071b779121c259a228b631cbe99c24fc1a520999bf29d23579928b53e244cf0",
+      "value": "LFGB food contact test report: ref DEMO-E-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-e-cert-1-compliance",
+      "supplierId": "supplier-e",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#cert-1",
+      "snippetHash": "0x6071b779121c259a228b631cbe99c24fc1a520999bf29d23579928b53e244cf0",
+      "value": "LFGB food contact test report: ref DEMO-E-LFGB-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-e-cert-2-quality",
+      "supplierId": "supplier-e",
+      "criterion": "quality_evidence",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#cert-2",
+      "snippetHash": "0xd57280f056d6748f0cc6b19d1dee684cecab6884b4ae42efb187ec231128ba03",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-E-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    },
+    {
+      "evidenceId": "ev-supplier-e-cert-2-compliance",
+      "supplierId": "supplier-e",
+      "criterion": "compliance",
+      "tier": "tier2",
+      "sourceType": "mock",
+      "sourceUrl": "https://example.invalid/demo/suppliers/supplier-e#cert-2",
+      "snippetHash": "0xd57280f056d6748f0cc6b19d1dee684cecab6884b4ae42efb187ec231128ba03",
+      "value": "FDA 21 CFR food contact test report: ref DEMO-E-FDA-2026, issued by Demo Test Lab (fictional).",
+      "taint": {
+        "trust": "untrusted",
+        "sensitivity": "public"
+      }
+    }
+  ]
+}

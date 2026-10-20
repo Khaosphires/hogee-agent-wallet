@@ -1,0 +1,51 @@
+{
+  "supplierId": "s04-e",
+  "displayName": "Lumenpeak Drinkware Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "91330200NGRCLD7431"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-04/s04-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-04/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "540",
+      "sourceUrl": "https://example.invalid/e3/set-04/s04-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0x4b09aef20a7f119aed9903453fd4c8881bd6980f546bc768eb73cf51b26ce746",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 200,
+    "leadTimeDays": 43,
+    "freightPerUnit": "60",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "LFGB food contact test report",
+      "issuer": "Northgate Testing Lab (fictional)",
+      "ref": "LFGB-938399-1",
+      "tier": "tier1"
+    }
+  ],
+  "metrics": {
+    "rating": 4.7,
+    "responseRate": 0.92,
+    "yearsOnPlatform": 13
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7751788987",
+    "holderName": "Lumenpeak Drinkware Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

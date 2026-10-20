@@ -1,0 +1,26 @@
+{
+  "halt": {
+    "id": "1",
+    "reason": "EXTERNAL_AGENT_KEY_USE",
+    "detail": {
+      "role": "agent",
+      "dbNext": "31",
+      "signer": "0x6fA9497BE1B6C38653Ba261e00c7C0DD7e24E96a",
+      "chainPending": "32"
+    },
+    "haltedAt": "2026-10-18T23:36:39.171Z"
+  },
+  "reasons": [
+    {
+      "id": "1",
+      "reason": "EXTERNAL_AGENT_KEY_USE",
+      "raisedAt": "2026-10-18T23:36:39.171Z"
+    },
+    {
+      "id": "2",
+      "reason": "ORPHAN_SPEND",
+      "raisedAt": "2026-10-18T23:55:30.363Z"
+    }
+  ],
+  "detectedWithinMs": 1160859
+}

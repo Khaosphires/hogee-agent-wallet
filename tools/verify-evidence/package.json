@@ -1,0 +1,29 @@
+{
+  "name": "@hogee/verify-evidence",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline evidence verifier, zero runtime network; an optional --rpc mode compares the anchor with a node (P1).",
+  "exports": {
+    ".": "./src/index.ts",
+    "./fisco": "./src/fisco/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "verify": "node --import tsx src/cli.ts",
+    "verify:fisco": "node --import tsx src/fisco/cli.ts"
+  },
+  "devDependencies": {
+    "@hogee/chain": "workspace:*",
+    "@types/node": "24.19.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.4"
+  },
+  "dependencies": {
+    "@hogee/core": "workspace:*",
+    "@noble/curves": "1.9.1",
+    "viem": "2.57.6",
+    "zod": "4.6.7"
+  }
+}

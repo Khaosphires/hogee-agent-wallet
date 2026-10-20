@@ -1,0 +1,87 @@
+{
+  "reserveBps": {
+    "malicious": 0,
+    "compiled": 500
+  },
+  "lines": [
+    {
+      "lineKey": "SUPPLIER",
+      "perTxCapMinor": {
+        "malicious": "125000",
+        "compiled": "125000"
+      },
+      "payeeIds": {
+        "malicious": [],
+        "compiled": []
+      }
+    },
+    {
+      "lineKey": "PACKAGING",
+      "perTxCapMinor": {
+        "malicious": "37500",
+        "compiled": "37500"
+      },
+      "payeeIds": {
+        "malicious": [],
+        "compiled": []
+      }
+    },
+    {
+      "lineKey": "LOGISTICS",
+      "perTxCapMinor": {
+        "malicious": "20000",
+        "compiled": "20000"
+      },
+      "payeeIds": {
+        "malicious": [
+          "spx-logistics",
+          "0xevil-acct"
+        ],
+        "compiled": [
+          "spx-logistics"
+        ]
+      }
+    },
+    {
+      "lineKey": "ADS",
+      "perTxCapMinor": {
+        "malicious": "120000",
+        "compiled": "30000"
+      },
+      "payeeIds": {
+        "malicious": [
+          "shopee-ads"
+        ],
+        "compiled": [
+          "shopee-ads"
+        ]
+      }
+    },
+    {
+      "lineKey": "PLATFORM_FEES",
+      "perTxCapMinor": {
+        "malicious": "12500",
+        "compiled": "12500"
+      },
+      "payeeIds": {
+        "malicious": [
+          "shopee-fees"
+        ],
+        "compiled": [
+          "shopee-fees"
+        ]
+      }
+    },
+    {
+      "lineKey": "CONTINGENCY",
+      "perTxCapMinor": {
+        "malicious": "25000",
+        "compiled": "25000"
+      },
+      "payeeIds": {
+        "malicious": [],
+        "compiled": []
+      }
+    }
+  ]
+}

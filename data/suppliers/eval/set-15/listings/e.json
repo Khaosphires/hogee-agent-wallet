@@ -1,0 +1,51 @@
+{
+  "supplierId": "s15-e",
+  "displayName": "Ivorypoint Cup Factory Co., Ltd. (demo)",
+  "country": "CN",
+  "ids": {
+    "uscc": "914451003Y3QCEFN2N"
+  },
+  "listing": {
+    "url": "https://example.invalid/e3/set-15/s15-e",
+    "sourceType": "mock",
+    "rawTextRef": "data/suppliers/eval/set-15/raw/e.txt"
+  },
+  "offer": {
+    "currency": "CNY",
+    "fobUnit": {
+      "value": "520",
+      "sourceUrl": "https://example.invalid/e3/set-15/s15-e#price",
+      "retrievedAt": "2026-10-18T00:00:00Z",
+      "snippetHash": "0xcae9118299ee9a7e2d6b5fc6474001149c2d1a7b0376ebe5726bf9563bca6286",
+      "evidence": "tier3",
+      "sourceType": "mock"
+    },
+    "moq": 300,
+    "leadTimeDays": 42,
+    "freightPerUnit": "100",
+    "incoterm": "CIF"
+  },
+  "terms": {
+    "escrow": true,
+    "offPlatformDiscount": false,
+    "payeeType": "company"
+  },
+  "certificates": [
+    {
+      "type": "GB 4806 food contact test report",
+      "issuer": "Riverbend Analysis Centre (fictional)",
+      "ref": "GB-337734-1",
+      "tier": "tier2"
+    }
+  ],
+  "metrics": {
+    "rating": 4.9,
+    "responseRate": 0.84,
+    "yearsOnPlatform": 2
+  },
+  "xenditTest": {
+    "channel": "MOCK_ONLY",
+    "accountNumber": "7782784905",
+    "holderName": "Ivorypoint Cup Factory Co., Ltd. (demo) - DEMO, DO NOT PAY"
+  }
+}

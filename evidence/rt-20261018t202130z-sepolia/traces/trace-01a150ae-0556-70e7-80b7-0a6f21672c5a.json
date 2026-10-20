@@ -1,0 +1,20 @@
+[
+  {
+    "trace_id": "trace-01a150ae-0556-70e7-80b7-0a6f21672c5a",
+    "seq": 0,
+    "ts": "2026-10-18T20:22:24.342Z",
+    "actor": "founder",
+    "kind": "SIGNATURE",
+    "summary": "Founder registered a passkey (Touch ID) with the loan officer's enrolment code; the officer must approve this exact key before it goes on-chain",
+    "policy_verdict": null,
+    "reason_code": null,
+    "plan_version": null,
+    "payment_id": null,
+    "invoice_hash": null,
+    "decision_id": null,
+    "tx_hash": null,
+    "payout_id": null,
+    "prev_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "0xfb3667241dc103714d910903308a2b4b40b02682ec739be3459a5a7236514de0"
+  }
+]

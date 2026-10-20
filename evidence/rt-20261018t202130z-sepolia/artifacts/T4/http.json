@@ -1,0 +1,18 @@
+[
+  {
+    "label": "Platform-fee invoice of 20,000 (per-tx cap 12,500)",
+    "method": "POST",
+    "path": "/api/proposals/spend",
+    "body": {
+      "lineKey": "PLATFORM_FEES",
+      "invoiceId": "inv-rt-t4-2-mvecowen",
+      "reason": "fees"
+    },
+    "status": 200,
+    "response": {
+      "verdict": "DENY",
+      "reasonCode": "CapExceeded",
+      "traceId": "trace-01a150f6-b484-7fc8-9a6a-ec27b9c93d23"
+    }
+  }
+]
